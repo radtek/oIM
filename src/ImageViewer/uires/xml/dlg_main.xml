@@ -1,0 +1,27 @@
+﻿<SOUI name="mainWindow" trCtx="dlg_main" title="@string/title" bigIcon="ICON_LOGO:32" smallIcon="ICON_LOGO:16" width="600" height="400"
+  maxInset="5,3,10,10" margin="5,3,5,7" resizable="1" wndType="appMain" appWnd="1" minsize="600,400" translucent="1">
+  <root skin="skin.sys.bkgnd" cache="1">
+    <imageSwitcher name="imageSwitcher" pos="5,3,-5,-7" images="img:IMG_TEST1|img:IMG_TEST2|img:IMG_TEST1">
+      <!-- 左边的 【上一张】按钮 -->
+      <window pos="0,0,@40dp,-1">
+        <imgbtn name="btn_prev" class="cls_btn_prev" pos="|0dp,|0dp,@40dp,@40dp" offset="-0.5,0"/>
+      </window>
+
+      <!-- 右边的 【下一张】按钮 -->
+      <window pos="-40dp,0dp,-1,-1">
+        <imgbtn name="btn_next" class="cls_btn_next" pos="|0dp,|0dp,@40dp,@40dp" offset="-0.5,0"/>
+      </window>
+
+      <!-- 窗口标题，需要在这个位置，才不会因为 【下一张】位置在上面，而点击不了 -->
+      <caption pos="0,0,-1,@40dp">
+        <imgbtn name="btn_close" class="cls_sys_close" pos="-40dp,0dp,@40dp,@40dp" />
+      </caption>
+
+      <!-- 缩略图 -->
+      <window pos="-220dp,-140dp,@220dp,@140dp">
+        <img name="img_thumb" skin="skin.thumb" pos="0,0,-0,-0" />
+      </window>
+    </imageSwitcher>
+
+  </root>
+</SOUI>

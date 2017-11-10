@@ -1,0 +1,57 @@
+﻿<resource>
+<UIDEF>
+  <file name="XML_INIT"
+        path="uidef\init.xml" />
+</UIDEF>
+<LAYOUT>
+  <file name="XML_MAINWND"
+        path="xml\dlg_main.xml" />
+</LAYOUT>
+<values>
+  <file name="string"
+        path="values\string.xml" />
+  <file name="color"
+        path="values\color.xml" />
+  <file name="skin"
+        path="values\skin.xml" />
+</values>
+<lang>
+  <file name="cn"
+        path="lang\lang_cn.xml" />
+  <file name="en"
+        path="lang\lang_en.xml" />
+</lang>
+<ICON>
+  <file name="ICON_LOGO"
+        path="image\soui.ico" />
+</ICON>
+<img>
+  <file name="pic_100"
+        path="image\pic_100.png" />
+  <file name="pic_125"
+        path="image\pic_125.png" />
+  <file name="pic_150"
+        path="image\pic_150.png" />
+  <file name="pic_200"
+        path="image\pic_200.png" />
+  <file name="IMG_GROUP"
+        path="image\group.png" />
+  <file name="IMG_LEVEL"
+        path="image\level.png" />
+  <file name="IMG_GEAR1"
+        path="image\gear1.png" />
+  <file name="IMG_GEAR2"
+        path="image\gear2.jpg" />
+  <file name="IMG_GEAR3"
+        path="image\gear3.gif" />
+  <file name="IMG_GEAR4"
+        path="image\gear4.jpg" />
+  <file name="IMG_GEAR5"
+        path="image\gear5.jpg" />
+  <file name="IMG_GEAR6"
+        path="image\gear6.jpg" />
+</img>&lt; 
+<smenu>
+  <file name="menu_lang"
+        path="smenu\menu_lang.xml" />
+</smenu></resource>

@@ -1,0 +1,18 @@
+﻿<menuRoot skin="_skin.sys.wnd.bkgnd" trCtx="richeditMenu" itemHeight="26dp" iconPos="4dp,4dp" textOffset="5dp" iconBarWidth="24dp" maxWidth="220dp" minWidth="100dp" margin="5,5,5,5">
+  <menuItem name="menuOpenDb" id="100" text="menuOpenDb"/>
+  <menuItem name="menuOpenFolder" id="101" text="menuOpenFolder"/>
+  <menuItem name="menuRepair" id="102" text="menuRepair"/>
+  <menuItem name="menuRepairBest" id="103" text="menuRepairBest"/>
+  <sep />
+  <menuItem name="menuEncrypted" id="104" text="menuEncrypted" check="1"/>
+  <menuItem name="menuContactsZip" id="105" text="menuContactsZip"/>
+  <menuItem name="menuSql" id="106" text="menuSql" />
+  <sep />
+  <menuItem name="menuCleanup" id="107" text="menuCleanup"/>
+  <menuItem name="menuOpenLog" id="108" text="menuOpenLog"/>
+  <menuItem name="menuOpenLogFolder" id="109" text="menuOpenLogFolder"/>
+  <menuItem name="menuChinese" id="110" text="menuChinese" radio="1"/>
+  <menuItem name="menuEnglish" id="111" text="menuEnglish" radio="1"/>
+  <sep />
+  <menuItem name="menuAbout" id="112" text="menuAbout" />
+</menuRoot>

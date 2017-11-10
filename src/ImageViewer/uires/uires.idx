@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resource>
+  <UIDEF>
+    <file name="XML_INIT" path="uidef\init.xml"/>
+  </UIDEF>
+
+  <LAYOUT>
+    <file name="XML_MAINWND" path="xml\dlg_main.xml"/>
+  </LAYOUT>
+
+  <values>
+    <file name="string" path="values\string.xml"/>
+    <file name="color" path="values\color.xml"/>
+    <file name="skin" path="values\skin.xml"/>
+  </values>
+
+  <IMG>
+    <!-- 系统图片 -->
+    <file name="SYS_SHADOW" path="image\shadow.png"/>
+    <file name="SYS_CLOSE" path="image\sys_close.png"/>
+    <file name="SYS_BKGND" path="image\sys_bkgnd.png" />
+    <file name="IMG_ERROR" path="image\error.png" />
+    <file name="IMG_RATIO" path="image\ratio.png" />
+    <file name="IMG_THUMB" path="image\thumb.png" />
+    <!-- 按钮 -->
+    <file name="BTN_PREV" path="image\btn_prev.png" />
+    <file name="BTN_NEXT" path="image\btn_next.png" />
+    <file name="BTN_LEFT" path="image\btn_left.png" />
+    <file name="BTN_RIGHT" path="image\btn_right.png" />
+
+    <!-- 测试图片 -->
+    <file name="IMG_TEST1" path="image\test1.png" />
+    <file name="IMG_TEST2" path="image\test2.png" />
+
+  </IMG>
+
+  <ICON>
+    <file name="ICON_LOGO" path="image\ImageViewer.ico"/>
+  </ICON>
+
+  <translator>
+    <file name="lang_cn" path="translator\lang_cn.xml"/>
+    <file name="lang_en" path="translator\lang_en.xml"/>
+  </translator>
+</resource>

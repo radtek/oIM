@@ -1,0 +1,826 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- #########################@N中的N代表重要程度，最高5#############################################
+@ svn: http://code.taobao.org/svn/soui2/trunk
+@ git: https://github.com/setoutsoft/soui 
+@2 soui 基于 金山的BKUIlib（http://www.okbase.net/file/item/21499） 发展而来的，初始名字为Duiengine
+@2 分层参考了MetalBone（https://www.findbestopensource.com/product/metalbone#）
+@3 作者的原始教程，运行编译出来的demo.exe中，即可看到，建议都先看看：http://www.cnblogs.com/setoutsoft/
+@5 如果使用带密码的zip, 建议使用7z（无法识别rar的）
+@4 SOUI 介绍：http://www.cnblogs.com/setoutsoft/p/4996870.html
+@4 uiresImporter：http://www.cnblogs.com/setoutsoft/p/5428158.html
+@4 从0开始一个SOUI项目：http://www.cnblogs.com/setoutsoft/p/3928361.html
+@3 像android一样使用资源：http://www.cnblogs.com/setoutsoft/p/5207451.html
+@3 SOUI与WTL: http://www.cnblogs.com/setoutsoft/p/5100474.html
+@3 非半透明窗口如何实现圆角窗口？ :http://www.cnblogs.com/setoutsoft/p/5088169.html
+@5 SOUI模块结构图及SOUI框架图: http://www.cnblogs.com/setoutsoft/p/5010677.html
+@5 SOUI资源文件组织：http://www.cnblogs.com/setoutsoft/p/3923610.html
+@4 自定义控件开发过程：http://www.cnblogs.com/setoutsoft/p/4711308.html
+@4 控件注册机制：http://www.cnblogs.com/setoutsoft/p/4280997.html
+@4 控件属性查询方法：http://www.cnblogs.com/setoutsoft/p/4700128.html
+@3 扩展SOUI的控件及绘图对象(ISkinObj)：http://www.cnblogs.com/setoutsoft/p/3931877.html
+@5 在SOUI中使用异步通知：http://www.cnblogs.com/setoutsoft/p/5642056.html
+@5 在SOUI中做事件分发处理：http://www.cnblogs.com/setoutsoft/p/4399712.html
+@5 在SOUI中消息通讯: http://www.cnblogs.com/setoutsoft/p/4100753.html
+@5 在SOUI中使用定时器: http://www.cnblogs.com/setoutsoft/p/4014714.html
+@3 在SOUI中使用有窗口句柄的子窗口：http://www.cnblogs.com/setoutsoft/p/4001039.html
+@5 在SOUI中使用多语言翻译：http://www.cnblogs.com/setoutsoft/p/3931429.html
+@5 在SOUI中控件事件的响应：http://www.cnblogs.com/setoutsoft/p/3930419.html
+@3 导出SOUI对象到LUA脚本：http://www.cnblogs.com/setoutsoft/p/4361310.html
+@3 使用代码向窗口中插入子窗口：http://www.cnblogs.com/setoutsoft/p/4301928.html
+@3 使用分层窗口：http://www.cnblogs.com/setoutsoft/p/4209566.html
+@4 渲染引擎：http://www.cnblogs.com/setoutsoft/p/4193791.html
+@3 PreTranslateMessage：http://www.cnblogs.com/setoutsoft/p/4127333.html
+@5 utilities模块为什么要用DLL编译？ ：http://www.cnblogs.com/setoutsoft/p/3961808.html
+   说明：在eIM中，这个utilities也为lib：
+     1、它要么在只有一个UI工程中（独立的工具）；
+     2、要么在UIEngine中，在eIM中，SOUI的功能的库，主要都编译到这个DLL中。
+@5 资源管理模块：http://www.cnblogs.com/setoutsoft/p/3936066.html
+@5 资源类型名字最大长度：30；资源文件名字最大长度100。【class SResID】
+########################################################################################## -->
+<!-- #####################################################################################
+soui 能解决 duilib 不能处理的问题如下：
+  1、高DPI问题（duilib 需要配置不同分辨率的皮肤）
+  2、支持H5(soui2 使用wke(chromium 的精简版本，仅有10MB))
+  3、窗口阴影（V3中所引入的阴影窗口时常有问题）
+  4、QQ的接收窗口形式:头像与气泡（使用H5）
+
+soui工具：
+  1、UiEditor： 界面编辑工具【http://www.cnblogs.com/setoutsoft/p/6003987.html】
+  2、souispy： SOUI Spy工具
+  3、SoTool：SOUI 工具集合
+
+ 使用SOUI需要注意的地方：
+ 1、trCtx 属性，必须在title之前，否则就无法进行语言翻译
+ 2、Swnd.cpp L424 下面的代码，会导致如果子窗口的layout没有设置成与Parent的一样，就会导致下面的控件，无法使用全局控件默认配置
+    if(!GetLayout()->IsParamAcceptable(pNewChild->GetLayoutParam()))
+    {//检查子窗口原有的布局属性是不是和当前窗口的布局类型是否匹配
+        pNewChild->SetLayoutParam(GetLayout()->CreateLayoutParam());
+    } 
+    解决方式： a、子控件再定义一次class属性，引用默认设置，如：class="normalbtn"
+
+
+本文档的主要内容来源：属性列表.xls
+创建本文档的原因：
+  1、《属性列表.xls》比较旧，会不完整；
+  2、查看不方便
+  3、同步源代码内容，与源代码功能保持一致
+  4、本配置先按功能分类后，再按字母顺序
+作者：Wuquan.Long
+日期：2017/10/12
+
+格式概述：
+1、先定义所使用到的基本类型(type)，以方便后面的描述
+2、基本格式参考来源 duilib 的 《属性参考.xml》
+3、以 xml: 命名空间打头的节点，仅仅是为也分类子内容，与SOUI无关
+4、关键字含义：
+  name    属性名字
+  enum    范围或枚举值
+  type    取值的类型
+  default 默认值
+  attrib  描述一个属性
+  ref     引用一组属性（代码中其实是组合的方式，即拥有这些属性），以简化格式
+  fmt     格式：f 表示float; n 表示整数；[] 表示可选；或其它常量格式，如rgb(r,g,b)
+  comment 功能描述
+  常用数据类型，没有特别原因，就不再单独在 xml:Type下面定义了，如：int, short, byte, dword，string等等。 没有在多处使用的枚举类型，就直接在type中定义了，如：type="[rectangle、oval、ring]"
+###################################################################################### -->
+<xml:Root>
+    <!-- 皮肤中所使用到的类型 ########################################################### -->
+    <xml:Type>
+        <accel fmt="[ctrl、alt、shift、esc、enter、up、down、left、right、home、pageup、pagedown、insert、FN、num*、ASCII]" comment="Windows标准加速键格式，多个键组合时用 + 连接"/>
+        <bool enum="[0,1]" comment="布尔类型: 0为false; 其它为true"/>
+        <!-- 颜色的默认值，都是C++中的代码格式，仅仅是为了方便用户查看，与XML格式无关 -->
+        <color type="string" comment="xml配置中，支持前4种格式；最后两种是为了描述程序中的默认值">
+            <format fmt="@color/color-name" comment="命名颜色，使用前缀形式，如：'@color/gray'"/>
+            <format fmt="#rrggbbaa" comment="十六进制格式" />
+            <format fmt="rgba(r,g,b,a)" comment="十进制格式，带alpha"/>
+            <format fmt="rgb(r,g,b)" comment="十进制格式"/>
+            <format fmt="0xaabbggrr" comment="程序中的默认值使用，即程序中的十六进制值"/>
+            <fotmat fmt="RGB(0xEE,0xEE,0xEE)" comment="程序中的默认值使用，即程序中的宏RGB(r,g,b)格式"/>
+        </color>
+        <cursor enum="[IDC_*、name]" default="arrow" type="string" comment="指定光标资源名称：1、IDC_*的参看API LoadCursor;2、name为程序资源中的名字" />
+        <font Seprator="," type="string" comment="字体属性可以分解为多个子属性,如：fontHover=‘face:宋体,underline:1,strike:1,italic:1,bold:1’">
+            <attrib name="face" default="宋体" type="string" comment="字体" />
+            <attrib name="bold" default="0" type="bool" comment="加粗" />
+            <attrib name="underline" default="0" type="bool" comment="下划线" />
+            <attrib name="italic" default="0" type="bool" comment="斜体" />
+            <attrib name="strike" default="0" type="bool" comment="删除线" />
+            <attrib name="adding" default="0" type="short" comment="正代表字体变大，否则变小" />
+            <attrib name="size" default="12" type="short" comment="字体大小，为有符号类型" />
+            <attrib name="charset" default="1" type="byte" comment="字符集(DEFAULT_CHARSET:1)" />
+        </font>
+        <icon fmt="icon:n" type="string" comment="图标资源" />
+        <id enum="[IDOK、IDCANCEL、IDCLOSE、IDHELP、IDABORT、IDYES、IDNO、IDRETRY、IDIGNORE]" comment="如果是以'ID'为前缀，可以指定前面这些标准名字；否则为数字" />
+        <!-- 坐标单位unit，可以参考 android 系统中的详细说明，简要描述如下：############################
+           px: 即像素，1px代表屏幕上一个物理的像素点。px单位不被建议使用，因为同样100px的图片，在不同手机上显示的实际大小可能不同
+           dp: 以dpi为单位，android中有4中像素密度低（120dpi）、中（160dpi）、高（240dpi）和超高（320dpi），
+              它们对应的dp到px的系数分别为0.75、1、1.5和2，这个系数乘以dp长度就是像素数。 例如界面上有一个长度为“80dp”的图片，那么它在240dpi的手机上实际显示为80x1.5=120px，在320dpi的手机上实际显示为80x2=160px。
+           dip：Density independent pixels ，设备无关像素。与dp完全相同，只是名字不同而已。
+           sp：与缩放无关的抽象像素（Scale-independent Pixel）。
+           参考：http://www.cnblogs.com/wangjiafang/p/4433912.html
+        ########################################################################################### -->
+        <layoutsize type="string" default="px" unit="[px、dp、dip、sp]" comment="值后面，还可以有坐标单位(unit)后缀">
+            <attrib enum="[matchParent、full、wrapContent]" comment="枚举值" />
+            <format name="layoutsize1" type="float" fmt="f" comment="只有一个值, 四边距一样" />
+            <format name="layoutsize2" type="float" fmt="f,f" comment="二个值时分别是【左右,上下】的边距" />
+            <format name="layoutsize4" type="float" fmt="f,f,f,f" comment="四个值时分别为【左、上、右、下】边距" />
+            <format name="layoutsize-" type="float" fmt="[-]f" comment="可以为负值" />
+            <format name="layoutsizeL" enum="[left、top、center、right、bottom]" comment="LinearLayout，参考枚举类型Gravity"/>
+        </layoutsize>
+        <!-- 是以控件最后的大小为单位进行平移。
+         参考：http://www.cnblogs.com/setoutsoft/p/4110950.html -->
+        <offset type="float" fmt="f,f" comment="设置在X,Y上需要叠加的偏移量。使用负数就是相对于左下角"/>
+        <!-- 因为 pos 属性相当复杂，这儿列举一些示例，你也可以直接参考Demo: ############################ 
+            pos = "sib.left@100:10,sib.bottom@100:10,@100,@25" 
+            pos = "0,0,@50,-0" 
+            pos = "|0,|0" pos="-0,0,@50,-0" 
+            pos = "0,[0,-0,-30" 
+            pos = "0,[0,@100,@30" 
+            pos = "0,0,|-5,%16.67"
+            说明：
+              “|“, "[" ,"]", "{", "}" 中指定的值都可以为正或者负，正时向右或者下偏移，负则向左或者上偏移。 当没有上述标志时，负号代表参考父窗口的右边或者下边缩进绝对值位置。如：pos="0,0,-0,-0"代表占满父窗口。而pos="10,10,-10,-10"则代表在父窗口的基础上向内全部缩进10点。
+              @:指定窗口的size。只能用于x2,y2，用于x2时，指定窗口的width，用于y2时指定窗口的height。注：只能为正值，负号会自动忽略。
+              当pos只指定了x1,y1时，通常需要和offset(或者pos2type),size(或者width,height)配合使用。
+            参考：
+              http://www.cnblogs.com/setoutsoft/p/3925952.html
+              http://www.cnblogs.com/setoutsoft/p/5164402.html
+              符号记忆绝招：{【】}，左边的当然是上一个，右边的就是下一个了。大括号大点，就远点
+            ########################################################################################### -->
+        <pos type="string" comment="坐标位置，包括的特殊符号有：|,%,[,],{,},@">
+            <attrib fmt="sib.left@id:layoutsize-" type="string" comment="兄弟结点的left,用于X"/>
+            <attrib fmt="sib.right@id:layoutsize-" type="string" comment="兄弟结点的right,用于X "/>
+            <attrib fmt="sib.top@id:layoutsize-" type="string" comment="兄弟结点的top，与left相同，用于Y"/>
+            <attrib fmt="sib.bottom@id:layoutsize-" type="string" comment="兄弟结点的bottom,与right相同,用于Y"/>
+            <!-- 下面这些坐标，不引用兄弟ID -->
+            <attrib fmt="layoutsize-" type="string" comment="锚点坐标" />
+            <attrib fmt="|layoutsize-" type="string" comment="代表参考父窗口的中心；如|-10代表在父窗口的中心向左/上偏移10象素" />
+            <attrib fmt="%layoutsize-" type="string" comment="代表在父窗口的百分比，可以是小数，负数。如：%40代表在父窗口的40%位置，%-40则等价于(1-40%)" />
+            <attrib fmt="[layoutsize-" type="string" comment="相对于前一兄弟窗口。用于X时，参考前一兄弟窗口的right，用于Y时参考前一兄弟窗口的bottom" />
+            <attrib fmt="]layoutsize-" type="string" comment="相对于后一兄弟窗口。用于X时，参考后一兄弟的left,用于Y时参考后一兄弟的top" />
+            <attrib fmt="{layoutsize-" type="string" comment="相对于前一兄弟窗口。用于X时，参考前一兄弟窗口的left，用于Y时参考前一兄弟窗口的top" />
+            <attrib fmt="}layoutsize-" type="string" comment="相对于后一兄弟窗口。用于X时，参考后一兄弟的right,用于Y时参考后一兄弟的bottom" />
+            <attrib fmt="@layoutsize-" type="string" comment="标志用来指定窗口的大小，只能出现在pos属性的第3，4个值中，用来标识窗口的宽度。当后面的值为负时，代表自动计算窗口的宽度或者高度" />
+        </pos>
+        <skin type="string" comment="ISkinObj对象" />
+        <size type="int" fmt="%d,%d" comment="设置SIZE【-0: 不设置；wrap_content(-1)：自適應高/宽度；match_parent(-2)：与父的一样】" />
+        <TrText type="string" fmt="@string/str-name" comment="是将会作为多语言显示的文本"/>
+    </xml:Type>
+    <!-- 下面是 Window相关内容，注意：在soui中 SWindow(window) 是所有UI控件的基类，而不是窗口的意思。这个是仿Win32系统中的控件，其实每个控件都是一个窗口 -->
+    <xml:Window>
+        <!-- 窗口 style -->
+        <style class="SwndStyle" base="SObject" comment="SOUI窗口风格管理">
+            <!-- 文本对齐 -->
+            <attrib name="textMode" default="0" type="uint" comment="文字绘制的格式，参考API DrawText"/>
+            <attrib name="align" default="center" type="[left,center,right]" comment="水平对齐，在没有指定textMode时有效"/>
+            <attrib name="valign" default="middle" type="[top,middle,bottom]" comment="垂直对齐，在没有指定textMode时有效"/>
+            <!-- 窗口及边框颜色 -->
+            <attrib name="colorBkgnd" default="0x00ffffff" type="color" comment="背景颜色，与skin属性冲突，优先使用skin对象绘制背景"/>
+            <attrib name="colorBorder" default="0x00ffffff" type="color" comment="边框颜色，与ncSkin属性冲突，优先使用ncSkin绘制非客户区"/>
+            <!-- 字体 -->
+            <attrib name="font" default="0" type="font" comment="默认字体"/>
+            <attrib name="fontHover" default="0" type="font" comment="高亮状态字体"/>
+            <attrib name="fontPush" default="0" type="font" comment="按下状态字体"/>
+            <attrib name="fontDisable" default="0" type="font" comment="禁用状态字体"/>
+            <!-- 文本颜色 -->
+            <attrib name="colorText" default="0x00ffffff" type="color" comment="正常状态文本颜色"/>
+            <attrib name="colorTextHover" default="0x00ffffff" type="color" comment="高亮状态文本颜色"/>
+            <attrib name="colorTextPush" default="0x00ffffff" type="color" comment="按下状态文本颜色"/>
+            <attrib name="colorTextDisable" default="0x00ffffff" type="color" comment="禁用状态文本颜色"/>
+            <!-- 边距 -->
+            <attrib name="margin-x" default="0" type="layoutsize" comment="左、右边距"/>
+            <attrib name="margin-y" default="0" type="layoutsize" comment="上、下边距"/>
+            <attrib name="margin" default="0" type="layoutsize" comment="四周非客户区大小"/>
+            <attrib name="inset" default="0" type="layoutsize" comment="文字区四个方向的内边距，等同于padding"/>
+            <attrib name="padding" default="" type="layoutsize" comment="文字区四个方向的内边距，等同于inset"/>
+            <!-- 其它 -->
+            <attrib name="cursor" default="arrow" type="cursor" comment="指定光标资源名称"/>
+            <attrib name="dotted" default="0" type="bool" comment="在文件绘制长度超出客户区时是否使用‘…’"/>
+            <attrib name="trackMouseEvent" default="0" type="bool" comment="监视鼠标进入及移出消息"/>
+            <attrib name="alpha" default="255" type="byte" comment="窗口透明度"/>
+            <attrib name="bkgndBlend" default="1" type="bool" comment="渲染窗口内容和背景混合标志"/>
+            <!-- 说明：sepSpace似乎没有使用，不能生效，代码中也没有使用 -->
+            <attrib name="sepSpace" default="5" type="byte" comment="子窗口水平间隔"/>
+        </style>
+        <SHostWndAttr class="SHostWndAttr" base="SObject,ITrCtxProvider" comment="Real Container of SWindow">
+            <!-- 重要提醒：
+                1、只有实际的HostWnd，设置trCtx才有意义，也就是说，多语言的上下文是以窗口为单位的
+                2、trCtx 一定要在 title 的前面，否则无法翻译。使用UiEditor.exe时就可能会不在前面 -->
+            <attrib name="trCtx" default="" type="string" comment="在语言翻译时作为context使用"/>
+            <attrib name="title" default="" type="TrText" comment="标题"/>
+            <!-- 窗口大小与边距 -->
+            <attrib name="maxInset" default="0" type="layoutsize4" comment="窗口最大化时超出屏幕的边缘大小。经测试，WS_OVERLAPPED style的窗口该属性无效"/>
+            <attrib name="width" default="-1" type="layoutsize1" comment="窗口初始宽度【-1：自適應宽度；-2：与父的一样】"/>
+            <attrib name="height" default="-1" type="layoutsize1" comment="窗口初始高度【-1：自適應高度；-2：与父的一样】"/>
+            <attrib name="margin" default="0" type="layoutsize4" comment="窗口拉伸的边缘检测大小"/>
+            <attrib name="minsize" default="0,0" type="layoutsize2" comment="窗口最小值"/>
+            <!-- 窗口风格与属性 -->
+            <attrib name="wndStyle" default="0" type="dword" comment="窗口风格"/>
+            <attrib name="wndStyleEx" default="0" type="string" comment="窗口扩展风格"/>
+            <attrib name="resizable" default="0" type="bool" comment="窗口大小可调节"/>
+            <attrib name="translucent" default="0" type="bool" comment="窗口的半透明属性"/>
+            <attrib name="sendWheel2Hover" default="0" type="bool" comment="将滚轮消息发送到hover窗口"/>
+            <attrib name="appWnd" default="0" type="bool" comment="是APP窗口，在任务栏上显示图标"/>
+            <attrib name="toolWindow" default="0" type="bool" comment="设置WS_ES_TOOLWINDOW属性"/>
+            <attrib name="smallIcon" default="" type="string" comment="小图标 iconname:size，如logo:16"/>
+            <attrib name="bigIcon" default="" type="string" comment="小图标 iconname:size，如logo:32"/>
+            <attrib name="alpha" default="255" type="byte" comment="透明度"/>
+            <attrib name="allowSpy" default="1" type="bool" comment="允许spy"/>
+            <!-- 窗口类型标识 -->
+            <attrib name="appMainWnd" default="0" type="byte" comment="主窗口标志,有该标志的窗口关闭时自动发送WM_QUIT【WT_UNDEFINE=0,WT_APPMAIN=1,WT_NORMAL=2】"/>
+            <attrib name="wndType" default="" type="string[undefine、appMain、normal]" comment="主窗口标志,有该标志的窗口关闭时自动发送WM_QUIT"/>
+        </SHostWndAttr>
+        <!-- 窗口相关属性 
+            cache 参考：http://www.cnblogs.com/setoutsoft/p/4122970.html -->
+        <window class="SWindow" base="SObject,SMsgHandleState,ITrCtxProvider,IObjRef" comment="SOUI系统中的DUI窗口管理模块">
+            <attrib name="alpha" default="255" type="byte" comment="窗口透明度[0-255],依赖于控件的实现"/>
+            <attrib name="cache" default="0" type="bool" comment="绘制缓存：0--无绘制缓存（默认） 1--有绘制缓存。无缓存时每次刷新时发送WM_PAINT消息重绘；有缓存时为窗口创建一个绘制缓存，只有自己窗口更新后重绘，否则在绘制链中直接调用缓存绘制。"/>
+            <attrib name="clipClient" default="0" type="bool" comment="窗口绘制时做clip客户区处理的标志,由于clip可能增加计算量，只在绘制可能走出客户区时才设置"/>
+            <attrib name="data" default="0" type="bool" comment="可以在XML中指定一个对象的附加数据，通过GetUserData访问"/>
+            <attrib name="drawFocusRect" default="1" type="bool" comment="绘制默认的焦点虚框"/>
+            <attrib name="enable" default="1" type="bool" comment="控件是否可用"/>
+            <attrib name="focusable" default="0" type="bool" comment="窗口可获得焦点标志"/>
+            <attrib name="float" default="0" type="bool" comment="窗口位置固定不动的标志"/>
+            <attrib name="id" default="0" type="id" comment="窗口ID,SWindow的FindChildByID根据本属性来查找子窗口"/>
+            <attrib name="layeredWindow" default="0" type="bool" comment="指示是否是一个分层窗口"/>
+            <attrib name="maxWidth" default="" type="layoutsize" comment="根据内容自适应窗口大小时,窗口的最大宽度"/>
+            <attrib name="msgTransparentid" default="0" type="bool" comment="消息穿透	0--窗口接收鼠标键盘消息（默认） 1--不接收消息"/>
+            <attrib name="name" default="" type="string" comment="窗口名称,SWindow的FindChildByName根据本属性来查找子窗口"/>
+            <attrib name="tip" default="" type="TrText" comment="窗口ToolTip"/>
+            <attrib name="trackMouseEvent" default="0" type="bool" comment="监视鼠标进入及移出消息"/>
+            <!-- 等同于节点的text属性（xml_node::text()），当文本比较复杂时，或者有特殊字符时，使用节点的text属性比较合适 -->
+            <attrib name="text" default="" type="TrText" comment="窗口文字"/>
+            <!-- 可见性，visible 和 show是同一个属性 -->
+            <attrib name="display" default="1" type="bool" comment="窗口隐藏时是否占位，不占位时启动重新布局"/>
+            <attrib name="visible" default="1" type="bool" comment="控件是否可见"/>
+            <attrib name="show" default="1" type="bool" comment="窗口可见状态"/>
+            <!-- 皮肤：layout属性最先被处理，之后再是class, 最后才是其它属性 -->
+            <attrib name="class" default="" type="string" comment="窗口的属性集合(WndStyle)的名称"/>
+            <attrib name="layout" default="Both" type="[vbox、hbox、linearLayout]" comment="Layout 名称"/>
+            <attrib name="nskin" default="" type="skin" comment="非客户区skin,窗口绘制非客户区边框时引用的ISkinObj对象名称"/>
+            <attrib name="skin" default="" type="skin" comment="背景skin,窗口绘制背景引用的ISkinObj对象名称"/>
+            <!-- style -->
+            <ref name="style" comment="设置style相关属性" />
+            <!-- layout -->
+            <ref name="SouiLayout" comment="设置SouiLayout相关属性" />
+            <ref name="SouiLayoutParam" comment="设置SouiLayoutParam相关属性" />
+        </window>
+        <!-- Usage: <realwnd id=xx wndclass="edit" wndname="name" style="00000001" exstyle="00000000"/> -->
+        <realwnd class="SRealWnd" base="SWindow">
+            <attrib name="wndclass" default="" type="string" comment="类名"/>
+            <attrib name="wndname" default="" type="string" comment="窗口名"/>
+            <attrib name="style" default="0" type="dword" comment="窗口样式"/>
+            <attrib name="exstyle" default="0" type="dword" comment="窗口扩展样式"/>
+            <attrib name="init" default="0" type="bool" comment="是否初始化"/>
+        </realwnd>
+    </xml:Window>
+    <!-- 下面是布局相关内容 ########################################################### -->
+    <xml:Layout>
+        <SouiLayout class="SouiLayout" base="ILayout"/>
+        <SouiLayoutParam class="SouiLayoutParam" base="ILayoutParam">
+            <attrib name="width" default="0" type="layoutsize" comment="宽度"/>
+            <attrib name="height" default="0" type="layoutsize" comment="高度"/>
+            <attrib name="pos" default="0" type="pos" comment="位置"/>
+            <attrib name="size" default="0" type="size" comment="宽度和高度"/>
+            <attrib name="offset" default="0" type="offset" comment="偏移量"/>
+        </SouiLayoutParam>
+        <linearLayout class="SLinearLayout" base="ILayout">
+            <attrib name="orientation" default="horizontal(0)" type="[horizontal、vertical]" comment="方向"/>
+            <attrib name="gravity" default="G_Undefined(-1)" type="layoutsizeL" comment="对齐方式"/>
+        </linearLayout>
+        <LinearLayoutParam class="SLinearLayoutParam" base="ILayoutParam, SLinearLayoutParamStruct">
+            <attrib name="width" default="0" type="layoutsize" comment="宽度"/>
+            <attrib name="height" default="0" type="layoutsize" comment="高度"/>
+            <attrib name="size" default="0" type="size" comment="宽度和高度"/>
+            <attrib name="weight" default="0" type="float" comment="加权值，作用于长宽，参看SLinearLayout::LayoutChildren()"/>
+            <attrib name="layout_gravity" default="G_Undefined(-1)" type="layoutsizeL" comment="对齐方式"/>
+            <!-- extend 属性 -->
+            <attrib name="extend" default="0" type="[layoutsize1、layoutsize4]" comment="相当于android的margin属性"/>
+            <attrib name="extend_left" default="0" type="layoutsize1" />
+            <attrib name="extend_top" default="0" type="layoutsize1"/>
+            <attrib name="extend_right" default="0" type="layoutsize1"/>
+            <attrib name="extend_bottom" default="0" type="layoutsize1"/>
+        </LinearLayoutParam>
+        <!-- 提醒：线程布局与相对布局(pos)是两种不同的布局方式，也就是说相冲突的。我们总是应该优先使用相对布局，特别是有可变长宽的子控件时。-->
+        <vbox class="SVBox" base="SLinearLayout" />
+        <hbox class="SHBox" base="SLinearLayout" />
+    </xml:Layout>
+    <!-- 下面是菜单相关内容 ########################################################### -->
+    <xml:Menu>
+        <menuattr class="SMenuAttr" base="SObject, IObjRef" comment="菜单属性">
+            <attrib name="itemSkin" default="SKIN_SYS_MENU_SKIN" type="skin" comment="菜单项皮肤，包含2种状态：正常状态+选中状态" />
+            <attrib name="iconSkin" default="" type="skin" comment="菜单图标" />
+            <attrib name="sepSkin" default="SKIN_SYS_MENU_SEP" type="skin" comment="分割栏皮肤" />
+            <attrib name="checkSkin" default="SKIN_SYS_MENU_CHECK" type="skin" comment="选中状态,包含两种状态:勾选+圈选" />
+            <attrib name="itemHeight" default="26" type="int" comment="菜单项高度" />
+            <attrib name="iconMargin" default="2" type="int" comment="图标边缘空间" />
+            <attrib name="textMargin" default="5" type="int" comment="文本边缘空间" />
+            <attrib name="maxWidth" default="-1" type="int" comment="菜单项最大宽度" />
+            <attrib name="iconSize" default="CX_ICON(16),CY_ICON(16)" type="size" comment="图标尺寸" />
+            <attrib name="font" default="" type="font" comment="字体" />
+            <attrib name="colorText" default="COLOR_MENUTEXT" type="color" comment="正常文本颜色" />
+            <attrib name="colorTextSel" default="COLOR_HIGHLIGHTTEXT" type="color" comment="选中文本颜色" />
+            <attrib name="cororTextGray" default="COLOR_GRAYTEXT" type="color" comment="灰文本颜色" />
+            <attrib name="trCtx" default="" type="string" comment="翻译上下文" />
+        </menuattr>
+        <menuRoot class="SMenuExRoot" base="SWindow">
+            <attrib name="itemSkin" default="SKIN_SYS_MENU_SKIN" type="skin" comment="菜单项皮肤，包含2种状态：正常状态+选中状态" />
+            <attrib name="iconSkin" default="" type="skin" comment="菜单图标" />
+            <attrib name="sepSkin" default="SKIN_SYS_MENU_SEP" type="skin" comment="分割栏皮肤" />
+            <attrib name="checkSkin" default="SKIN_SYS_MENU_CHECK" type="skin" comment="选中状态,包含两种状态:勾选+圈选" />
+            <attrib name="arrowSkin" default="SKIN_SYS_MENU_ARROW" type="skin" comment="箭头皮肤" />
+            <attrib name="itemHeight" default="26" type="int" comment="菜单项高度" />
+            <attrib name="iconPos" default="0，0" type="layoutsize2" comment="icon位置" />
+            <attrib name="margin" default="0，0，0，0" type="layoutsize4" comment="边距" />
+            <attrib name="iconBarWidth" default="24" type="layoutsize1" comment="iconBar宽度" />
+            <attrib name="textOffset" default="0" type="layoutsize1" comment="文本偏移位置" />
+            <attrib name="minWidth" default="100dp" type="layoutsize1" comment="最小宽度" />
+            <attrib name="subMenuOffset" default="0" type="layoutsize1" comment="子菜单偏移位置" />
+        </menuRoot>
+        <!-- 菜单需要同时定义name和id属性，才能使用消息应射的方式进行响应 -->
+        <menuItem class="SMenuExItem" base="SWindow">
+            <attrib name="item" type="elem" comment="菜单项节点"/>
+            <attrib name="sep" type="sep" comment="分隔线" />
+            <attrib name="id" default="0" type="int" comment="item's ID"/>
+            <attrib name="icon" default="-1" type="int" comment="菜单图标索引" />
+            <attrib name="check" default="0" type="bool" comment="是否复选" />
+            <attrib name="radio" default="0" type="bool" comment="是否单选" />
+            <attrib name="hotKey" default="0" type="accel" comment="加速键" />
+            <attrib name="disable" default="0" type="bool" comment="是否禁用" />
+        </menuItem>
+    </xml:Menu>
+    <!-- 下面是皮肤相关内容，皮肤的基类为SSkinObjBase。soui中的皮肤是定义资源相关的内容，控件再引用它 -->
+    <xml:Skin class="SSkinObjBase">
+        <!-- Shape 相关皮肤 -->
+        <corners class="SCornerSize" base="SObject,IObjRef" comment="圆角，仅仅在【shape】内部使用">
+            <attrib name="radius" default="0" type="[layoutsize1、layoutsize2]" comment="" />
+            <attrib name="radiusX" default="0" type="layoutsize1" comment="" />
+            <attrib name="radiusY" default="0" type="layoutsize1" comment="" />
+        </corners>
+        <gradient class="SGradient" base="SObject,IObjRef" comment="渐变，仅仅在【shape】内部使用">
+            <attrib name="type" default="linear" type="[linear、radial、sweep]" comment="渐变样式" />
+            <attrib name="angle" default="0.0f" type="float" comment="渐变角度，必须为45的倍数，0为从左到右，90为从上到下" />
+            <attrib name="centerX" default="0.5f" type="float" comment="渐变中心X的相当位置，范围为0～1" />
+            <attrib name="centerY" default="0.5f" type="float" comment="渐变中心Y的相当位置，范围为0～1" />
+            <attrib name="startColor" default="" type="color" comment="渐变开始点的颜色" />
+            <attrib name="centerColor" default="" type="color" comment="渐变中间点的颜色，在开始与结束点之间" />
+            <attrib name="endColor" default="" type="color" comment="渐变结束点的颜色" />
+            <attrib name="radius" default="" type="color" comment="渐变的半径，只有当渐变类型为radial时才能使用" />
+        </gradient>
+        <ring class="SShapeRing" base="SObject,IObjRef" comment="圆环，仅仅在【shape】内部使用">
+            <attrib name="startAngle" default="0.0f" type="float" comment="起始角度" />
+            <attrib name="sweepAngle" default="360.f" type="float" comment="终止角度" />
+            <attrib name="innerRadio" default="0" type="layoutsize1" comment="内半径" />
+        </ring>
+        <size class="SShapeSize" base="SObject,IObjRef" comment="大小，仅仅在【shape】内部使用">
+            <attrib name="width" default="0" type="layoutsize1" comment="宽度" />
+            <attrib name="height" default="0" type="layoutsize1" comment="高度" />
+        </size>
+        <stroke class="SStroke" base="SObject,IObjRef" comment="删除线，仅仅在【shape】内部使用">
+            <attrib name="width" default="" type="layoutsize" comment="描边的宽度" />
+            <attrib name="color" default="CR_INVALID(0x00ffffff)" type="color" comment="描边的颜色" />
+            <attrib name="style" default="solid" type="[solid、dash、dashDot、dashDotDot]" comment="线型" />
+        </stroke>
+        <shape class="SSkinShape" base="SSkinObjBase">
+            <attrib name="shape" default="rectangle" type="[rectangle、oval、ring]" comment="" />
+        </shape>
+        <!-- 其它skin -->
+        <button class="SSkinButton" base="SSkinObjBase">
+            <attrib name="colorBorder" default="RGB(0x70,0x70,0x70)" type="color" comment="边框颜色" />
+            <attrib name="colorUp" default="RGB(0xEE,0xEE,0xEE)" type="color" comment="正常状态渐变起始颜色" />
+            <attrib name="colorDown" default="RGB(0xD6,0xD6,0xD6)" type="color" comment="正常状态渐变终止颜色" />
+            <attrib name="colorUpHover" default="RGB(0xEE,0xEE,0xEE)" type="color" comment="浮动状态渐变起始颜色" />
+            <attrib name="colorDownHover" default="RGB(0xE0,0xE0,0xE0)" type="color" comment="浮动状态渐变终止颜色" />
+            <attrib name="colorUpPush" default="RGB(0xCE,0xCE,0xCE)" type="color" comment="下压状态渐变起始颜色" />
+            <attrib name="colorDownPush" default="RGB(0xC0,0xC0,0xC0)" type="color" comment="下压状态渐变终止颜色" />
+            <attrib name="colorUpDisable" default="RGB(0x8E,0x8E,0x8E)" type="color" comment="禁用状态渐变起始颜色" />
+            <attrib name="colorDownDisable" default="RGB(0x80,0x80,0x80)" type="color" comment="禁用状态渐变终止颜色" />
+            <attrib name="cornerRadius" default="2" type="int" comment="圆角大小" />
+        </button>
+        <colorrect class="SSkinColorRect" base="SSkinObjBase">
+            <attrib name="normal" default="RGBA(255,255,255,255)" type="color" comment="正常状态" />
+            <attrib name="hover" default="CR_INVALID(0x00ffffff)" type="color" comment="高亮状态" />
+            <attrib name="pushdown" default="CR_INVALID(0x00ffffff)" type="color" comment="按下状态" />
+            <attrib name="disable" default="CR_INVALID(0x00ffffff)" type="color" comment="禁用状态" />
+            <attrib name="cornerRadius" default="0" type="int" comment="圆角大小" />
+        </colorrect>
+        <gradation class="SSkinGradation" base="SSkinObjBase" comment="渐变">
+            <attrib name="colorFrom" default="CR_INVALID(0x00ffffff)" type="color" comment="渐变起始颜色" />
+            <attrib name="colorTo" default="CR_INVALID(0x00ffffff)" type="color" comment="渐变终止颜色" />
+            <attrib name="vertical" default="1" type="bool" comment="是否是垂直方向渐变" />
+        </gradation>
+        <group class="SSKinGroup" base="SSkinObjBase" comment="分组">
+            <attrib name="normal" default="" type="skin" comment="正常状态" />
+            <attrib name="hover" default="" type="skin" comment="高亮状态" />
+            <attrib name="pushDown" default="" type="skin" comment="按下状态" />
+            <attrib name="disable" default="" type="skin" comment="禁用状态" />
+        </group>
+        <imglist class="SSkinImgList" base="SSkinObjBase">
+            <attrib name="src" default="" type="skin" comment="定义在uires.idx中的name属性" />
+            <attrib name="tile" default="0" type="bool" comment="是否平铺模式" />
+            <attrib name="autoFit" default="1" type="bool" comment="是否自动拉伸，以适应绘图区域大小" />
+            <attrib name="vertical" default="0" type="bool" comment="是否垂直排列" />
+            <attrib name="states" default="1" type="int" comment="子图数量" />
+            <attrib name="filterLevel" default="none(0)" type="[none、low、medium、high]" comment="图片过滤器级别" />
+        </imglist>
+        <imgframe class="SSkinImgFrame" base="SSkinImgList" comment="九宫格式图片，所有属性都是设置margin">
+            <attrib name="margin" default="0,0,0,0" type="rect" comment="九宫格四周边距" />
+            <attrib name="margin-x" default="0" type="int" comment="九宫格四周左、右边距" />
+            <attrib name="margin-y" default="0" type="int" comment="九宫格四周上、下边距" />
+            <attrib name="left" default="" type="int" comment="九宫格左边距" />
+            <attrib name="top" default="" type="int" comment="九宫格上边距" />
+            <attrib name="right" default="" type="int" comment="九宫格右边距" />
+            <attrib name="bottom" default="" type="int" comment="九宫格下边距" />
+        </imgframe>
+        <scrollbar class="SSkinScrollbar" base="SSkinImgList">
+            <attrib name="margin" default="0" type="int" comment="九宫格四周边距" />
+            <attrib name="hasGripper" default="0" type="bool" comment="滑块上是否有抓手子图(gripper)" />
+            <attrib name="hasInactive" default="0" type="bool" comment="是否失活状态" />
+        </scrollbar>
+        <skinObjBase class="SSkinObjBase" base="ISkinObj">
+            <attrib name="alpha" default="255" type="byte" comment="皮肤透明度" />
+            <attrib name="enableColorize" default="1" type="bool" comment="是否支持皮肤着色" />
+            <attrib name="scale" default="100" type="int" comment="缩放级别" />
+            <attrib name="name" default="" type="string" comment="名字" />
+        </skinObjBase>
+    </xml:Skin>
+    <!-- 下面是控件相关内容，所有控件的基类都是SWindow ################################# -->
+    <xml:Controls>
+        <activex class="SActiveX" base="SWindow" comment="ActiveX控件">
+            <attrib name="clsID" default="" type="clsid" comment="COM的classId" />
+            <attrib name="clscText" default="CLSCTX_ALL" type="dword" comment="创建COM的标识，参考MSDN中的CLSCTX_*" />
+            <attrib name="delay" default="0" type="bool" comment="是否延迟初始化" />
+        </activex>
+        <animateimg class="SAnimateImgWnd" base="SWindow,ITimelineHandler" comment="此窗口支持动画效果">
+            <attrib name="skin" default="" type="skin" comment="动画图片" />
+            <attrib name="speed" default="50" type="int" comment="速度" />
+            <attrib name="autoStart" default="1" type="bool" comment="是否自动启动" />
+            <attrib name="repeat" default="-1" type="int" comment="播放循环次数,-1代表无限循环" />
+        </animateimg>
+        <!-- Usage: <button id=xx>inner text example</button> -->
+        <button class="SButton" base="SWindow,IAcceleratorTarget,ITimelineHandler" comment="按钮控件,通过属性ID绑定click事件">
+            <attrib name="accel" default="" type="accel" comment="加速键"/>
+            <attrib name="animate" default="0" type="bool" comment="动画标志" />
+        </button>
+        <calendar class="SCalendar" base="SWindow" comment="日历">
+            <attrib name="titleHeight" default="TITLE_HEIGHT(20)" type="layoutsize" comment="标题高度" />
+            <attrib name="footerHeight" default="FOOTER_HEIGHT(20)" type="layoutsize" comment="底部高度" />
+            <attrib name="colorWeekend" default="RGBA(255,0,0,255)" type="color" comment="周末文字颜色" />
+            <attrib name="colorTitleBack" default="RGBA(0,255,0,255)" type="color" comment="标题颜色" />
+            <attrib name="colorDay" default="RGBA(255,0,0,255)" type="color" comment="日期颜色" />
+            <attrib name="daySkin" default="" type="skin" comment="默认按钮皮肤" />
+            <attrib name="titleSkin" default="" type="skin" comment="默认标题皮肤" />
+            <attrib name="title-1" default="日" type="TrText" comment="标题周N文本" />
+            <attrib name="title-2" default="一" type="TrText" comment="标题周N文本" />
+            <attrib name="title-3" default="二" type="TrText" comment="标题周N文本" />
+            <attrib name="title-4" default="三" type="TrText" comment="标题周N文本" />
+            <attrib name="title-5" default="四" type="TrText" comment="标题周N文本" />
+            <attrib name="title-6" default="五" type="TrText" comment="标题周N文本" />
+            <attrib name="title-7" default="六" type="TrText" comment="标题周N文本" />
+        </calendar>
+        <caption class="SCaption" base="SWindow" comment="标签" />
+        <!-- Usage: <check checked="1">This is a check-box</check> -->
+        <check class="SCheckBox" base="SWindow" comment="复选框控件">
+            <attrib name="skin" default="SKIN_SYS_CHECKBOX" type="skin" comment="默认皮肤"/>
+            <attrib name="focusSkin" default="SKIN_SYS_FOCUSCHECKBOX" type="skin" comment="焦点状态资源"/>
+            <attrib name="checked" default="0" type="bool" comment="是否选中"/>
+        </check>
+        <combobase class="SComboBase" base="SWindow,ISDropDownOwner" comment="可输入下拉列表">
+            <attrib name="dropDown" default="1" type="bool" comment="是否dropdown" />
+            <attrib name="dropHeight" default="200" type="int" comment="下拉框高度" />
+            <attrib name="curSel" default="-1" type="int" comment="当前选中索引" />
+            <attrib name="btnSkin" default="SKIN_SYS_DROPBTN" type="skin" comment="按钮资源" />
+            <attrib name="animateTime" default="200" type="int" comment="动画时间" />
+            <editStyle />
+            <dropdownStyle />
+            <liststyle />
+            <items comment="初始化数据列表">
+                <item comment="初始化数据条目">
+                    <attrib name="text" type="TrText" comment="文本内容" />
+                    <attrib name="icon" comment="icon皮肤" />
+                    <attrib name="data" comment="数据" />
+                </item>
+            </items>
+        </combobase>
+        <combobox class="SComboBox" base="SComboBase" comment="ComboBox控件"/>
+        <!-- 参考：http://www.cnblogs.com/setoutsoft/p/4691790.html -->
+        <comboview class="SComboView" base="SComboBase"/>
+        <div class="SPanel" base="SWindow" comment="SOUI的窗口面板，实现在非客户区的滚动条支持">
+            <attrib name="sbSkin" default="SKIN_SYS_SCROLLBAR" type="skin" comment="滚动条Skin" />
+            <attrib name="sbArrowSize" default="SIZE_UNDEF(-3)" type="layoutsize" comment="箭头大小" />
+            <attrib name="sbWid" default="SIZE_UNDEF(-3)" type="layoutsize" comment="" />
+            <attrib name="sbEnable" default="SSB_BOTH(3)" type="int[SSB_NULL:0、SSB_HORZ:1、SSB_VERT:2、SSB_BOTH:3]" comment="滚动条可操作信息" />
+            <attrib name="updateInterval" default="0" type="uint" comment="更新时间间隔" />
+            <attrib name="scrollSpeed" default="10" type="uint" comment="滚动速度" />
+            <attrib name="sbLeft" default="0" type="layoutsize" comment="滚动条距离左边距离" />
+            <attrib name="sbRight" default="0" type="layoutsize" comment="滚动条距离右边距离" />
+            <attrib name="sbTop" default="0" type="layoutsize" comment="滚动条距离上边距离" />
+            <attrib name="sbBottom" default="0" type="layoutsize" comment="滚动条距离下边距离" />
+        </div>
+        <edit class="SEdit" base="SRichEdit" comment="edit控件">
+            <attrib name="cueColor" default="RGBA(0xcc,0xcc,0xcc,0xff)" type="color" comment="文本颜色"/>
+            <attrib name="cueText" default="RGBA(0xF0,0xF0,0xF0,0xFF)" type="TrText" comment="文本"/>
+        </edit>
+        <!-- Usage: <group colorLine1="#b8d5e2" colorLine2="#999999">group text</> -->
+        <group class="SGroup" base="SWindow" comment="组控件">
+            <attrib name="colorLine1" default="RGBA(0xF0,0xF0,0xF0,0xFF)" type="color" comment="3D显示使用的两种颜色"/>
+            <attrib name="colorLine2" default="RGBA(0xA0,0xA0,0xA0,0xFF)" type="color" comment="3D显示使用的两种颜色"/>
+            <attrib name="round" default="GROUP_ROUNDCORNOR(4)" type="layoutsize" comment="圆角半径"/>
+            <attrib name="headerHeight" default="GROUP_HEADER(20)" type="layoutsize" comment="头部高度"/>
+        </group>
+        <header class="SHeaderCtrl" base="SWindow" comment="表头控件">
+            <attrib name="itemSkin" default="SKIN_SYS_HEADER" type="skin" comment="表头绘制Skin" />
+            <attrib name="sortSkin" default="" type="skin" comment="排序标志Skin" />
+            <attrib name="fixWidth" default="0" type="bool" comment="是否固定宽度" />
+            <attrib name="itemSwapEnable" default="1" type="bool" comment="是否允许拖动调整位置" />
+            <attrib name="sortHeader" default="1" type="bool" comment="是否表头可以点击排序" />
+        </header>
+        <hotkey class="SHotKeyCtrl" base="SWindow,CAccelerator" comment="热键控件">
+            <attrib name="invalidComb" default="1" type="word" comment="无效的组合键" />
+            <attrib name="defCombKey" default="0" type="word" comment="对无效组合键的替换方案,默认方案" />
+            <attrib name="combKey" default="0" type="word" comment="组合键" />
+            <attrib name="hotKey" default="0" type="word" comment="热键" />
+        </hotkey>
+        <!-- Usage: <hr size=1 mode="vert" lineStyle="dash"/> -->
+        <hr class="SLine" base="SWindow" comment="线条控件">
+            <attrib name="colorLine" default="RGBA(0,0,0,255)" type="color" comment="颜色"/>
+            <attrib name="size" default="1" type="int" comment="大小"/>
+            <attrib name="mode" default="horizontal" type="[horizontal、horizontal、tilt]" comment="方向"/>
+            <attrib name="lineStyle" default="solid" type="[solid、dash、dot、dashdot、dashdotdot]" comment="线形"/>
+        </hr>
+        <!-- Usage: <img skin="skin" sub="0"/> -->
+        <img class="SImageWnd" base="SWindow" comment="图片控件">
+            <attrib name="skin" default="" type="skin" comment="皮肤"/>
+            <attrib name="iconIndex" default="0" type="int" comment="绘制skin对象的子图索引"/>
+        </img>
+        <imgbtn class="SImageButton" base="SButton" comment="图片按钮" />
+        <!--  Usage: <icon src="icon:16" /> -->
+        <icon class="SIconWnd" base="SWindow">
+            <attrib name="src" default="" type="icon" comment="图标资源句柄"/>
+        </icon>
+        <!-- Usage: <link>inner text example</link> -->
+        <link class="SLink" base="SWindow" comment="超链接控件">
+            <attrib name="href" default="" type="string" comment="超链接"/>
+        </link>
+        <listbox class="SListBox" base="SScrollView" comment="列表框">
+            <attrib name="itemHeight" default="20" type="int" comment="item高度" />
+            <attrib name="itemSkin" default="" type="skin" comment="Item皮肤" />
+            <attrib name="iconSkin" default="" type="skin" comment="Icon皮肤" />
+            <attrib name="colorItemBkgnd" default="CR_INVALID(0x00ffffff)" type="color" comment="Item背景色" />
+            <attrib name="colorItemBkgnd2" default="CR_INVALID(0x00ffffff)" type="color" comment="Item背景色2" />
+            <attrib name="colorItemSelBkgnd" default="RGBA(57,145,209,255)" type="coror" comment="Item选中背景色" />
+            <attrib name="colorItemHotBkgnd" default="RGBA(57,145,209,128)" type="color" comment="ItemHot背景色" />
+            <attrib name="colorText" default="CR_INVALID(0x00ffffff)" type="color" comment="文本景色" />
+            <attrib name="colorSelText" default="CR_INVALID(0x00ffffff)" type="color" comment="选中文本颜色" />
+            <attrib name="icon-x" default="-1" type="int" comment="图标坐标x" />
+            <attrib name="icon-y" default="-1" type="int" comment="图标坐标y" />
+            <attrib name="text-x" default="-1" type="int" comment="文本坐标x" />
+            <attrib name="text-y" default="-1" type="int" comment="文本坐标y" />
+            <attrib name="hotTrack" default="0" type="bool" comment="是否鼠标移动时高亮显示下面的行" />
+        </listbox>
+        <listctrl class="SListCtrl" base="SPanel" comment="ListCtrl控件 ">
+            <attrib name="headerHeight" default="20" type="int" comment="列表头高度" />
+            <attrib name="itemHeight" default="20" type="int" comment="item高度" />
+            <attrib name="checkBox" default="0" type="bool" comment="复选框" />
+            <attrib name="multiSelection" default="0" type="bool" comment="是否支持多选" />
+            <attrib name="itemSkin" default="" type="skin" comment="Item皮肤" />
+            <attrib name="iconSkin" default="" type="skin" comment="Icon皮肤" />
+            <attrib name="checkSkin" default="SKIN_SYS_CHECKBOX" type="skin" comment="Check皮肤" />
+            <attrib name="colorItemBkgnd" default="RGBA(255,255,255,255)" type="color" comment="Item背景色" />
+            <attrib name="colorItemBkgnd2" default="RGBA(226,226,226,255)" type="color" comment="Item背景色2" />
+            <attrib name="colorItemSelBkgnd" default="RGBA(57,145,209,255)" type="coror" comment="Item选中背景色" />
+            <attrib name="colorItemHotBkgnd" default="RGBA(57,145,209,128)" type="color" comment="Item Hot背景色" />
+            <attrib name="colorText" default="RGBA(0,0,0,255)" type="color" comment="文本景色" />
+            <attrib name="colorSelText" default="RGBA(255,255,0,255)" type="color" comment="选中文本颜色" />
+            <attrib name="icon-x" default="-1" type="int" comment="图标坐标x" />
+            <attrib name="icon-y" default="-1" type="int" comment="图标坐标y" />
+            <attrib name="text-x" default="-1" type="int" comment="文本坐标x" />
+            <attrib name="text-y" default="-1" type="int" comment="文本坐标y" />
+            <attrib name="hotTrack" default="0" type="bool" comment="是否鼠标移动时高亮显示下面的行" />
+        </listctrl>
+        <!-- 参考：http://www.cnblogs.com/setoutsoft/p/4691790.html -->
+        <listview class="SListView" base="SPanel, IItemContainer">
+            <attrib name="dividerSkin" default="" type="skin" comment="定位器皮肤" />
+            <attrib name="dividerSize" default="0" type="layoutsize" comment="定位器高度" />
+            <attrib name="wantTab" default="0" type="bool" comment="是否支持TAB" />
+        </listview>
+        <!-- 参考：http://www.cnblogs.com/setoutsoft/p/4863555.html -->
+        <mclistview class="SMCListView" base="SPanel" comment="ListCtrl控件 ">
+            <attrib name="headerHeight" default="25" type="layoutsize" comment="列表头高度" />
+            <attrib name="hotTrack" default="0" type="bool" comment="是否跟踪光标" />
+            <attrib name="dividerSkin" default="" type="skin" comment="定位器皮肤" />
+            <attrib name="dividerSize" default="0" type="layoutsize" comment="定位器高度" />
+            <attrib name="wantTab" default="0" type="bool" comment="是否支持TAB" />
+        </mclistview>
+        <page class="STabPage" base="SWindow" comment="Tab页面">
+            <attrib name="title" default="100" type="TrText" comment="标题"/>
+            <attrib name="iconIndex" default="-1" type="int" comment="Icon索引"/>
+        </page>
+        <pane class="SSplitPane" base="SWindow" comment="分割窗口">
+            <attrib name="idealSize" default="20" type="int" comment="期望大小"/>
+            <attrib name="minSize" default="0" type="int" comment="最小大小"/>
+            <attrib name="maxSize" default="100" type="int" comment="最大大小"/>
+            <attrib name="priority" default="0" type="int" comment="优先级,值越大优先级越高,优先级越高，窗格越先到达idealSize"/>
+        </pane>
+        <!-- Usage: <progress bgskin=xx posskin=xx min=0 max=100 value=10,showpercent=0/> -->
+        <progress class="SProgress" base="SWindow" comment="进度条">
+            <attrib name="bkgndSkin" default="" type="skin" comment="背景资源"/>
+            <attrib name="posSkin" default="" type="skin" comment="前景资源"/>
+            <attrib name="min" default="0" type="int" comment="进度最小值"/>
+            <attrib name="max" default="100" type="int" comment="进度最大值"/>
+            <attrib name="value" default="0" type="int" comment="进度值"/>
+            <attrib name="vertical" default="0" type="bool" comment="是否竖直状态"/>
+            <attrib name="showPercent" default="0" type="bool" comment="是否显示百分比"/>
+        </progress>
+        <!-- Usage: <radio checked="1">This is a check-box</radio> -->
+        <radio class="SRadioBox" base="SWindow" comment="单选框控件">
+            <attrib name="skin" default="SKIN_SYS_RADIO" type="skin" comment="默认皮肤"/>
+            <attrib name="focusSkin" default="SKIN_SYS_FOCUSRADIO" type="skin" comment="焦点状态资源"/>
+            <attrib name="checked" default="0" type="bool" comment="是否选中"/>
+        </radio>
+        <richedit class="SRichEdit" base="SPanel" comment="Richedit控件(使用了SKIN_SYS_BORDER)">
+            <attrib name="style" default="ES_LEFT|ES_AUTOHSCROLL" type="dword" comment="richedit的风格" />
+            <attrib name="maxBuf" default="cInitTextMax(32767)" type="int" comment="最大字符数" />
+            <attrib name="transparent" default="0" type="boot" comment="是否背景透明" />
+            <attrib name="rich" default="1" type="bool" comment="是否支持富文本" />
+            <attrib name="vertical" default="0" type="bool" comment="是否有垂直滚动条" />
+            <attrib name="wordWrap" default="0" type="bool" comment="是否英文按Word折行" />
+            <attrib name="allowBeep" default="0" type="bool" comment="错误时有提示音" />
+            <attrib name="autoWordSel" default="1" type="bool" comment="是否支持自动选择单词" />
+            <attrib name="vcenter" default="1" type="bool" comment="单行时，是否水平局中" />
+            <attrib name="inset" default="" type="rect" comment="边距，单位pixel" />
+            <attrib name="colorText" default="0x00ffffff" type="color" comment="文本颜色" />
+            <attrib name="rtf" default="" type="string" comment="在XML中指定的RTF数据源" />
+            <attrib name="align" default="left" type="[left、center、right]" comment="对齐方式" />
+            <attrib name="notifyChange" default="0" type="bool" comment="文本改变时是否通知" />
+            <attrib name="hscrollBar" default="0" type="bool" comment="是否显示水平滚动条" />
+            <attrib name="vscrollBar" default="0" type="bool" comment="是否显示垂直滚动条" />
+            <attrib name="autoHscroll" default="0" type="bool" comment="是否自动显示水平滚动条" />
+            <attrib name="autoVscroll" default="0" type="bool" comment="是否自动显示垂直滚动条" />
+            <attrib name="multiLines" default="0" type="bool" comment="是否支持多行" />
+            <attrib name="readOnly" default="0" type="bool" comment="是否只读" />
+            <attrib name="wantReturn" default="0" type="bool" comment="是否支持回车键" />
+            <attrib name="password" default="0" type="bool" comment="是否使用密码模式" />
+            <attrib name="number" default="0" type="bool" comment="是否是数字模式" />
+            <attrib name="passwordChar" default="*" type="char" comment="密码字符" />
+            <attrib name="enableDragdrop" default="0" type="bool" comment="是否支持拖拽" />
+            <attrib name="autoSel" default="0" type="bool" comment="是否自动选中" />
+        </richedit>
+        <scrollbar class="SScrollBar" base="SWindow" comment="滚动条">
+            <attrib name="skin" default="" type="skin" comment="皮肤" />
+            <attrib name="arrowSize" default="" type="uint" comment="箭头大小" />
+            <attrib name="min" default="" type="int" comment="滚动范围最小值" />
+            <attrib name="max" default="" type="int" comment="滚动范围最大值" />
+            <attrib name="value" default="" type="int" comment="滚动框的位置" />
+            <attrib name="page" default="" type="int" comment="页尺寸" />
+            <attrib name="vertical" default="0" type="bool" comment="是否是垂直滚动条" />
+        </scrollbar>
+        <scrollview class="SScrollView" base="SPanel">
+            <attrib name="origin-x" default="0" type="int" comment="坐标x" />
+            <attrib name="origin-y" default="0" type="int" comment="坐标y" />
+            <attrib name="viewSize" default="-1，-1" type="size" comment="长宽" />
+        </scrollview>
+        <sliderbar class="SSliderBar" base="SProgress" comment="滑块工具条">
+            <attrib name="thumbSkin" default="SKIN_SYS_SLIDER_THUMB" type="skin" comment="拖动按钮的皮肤" />
+            <attrib name="thumbInRail" default="0" type="bool" comment="滑块包含在轨道中" />
+        </sliderbar>
+        <splitwnd class="SSplitWnd" base="SWindow" comment="分割窗口">
+            <attrib name="sepSize" default="5" type="int" comment="分隔条的大小【高度或宽度】"/>
+            <attrib name="sepSkin" default="" type="skin" comment="皮肤"/>
+            <attrib name="adjustable" default="1" type="bool" comment="是否支持拖动调节窗格大小"/>
+            <attrib name="vertical" default="1" type="bool" comment="是否是垂直分割条"/>
+        </splitwnd>
+        <splitcol class="SSplitWnd_Col" base="SSplitWnd" comment="列（垂直）分割窗口"/>
+        <splitrow class="SSplitWnd_Row" base="SSplitWnd" comment="行（水平）分割窗口" />
+        <spinButton class="SSpinButtonCtrl" base="SWindow">
+            <attrib name="max" default="100" type="int" comment="范围最大值" />
+            <attrib name="min" default="0" type="int" comment="范围最小值" />
+            <attrib name="value" default="0" type="int" comment="当前值" />
+            <attrib name="step" default="1" type="uint" comment="步长" />
+            <attrib name="circle" default="1" type="bool" comment="长宽" />
+            <attrib name="buddy" default="" type="string" comment="伙伴控件名称" />
+        </spinButton>
+        <tabctrl class="STabCtrl" base="SWindow">
+            <attrib name="curSel" default="0" type="int" comment="选中索引" />
+            <!-- tabSize -->
+            <attrib name="tabSize" default="-1,-1" type="size" comment="tab大小" />
+            <attrib name="tabWidth" default="-1" type="int" comment="宽度" />
+            <attrib name="tabHeight" default="-1" type="int" comment="高度" />
+            <!-- tab 位置 -->
+            <attrib name="tabPos" default="0" type="int" comment="tab开始偏移" />
+            <attrib name="tabInterSize" default="0" type="int" comment="tab页面间距" />
+            <attrib name="tabInterSkin" default="" type="skin" comment="分割线皮肤" />
+            <attrib name="tabSkin" default="SKIN_SYS_TAB_PAGE" type="skin" comment="tab皮肤" />
+            <attrib name="iconSkin" default="" type="skin" comment="icon皮肤" />
+            <attrib name="frameSkin" default="" type="skin" comment="frame皮肤" />
+            <attrib name="icon-x" default="0" type="int" comment="图标位置x" />
+            <attrib name="icon-y" default="0" type="int" comment="图标位置y" />
+            <attrib name="text-x" default="-1" type="int" comment="标题位置x" />
+            <attrib name="text-y" default="-1" type="int" comment="标题位置y" />
+            <attrib name="tabAlign" default="top" type="[top、left、right、bottom]" comment="排列方式" />
+            <attrib name="textDir" default="hori" type="[hori、horizontal、vert、vertical]" comment="文本方向" />
+            <!-- 动画 -->
+            <attrib name="animateSteps" default="0" type="int" comment="动画切换页面时动画次数" />
+            <attrib name="animateType" default="0" type="int" comment="动画样式0：背景跟着动，1：背景不动" />
+        </tabctrl>
+        <!-- Usage: <text>inner text example</text> -->
+        <text class="SStatic" base="SWindow" comment="静态文本控件, 可支持多行，有多行属性时，\n可以强制换行">
+            <attrib name="multiLines" default="0" type="bool" comment="是否开启多行显示"/>
+            <attrib name="interHeight" default="5" type="int" comment="行间距"/>
+        </text>
+        <tileview class="STileView" base="SPanel，IItemContainer">
+            <attrib name="marginSize" default="0" type="int" comment="边距"/>
+            <attrib name="wantTab" default="0" type="bool" comment="是否支持Tab"/>
+        </tileview>
+        <toggle class="SToggle" base="SWindow" comment="Toggle控件">
+            <attrib name="skin" default="SKIN_SYS_TREE_TOGGLE" type="skin" comment="状态皮肤"/>
+            <attrib name="toggled" default="0" type="skin" comment="是否Toggle"/>
+        </toggle>
+        <treectrl class="STreeCtrl" base="SScrollView,CSTree" comment="tree控件">
+            <attrib name="indent" default="16" type="int" comment="缩进"/>
+            <attrib name="itemHeight" default="20" type="int" comment="Item高度"/>
+            <attrib name="itemMargin" default="4" type="int" comment="Item边距"/>
+            <attrib name="checkBox" default="0" type="bool" comment="是否支持复选框"/>
+            <attrib name="rightClickSel" default="0" type="bool" comment="是否支持右击选中"/>
+            <attrib name="itemBkgndSkin" default="" type="skin" comment="Item背景皮肤"/>
+            <attrib name="itemSelSkin" default="" type="skin" comment="Item选中时的背景皮肤"/>
+            <attrib name="toggleSkin" default="SKIN_SYS_TREE_TOGGLE" type="skin" comment="toggle皮肤"/>
+            <attrib name="iconSkin" default="" type="skin" comment="Icon皮肤"/>
+            <attrib name="checkSkin" default="SKIN_SYS_TREE_CHECKBOX" type="skin" comment="Check皮肤"/>
+            <attrib name="colorItemBkgnd" default="RGBA(255,255,255,255)" type="color" comment="Item背景颜色"/>
+            <attrib name="colorItemSelBkgnd" default="RGBA(0,0,136,255)" type="color" comment="Item选中的背景颜色"/>
+            <attrib name="colorItemText" default="RGBA(0,0,0,255)" type="color" comment="Item文本颜色"/>
+            <attrib name="colorItemSelText" default="RGBA(255,255,255,255)" type="color" comment="Item选中的文本颜色"/>
+        </treectrl>
+    </xml:Controls>
+    <!-- -->
+    <xml:Styles>
+        <class comment="定义控件的风格">
+            <attrib name="name" comment="风格名字" />
+            <ref name="xml:Controls" comment="控件相关的属性" />
+        </class>
+    </xml:Styles>
+    <!-- 皮肤配置相关模板 -->
+    <xml:Templates>
+        <!-- 参考函数： SResProviderFiles::Init(); SResProviderZip::_LoadSkin(); SResProvider7Zip::_LoadSkin() -->
+        <tpl name="uires.idx" root="resource" child="[UIDEF、LAYOUT、lang、ICON、CURSOR、SMENU、SMENUEX、img、values、*]" comment="资源索引文件，固定名字；child中是默认子节点类型，可以自定义。">
+            <file>
+                <attrib name="name" comment="资源名字，在皮肤、布局、代码中都可以使用" />
+                <attrib name="path" comment="资源的位置。如果是文件型资源，就是相对于uires.idx所在位置；否则，就是在PE资源中的位置。" />
+            </file>
+        </tpl>
+        <!-- 参考函数：SUiDefInfo::SUiDefInfo() 
+            提醒：在objattr 中所以定义的控件默认属性，是无法生效的，会被 SWindow::InitFromXml() L657的代码清除掉
+                if(m_pLayoutParam) m_pLayoutParam->Clear();
+                换句话说，是与Layout相关的参数会被清除掉，其它的没有影响。
+            ============================================================================= -->
+        <tpl name="init.xml" root="UIDEF" child="[font、string、color、skin、style、objattr]" comment="全局资源定义">
+            <ref name="font" comment="定义默认字体" />
+            <string comment="定义字符串表">
+                <attrib name="src" comment="字符串表位置，如：values:string" />
+            </string>
+            <color comment="定义颜色值表">
+                <attrib name="src" comment="字符串表位置，如：values:color" />
+            </color>
+            <skin comment="定义全局skin对象">
+                <attrib name="src" comment="全局skin对象位置，如：values\skin" />
+            </skin>
+            <style comment="全局style对象">
+                <ref name="xml:Styles" />
+            </style>
+            <!-- 提醒：在objattr中定义的控件默认属性，与layout相关的，是会被清除掉的，需要在定义控件时，使用class="xxx" 再引用 -->
+            <objattr comment="控件默认属性">
+                <ref name="xml:Controls"/>
+            </objattr>
+        </tpl>
+        <!-- 参考函数：SSkinPool::LoadSkins() -->
+        <tpl name="【sys_xml_skin.xml、skin.xml】" root="skin" child="[xml:Skin]" comment="定义皮肤资源，即ISkinObj*">
+            <ref name="xml:Skin" />
+        </tpl>
+        <tpl name="color.xml" root="color" comment="定义颜色常量表">
+            <!-- usage: <red value="rgb(255,0,0)"/> -->
+            <color_name comment="节点名即为颜色名字">
+                <attrib name="value" type="color" comment="颜色值" />
+            </color_name>
+        </tpl>
+        <tpl name="string.xml" root="string" comment="字符串常量表">
+            <string_name comment="节点即为字符串名字">
+                <attrib name="value" comment="字符串值" />
+            </string_name>
+        </tpl>
+        <tpl name="dlg*.xml" root="SOUI" child="【style、skin、script、buttonText、root】" comment="即窗口布局文件，root是必须存在的；buttonText仅仅用于SMessageBoxImpl">
+            <ref name="xml:Styles" comment="这个是窗口私有的风格定义" />
+            <ref name="xml:Skin" comment="这个是窗口私有的皮肤资源定义" />
+        </tpl>
+        <!-- 参考函数：STranslator::LoadFromXml() -->
+        <tpl name="lang_*.xml" root="language" comment="定义语言相关字符串">
+            <language comment="定义一种语言">
+                <attrib name="name" comment="语言的名字" />
+                <attrib name="guid" comment="guid" />
+                <context comment="上下文，即属性trCtx所引用的名字；可选，没有给定，就是全局的">
+                    <!-- 
+                <message><source>copy</source><translation>复制</translation></message>
+                -->
+                </context>
+            </language>
+        </tpl>
+    </xml:Templates>
+</xml:Root>

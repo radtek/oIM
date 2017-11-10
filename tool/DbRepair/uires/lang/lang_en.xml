@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- name 配置成文件名，方便程序书写 -->
+<language name="lang_en" guid="{7A1726F8-4AD4-4E6A-AC97-DA005A3F9659}">
+  <context>
+    <!--没有上下文的翻译-->
+    <message>
+      <source>sysClose</source>
+      <translation>关闭</translation>
+    </message>
+    <message>
+      <source>sysMax</source>
+      <translation>最大化</translation>
+    </message>
+    <message>
+      <source>sysMin</source>
+      <translation>最小化</translation>
+    </message>
+    <message>
+      <source>sysRestore</source>
+      <translation>还原</translation>
+    </message>
+  </context>
+  <context name="messagebox">
+    <message>
+      <source>Ok</source>
+      <translation>Ok</translation>
+    </message>
+    <message>
+      <source>Cancel</source>
+      <translation>Cancel</translation>
+    </message>
+    <message>
+      <source>Retry</source>
+      <translation>Retry</translation>
+    </message>
+    <message>
+      <source>Abort</source>
+      <translation>Abort</translation>
+    </message>
+    <message>
+      <source>Yes</source>
+      <translation>Yes</translation>
+    </message>
+    <message>
+      <source>No</source>
+      <translation>No</translation>
+    </message>
+    <message>
+      <source>Ignore</source>
+      <translation>Ignore</translation>
+    </message>
+  </context>
+  <context name="editmenu">
+    <message>
+      <source>copy</source>
+      <translation>Copy</translation>
+    </message>
+    <message>
+      <source>cut</source>
+      <translation>Cut</translation>
+    </message>
+    <message>
+      <source>paste</source>
+      <translation>Paste</translation>
+    </message>
+    <message>
+      <source>delete</source>
+      <translation>Delete</translation>
+    </message>
+    <message>
+      <source>select all</source>
+      <translation>Select all</translation>
+    </message>
+  </context>
+  <context name="richeditMenu">
+    <message>
+      <source>menuOpenDb</source>
+      <translation>Open database</translation>
+    </message>
+    <message>
+      <source>menuOpenFolder</source>
+      <translation>Open database's folder</translation>
+    </message>
+    <message>
+      <source>menuRepair</source>
+      <translation>Check-Repair database</translation>
+    </message>
+    <message>
+      <source>menuRepairBest</source>
+      <translation>Check-Repair(Best ratio)</translation>
+    </message>
+    <message>
+      <source>menuEncrypted</source>
+      <translation>Encrypted database</translation>
+    </message>
+    <message>
+      <source>menuContactsZip</source>
+      <translation>Make Contacts.db Zip</translation>
+    </message>
+    <message>
+      <source>menuSql</source>
+      <translation>Execute SQL</translation>
+    </message>
+    <message>
+      <source>menuCleanup</source>
+      <translation>Cleanup output</translation>
+    </message>
+    <message>
+      <source>menuOpenLog</source>
+      <translation>Open log file</translation>
+    </message>
+    <message>
+      <source>menuOpenLogFolder</source>
+      <translation>Open log folder</translation>
+    </message>
+    <message>
+      <source>menuChinese</source>
+      <translation>Chinese</translation>
+    </message>
+    <message>
+      <source>menuEnglish</source>
+      <translation>English</translation>
+    </message>
+    <message>
+      <source>menuAbout</source>
+      <translation>About</translation>
+    </message>
+  </context>
+  <context name="dlg_about">
+    <message>
+      <source>aboutTitle</source>
+      <translation>About DbRepair</translation>
+    </message>
+    <message>
+      <source>aboutVersion</source>
+      <translation>SQLite3 Database Repair Tool, %ver%, by YFGZ, QQ:44360689</translation>
+    </message>
+    <message>
+      <source>aboutCopyright</source>
+      <translation>SXDT Copyright (C) 2017</translation>
+    </message>
+    <message>
+      <source>aboutHelp</source>
+      <translation>Function: Repair the eIM damage database.
+1. Tool auto search local logined user databases;
+2. You can choose database;
+3. Click [Check & Repair] to check, auto repair when damaged
+4. If exist sync database(~1\\), will try use it at first, then sync change
+5. Auto backup dmaged database when repair it
+6. You can drag and drop database(*.db) or folder(exist contacts.db, msg.db)
+7. Not support encrypted database when not SXIT's database
+8. More function on content menu</translation>
+    </message>
+  </context>
+  <context name="dlg_main">
+    <message>
+      <source>mainTitle</source>
+      <translation>SQLite3 Database Repair Tool</translation>
+    </message>
+    <message>
+      <source>openDb</source>
+      <translation> &Database... </translation>
+    </message>
+    <message>
+      <source>openFolder</source>
+      <translation> Open &Folder </translation>
+    </message>
+    <message>
+      <source>repair</source>
+      <translation> Check&&&Repair </translation>
+    </message>
+    <message>
+      <source>sql</source>
+      <translation> &SQL </translation>
+    </message>
+    <!-- 提示 -->
+    <message>
+      <source>alreadyRun</source>
+      <translation>DbRepair tool ready running!</translation>
+    </message>
+    <message>
+      <source>logFile</source>
+      <translation>Log: %s</translation>
+    </message>
+    <message>
+      <source>notice</source>
+      <translation>Important Notice: Please close all application that use the dabase when start repair.</translation>
+    </message>
+    <message>
+      <source>checkUserDbFailed</source>
+      <translation>Check user database failed: %s</translation>
+    </message>
+    <message>
+      <source>openUserDbFailed</source>
+      <translation>Open user database failed: %s</translation>
+    </message>
+    <message>
+      <source>checkOk</source>
+      <translation>Check database integrity[%s]: %s</translation>
+    </message>
+    <message>
+      <source>modeBest</source>
+      <translation>Use BEST repair mode</translation>
+    </message>
+    <message>
+      <source>modeFast</source>
+      <translation>Use FAST repair mode</translation>
+    </message>
+    <message>
+      <source>startRepair</source>
+      <translation>Starting database check and repair(%s)</translation>
+    </message>
+    <message>
+      <source>startFailed</source>
+      <translation>Start repair thread failed, Error: 0x%08x</translation>
+    </message>
+    <message>
+      <source>notFindDb</source>
+      <translation>Not found database</translation>
+    </message>
+    <message>
+      <source>checkFailed</source>
+      <translation>Database integrity check[%s]:
+      %s</translation>
+    </message>
+    <message>
+      <source>checkFailed2</source>
+      <translation>Database integrity check failed[%s]</translation>
+    </message>
+    <message>
+      <source>backupOk</source>
+      <translation>Backup database succeed[%s ==> %s]</translation>
+    </message>
+    <message>
+      <source>backupFailed</source>
+      <translation>Backup database failed[%s ==> %s]</translation>
+    </message>
+    <message>
+      <source>dbOpened</source>
+      <translation>Database [%s] occupied, please close it first!</translation>
+    </message>
+    <message>
+      <source>dbPathBad</source>
+      <translation>Database path invalid</translation>
+    </message>
+    <message>
+      <source>dbNotExist</source>
+      <translation>Database not exist: %s</translation>
+    </message>
+    <message>
+      <source>repairReady</source>
+      <translation>[%s] Ready to check and repair follow: %s</translation>
+    </message>
+    <message>
+      <source>dbEncrypted</source>
+      <translation>Encrypted database</translation>
+    </message>
+    <message>
+      <source>dbNoEncrypted</source>
+      <translation>No encrypted database</translation>
+    </message>
+    <message>
+      <source>backupFailed2</source>
+      <translation>Backup database failed, please retry a minute later: %s</translation>
+    </message>
+    <message>
+      <source>useBackupOk</source>
+      <translation>Restore from [%s] to [%s] succeeded!</translation>
+    </message>
+    <message>
+      <source>syncFailed</source>
+      <translation>Damage database, can not sync change[%s]</translation>
+    </message>
+    <message>
+      <source>repairFinished</source>
+      <translation>Database check and repair finished: %s</translation>
+    </message>
+    <message>
+      <source>syncBegin</source>
+      <translation>[BEGIN] Repair from damage database[%s] sync change [%s]</translation>
+    </message>
+    <message>
+      <source>syncEnd</source>
+      <translation>[FINISH] Repair from damage database[%s] sync change [%s]</translation>
+    </message>
+    <message>
+      <source>syncEndFailed</source>
+      <translation >[FAILED] Repair from damage database[%s] sync change [%s]</translation>
+    </message>
+    <message>
+      <source>repairFailed</source>
+      <translation>[FAILED] Data base check and repair failed: %s</translation>
+    </message>
+    <message>
+      <source>repairBegin</source>
+      <translation>[BEGIN] Database repair [%s]</translation>
+    </message>
+    <message>
+      <source>repairEnd</source>
+      <translation>[FINISH] Database repair [%s]</translation>
+    </message>
+    <message>
+      <source>checkOk2</source>
+      <translation>[Check Finish] Database is OK: %s</translation>
+    </message>
+    <message>
+      <source>openLog</source>
+      <translation>Open Log: %s</translation>
+    </message>
+    <message>
+      <source>addDbFolder</source>
+      <translation>Add database folder( Only search contacts.db and msg.db: %s</translation>
+    </message>
+    <message>
+      <source>notFound</source>
+      <translation>Invalid path, can not find contacts.db or msg.db: %s</translation>
+    </message>
+    <message>
+      <source>addDbFile</source>
+      <translation>Add database file: %s</translation>
+    </message>
+    <message>
+      <source>notFound2</source>
+      <translation>Not a database file(*.db), can not add it: %s</translation>
+    </message>
+    <message>
+      <source>startTableRepair</source>
+      <translation>Start table repair...</translation>
+    </message>
+    <message>
+      <source>finishedTableRepair</source>
+      <translation>Finished table repair[%s], corrupts: %d</translation>
+    </message>
+    <message>
+      <source>finishedTableRepair2</source>
+      <translation>Finished table repair[%s]</translation>
+    </message>
+    <message>
+      <source>tableRepairFailed</source>
+      <translation>Failed to repair table: %s</translation>
+    </message>
+    <message>
+      <source>repairFailed2</source>
+      <translation>[FAILED]Can't be repair the bad database: %s</translation>
+    </message>
+    <message>
+      <source>startThreadFiled</source>
+      <translation>Start make contact zip thread failed, Error: 0x%08x</translation>
+    </message>
+    <message>
+      <source>makeZip</source>
+      <translation>Make contact zip condition:
+1. Make contacts.db is NEWEST: Login and refresh contact, close eIM when finished;
+2. Account: %s(%u)
+3. Contacts database: %s
+4. Confirm that the above steps have been completed, and then click[OK] </translation>
+    </message>
+    <message>
+      <source>prompt</source>
+      <translation>Prompt...</translation>
+    </message>
+    <message>
+      <source>beginMakeZip</source>
+      <translation>[BEGIN] Begin make contacts ZIP...</translation>
+    </message>
+    <message>
+      <source>makeZipOk</source>
+      <translation>[FINISHED]Make contacts zip succeeded...</translation>
+    </message>
+    <message>
+      <source>noExistDb</source>
+      <translation>Contacts database not exist: %s</translation>
+    </message>
+    <message>
+      <source>startSqlThreadFailed</source>
+      <translation>Start SQL thread failed, Error: 0x%08x</translation>
+    </message>
+    <message>
+      <source>openContactsDbFailed</source>
+      <translation>Open contacts database failed: %s</translation>
+    </message>
+    <message>
+      <source>openDbOk</source>
+      <translation>Open database %s succeeded!</translation>
+    </message>
+    <message>
+      <source>contactsZip</source>
+      <translation>Make contacts zip database for server</translation>
+    </message>
+    <message>
+      <source>encryped</source>
+      <translation>Encrypt or not database</translation>
+    </message>
+    <message>
+      <source>attachMsgDbFailed</source>
+      <translation>Attach msg database %s failed，err:%d, desc:%s</translation>
+    </message>
+    <message>
+      <source>attachMsgDbOk</source>
+      <translation>Attach msg database %s as %s succeeded!</translation>
+    </message>
+    <message>
+      <source>execSql</source>
+      <translation>Execute SQL: %s</translation>
+    </message>
+    <message>
+      <source>execSqlFailed</source>
+      <translation>Exec SQL[%s] failed, err:%d, desc:%s</translation>
+    </message>
+    <message>
+      <source>rowCount</source>
+      <translation>Rows: %d</translation>
+    </message>
+    <message>
+      <source>execStop</source>
+      <translation> Stop </translation>
+    </message>
+    <!-- 默认SQL名字 -->
+    <message>
+      <source>integrityCheck</source>
+      <translation>Integrity check</translation>
+    </message>
+    <message>
+      <source>userVersion</source>
+      <translation>User version</translation>
+    </message>
+    <message>
+      <source>sqliteMaster</source>
+      <translation>Display sqlite_master</translation>
+    </message>
+    <message>
+      <source>tables</source>
+      <translation>Display tables</translation>
+    </message>
+    <message>
+      <source>deptCount</source>
+      <translation>Statistics department count</translation>
+    </message>
+    <message>
+      <source>empCount</source>
+      <translation>Statistics of staff count</translation>
+    </message>
+    <message>
+      <source>sessions</source>
+      <translation>Display all sessions</translation>
+    </message>
+  </context>
+</language>

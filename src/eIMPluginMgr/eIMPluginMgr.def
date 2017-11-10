@@ -1,0 +1,4 @@
+LIBRARY   eIMPluginMgr
+
+EXPORTS
+	eIMCreateInterface

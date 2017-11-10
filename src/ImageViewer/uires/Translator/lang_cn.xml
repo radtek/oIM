@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<language name="简体中文" guid="{0DAEDE3C-6B94-4a81-9A55-C304FDD69D98}">
+  <context>
+    <!--没有上下文的翻译-->
+  </context>
+  <context name="messagebox">
+    <message>
+      <source>ok</source>
+      <translation>确定</translation>
+    </message>
+    <message>
+      <source>cancel</source>
+      <translation>取消</translation>
+    </message>
+    <message>
+      <source>retry</source>
+      <translation>重试</translation>
+    </message>
+    <message>
+      <source>Abort</source>
+      <translation>终止</translation>
+    </message>
+    <message>
+      <source>Yes</source>
+      <translation>是</translation>
+    </message>
+    <message>
+      <source>No</source>
+      <translation>否</translation>
+    </message>
+    <message>
+      <source>Ignore</source>
+      <translation>忽略</translation>
+    </message>
+  </context>
+  <context name="dlg_main">
+    <message>
+      <source>sysClose</source>
+      <translation>关闭窗口</translation>
+    </message>
+    <message>
+      <source>tipInRecord</source>
+      <translation>请在消息记录中查看</translation>
+    </message>
+    <message>
+      <source>tipLast</source>
+      <translation>已经是最后一张</translation>
+    </message>
+  </context>
+</language>

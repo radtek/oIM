@@ -1,0 +1,524 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\components\imgdecoder-gdip\imgdecoder-gdip.h" />
+    <ClInclude Include="..\components\imgdecoder-png\decoder-apng.h" />
+    <ClInclude Include="..\components\imgdecoder-png\imgdecoder-png.h" />
+    <ClInclude Include="..\components\imgdecoder-stb\imgdecoder-stb.h" />
+    <ClInclude Include="..\components\imgdecoder-wic\imgdecoder-wic.h" />
+    <ClInclude Include="..\components\log4z\log4z.h" />
+    <ClInclude Include="..\components\render-gdi\GradientFillHelper.h" />
+    <ClInclude Include="..\components\render-gdi\render-gdi.h" />
+    <ClInclude Include="..\components\render-skia\drawtext-skia.h" />
+    <ClInclude Include="..\components\render-skia\render-skia.h" />
+    <ClInclude Include="..\components\render-skia\Render-Skia2-i.h" />
+    <ClInclude Include="..\components\render-skia\Render-Skia2.h" />
+    <ClInclude Include="..\components\render-skia\skia2rop2.h" />
+    <ClInclude Include="..\components\resprovider-zip\SResProviderZip.h" />
+    <ClInclude Include="..\components\resprovider-zip\ZipArchive.h" />
+    <ClInclude Include="..\components\resprovider-zip\zipresprovider-param.h" />
+    <ClInclude Include="..\components\ScriptModule-LUA\lua_tinker\lua_tinker.h" />
+    <ClInclude Include="..\components\ScriptModule-LUA\src\exports\exp_app.h" />
+    <ClInclude Include="..\components\ScriptModule-LUA\src\exports\exp_Basic.h" />
+    <ClInclude Include="..\components\ScriptModule-LUA\src\exports\exp_ctrls.h" />
+    <ClInclude Include="..\components\ScriptModule-LUA\src\exports\exp_eventArgs.h" />
+    <ClInclude Include="..\components\ScriptModule-LUA\src\exports\exp_hostwnd.h" />
+    <ClInclude Include="..\components\ScriptModule-LUA\src\exports\exp_msgbox.h" />
+    <ClInclude Include="..\components\ScriptModule-LUA\src\exports\exp_object.h" />
+    <ClInclude Include="..\components\ScriptModule-LUA\src\exports\exp_pugixml.h" />
+    <ClInclude Include="..\components\ScriptModule-LUA\src\exports\exp_ResProvider.h" />
+    <ClInclude Include="..\components\ScriptModule-LUA\src\exports\exp_ScriptModule.h" />
+    <ClInclude Include="..\components\ScriptModule-LUA\src\exports\exp_strcpcvt.h" />
+    <ClInclude Include="..\components\ScriptModule-LUA\src\exports\exp_string.h" />
+    <ClInclude Include="..\components\ScriptModule-LUA\src\exports\exp_Window.h" />
+    <ClInclude Include="..\components\ScriptModule-LUA\src\ScriptModule-Lua.h" />
+    <ClInclude Include="..\components\translator\translator.h" />
+    <ClInclude Include="..\controls.extend\ExtendCtrls.h" />
+    <ClInclude Include="..\controls.extend\ExtendSkins.h" />
+    <ClInclude Include="..\controls.extend\FileHelper.h" />
+    <ClInclude Include="..\controls.extend\gif\SAniImgFrame.h" />
+    <ClInclude Include="..\controls.extend\gif\SGifPlayer.h" />
+    <ClInclude Include="..\controls.extend\gif\SSkinAPNG.h" />
+    <ClInclude Include="..\controls.extend\gif\SSkinGif.h" />
+    <ClInclude Include="..\controls.extend\image3d\3dlib.h" />
+    <ClInclude Include="..\controls.extend\image3d\3dmatrix.h" />
+    <ClInclude Include="..\controls.extend\image3d\3dTransform.h" />
+    <ClInclude Include="..\controls.extend\image3d\PerspectiveTransform.h" />
+    <ClInclude Include="..\controls.extend\propgrid\propitem\SPropertyItem-Color.h" />
+    <ClInclude Include="..\controls.extend\propgrid\propitem\SPropertyItem-Option.h" />
+    <ClInclude Include="..\controls.extend\propgrid\propitem\SPropertyItem-Size.h" />
+    <ClInclude Include="..\controls.extend\propgrid\propitem\SPropertyItem-Text.h" />
+    <ClInclude Include="..\controls.extend\propgrid\SPropertyEmbedWndHelper.hpp" />
+    <ClInclude Include="..\controls.extend\propgrid\SPropertyGrid.h" />
+    <ClInclude Include="..\controls.extend\propgrid\SPropertyItem-i.h" />
+    <ClInclude Include="..\controls.extend\propgrid\SPropertyItemBase.h" />
+    <ClInclude Include="..\controls.extend\reg.h" />
+    <ClInclude Include="..\controls.extend\reole\dataobject.h" />
+    <ClInclude Include="..\controls.extend\reole\RichEditOle.h" />
+    <ClInclude Include="..\controls.extend\SAnimator.h" />
+    <ClInclude Include="..\controls.extend\SButtonEx.h" />
+    <ClInclude Include="..\controls.extend\SCalendar2.h" />
+    <ClInclude Include="..\controls.extend\SChatEdit.h" />
+    <ClInclude Include="..\controls.extend\SChromeTabCtrl.h" />
+    <ClInclude Include="..\controls.extend\SDateTimeEdit.h" />
+    <ClInclude Include="..\controls.extend\SDocHostUIHandler.h" />
+    <ClInclude Include="..\controls.extend\SFadeFrame.h" />
+    <ClInclude Include="..\controls.extend\SFreeMoveWindow.h" />
+    <ClInclude Include="..\controls.extend\SIECtrl.h" />
+    <ClInclude Include="..\controls.extend\SImageEx.h" />
+    <ClInclude Include="..\controls.extend\SImageMaskWnd.h" />
+    <ClInclude Include="..\controls.extend\SIPAddressCtrl.h" />
+    <ClInclude Include="..\controls.extend\SListboxex.h" />
+    <ClInclude Include="..\controls.extend\SListCtrlEx.h" />
+    <ClInclude Include="..\controls.extend\SMcListViewEx\Adapter参考.h" />
+    <ClInclude Include="..\controls.extend\SMcListViewEx\SHeaderCtrlEx.h" />
+    <ClInclude Include="..\controls.extend\SMcListViewEx\SLoopButton.h" />
+    <ClInclude Include="..\controls.extend\SMcListViewEx\SMCListViewEx.h" />
+    <ClInclude Include="..\controls.extend\SMcListViewEx\STabCtrlHeaderBinder.h" />
+    <ClInclude Include="..\controls.extend\smiley\SSmileyCtrl.h" />
+    <ClInclude Include="..\controls.extend\SRadioBox2.h" />
+    <ClInclude Include="..\controls.extend\SRatingBar.h" />
+    <ClInclude Include="..\controls.extend\SScrollText.h" />
+    <ClInclude Include="..\controls.extend\SSkinImgFrame2.h" />
+    <ClInclude Include="..\controls.extend\SSkinMutiFrameImg.h" />
+    <ClInclude Include="..\controls.extend\SSkinNewScrollBar.h" />
+    <ClInclude Include="..\controls.extend\STabCtrl2.h" />
+    <ClInclude Include="..\controls.extend\SText.h" />
+    <ClInclude Include="..\controls.extend\STurn3DView.h" />
+    <ClInclude Include="..\controls.extend\SVscrollbar.h" />
+    <ClInclude Include="..\controls.extend\SWkeWebkit.h" />
+    <ClInclude Include="..\controls.extend\TipWnd.h" />
+    <ClInclude Include="..\controls.extend\trayicon\SShellNotifyIcon.h" />
+    <ClInclude Include="..\utilities\include\atl.mini\atldef.h" />
+    <ClInclude Include="..\utilities\include\atl.mini\SComCli.h" />
+    <ClInclude Include="..\utilities\include\atl.mini\SComHelper.h" />
+    <ClInclude Include="..\utilities\include\com-loader.hpp" />
+    <ClInclude Include="..\utilities\include\gdialpha.h" />
+    <ClInclude Include="..\utilities\include\pugixml\pugiconfig.hpp" />
+    <ClInclude Include="..\utilities\include\pugixml\pugixml.hpp" />
+    <ClInclude Include="..\utilities\include\snew.h" />
+    <ClInclude Include="..\utilities\include\sobject\sobject-i.h" />
+    <ClInclude Include="..\utilities\include\sobject\Sobject.hpp" />
+    <ClInclude Include="..\utilities\include\souicoll.h" />
+    <ClInclude Include="..\utilities\include\soui_mem_wrapper.h" />
+    <ClInclude Include="..\utilities\include\string\strcpcvt.h" />
+    <ClInclude Include="..\utilities\include\string\tstring.h" />
+    <ClInclude Include="..\utilities\include\trace.h" />
+    <ClInclude Include="..\utilities\include\unknown\obj-ref-i.h" />
+    <ClInclude Include="..\utilities\include\unknown\obj-ref-impl.hpp" />
+    <ClInclude Include="..\utilities\include\utilities-def.h" />
+    <ClInclude Include="..\utilities\include\utilities.h" />
+    <ClInclude Include="..\utilities\include\wtl.mini\msgcrack.h" />
+    <ClInclude Include="..\utilities\include\wtl.mini\souimisc.h" />
+    <ClInclude Include="include\activex\SBStr.h" />
+    <ClInclude Include="include\control\RealWndHandler-i.h" />
+    <ClInclude Include="include\control\SActiveX.h" />
+    <ClInclude Include="include\control\SCalendar.h" />
+    <ClInclude Include="include\control\SCaption.h" />
+    <ClInclude Include="include\control\SCmnCtrl.h" />
+    <ClInclude Include="include\control\SComboBase.h" />
+    <ClInclude Include="include\control\SComboBox.h" />
+    <ClInclude Include="include\control\SComboView.h" />
+    <ClInclude Include="include\control\SDropDown.h" />
+    <ClInclude Include="include\control\SHeaderCtrl.h" />
+    <ClInclude Include="include\control\SHotKeyCtrl.h" />
+    <ClInclude Include="include\control\SListbox.h" />
+    <ClInclude Include="include\control\SListCtrl.h" />
+    <ClInclude Include="include\control\SListView.h" />
+    <ClInclude Include="include\control\SMCListView.h" />
+    <ClInclude Include="include\control\SMessageBox.h" />
+    <ClInclude Include="include\control\SouiCtrls.h" />
+    <ClInclude Include="include\control\SRealWnd.h" />
+    <ClInclude Include="include\control\SRichEdit.h" />
+    <ClInclude Include="include\control\SScrollbar.h" />
+    <ClInclude Include="include\control\SSliderBar.h" />
+    <ClInclude Include="include\control\SSpinButtonCtrl.h" />
+    <ClInclude Include="include\control\SSplitWnd.h" />
+    <ClInclude Include="include\control\STabCtrl.h" />
+    <ClInclude Include="include\control\STileView.h" />
+    <ClInclude Include="include\control\stree.hpp" />
+    <ClInclude Include="include\control\STreeCtrl.h" />
+    <ClInclude Include="include\control\STreeView.h" />
+    <ClInclude Include="include\core\Accelerator.h" />
+    <ClInclude Include="include\core\FocusManager.h" />
+    <ClInclude Include="include\core\hostmsg.h" />
+    <ClInclude Include="include\core\SCaret.h" />
+    <ClInclude Include="include\core\SDefine.h" />
+    <ClInclude Include="include\core\SDropTargetDispatcher.h" />
+    <ClInclude Include="include\core\SHostDialog.h" />
+    <ClInclude Include="include\core\SHostWnd.h" />
+    <ClInclude Include="include\core\SimpleWnd.h" />
+    <ClInclude Include="include\core\SItemPanel.h" />
+    <ClInclude Include="include\core\SMsgLoop.h" />
+    <ClInclude Include="include\core\SObjectFactory.h" />
+    <ClInclude Include="include\core\SPanel.h" />
+    <ClInclude Include="include\core\SSingleton.h" />
+    <ClInclude Include="include\core\SSingletonMap.h" />
+    <ClInclude Include="include\core\SSkin.h" />
+    <ClInclude Include="include\core\SSkinObjBase.h" />
+    <ClInclude Include="include\core\SWindowMgr.h" />
+    <ClInclude Include="include\core\Swnd.h" />
+    <ClInclude Include="include\core\SwndContainer-i.h" />
+    <ClInclude Include="include\core\SwndContainerImpl.h" />
+    <ClInclude Include="include\core\SwndStyle.h" />
+    <ClInclude Include="include\event\eventcrack.h" />
+    <ClInclude Include="include\event\Events.h" />
+    <ClInclude Include="include\event\EventSet.h" />
+    <ClInclude Include="include\event\EventSubscriber.h" />
+    <ClInclude Include="include\event\NotifyCenter.h" />
+    <ClInclude Include="include\helper\AppDir.h" />
+    <ClInclude Include="include\helper\auto_reset.h" />
+    <ClInclude Include="include\helper\color.h" />
+    <ClInclude Include="include\helper\copylist.hpp" />
+    <ClInclude Include="include\helper\DragWnd.h" />
+    <ClInclude Include="include\helper\LunarData.h" />
+    <ClInclude Include="include\helper\MemDC.h" />
+    <ClInclude Include="include\helper\MenuWndHook.h" />
+    <ClInclude Include="include\helper\mybuffer.h" />
+    <ClInclude Include="include\helper\SAdapterBase.h" />
+    <ClInclude Include="include\helper\SAttrCracker.h" />
+    <ClInclude Include="include\helper\SCriticalSection.h" />
+    <ClInclude Include="include\helper\SDIBHelper.h" />
+    <ClInclude Include="include\helper\SListViewItemLocator.h" />
+    <ClInclude Include="include\helper\slog-private.h" />
+    <ClInclude Include="include\helper\slog.h" />
+    <ClInclude Include="include\helper\SMatrix.h" />
+    <ClInclude Include="include\helper\SMenu.h" />
+    <ClInclude Include="include\helper\SMenuEx.h" />
+    <ClInclude Include="include\helper\SplitString.h" />
+    <ClInclude Include="include\helper\SResID.h" />
+    <ClInclude Include="include\helper\SScriptTimer.h" />
+    <ClInclude Include="include\helper\STileViewItemLocator.h" />
+    <ClInclude Include="include\helper\STime.h" />
+    <ClInclude Include="include\helper\STimerEx.h" />
+    <ClInclude Include="include\helper\SToolTip.h" />
+    <ClInclude Include="include\helper\SwndFinder.h" />
+    <ClInclude Include="include\helper\SwndMsgCracker.h" />
+    <ClInclude Include="include\helper\swndspy.h" />
+    <ClInclude Include="include\interface\Adapter-i.h" />
+    <ClInclude Include="include\interface\imgdecoder-i.h" />
+    <ClInclude Include="include\interface\LvItemLocator-i.h" />
+    <ClInclude Include="include\interface\render-i.h" />
+    <ClInclude Include="include\interface\slayout-i.h" />
+    <ClInclude Include="include\interface\slog-i.h" />
+    <ClInclude Include="include\interface\SResProvider-i.h" />
+    <ClInclude Include="include\interface\SScriptModule-i.h" />
+    <ClInclude Include="include\interface\SSkinobj-i.h" />
+    <ClInclude Include="include\interface\stooltip-i.h" />
+    <ClInclude Include="include\interface\STranslator-i.h" />
+    <ClInclude Include="include\interface\TvItemLocator-i.h" />
+    <ClInclude Include="include\layout\SLayoutSize.h" />
+    <ClInclude Include="include\layout\SLinearLayout.h" />
+    <ClInclude Include="include\layout\SLinearLayoutParamStruct.h" />
+    <ClInclude Include="include\layout\SouiLayout.h" />
+    <ClInclude Include="include\layout\SouiLayoutParamStruct.h" />
+    <ClInclude Include="include\res.mgr\SDpiAwareFont.h" />
+    <ClInclude Include="include\res.mgr\SFontPool.h" />
+    <ClInclude Include="include\res.mgr\SNamedValue.h" />
+    <ClInclude Include="include\res.mgr\SObjDefAttr.h" />
+    <ClInclude Include="include\res.mgr\SResProvider.h" />
+    <ClInclude Include="include\res.mgr\SResProviderMgr.h" />
+    <ClInclude Include="include\res.mgr\SSkinPool.h" />
+    <ClInclude Include="include\res.mgr\SStylePool.h" />
+    <ClInclude Include="include\res.mgr\SUiDef.h" />
+    <ClInclude Include="include\SApp.h" />
+    <ClInclude Include="include\soui-version.h" />
+    <ClInclude Include="include\souistd.h" />
+    <ClInclude Include="src\activex\SAxContainer.h" />
+    <ClInclude Include="src\activex\SAxUtil.h" />
+    <ClInclude Include="src\updatelayeredwindow\SUpdateLayeredWindow.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\components\imgdecoder-gdip\imgdecoder-gdip.cpp" />
+    <ClCompile Include="..\components\imgdecoder-png\decoder-apng.cpp" />
+    <ClCompile Include="..\components\imgdecoder-png\imgdecoder-png.cpp" />
+    <ClCompile Include="..\components\imgdecoder-stb\imgdecoder-stb.cpp" />
+    <ClCompile Include="..\components\imgdecoder-wic\imgdecoder-wic.cpp" />
+    <ClCompile Include="..\components\log4z\log4z.cpp" />
+    <ClCompile Include="..\components\render-gdi\GradientFillHelper.cpp" />
+    <ClCompile Include="..\components\render-gdi\render-gdi.cpp" />
+    <ClCompile Include="..\components\render-skia\drawtext-skia.cpp" />
+    <ClCompile Include="..\components\render-skia\render-skia.cpp" />
+    <ClCompile Include="..\components\render-skia\Render-Skia2.cpp" />
+    <ClCompile Include="..\components\render-skia\skia2rop2.cpp" />
+    <ClCompile Include="..\components\resprovider-zip\cursoricon.cpp" />
+    <ClCompile Include="..\components\resprovider-zip\SResProviderZip.cpp" />
+    <ClCompile Include="..\components\resprovider-zip\zipArchive.cpp" />
+    <ClCompile Include="..\components\ScriptModule-LUA\lua_tinker\lua_tinker.cpp" />
+    <ClCompile Include="..\components\ScriptModule-LUA\src\exports\exp_soui.cpp" />
+    <ClCompile Include="..\components\ScriptModule-LUA\src\ScriptModule-Lua.cpp" />
+    <ClCompile Include="..\components\translator\translator.cpp" />
+    <ClCompile Include="..\controls.extend\ExtendCtrls.cpp" />
+    <ClCompile Include="..\controls.extend\ExtendSkins.cpp" />
+    <ClCompile Include="..\controls.extend\gif\SGifPlayer.cpp" />
+    <ClCompile Include="..\controls.extend\gif\SSkinAPNG.cpp" />
+    <ClCompile Include="..\controls.extend\gif\SSkinGif.cpp" />
+    <ClCompile Include="..\controls.extend\image3d\3dlib.cpp" />
+    <ClCompile Include="..\controls.extend\image3d\3dmatrix.cpp" />
+    <ClCompile Include="..\controls.extend\image3d\3dtransform.cpp" />
+    <ClCompile Include="..\controls.extend\propgrid\propitem\SPropertyItem-Color.cpp" />
+    <ClCompile Include="..\controls.extend\propgrid\propitem\SPropertyItem-Option.cpp" />
+    <ClCompile Include="..\controls.extend\propgrid\propitem\SPropertyItem-Size.cpp" />
+    <ClCompile Include="..\controls.extend\propgrid\propitem\SPropertyItem-Text.cpp" />
+    <ClCompile Include="..\controls.extend\propgrid\SPropertyGrid.cpp" />
+    <ClCompile Include="..\controls.extend\propgrid\SPropertyItemBase.cpp" />
+    <ClCompile Include="..\controls.extend\reole\dataobject.cpp" />
+    <ClCompile Include="..\controls.extend\reole\RichEditOle.cpp" />
+    <ClCompile Include="..\controls.extend\SButtonEx.cpp" />
+    <ClCompile Include="..\controls.extend\SCalendar2.cpp" />
+    <ClCompile Include="..\controls.extend\SChatEdit.cpp" />
+    <ClCompile Include="..\controls.extend\SChromeTabCtrl.cpp" />
+    <ClCompile Include="..\controls.extend\SDateTimeEdit.cpp" />
+    <ClCompile Include="..\controls.extend\SDocHostUIHandler.cpp" />
+    <ClCompile Include="..\controls.extend\SFadeFrame.cpp" />
+    <ClCompile Include="..\controls.extend\SFreeMoveWindow.cpp" />
+    <ClCompile Include="..\controls.extend\SIECtrl.cpp" />
+    <ClCompile Include="..\controls.extend\SImageEx.cpp" />
+    <ClCompile Include="..\controls.extend\SImageMaskWnd.cpp" />
+    <ClCompile Include="..\controls.extend\SIPAddressCtrl.cpp" />
+    <ClCompile Include="..\controls.extend\SListboxex.cpp" />
+    <ClCompile Include="..\controls.extend\SListCtrlEx.cpp" />
+    <ClCompile Include="..\controls.extend\SMcListViewEx\SHeaderCtrlEx.cpp" />
+    <ClCompile Include="..\controls.extend\SMcListViewEx\SLoopButton.cpp" />
+    <ClCompile Include="..\controls.extend\SMcListViewEx\SMCListViewEx.cpp" />
+    <ClCompile Include="..\controls.extend\SMcListViewEx\STabCtrlHeaderBinder.cpp" />
+    <ClCompile Include="..\controls.extend\SRadioBox2.cpp" />
+    <ClCompile Include="..\controls.extend\SRatingBar.cpp" />
+    <ClCompile Include="..\controls.extend\SScrollText.cpp" />
+    <ClCompile Include="..\controls.extend\SSkinImgFrame2.cpp" />
+    <ClCompile Include="..\controls.extend\SSkinMutiFrameImg.cpp" />
+    <ClCompile Include="..\controls.extend\STabCtrl2.cpp" />
+    <ClCompile Include="..\controls.extend\SText.cpp" />
+    <ClCompile Include="..\controls.extend\STurn3DView.cpp" />
+    <ClCompile Include="..\controls.extend\SWkeWebkit.cpp" />
+    <ClCompile Include="..\controls.extend\TipWnd.cpp" />
+    <ClCompile Include="..\controls.extend\trayicon\SShellNotifyIcon.cpp" />
+    <ClCompile Include="..\utilities\src\gdialpha.cpp" />
+    <ClCompile Include="..\utilities\src\pugixml\pugixml.cpp" />
+    <ClCompile Include="..\utilities\src\sobject\SObject.cpp" />
+    <ClCompile Include="..\utilities\src\soui_mem_wrapper.cpp" />
+    <ClCompile Include="..\utilities\src\string\strcpcvt.cpp" />
+    <ClCompile Include="..\utilities\src\string\tstring.cpp" />
+    <ClCompile Include="..\utilities\src\trace.cpp" />
+    <ClCompile Include="..\utilities\src\utilities.cpp" />
+    <ClCompile Include="include\souistd.h.cpp" />
+    <ClCompile Include="src\activex\SAxContainer.cpp" />
+    <ClCompile Include="src\activex\SBStr.cpp" />
+    <ClCompile Include="src\control\SActiveX.cpp" />
+    <ClCompile Include="src\control\SCalendar.cpp" />
+    <ClCompile Include="src\control\SCaption.cpp" />
+    <ClCompile Include="src\control\SCmnCtrl.cpp" />
+    <ClCompile Include="src\control\SComboBase.cpp" />
+    <ClCompile Include="src\control\SComboBox.cpp" />
+    <ClCompile Include="src\control\SComboView.cpp" />
+    <ClCompile Include="src\control\SDropDown.cpp" />
+    <ClCompile Include="src\control\SHeaderCtrl.cpp" />
+    <ClCompile Include="src\control\SHotKeyCtrl.cpp" />
+    <ClCompile Include="src\control\SListbox.cpp" />
+    <ClCompile Include="src\control\SListCtrl.cpp" />
+    <ClCompile Include="src\control\SListView.cpp" />
+    <ClCompile Include="src\control\SMCListView.cpp" />
+    <ClCompile Include="src\control\SMessageBox.cpp" />
+    <ClCompile Include="src\control\SRealWnd.cpp" />
+    <ClCompile Include="src\control\SRichEdit.cpp" />
+    <ClCompile Include="src\control\SScrollbar.cpp" />
+    <ClCompile Include="src\control\SSliderBar.cpp" />
+    <ClCompile Include="src\control\SSpinButtonCtrl.cpp" />
+    <ClCompile Include="src\control\SSplitWnd.cpp" />
+    <ClCompile Include="src\control\STabCtrl.cpp" />
+    <ClCompile Include="src\control\STileView.cpp" />
+    <ClCompile Include="src\control\STreeCtrl.cpp" />
+    <ClCompile Include="src\control\STreeView.cpp" />
+    <ClCompile Include="src\core\Accelerator.cpp" />
+    <ClCompile Include="src\core\FocusManager.cpp" />
+    <ClCompile Include="src\core\SCaret.cpp" />
+    <ClCompile Include="src\core\SDropTargetDispatcher.cpp" />
+    <ClCompile Include="src\core\SHostDialog.cpp" />
+    <ClCompile Include="src\core\shostwnd.cpp" />
+    <ClCompile Include="src\core\SimpleWnd.cpp" />
+    <ClCompile Include="src\core\SItemPanel.cpp" />
+    <ClCompile Include="src\core\SMsgLoop.cpp" />
+    <ClCompile Include="src\core\SObjectFactory.cpp" />
+    <ClCompile Include="src\core\SPanel.cpp" />
+    <ClCompile Include="src\core\SSkin.cpp" />
+    <ClCompile Include="src\core\SWindowMgr.cpp" />
+    <ClCompile Include="src\core\Swnd.cpp" />
+    <ClCompile Include="src\core\SwndContainerImpl.cpp" />
+    <ClCompile Include="src\core\SwndStyle.cpp" />
+    <ClCompile Include="src\event\EventSet.cpp" />
+    <ClCompile Include="src\event\NotifyCenter.cpp" />
+    <ClCompile Include="src\helper\AppDir.cpp" />
+    <ClCompile Include="src\helper\DragWnd.cpp" />
+    <ClCompile Include="src\helper\MemDC.cpp" />
+    <ClCompile Include="src\helper\MenuWndHook.cpp" />
+    <ClCompile Include="src\helper\SDIBHelper.cpp" />
+    <ClCompile Include="src\helper\SListViewItemLocator.cpp" />
+    <ClCompile Include="src\helper\slog.cpp" />
+    <ClCompile Include="src\helper\SMatrix.cpp" />
+    <ClCompile Include="src\helper\SMenu.cpp" />
+    <ClCompile Include="src\helper\SMenuEx.cpp" />
+    <ClCompile Include="src\helper\SScriptTimer.cpp" />
+    <ClCompile Include="src\helper\STileViewItemLocator.cpp" />
+    <ClCompile Include="src\helper\STimerEx.cpp" />
+    <ClCompile Include="src\helper\SToolTip.cpp" />
+    <ClCompile Include="src\helper\SwndFinder.cpp" />
+    <ClCompile Include="src\layout\SLayoutSize.cpp" />
+    <ClCompile Include="src\layout\SLinearLayout.cpp" />
+    <ClCompile Include="src\layout\SouiLayout.cpp" />
+    <ClCompile Include="src\res.mgr\SDpiAwareFont.cpp" />
+    <ClCompile Include="src\res.mgr\SFontPool.cpp" />
+    <ClCompile Include="src\res.mgr\SNamedValue.cpp" />
+    <ClCompile Include="src\res.mgr\SObjDefAttr.cpp" />
+    <ClCompile Include="src\res.mgr\SResProvider.cpp" />
+    <ClCompile Include="src\res.mgr\SResProviderMgr.cpp" />
+    <ClCompile Include="src\res.mgr\SSkinPool.cpp" />
+    <ClCompile Include="src\res.mgr\SStylePool.cpp" />
+    <ClCompile Include="src\res.mgr\SUiDef.cpp" />
+    <ClCompile Include="src\SApp.cpp" />
+    <ClCompile Include="src\updatelayeredwindow\SUpdateLayeredWindow.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="UIEngine.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\controls.extend\readme.txt" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{856B81EC-F19F-4A88-B41B-2343FB519324}</ProjectGuid>
+    <RootNamespace>UIEngine</RootNamespace>
+    <Keyword>Qt4VSv1.0</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <OutputDirectory>..\bin\</OutputDirectory>
+    <ATLMinimizesCRunTimeLibraryUsage>false</ATLMinimizesCRunTimeLibraryUsage>
+    <CharacterSet>Unicode</CharacterSet>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <IntermediateDirectory>..\obj\release\soui\</IntermediateDirectory>
+    <PrimaryOutput>UIEngine</PrimaryOutput>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <OutputDirectory>..\bin\</OutputDirectory>
+    <ATLMinimizesCRunTimeLibraryUsage>false</ATLMinimizesCRunTimeLibraryUsage>
+    <CharacterSet>Unicode</CharacterSet>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <IntermediateDirectory>..\obj\debug\soui\</IntermediateDirectory>
+    <PrimaryOutput>UIEngine</PrimaryOutput>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings" />
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\bin\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\..\obj\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</IgnoreImportLibrary>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\bin\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\..\obj\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</IgnoreImportLibrary>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>.;..\config;include;..\utilities\include;..\tools\mkspecs\win32-msvc2010;..\components;..\third-part\png;..\third-part\zlib;..\third-part\skia;..\third-part\skia\include;..\third-part\skia\include\config;..\third-part\skia\include\core;..\third-part\lua-52\src;..\third-part\wke\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>-w34100 -w34189 -w44996 %(AdditionalOptions)</AdditionalOptions>
+      <BrowseInformation>false</BrowseInformation>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4100;4101;4102;4189;4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <ForcedIncludeFiles>include\souistd.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PreprocessorDefinitions>_WINDOWS;WIN32;NDEBUG;__UIENGINE__;_CRT_SECURE_NO_WARNINGS;QT_NO_DYNAMIC_CAST;SK_IGNORE_ETC1_SUPPORT;SOUI_EXPORTS;UTILITIES_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessToFile>false</PreprocessToFile>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeaderFile>include\souistd.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>Usp10.lib;Opengl32.lib;lua-52.lib;png.lib;smiley.lib;skia.lib;soui.lib;utilities.lib;zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\..\..\lib\$(Platform);$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <DataExecutionPrevention>true</DataExecutionPrevention>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreImportLibrary>true</IgnoreImportLibrary>
+      <LinkDLL>true</LinkDLL>
+      <LinkIncremental>false</LinkIncremental>
+      <OptimizeReferences>true</OptimizeReferences>
+      <RandomizedBaseAddress>true</RandomizedBaseAddress>
+      <SubSystem>Windows</SubSystem>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetMachine>MachineX86</TargetMachine>
+      <ProgramDatabaseFile>..\..\..\build\Symbols\$(Platform)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
+      <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
+    </Link>
+    <Midl>
+      <DefaultCharType>Unsigned</DefaultCharType>
+      <EnableErrorChecks>None</EnableErrorChecks>
+      <WarningLevel>0</WarningLevel>
+    </Midl>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_WINDOWS;UNICODE;WIN32;SOUI_EXPORTS;_CRT_SECURE_NO_WARNINGS;QT_NO_DYNAMIC_CAST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>.;..\config;include;..\utilities\include;..\tools\mkspecs\win32-msvc2010;..\components;..\third-part\png;..\third-part\zlib;..\third-part\skia;..\third-part\skia\include;..\third-part\skia\include\config;..\third-part\skia\include\core;..\third-part\lua-52\src;..\third-part\wke\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>-w34100 -w34189 -w44996 %(AdditionalOptions)</AdditionalOptions>
+      <BrowseInformation>false</BrowseInformation>
+      <DisableSpecificWarnings>4100;4101;4102;4189;4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <ForcedIncludeFiles>include\souistd.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_WINDOWS;WIN32;_CRT_SECURE_NO_WARNINGS;QT_NO_DYNAMIC_CAST;__UIENGINE__;SK_IGNORE_ETC1_SUPPORT;SOUI_EXPORTS;UTILITIES_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessToFile>false</PreprocessToFile>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>include\souistd.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>Usp10.lib;Opengl32.lib;lua-52d.lib;pngd.lib;skiad.lib;smileyd.lib;souid.lib;utilitiesd.lib;zlibd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\..\..\lib\$(Platform);$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <DataExecutionPrevention>true</DataExecutionPrevention>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreImportLibrary>true</IgnoreImportLibrary>
+      <LinkDLL>true</LinkDLL>
+      <RandomizedBaseAddress>true</RandomizedBaseAddress>
+      <SubSystem>Windows</SubSystem>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetMachine>MachineX86</TargetMachine>
+      <ProgramDatabaseFile>..\..\..\build\Symbols\$(Platform)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
+      <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
+    </Link>
+    <Midl>
+      <DefaultCharType>Unsigned</DefaultCharType>
+      <EnableErrorChecks>None</EnableErrorChecks>
+      <WarningLevel>0</WarningLevel>
+    </Midl>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_WINDOWS;UNICODE;WIN32;SOUI_EXPORTS;_CRT_SECURE_NO_WARNINGS;QT_NO_DYNAMIC_CAST;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets" />
+</Project>

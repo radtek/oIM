@@ -1,0 +1,447 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- name 配置成文件名，方便程序书写 -->
+<language name="lang_cn" guid="{BB135468-A3F4-4DA3-8DD4-2253604EBAAF}">
+  <context >
+    <!--没有上下文的翻译-->
+    <message>
+      <source>sysClose</source>
+      <translation>关闭</translation>
+    </message>
+    <message>
+      <source>sysMax</source>
+      <translation>最大化</translation>
+    </message>
+    <message>
+      <source>sysMin</source>
+      <translation>最小化</translation>
+    </message>
+    <message>
+      <source>sysRestore</source>
+      <translation>还原</translation>
+    </message>
+  </context>
+  <context name="messagebox">
+    <message>
+      <source>Ok</source>
+      <translation>确定</translation>
+    </message>
+    <message>
+      <source>Cancel</source>
+      <translation>取消</translation>
+    </message>
+    <message>
+      <source>Retry</source>
+      <translation>重试</translation>
+    </message>
+    <message>
+      <source>Abort</source>
+      <translation>终止</translation>
+    </message>
+    <message>
+      <source>Yes</source>
+      <translation>是</translation>
+    </message>
+    <message>
+      <source>No</source>
+      <translation>否</translation>
+    </message>
+    <message>
+      <source>Ignore</source>
+      <translation>忽略</translation>
+    </message>
+  </context>
+  <context name="editmenu">
+    <message>
+      <source>copy</source>
+      <translation>复制</translation>
+    </message>
+    <message>
+      <source>cut</source>
+      <translation>剪切</translation>
+    </message>
+    <message>
+      <source>paste</source>
+      <translation>粘贴</translation>
+    </message>
+    <message>
+      <source>delete</source>
+      <translation>删除</translation>
+    </message>
+    <message>
+      <source>select all</source>
+      <translation>全选</translation>
+    </message>
+  </context>
+  <context name="richeditMenu">
+    <message>
+      <source>menuOpenDb</source>
+      <translation>打开数据库</translation>
+    </message>
+    <message>
+      <source>menuOpenFolder</source>
+      <translation>打开数据库位置</translation>
+    </message>
+    <message>
+      <source>menuRepair</source>
+      <translation>检查&修复数据库</translation>
+    </message>
+    <message>
+      <source>menuRepairBest</source>
+      <translation>检查&修复(最高修复率)</translation>
+    </message>
+    <message>
+      <source>menuEncrypted</source>
+      <translation>已加密数据库</translation>
+    </message>
+    <message>
+      <source>menuContactsZip</source>
+      <translation>生成服务器通讯录ZIP</translation>
+    </message>
+    <message>
+      <source>menuSql</source>
+      <translation>执行SQL命令</translation>
+    </message>
+    <message>
+      <source>menuCleanup</source>
+      <translation>清屏日志输出记录</translation>
+    </message>
+    <message>
+      <source>menuOpenLog</source>
+      <translation>打开日志文件</translation>
+    </message>
+    <message>
+      <source>menuOpenLogFolder</source>
+      <translation>打开日志位置</translation>
+    </message>
+    <message>
+      <source>menuChinese</source>
+      <translation>中文</translation>
+    </message>
+    <message>
+      <source>menuEnglish</source>
+      <translation>英文</translation>
+    </message>
+    <message>
+      <source>menuAbout</source>
+      <translation>关于</translation>
+    </message>
+  </context>
+  <context name="dlg_about">
+    <message>
+      <source>aboutTitle</source>
+      <translation>关于DbRepair</translation>
+    </message>
+    <message>
+      <source>aboutVersion</source>
+      <translation>数据库修复工具%ver%版, by YFGZ, QQ:44360689</translation>
+    </message>
+    <message>
+      <source>aboutCopyright</source>
+      <translation>网信数码 Copyright (C) 2017</translation>
+    </message>
+    <message>
+      <source>aboutHelp</source>
+      <translation>功能：修复eIM因非正常关闭而损坏的数据库。
+1. 工具会自动搜索本地的所有登录过的用户数据库；
+2. 你也可以选择数据库；
+3. 点击【检测&修复】进行检测，如果有问题就会自动进行修复；
+4. 如果存在自动同步的备份数据库(~1\\)，就会尝试使用它来还原，再同步变化；
+5. 在修复损坏的数据库之前，会自动备份它；
+6. 支持拖拽输入数据库（*.db）或文件夹(存在contacts.db，msg.db)；
+7. 非网信公司的数据库，只支持非加密的数据库修复；
+8. 右键菜单中有更多功能；</translation>
+    </message>
+  </context>
+  <context name="dlg_main">
+    <message>
+      <source>mainTitle</source>
+      <translation>数据库修复工具</translation>
+    </message>
+    <message>
+      <source>openDb</source>
+      <translation> 数据库(&D)... </translation>
+    </message>
+    <message>
+      <source>openFolder</source>
+      <translation> 打开文件夹(&F) </translation>
+    </message>
+    <message>
+      <source>repair</source>
+      <translation> 检测&修复(&R) </translation>
+    </message>
+    <message>
+      <source>sql</source>
+      <translation> SQL </translation>
+    </message>
+    <!-- 提示 -->
+    <message>
+      <source>alreadyRun</source>
+      <translation>数据库修复工具已经在运行中！</translation>
+    </message>
+    <message>
+      <source>logFile</source>
+      <translation>日志: %s</translation>
+    </message>
+    <message>
+      <source>notice</source>
+      <translation>重要提醒: 进行数据库修复之前，请先关闭正在数据库的应用！</translation>
+    </message>
+    <message>
+      <source>checkUserDbFailed</source>
+      <translation>查询用户库失败:%s</translation>
+    </message>
+    <message>
+      <source>openUserDbFailed</source>
+      <translation>打开用户数据库失败:%s</translation>
+    </message>
+    <message>
+      <source>checkOk</source>
+      <translation>数据库完整性检查[%s]: %s</translation>
+    </message>
+    <message>
+      <source>modeBest</source>
+      <translation>使用最高修复率模式</translation>
+    </message>
+    <message>
+      <source>modeFast</source>
+      <translation>使用快速修复模式</translation>
+    </message>
+    <message>
+      <source>startRepair</source>
+      <translation>开始数据库检测与修复(%s)</translation>
+    </message>
+    <message>
+      <source>startFailed</source>
+      <translation>启动修复线程失败，Error: 0x%08x</translation>
+    </message>
+    <message>
+      <source>notFindDb</source>
+      <translation>没有找到数据库</translation>
+    </message>
+    <message>
+      <source>checkFailed</source>
+      <translation>数据库完整性检查[%s]: \n%s</translation>
+    </message>
+    <message>
+      <source>checkFailed2</source>
+      <translation>数据库完整性检查失败[%s]</translation>
+    </message>
+    <message>
+      <source>backupOk</source>
+      <translation>备份原始数据库成功[%s ==> %s]</translation>
+    </message>
+    <message>
+      <source>backupFailed</source>
+      <translation>备份原始数据库失败[%s ==> %s]</translation>
+    </message>
+    <message>
+      <source>dbOpened</source>
+      <translation>数据库[%s]已经打开，请先关闭！</translation>
+    </message>
+    <message>
+      <source>dbPathBad</source>
+      <translation>数据库路径参数无效</translation>
+    </message>
+    <message>
+      <source>dbNotExist</source>
+      <translation>数据库不存在: %s</translation>
+    </message>
+    <message>
+      <source>repairReady</source>
+      <translation>【%s】准备进入数据库检测&修复流程:%s</translation>
+    </message>
+    <message>
+      <source>dbEncrypted</source>
+      <translation>已加密数据库</translation>
+    </message>
+    <message>
+      <source>dbNoEncrypted</source>
+      <translation>未加密数据库</translation>
+    </message>
+    <message>
+      <source>backupFailed2</source>
+      <translation>备份损坏的数据库失败，请稍后再重试: %s</translation>
+    </message>
+    <message>
+      <source>useBackupOk</source>
+      <translation>使用备份数据库[%s]还原损坏数据库[%s]成功！</translation>
+    </message>
+    <message>
+      <source>syncFailed</source>
+      <translation>因为原始数据库已完全损坏，不能同步变化！[%s]</translation>
+    </message>
+    <message>
+      <source>repairFinished</source>
+      <translation>数据库检测&修复完成:%s</translation>
+    </message>
+    <message>
+      <source>syncBegin</source>
+      <translation>【开始】从损坏数据库[%s]同步变化[%s]</translation>
+    </message>
+    <message>
+      <source>syncEnd</source>
+      <translation>【完成】从损坏数据库[%s]同步变化[%s]</translation>
+    </message>
+    <message>
+      <source>syncEndFailed</source>
+      <translation >【失败】从损坏数据库[%s]同步变化[%s]</translation>
+    </message>
+    <message>
+      <source>repairFailed</source>
+      <translation>【失败】数据库检测&修复失败:%s</translation>
+    </message>
+    <message>
+      <source>repairBegin</source>
+      <translation>【开始】数据库修复[%s]</translation>
+    </message>
+    <message>
+      <source>repairEnd</source>
+      <translation>【完成】数据库修复[%s]</translation>
+    </message>
+    <message>
+      <source>checkOk2</source>
+      <translation>【检测完成】数据库没有问题:%s</translation>
+    </message>
+    <message>
+      <source>openLog</source>
+      <translation>打开日志:%s</translation>
+    </message>
+    <message>
+      <source>addDbFolder</source>
+      <translation>添加数据库目录（只会搜索contacts.db与msg.db）: %s</translation>
+    </message>
+    <message>
+      <source>notFound</source>
+      <translation>无效路径，路径下面没有找到 contacts.db 或 msg.db: %s</translation>
+    </message>
+    <message>
+      <source>addDbFile</source>
+      <translation>添加数据库文件: %s</translation>
+    </message>
+    <message>
+      <source>notFound2</source>
+      <translation>不是数据库(*.db)文件，无法添加: %s</translation>
+    </message>
+    <message>
+      <source>startTableRepair</source>
+      <translation>开始表修复[%S]...</translation>
+    </message>
+    <message>
+      <source>finishedTableRepair</source>
+      <translation>完成表修复[%S], Corrupts：%d</translation>
+    </message>
+    <message>
+      <source>finishedTableRepair2</source>
+      <translation>完成表修复[%S]</translation>
+    </message>
+    <message>
+      <source>tableRepairFailed</source>
+      <translation>【失败】无法修复完全损坏的表: %S</translation>
+    </message>
+    <message>
+      <source>repairFailed2</source>
+      <translation>【失败】无法修复完全损坏的数据库: %s</translation>
+    </message>
+    <message>
+      <source>startThreadFiled</source>
+      <translation>启动生成通讯录线程失败，Error: 0x%08x</translation>
+    </message>
+    <message>
+      <source>makeZip</source>
+      <translation>生成通讯录ZIP的前提条件：
+1、确保通讯录是【最新的】：先登录并刷新通讯录，完成后再关闭客户端；
+2、账号：%s(%u)
+3、通讯录数据库：%s
+4、确认上述步都完成了，请再【确定】</translation>
+    </message>
+    <message>
+      <source>prompt</source>
+      <translation>提示...</translation>
+    </message>
+    <message>
+      <source>beginMakeZip</source>
+      <translation>【开始】生成通讯录ZIP...</translation>
+    </message>
+    <message>
+      <source>makeZipOk</source>
+      <translation>生成通讯录ZIP成功[%scontactdbpc.zip]...</translation>
+    </message>
+    <message>
+      <source>noExistDb</source>
+      <translation>通讯录数据库不存在: %s</translation>
+    </message>
+    <message>
+      <source>startSqlThreadFailed</source>
+      <translation>启动SQL线程失败，Error: 0x%08x</translation>
+    </message>
+    <message>
+      <source>openContactsDbFailed</source>
+      <translation>打开通讯录数据库失败: %s</translation>
+    </message>
+    <message>
+      <source>openDbOk</source>
+      <translation>打开数据库 %s 成功！</translation>
+    </message>
+    <message>
+      <source>contactsZip</source>
+      <translation>生成服务器通讯录ZIP</translation>
+    </message>
+    <message>
+      <source>encryped</source>
+      <translation>处理加密或未加密数据库</translation>
+    </message>
+    <message>
+      <source>attachMsgDbFailed</source>
+      <translation>附加消息库 %s 失败，错误:%d, 描述:%s</translation>
+    </message>
+    <message>
+      <source>attachMsgDbOk</source>
+      <translation>附加消息库 %s 为 %s 成功！</translation>
+    </message>
+    <message>
+      <source>execSql</source>
+      <translation>执行[%s]</translation>
+    </message>
+    <message>
+      <source>execSqlFailed</source>
+      <translation>执行SQL[%s] 失败, 错误:%d, 描述:%s</translation>
+    </message>
+    <message>
+      <source>rowCount</source>
+      <translation>总共 %d 行</translation>
+    </message>
+    <message>
+      <source>execStop</source>
+      <translation> 停止 </translation>
+    </message>
+    <!-- 默认SQL名字 -->
+    <message>
+      <source>integrityCheck</source>
+      <translation>检查完整性</translation>
+    </message>
+    <message>
+      <source>userVersion</source>
+      <translation>显示版本号</translation>
+    </message>
+    <message>
+      <source>sqliteMaster</source>
+      <translation>显示主表单</translation>
+    </message>
+    <message>
+      <source>tables</source>
+      <translation>显示表</translation>
+    </message>
+    <message>
+      <source>deptCount</source>
+      <translation>统计部门数量</translation>
+    </message>
+    <message>
+      <source>empCount</source>
+      <translation>统计员工数量</translation>
+    </message>
+    <message>
+      <source>sessions</source>
+      <translation>显示所有会话</translation>
+    </message>
+  </context>
+</language>

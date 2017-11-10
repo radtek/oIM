@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<language name="日本语" guid="{23D209C4-2268-49A2-B7F4-8CB57D908D47}">
+  <context>
+    <!--没有上下文的翻译-->
+  </context>
+  <context name="messagebox">
+    <message>
+      <source>Ok</source>
+      <translation>Ok</translation>
+    </message>
+    <message>
+      <source>Cancel</source>
+      <translation>Cancel</translation>
+    </message>
+    <message>
+      <source>Retry</source>
+      <translation>Retry</translation>
+    </message>
+    <message>
+      <source>Abort</source>
+      <translation>Abort</translation>
+    </message>
+    <message>
+      <source>Yes</source>
+      <translation>Yes</translation>
+    </message>
+    <message>
+      <source>No</source>
+      <translation>No</translation>
+    </message>
+    <message>
+      <source>Ignore</source>
+      <translation>Ignore</translation>
+    </message>
+  </context>
+  <context name="dlg_main">
+    <message>
+      <source>sysClose</source>
+      <translation>Close</translation>
+    </message>
+    <message>
+      <source>tipInRecord</source>
+      <translation>Please view in the message record</translation>
+    </message>
+    <message>
+      <source>tipLast</source>
+      <translation>It's the last one.</translation>
+    </message>
+  </context>
+</language>

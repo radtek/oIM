@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<SOUI name="mainWindow" trCtx="dlg_main" title="@string/mainTitle" bigIcon="ICON_LOGO:32" smallIcon="ICON_LOGO:16" width="920" height="400"
+	maxInset="5,3,10,10" margin="5,3,5,7" resizable="1" wndType="appMain" appWnd="1" minsize="600,400" translucent="1">
+	<root skin="_skin.shadow" cache="1">
+		<window pos="5,3,-5,-7" skin="_skin.bg">
+			<caption class="cls_sys_caption">
+				<icon class="cls_sys_logo" />
+				<text class="cls_sys_title">@string/mainTitle</text>
+				<imgbtn name="btn_close" class="cls_sys_close" />
+				<imgbtn name="btn_max" class="cls_sys_max" />
+				<imgbtn name="btn_restore" class="cls_sys_restore" />
+				<imgbtn name="btn_min" class="cls_sys_min" />
+			</caption>
+			<window pos="5,[2,-5,-5">
+				<window pos="0,0,-0,@30" inset="0,3,0,0">
+					<button name="btn_db" class="cls_button" accel="atl+d">@string/openDb</button>
+					<button name="btn_open_folder" class="cls_button" accel="atl+f">@string/openFolder</button>
+					<button name="btn_check_repair" class="cls_button" accel="atl+r">@string/repair</button>
+					<combobox name="cmb_db" class="cls_combobox" pos="[2,0,-4,24">
+						<liststyle class="cls_liststyle" />
+						<editstyle class="cls_editstyle" />
+					</combobox>
+				</window>
+				<richedit name="rdt_Log" pos="{0,[2,-0,]0" readonly="1" class="cls_richedit" />
+				<window name="execSql" pos="0,-26,-0,-0" show="0" display="0">
+					<combobox name="cmb_sql" class="cls_combobox" dropDown="0" pos="0,-24,-34,-0">
+						<liststyle class="cls_liststyle" />
+						<editstyle class="cls_editstyle" wantReturn="0" />
+						<items>
+							<item text="PRAGMA integrity_check"/>
+							<item text="PRAGMA user_version" />
+							<item text="SELECT * FROM sqlite_master" />
+							<item text="SELECT name,sql FROM sqlite_master WHERE type='table'" />
+							<item text="SELECT count(*) AS depts FROM t_dept" />
+							<item text="SELECT count(*) AS emps FROM t_emp" />
+							<item text="SELECT sid_, type, title, remark, flag, cid, ctime, utime, off_msg, new_msg, sutime, virgroupid, (SELECT toptime FROM t_session_top WHERE t_session_top.sid_=t_session.sid_) AS toptime FROM t_session WHERE (flag&89) ORDER BY toptime DESC,utime DESC" />
+						</items>
+					</combobox>
+					<button name="btn_sql" class="cls_button" pos="-34,-24,-0,-0" accel="ATL+S" text="@string/sql"/>
+				</window>
+			</window>
+		</window>
+	</root>
+</SOUI>

@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<string>
+  <title value="图片预览工具"/>
+  <ver value="1.0"/>
+  <sysClose value="sysClose"/>
+  <tipPageN value="%d/%d" />
+  <tipLast value="tipLast" />
+  <tipInRecord value="tipInRecord" />
+</string>

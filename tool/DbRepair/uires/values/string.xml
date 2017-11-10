@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<string>
+	<ver value="2.0"/>
+	<!-- 系统窗口默认控件 -->
+	<sysClose value="sysClose" />
+	<sysMax value="sysMax" />
+	<sysMin value="sysMin" />
+	<sysRestore value="sysRestore" />
+	<!-- 默认SQL -->
+	<sqlIntegrityCheck data="PRAGMA integrity_check;"/>
+	<sqlUserVersion data="PRAGMA user_version;" />
+	<sqlSqliteMaster data="SELECT * FROM sqlite_master;" />
+	<sqlTables data="SELECT name,sql FROM sqlite_master WHERE type='table';" />
+	<sqlDeptCount data="SELECT count(*) AS depts FROM t_dept;" />
+	<sqlEmpCount data="SELECT count(*) AS emps FROM t_emp;" />
+	<sqlSessions data="SELECT sid_, type, title, remark, flag, cid, ctime, utime, off_msg, new_msg, sutime, virgroupid, (SELECT toptime FROM t_session_top WHERE t_session_top.sid_=t_session.sid_) AS toptime FROM t_session WHERE (flag&89) ORDER BY toptime DESC,utime DESC;" />
+	<!-- 菜单 -->
+	<menuOpenDb value="menuOpenDb" />
+	<menuOpenFolder value="menuOpenFolder" />
+	<menuRepair value="menuRepair" />
+	<menuRepairBest value="menuRepairBest" />
+	<menuEncrypted value="menuEncrypted" />
+	<menuContactsZip value="menuMakeZip" />
+	<menuSql value="menuSql" />
+	<menuCleanup value="menuCleanup" />
+	<menuOpenLog value="menuOpenLog" />
+	<menuOpenLogFolder value="menuOpenLogFolder" />
+	<menuAbout value="menuAbout" />
+	<menuChinise value="menuChinese" />
+	<menuEnglish value="menuEnglish" />
+	<!-- 关于对话框 -->
+	<aboutTitle value="aboutTitle" />
+	<aboutVersion value="aboutVersion" />
+	<aboutCopyright value="aboutCopyright" />
+	<aboutHelp value="aboutHelp" />
+	<!-- 主窗口 -->
+	<mainTitle value="mainTitle"/>
+	<openDb value="openDb" />
+	<openFolder value="openFolder"/>
+	<repair value="repair" />
+	<sql value="sql" />
+	<!-- 提示 -->
+	<alreadyRun value="alreadyRun" />
+	<logFile value="logFile" />
+	<notice value="notice" />
+	<checkUserDbFailed value="checkUserDbFailed" />
+	<openUserDbFailed value="openUserDbFailed" />
+	<checkOk value="checkOk" />
+	<modeBest value="modeBest" />
+	<modeFast value="modeFast" />
+	<startRepair value="startRepair" />
+	<startFailed value="startFailed" />
+	<notFindDb value="notFindDb" />
+	<checkFailed value="checkFailed" />
+	<checkFailed2 value="checkFailed2" />
+	<backupOk value="backupOk" />
+	<backupFailed value="backupFailed" />
+	<dbOpened value="dbOpened" />
+	<dbPathBad value="dbPathBad" />
+	<dbNotExist value="dbNotExist" />
+	<repairReady value="repairReady" />
+	<dbEncrypted value="dbEncrypted" />
+	<dbNoEncrypted value="dbNoEncrypted" />
+	<backupFailed2 value="backupFailed2" />
+	<useBackupOk value="useBackupOk" />
+	<syncFailed value="syncFailed" />
+	<repairFinished value="repairFinished" />
+	<syncBegin value="syncBegin" />
+	<syncEnd value="syncEnd" />
+	<syncEndFailed value="syncEndFailed" />
+	<repairFailed value="repairFailed" />
+	<repairFailed2 value="repairFailed2" />
+	<repairBegin value="repairBegin" />
+	<repairEnd value="repairEnd" />
+	<checkOk2 value="checkOk2" />
+	<openLog value="openLog" />
+	<addDbFolder value="addDbFolder" />
+	<notFound value="notFound" />
+	<addDbFile value="addDbFile" />
+	<notFound2 value="notFound2" />
+	<startTableRepair value="startTableRepair" />
+	<finishedTableRepair value="finishedTableRepair" />
+	<finishedTableRepair2 value="finishedTableRepair2" />
+	<tableRepairFailed value="tableRepairFailed" />
+	<startThreadFiled value="startThreadFiled" />
+	<makeZip value="makeZip" />
+	<prompt value="prompt" />
+	<beginMakeZip value="beginMakeZip" />
+	<makeZipOk value="makeZipOk" />
+	<noExistDb value="noExistDb" />
+	<startSqlThreadFailed value="startSqlThreadFailed" />
+	<openContactsDbFailed value="openContactsDbFailed" />
+	<openDbOk value="openDbOk" />
+	<contactsZip value="contactsZip" />
+	<encryped value="encryped" />
+	<attachMsgDbFailed value="attachMsgDbFailed" />
+	<attachMsgDbOk value="attachMsgDbOk" />
+	<execSql value="execSql" />
+	<execSqlFailed value="execSqlFailed" />
+	<rowCount value="rowCount" />
+	<execStop value="execStop" />
+</string>

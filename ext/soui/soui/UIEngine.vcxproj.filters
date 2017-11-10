@@ -1,0 +1,1331 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Generated Files">
+      <UniqueIdentifier>{71ED8ED8-ACB9-4CE9-BBE1-E00B30144E11}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;moc;h;def;odl;idl;res;</Extensions>
+    </Filter>
+    <Filter Include="Generated Files">
+      <UniqueIdentifier>{71ED8ED8-ACB9-4CE9-BBE1-E00B30144E11}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;moc;h;def;odl;idl;res;</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="soui2">
+      <UniqueIdentifier>{6edd2405-6230-4de7-a75a-6149907df40e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="soui2\src">
+      <UniqueIdentifier>{af30935e-d630-4af1-9c86-8edf0a88ce6d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="soui2\src\activex">
+      <UniqueIdentifier>{550ff3df-519e-48a7-9710-3fbfc2bb0bc7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="soui2\src\control">
+      <UniqueIdentifier>{08e5a24e-a4c5-4594-8ade-c63d182afcd2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="soui2\src\core">
+      <UniqueIdentifier>{9acf0851-dbf4-4ad9-acab-cedfb0b5f35b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="soui2\src\event">
+      <UniqueIdentifier>{43c67430-2841-423c-bb93-6cedb883335a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="soui2\src\helper">
+      <UniqueIdentifier>{9efc39e0-b84b-41e7-aa85-05c814ee42a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="soui2\src\layout">
+      <UniqueIdentifier>{c48d4ce8-204c-41cb-afa0-0600e9c83c95}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="soui2\src\res.mgr">
+      <UniqueIdentifier>{95ab2653-021a-4a2f-9a93-05ca8b8e4f49}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="soui2\src\updatelayeredwindow">
+      <UniqueIdentifier>{84672b63-6b7a-4dcf-92ab-e096fc266aae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="soui2\include">
+      <UniqueIdentifier>{56c99f44-6ff7-4532-9890-f2ba9cd3732b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="soui2\include\activex">
+      <UniqueIdentifier>{1a2a306a-ca6f-4735-87f9-86e0fde09e10}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="soui2\include\control">
+      <UniqueIdentifier>{20f6a236-b456-47a5-8857-4e1d8225a673}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="soui2\include\core">
+      <UniqueIdentifier>{b5ad9b1e-2998-48bd-ae51-a2943125d4e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="soui2\include\event">
+      <UniqueIdentifier>{babffe0d-478e-4364-ba4a-322f35158999}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="soui2\include\helper">
+      <UniqueIdentifier>{426d8906-ac0d-44cf-b9eb-0073c71b0294}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="soui2\include\interface">
+      <UniqueIdentifier>{35fb5428-b2bb-4c12-9013-11c5ce916ca5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="soui2\include\layout">
+      <UniqueIdentifier>{1690c63d-8173-4ccb-aab9-f19a25f8be3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="soui2\include\res.mgr">
+      <UniqueIdentifier>{16f8774b-f66a-45ff-bbda-b279bc2456a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="config">
+      <UniqueIdentifier>{1d406921-3713-4db7-8e52-0f99fa30a414}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="config\options">
+      <UniqueIdentifier>{d93ceeb8-cdc7-469f-a171-248fc84473f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="utilities">
+      <UniqueIdentifier>{4a69ca1c-cf9f-451f-9791-9b40ebe4781a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="utilities\include">
+      <UniqueIdentifier>{d6736493-2c4a-4bb5-b33a-162bcda29355}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="utilities\src">
+      <UniqueIdentifier>{820112bc-5efb-40b4-a38d-bfbb364bf98a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="utilities\src\pugixml">
+      <UniqueIdentifier>{9f402a9e-5f49-436c-bd4a-73d96babc78d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="utilities\src\sobject">
+      <UniqueIdentifier>{16ed21b5-fcae-4b77-8649-63b6dfd9337f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="utilities\src\string">
+      <UniqueIdentifier>{c13e8866-64fb-4e65-86fb-9eca5ab5666b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="utilities\include\atl.mini">
+      <UniqueIdentifier>{486509d7-7553-47b0-b186-7c086ba94a70}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="utilities\include\pugixml">
+      <UniqueIdentifier>{5faebf45-eef9-49e4-b40c-5536e7359ed0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="utilities\include\sobject">
+      <UniqueIdentifier>{2d8105f8-c4fb-498b-9c6d-73bb830af047}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="utilities\include\string">
+      <UniqueIdentifier>{cb385a55-3374-46cc-aaeb-0f775285bd59}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="utilities\include\unknown">
+      <UniqueIdentifier>{f0e18df1-44b9-47b4-87d2-bd9993c4510f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="utilities\include\wtl.mini">
+      <UniqueIdentifier>{172a7c22-1770-447f-b808-cdbd22a4ea88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="components">
+      <UniqueIdentifier>{c2a27054-c754-494f-9931-008b7a79cbe5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="components\imgdecoder-gdip">
+      <UniqueIdentifier>{4e2b5f3e-7650-4bf7-b8db-41720db61565}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="components\imgdecoder-png">
+      <UniqueIdentifier>{a733c20c-9494-4af1-94b0-9d82b97c729f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="components\imgdecoder-stb">
+      <UniqueIdentifier>{12ce02c7-39a2-4b86-891c-383cd9202234}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="components\imgdecoder-wic">
+      <UniqueIdentifier>{12cb2267-3f6f-4fc8-833b-dfa382c1fcb9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="components\log4z">
+      <UniqueIdentifier>{56594ce2-7f5e-4742-aefe-19c801264663}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="components\render-gdi">
+      <UniqueIdentifier>{7cc27ccc-b604-44d9-b58a-2c4a131be586}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="components\render-skia">
+      <UniqueIdentifier>{9bc4ac84-abee-44b0-9096-a20b82d275a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="components\resprovider-7zip">
+      <UniqueIdentifier>{3e313c1f-ebeb-4376-aa31-0958432678a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="components\resprovider-zip">
+      <UniqueIdentifier>{62c985a0-22f7-4ddc-9df6-86dac4ecb838}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="components\ScriptModule-LUA">
+      <UniqueIdentifier>{fe820a48-d794-4e01-bae3-51822d982fd0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="components\translator">
+      <UniqueIdentifier>{313588c0-87ba-4e99-a584-fbb0e89e1ea9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="components\ScriptModule-LUA\lua_tinker">
+      <UniqueIdentifier>{469ec046-d861-45a4-9c80-adb21eb477b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="components\ScriptModule-LUA\src">
+      <UniqueIdentifier>{fcbf1d83-bd45-4ee1-b350-0a91fafed24c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="components\ScriptModule-LUA\src\exports">
+      <UniqueIdentifier>{6fcc1c1e-a5ac-4ff1-a92d-6aa7a2da68d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="controls.extend">
+      <UniqueIdentifier>{70d871cd-4dd0-4378-ba7c-48884c6567bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="controls.extend\gif">
+      <UniqueIdentifier>{3d6c3c08-a141-43c0-be0e-a977c257b18f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="controls.extend\image3d">
+      <UniqueIdentifier>{2a012237-1616-45bc-ad81-f97816c00d90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="controls.extend\propgrid">
+      <UniqueIdentifier>{af7e9a44-5cbe-4eed-b107-8f761e641dc9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="controls.extend\reole">
+      <UniqueIdentifier>{a5ba2efe-0076-4d61-adc3-6121bf30d12a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="controls.extend\SMcListViewEx">
+      <UniqueIdentifier>{7b9122ef-a719-42e3-8539-a4cdc0f34bab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="controls.extend\smiley">
+      <UniqueIdentifier>{c89184d7-0610-46c8-b4e6-2032ebcde678}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="controls.extend\trayicon">
+      <UniqueIdentifier>{f0851d84-bb19-4eac-a009-547d71209c3d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="controls.extend\propgrid\propitem">
+      <UniqueIdentifier>{b9e02e34-ea7e-4ead-a637-d05346a2cc1d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\utilities\include\atl.mini\atldef.h">
+      <Filter>utilities\include\atl.mini</Filter>
+    </ClInclude>
+    <ClInclude Include="..\utilities\include\atl.mini\SComCli.h">
+      <Filter>utilities\include\atl.mini</Filter>
+    </ClInclude>
+    <ClInclude Include="..\utilities\include\atl.mini\SComHelper.h">
+      <Filter>utilities\include\atl.mini</Filter>
+    </ClInclude>
+    <ClInclude Include="..\utilities\include\pugixml\pugiconfig.hpp">
+      <Filter>utilities\include\pugixml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\utilities\include\pugixml\pugixml.hpp">
+      <Filter>utilities\include\pugixml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\utilities\include\sobject\sobject-i.h">
+      <Filter>utilities\include\sobject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\utilities\include\sobject\Sobject.hpp">
+      <Filter>utilities\include\sobject</Filter>
+    </ClInclude>
+    <ClInclude Include="..\utilities\include\string\strcpcvt.h">
+      <Filter>utilities\include\string</Filter>
+    </ClInclude>
+    <ClInclude Include="..\utilities\include\string\tstring.h">
+      <Filter>utilities\include\string</Filter>
+    </ClInclude>
+    <ClInclude Include="..\utilities\include\unknown\obj-ref-i.h">
+      <Filter>utilities\include\unknown</Filter>
+    </ClInclude>
+    <ClInclude Include="..\utilities\include\unknown\obj-ref-impl.hpp">
+      <Filter>utilities\include\unknown</Filter>
+    </ClInclude>
+    <ClInclude Include="..\utilities\include\wtl.mini\msgcrack.h">
+      <Filter>utilities\include\wtl.mini</Filter>
+    </ClInclude>
+    <ClInclude Include="..\utilities\include\wtl.mini\souimisc.h">
+      <Filter>utilities\include\wtl.mini</Filter>
+    </ClInclude>
+    <ClInclude Include="..\utilities\include\com-loader.hpp">
+      <Filter>utilities\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\utilities\include\gdialpha.h">
+      <Filter>utilities\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\utilities\include\snew.h">
+      <Filter>utilities\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\utilities\include\soui_mem_wrapper.h">
+      <Filter>utilities\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\utilities\include\souicoll.h">
+      <Filter>utilities\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\utilities\include\trace.h">
+      <Filter>utilities\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\utilities\include\utilities.h">
+      <Filter>utilities\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\utilities\include\utilities-def.h">
+      <Filter>utilities\include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\activex\SBStr.h">
+      <Filter>soui2\include\activex</Filter>
+    </ClInclude>
+    <ClInclude Include="include\control\RealWndHandler-i.h">
+      <Filter>soui2\include\control</Filter>
+    </ClInclude>
+    <ClInclude Include="include\control\SActiveX.h">
+      <Filter>soui2\include\control</Filter>
+    </ClInclude>
+    <ClInclude Include="include\control\SCalendar.h">
+      <Filter>soui2\include\control</Filter>
+    </ClInclude>
+    <ClInclude Include="include\control\SCaption.h">
+      <Filter>soui2\include\control</Filter>
+    </ClInclude>
+    <ClInclude Include="include\control\SCmnCtrl.h">
+      <Filter>soui2\include\control</Filter>
+    </ClInclude>
+    <ClInclude Include="include\control\SComboBase.h">
+      <Filter>soui2\include\control</Filter>
+    </ClInclude>
+    <ClInclude Include="include\control\SComboBox.h">
+      <Filter>soui2\include\control</Filter>
+    </ClInclude>
+    <ClInclude Include="include\control\SComboView.h">
+      <Filter>soui2\include\control</Filter>
+    </ClInclude>
+    <ClInclude Include="include\control\SDropDown.h">
+      <Filter>soui2\include\control</Filter>
+    </ClInclude>
+    <ClInclude Include="include\control\SHeaderCtrl.h">
+      <Filter>soui2\include\control</Filter>
+    </ClInclude>
+    <ClInclude Include="include\control\SHotKeyCtrl.h">
+      <Filter>soui2\include\control</Filter>
+    </ClInclude>
+    <ClInclude Include="include\control\SListbox.h">
+      <Filter>soui2\include\control</Filter>
+    </ClInclude>
+    <ClInclude Include="include\control\SListCtrl.h">
+      <Filter>soui2\include\control</Filter>
+    </ClInclude>
+    <ClInclude Include="include\control\SListView.h">
+      <Filter>soui2\include\control</Filter>
+    </ClInclude>
+    <ClInclude Include="include\control\SMCListView.h">
+      <Filter>soui2\include\control</Filter>
+    </ClInclude>
+    <ClInclude Include="include\control\SMessageBox.h">
+      <Filter>soui2\include\control</Filter>
+    </ClInclude>
+    <ClInclude Include="include\control\SouiCtrls.h">
+      <Filter>soui2\include\control</Filter>
+    </ClInclude>
+    <ClInclude Include="include\control\SRealWnd.h">
+      <Filter>soui2\include\control</Filter>
+    </ClInclude>
+    <ClInclude Include="include\control\SRichEdit.h">
+      <Filter>soui2\include\control</Filter>
+    </ClInclude>
+    <ClInclude Include="include\control\SScrollbar.h">
+      <Filter>soui2\include\control</Filter>
+    </ClInclude>
+    <ClInclude Include="include\control\SSliderBar.h">
+      <Filter>soui2\include\control</Filter>
+    </ClInclude>
+    <ClInclude Include="include\control\SSpinButtonCtrl.h">
+      <Filter>soui2\include\control</Filter>
+    </ClInclude>
+    <ClInclude Include="include\control\SSplitWnd.h">
+      <Filter>soui2\include\control</Filter>
+    </ClInclude>
+    <ClInclude Include="include\control\STabCtrl.h">
+      <Filter>soui2\include\control</Filter>
+    </ClInclude>
+    <ClInclude Include="include\control\STileView.h">
+      <Filter>soui2\include\control</Filter>
+    </ClInclude>
+    <ClInclude Include="include\control\stree.hpp">
+      <Filter>soui2\include\control</Filter>
+    </ClInclude>
+    <ClInclude Include="include\control\STreeCtrl.h">
+      <Filter>soui2\include\control</Filter>
+    </ClInclude>
+    <ClInclude Include="include\control\STreeView.h">
+      <Filter>soui2\include\control</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\Accelerator.h">
+      <Filter>soui2\include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\FocusManager.h">
+      <Filter>soui2\include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\hostmsg.h">
+      <Filter>soui2\include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\SCaret.h">
+      <Filter>soui2\include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\SDefine.h">
+      <Filter>soui2\include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\SDropTargetDispatcher.h">
+      <Filter>soui2\include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\SHostDialog.h">
+      <Filter>soui2\include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\SHostWnd.h">
+      <Filter>soui2\include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\SimpleWnd.h">
+      <Filter>soui2\include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\SItemPanel.h">
+      <Filter>soui2\include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\SMsgLoop.h">
+      <Filter>soui2\include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\SObjectFactory.h">
+      <Filter>soui2\include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\SPanel.h">
+      <Filter>soui2\include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\SSingleton.h">
+      <Filter>soui2\include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\SSingletonMap.h">
+      <Filter>soui2\include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\SSkin.h">
+      <Filter>soui2\include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\SSkinObjBase.h">
+      <Filter>soui2\include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\SWindowMgr.h">
+      <Filter>soui2\include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\Swnd.h">
+      <Filter>soui2\include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\SwndContainer-i.h">
+      <Filter>soui2\include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\SwndContainerImpl.h">
+      <Filter>soui2\include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\core\SwndStyle.h">
+      <Filter>soui2\include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="include\event\eventcrack.h">
+      <Filter>soui2\include\event</Filter>
+    </ClInclude>
+    <ClInclude Include="include\event\Events.h">
+      <Filter>soui2\include\event</Filter>
+    </ClInclude>
+    <ClInclude Include="include\event\EventSet.h">
+      <Filter>soui2\include\event</Filter>
+    </ClInclude>
+    <ClInclude Include="include\event\EventSubscriber.h">
+      <Filter>soui2\include\event</Filter>
+    </ClInclude>
+    <ClInclude Include="include\event\NotifyCenter.h">
+      <Filter>soui2\include\event</Filter>
+    </ClInclude>
+    <ClInclude Include="include\helper\AppDir.h">
+      <Filter>soui2\include\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="include\helper\auto_reset.h">
+      <Filter>soui2\include\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="include\helper\color.h">
+      <Filter>soui2\include\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="include\helper\copylist.hpp">
+      <Filter>soui2\include\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="include\helper\DragWnd.h">
+      <Filter>soui2\include\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="include\helper\LunarData.h">
+      <Filter>soui2\include\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="include\helper\MemDC.h">
+      <Filter>soui2\include\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="include\helper\MenuWndHook.h">
+      <Filter>soui2\include\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="include\helper\mybuffer.h">
+      <Filter>soui2\include\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="include\helper\SAdapterBase.h">
+      <Filter>soui2\include\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="include\helper\SAttrCracker.h">
+      <Filter>soui2\include\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="include\helper\SCriticalSection.h">
+      <Filter>soui2\include\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="include\helper\SDIBHelper.h">
+      <Filter>soui2\include\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="include\helper\SListViewItemLocator.h">
+      <Filter>soui2\include\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="include\helper\slog-private.h">
+      <Filter>soui2\include\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="include\helper\slog.h">
+      <Filter>soui2\include\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="include\helper\SMatrix.h">
+      <Filter>soui2\include\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="include\helper\SMenu.h">
+      <Filter>soui2\include\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="include\helper\SMenuEx.h">
+      <Filter>soui2\include\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="include\helper\SplitString.h">
+      <Filter>soui2\include\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="include\helper\SResID.h">
+      <Filter>soui2\include\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="include\helper\SScriptTimer.h">
+      <Filter>soui2\include\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="include\helper\STileViewItemLocator.h">
+      <Filter>soui2\include\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="include\helper\STime.h">
+      <Filter>soui2\include\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="include\helper\STimerEx.h">
+      <Filter>soui2\include\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="include\helper\SToolTip.h">
+      <Filter>soui2\include\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="include\helper\SwndFinder.h">
+      <Filter>soui2\include\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="include\helper\SwndMsgCracker.h">
+      <Filter>soui2\include\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="include\helper\swndspy.h">
+      <Filter>soui2\include\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="include\interface\Adapter-i.h">
+      <Filter>soui2\include\interface</Filter>
+    </ClInclude>
+    <ClInclude Include="include\interface\imgdecoder-i.h">
+      <Filter>soui2\include\interface</Filter>
+    </ClInclude>
+    <ClInclude Include="include\interface\LvItemLocator-i.h">
+      <Filter>soui2\include\interface</Filter>
+    </ClInclude>
+    <ClInclude Include="include\interface\render-i.h">
+      <Filter>soui2\include\interface</Filter>
+    </ClInclude>
+    <ClInclude Include="include\interface\slayout-i.h">
+      <Filter>soui2\include\interface</Filter>
+    </ClInclude>
+    <ClInclude Include="include\interface\slog-i.h">
+      <Filter>soui2\include\interface</Filter>
+    </ClInclude>
+    <ClInclude Include="include\interface\SResProvider-i.h">
+      <Filter>soui2\include\interface</Filter>
+    </ClInclude>
+    <ClInclude Include="include\interface\SScriptModule-i.h">
+      <Filter>soui2\include\interface</Filter>
+    </ClInclude>
+    <ClInclude Include="include\interface\SSkinobj-i.h">
+      <Filter>soui2\include\interface</Filter>
+    </ClInclude>
+    <ClInclude Include="include\interface\stooltip-i.h">
+      <Filter>soui2\include\interface</Filter>
+    </ClInclude>
+    <ClInclude Include="include\interface\STranslator-i.h">
+      <Filter>soui2\include\interface</Filter>
+    </ClInclude>
+    <ClInclude Include="include\interface\TvItemLocator-i.h">
+      <Filter>soui2\include\interface</Filter>
+    </ClInclude>
+    <ClInclude Include="include\layout\SLayoutSize.h">
+      <Filter>soui2\include\layout</Filter>
+    </ClInclude>
+    <ClInclude Include="include\layout\SLinearLayout.h">
+      <Filter>soui2\include\layout</Filter>
+    </ClInclude>
+    <ClInclude Include="include\layout\SLinearLayoutParamStruct.h">
+      <Filter>soui2\include\layout</Filter>
+    </ClInclude>
+    <ClInclude Include="include\layout\SouiLayout.h">
+      <Filter>soui2\include\layout</Filter>
+    </ClInclude>
+    <ClInclude Include="include\layout\SouiLayoutParamStruct.h">
+      <Filter>soui2\include\layout</Filter>
+    </ClInclude>
+    <ClInclude Include="include\res.mgr\SDpiAwareFont.h">
+      <Filter>soui2\include\res.mgr</Filter>
+    </ClInclude>
+    <ClInclude Include="include\res.mgr\SFontPool.h">
+      <Filter>soui2\include\res.mgr</Filter>
+    </ClInclude>
+    <ClInclude Include="include\res.mgr\SNamedValue.h">
+      <Filter>soui2\include\res.mgr</Filter>
+    </ClInclude>
+    <ClInclude Include="include\res.mgr\SObjDefAttr.h">
+      <Filter>soui2\include\res.mgr</Filter>
+    </ClInclude>
+    <ClInclude Include="include\res.mgr\SResProvider.h">
+      <Filter>soui2\include\res.mgr</Filter>
+    </ClInclude>
+    <ClInclude Include="include\res.mgr\SResProviderMgr.h">
+      <Filter>soui2\include\res.mgr</Filter>
+    </ClInclude>
+    <ClInclude Include="include\res.mgr\SSkinPool.h">
+      <Filter>soui2\include\res.mgr</Filter>
+    </ClInclude>
+    <ClInclude Include="include\res.mgr\SStylePool.h">
+      <Filter>soui2\include\res.mgr</Filter>
+    </ClInclude>
+    <ClInclude Include="include\res.mgr\SUiDef.h">
+      <Filter>soui2\include\res.mgr</Filter>
+    </ClInclude>
+    <ClInclude Include="include\souistd.h">
+      <Filter>soui2\include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\soui-version.h">
+      <Filter>soui2\include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SApp.h">
+      <Filter>soui2\include</Filter>
+    </ClInclude>
+    <ClInclude Include="src\activex\SAxContainer.h">
+      <Filter>soui2\src\activex</Filter>
+    </ClInclude>
+    <ClInclude Include="src\activex\SAxUtil.h">
+      <Filter>soui2\src\activex</Filter>
+    </ClInclude>
+    <ClInclude Include="src\updatelayeredwindow\SUpdateLayeredWindow.h">
+      <Filter>soui2\src\updatelayeredwindow</Filter>
+    </ClInclude>
+    <ClInclude Include="..\components\imgdecoder-gdip\imgdecoder-gdip.h">
+      <Filter>components\imgdecoder-gdip</Filter>
+    </ClInclude>
+    <ClInclude Include="..\components\imgdecoder-png\imgdecoder-png.h">
+      <Filter>components\imgdecoder-png</Filter>
+    </ClInclude>
+    <ClInclude Include="..\components\imgdecoder-png\decoder-apng.h">
+      <Filter>components\imgdecoder-png</Filter>
+    </ClInclude>
+    <ClInclude Include="..\components\imgdecoder-stb\imgdecoder-stb.h">
+      <Filter>components\imgdecoder-stb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\components\imgdecoder-wic\imgdecoder-wic.h">
+      <Filter>components\imgdecoder-wic</Filter>
+    </ClInclude>
+    <ClInclude Include="..\components\log4z\log4z.h">
+      <Filter>components\log4z</Filter>
+    </ClInclude>
+    <ClInclude Include="..\components\render-gdi\GradientFillHelper.h">
+      <Filter>components\render-gdi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\components\render-gdi\render-gdi.h">
+      <Filter>components\render-gdi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\components\render-skia\drawtext-skia.h">
+      <Filter>components\render-skia</Filter>
+    </ClInclude>
+    <ClInclude Include="..\components\render-skia\render-skia.h">
+      <Filter>components\render-skia</Filter>
+    </ClInclude>
+    <ClInclude Include="..\components\render-skia\Render-Skia2.h">
+      <Filter>components\render-skia</Filter>
+    </ClInclude>
+    <ClInclude Include="..\components\render-skia\Render-Skia2-i.h">
+      <Filter>components\render-skia</Filter>
+    </ClInclude>
+    <ClInclude Include="..\components\render-skia\skia2rop2.h">
+      <Filter>components\render-skia</Filter>
+    </ClInclude>
+    <ClInclude Include="..\components\resprovider-zip\ZipArchive.h">
+      <Filter>components\resprovider-zip</Filter>
+    </ClInclude>
+    <ClInclude Include="..\components\resprovider-zip\zipresprovider-param.h">
+      <Filter>components\resprovider-zip</Filter>
+    </ClInclude>
+    <ClInclude Include="..\components\resprovider-zip\SResProviderZip.h">
+      <Filter>components\resprovider-zip</Filter>
+    </ClInclude>
+    <ClInclude Include="..\components\ScriptModule-LUA\lua_tinker\lua_tinker.h">
+      <Filter>components\ScriptModule-LUA\lua_tinker</Filter>
+    </ClInclude>
+    <ClInclude Include="..\components\ScriptModule-LUA\src\ScriptModule-Lua.h">
+      <Filter>components\ScriptModule-LUA\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\components\ScriptModule-LUA\src\exports\exp_eventArgs.h">
+      <Filter>components\ScriptModule-LUA\src\exports</Filter>
+    </ClInclude>
+    <ClInclude Include="..\components\ScriptModule-LUA\src\exports\exp_hostwnd.h">
+      <Filter>components\ScriptModule-LUA\src\exports</Filter>
+    </ClInclude>
+    <ClInclude Include="..\components\ScriptModule-LUA\src\exports\exp_msgbox.h">
+      <Filter>components\ScriptModule-LUA\src\exports</Filter>
+    </ClInclude>
+    <ClInclude Include="..\components\ScriptModule-LUA\src\exports\exp_object.h">
+      <Filter>components\ScriptModule-LUA\src\exports</Filter>
+    </ClInclude>
+    <ClInclude Include="..\components\ScriptModule-LUA\src\exports\exp_pugixml.h">
+      <Filter>components\ScriptModule-LUA\src\exports</Filter>
+    </ClInclude>
+    <ClInclude Include="..\components\ScriptModule-LUA\src\exports\exp_ResProvider.h">
+      <Filter>components\ScriptModule-LUA\src\exports</Filter>
+    </ClInclude>
+    <ClInclude Include="..\components\ScriptModule-LUA\src\exports\exp_ScriptModule.h">
+      <Filter>components\ScriptModule-LUA\src\exports</Filter>
+    </ClInclude>
+    <ClInclude Include="..\components\ScriptModule-LUA\src\exports\exp_strcpcvt.h">
+      <Filter>components\ScriptModule-LUA\src\exports</Filter>
+    </ClInclude>
+    <ClInclude Include="..\components\ScriptModule-LUA\src\exports\exp_string.h">
+      <Filter>components\ScriptModule-LUA\src\exports</Filter>
+    </ClInclude>
+    <ClInclude Include="..\components\ScriptModule-LUA\src\exports\exp_Window.h">
+      <Filter>components\ScriptModule-LUA\src\exports</Filter>
+    </ClInclude>
+    <ClInclude Include="..\components\ScriptModule-LUA\src\exports\exp_app.h">
+      <Filter>components\ScriptModule-LUA\src\exports</Filter>
+    </ClInclude>
+    <ClInclude Include="..\components\ScriptModule-LUA\src\exports\exp_Basic.h">
+      <Filter>components\ScriptModule-LUA\src\exports</Filter>
+    </ClInclude>
+    <ClInclude Include="..\components\ScriptModule-LUA\src\exports\exp_ctrls.h">
+      <Filter>components\ScriptModule-LUA\src\exports</Filter>
+    </ClInclude>
+    <ClInclude Include="..\components\translator\translator.h">
+      <Filter>components\translator</Filter>
+    </ClInclude>
+    <ClInclude Include="..\controls.extend\gif\SAniImgFrame.h">
+      <Filter>controls.extend\gif</Filter>
+    </ClInclude>
+    <ClInclude Include="..\controls.extend\gif\SGifPlayer.h">
+      <Filter>controls.extend\gif</Filter>
+    </ClInclude>
+    <ClInclude Include="..\controls.extend\gif\SSkinAPNG.h">
+      <Filter>controls.extend\gif</Filter>
+    </ClInclude>
+    <ClInclude Include="..\controls.extend\gif\SSkinGif.h">
+      <Filter>controls.extend\gif</Filter>
+    </ClInclude>
+    <ClInclude Include="..\controls.extend\image3d\3dlib.h">
+      <Filter>controls.extend\image3d</Filter>
+    </ClInclude>
+    <ClInclude Include="..\controls.extend\image3d\3dmatrix.h">
+      <Filter>controls.extend\image3d</Filter>
+    </ClInclude>
+    <ClInclude Include="..\controls.extend\image3d\3dTransform.h">
+      <Filter>controls.extend\image3d</Filter>
+    </ClInclude>
+    <ClInclude Include="..\controls.extend\image3d\PerspectiveTransform.h">
+      <Filter>controls.extend\image3d</Filter>
+    </ClInclude>
+    <ClInclude Include="..\controls.extend\propgrid\propitem\SPropertyItem-Color.h">
+      <Filter>controls.extend\propgrid\propitem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\controls.extend\propgrid\propitem\SPropertyItem-Option.h">
+      <Filter>controls.extend\propgrid\propitem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\controls.extend\propgrid\propitem\SPropertyItem-Size.h">
+      <Filter>controls.extend\propgrid\propitem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\controls.extend\propgrid\propitem\SPropertyItem-Text.h">
+      <Filter>controls.extend\propgrid\propitem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\controls.extend\propgrid\SPropertyEmbedWndHelper.hpp">
+      <Filter>controls.extend\propgrid</Filter>
+    </ClInclude>
+    <ClInclude Include="..\controls.extend\propgrid\SPropertyGrid.h">
+      <Filter>controls.extend\propgrid</Filter>
+    </ClInclude>
+    <ClInclude Include="..\controls.extend\propgrid\SPropertyItemBase.h">
+      <Filter>controls.extend\propgrid</Filter>
+    </ClInclude>
+    <ClInclude Include="..\controls.extend\propgrid\SPropertyItem-i.h">
+      <Filter>controls.extend\propgrid</Filter>
+    </ClInclude>
+    <ClInclude Include="..\controls.extend\reole\dataobject.h">
+      <Filter>controls.extend\reole</Filter>
+    </ClInclude>
+    <ClInclude Include="..\controls.extend\reole\RichEditOle.h">
+      <Filter>controls.extend\reole</Filter>
+    </ClInclude>
+    <ClInclude Include="..\controls.extend\SMcListViewEx\Adapter参考.h">
+      <Filter>controls.extend\SMcListViewEx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\controls.extend\SMcListViewEx\SHeaderCtrlEx.h">
+      <Filter>controls.extend\SMcListViewEx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\controls.extend\SMcListViewEx\SLoopButton.h">
+      <Filter>controls.extend\SMcListViewEx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\controls.extend\SMcListViewEx\SMCListViewEx.h">
+      <Filter>controls.extend\SMcListViewEx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\controls.extend\SMcListViewEx\STabCtrlHeaderBinder.h">
+      <Filter>controls.extend\SMcListViewEx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\controls.extend\smiley\SSmileyCtrl.h">
+      <Filter>controls.extend\smiley</Filter>
+    </ClInclude>
+    <ClInclude Include="..\controls.extend\trayicon\SShellNotifyIcon.h">
+      <Filter>controls.extend\trayicon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\controls.extend\SScrollText.h">
+      <Filter>controls.extend</Filter>
+    </ClInclude>
+    <ClInclude Include="..\controls.extend\SSkinImgFrame2.h">
+      <Filter>controls.extend</Filter>
+    </ClInclude>
+    <ClInclude Include="..\controls.extend\SSkinMutiFrameImg.h">
+      <Filter>controls.extend</Filter>
+    </ClInclude>
+    <ClInclude Include="..\controls.extend\SSkinNewScrollBar.h">
+      <Filter>controls.extend</Filter>
+    </ClInclude>
+    <ClInclude Include="..\controls.extend\STabCtrl2.h">
+      <Filter>controls.extend</Filter>
+    </ClInclude>
+    <ClInclude Include="..\controls.extend\SText.h">
+      <Filter>controls.extend</Filter>
+    </ClInclude>
+    <ClInclude Include="..\controls.extend\STurn3DView.h">
+      <Filter>controls.extend</Filter>
+    </ClInclude>
+    <ClInclude Include="..\controls.extend\SVscrollbar.h">
+      <Filter>controls.extend</Filter>
+    </ClInclude>
+    <ClInclude Include="..\controls.extend\SWkeWebkit.h">
+      <Filter>controls.extend</Filter>
+    </ClInclude>
+    <ClInclude Include="..\controls.extend\TipWnd.h">
+      <Filter>controls.extend</Filter>
+    </ClInclude>
+    <ClInclude Include="..\controls.extend\ExtendCtrls.h">
+      <Filter>controls.extend</Filter>
+    </ClInclude>
+    <ClInclude Include="..\controls.extend\ExtendSkins.h">
+      <Filter>controls.extend</Filter>
+    </ClInclude>
+    <ClInclude Include="..\controls.extend\FileHelper.h">
+      <Filter>controls.extend</Filter>
+    </ClInclude>
+    <ClInclude Include="..\controls.extend\reg.h">
+      <Filter>controls.extend</Filter>
+    </ClInclude>
+    <ClInclude Include="..\controls.extend\SAnimator.h">
+      <Filter>controls.extend</Filter>
+    </ClInclude>
+    <ClInclude Include="..\controls.extend\SButtonEx.h">
+      <Filter>controls.extend</Filter>
+    </ClInclude>
+    <ClInclude Include="..\controls.extend\SCalendar2.h">
+      <Filter>controls.extend</Filter>
+    </ClInclude>
+    <ClInclude Include="..\controls.extend\SChatEdit.h">
+      <Filter>controls.extend</Filter>
+    </ClInclude>
+    <ClInclude Include="..\controls.extend\SChromeTabCtrl.h">
+      <Filter>controls.extend</Filter>
+    </ClInclude>
+    <ClInclude Include="..\controls.extend\SDateTimeEdit.h">
+      <Filter>controls.extend</Filter>
+    </ClInclude>
+    <ClInclude Include="..\controls.extend\SDocHostUIHandler.h">
+      <Filter>controls.extend</Filter>
+    </ClInclude>
+    <ClInclude Include="..\controls.extend\SFadeFrame.h">
+      <Filter>controls.extend</Filter>
+    </ClInclude>
+    <ClInclude Include="..\controls.extend\SFreeMoveWindow.h">
+      <Filter>controls.extend</Filter>
+    </ClInclude>
+    <ClInclude Include="..\controls.extend\SIECtrl.h">
+      <Filter>controls.extend</Filter>
+    </ClInclude>
+    <ClInclude Include="..\controls.extend\SImageEx.h">
+      <Filter>controls.extend</Filter>
+    </ClInclude>
+    <ClInclude Include="..\controls.extend\SImageMaskWnd.h">
+      <Filter>controls.extend</Filter>
+    </ClInclude>
+    <ClInclude Include="..\controls.extend\SIPAddressCtrl.h">
+      <Filter>controls.extend</Filter>
+    </ClInclude>
+    <ClInclude Include="..\controls.extend\SListboxex.h">
+      <Filter>controls.extend</Filter>
+    </ClInclude>
+    <ClInclude Include="..\controls.extend\SListCtrlEx.h">
+      <Filter>controls.extend</Filter>
+    </ClInclude>
+    <ClInclude Include="..\controls.extend\SRadioBox2.h">
+      <Filter>controls.extend</Filter>
+    </ClInclude>
+    <ClInclude Include="..\controls.extend\SRatingBar.h">
+      <Filter>controls.extend</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\utilities\src\pugixml\pugixml.cpp">
+      <Filter>utilities\src\pugixml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\utilities\src\sobject\SObject.cpp">
+      <Filter>utilities\src\sobject</Filter>
+    </ClCompile>
+    <ClCompile Include="..\utilities\src\string\strcpcvt.cpp">
+      <Filter>utilities\src\string</Filter>
+    </ClCompile>
+    <ClCompile Include="..\utilities\src\string\tstring.cpp">
+      <Filter>utilities\src\string</Filter>
+    </ClCompile>
+    <ClCompile Include="..\utilities\src\gdialpha.cpp">
+      <Filter>utilities\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\utilities\src\soui_mem_wrapper.cpp">
+      <Filter>utilities\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\utilities\src\trace.cpp">
+      <Filter>utilities\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\utilities\src\utilities.cpp">
+      <Filter>utilities\src</Filter>
+    </ClCompile>
+    <ClCompile Include="include\souistd.h.cpp">
+      <Filter>soui2\include</Filter>
+    </ClCompile>
+    <ClCompile Include="src\activex\SAxContainer.cpp">
+      <Filter>soui2\src\activex</Filter>
+    </ClCompile>
+    <ClCompile Include="src\activex\SBStr.cpp">
+      <Filter>soui2\src\activex</Filter>
+    </ClCompile>
+    <ClCompile Include="src\control\SActiveX.cpp">
+      <Filter>soui2\src\control</Filter>
+    </ClCompile>
+    <ClCompile Include="src\control\SCalendar.cpp">
+      <Filter>soui2\src\control</Filter>
+    </ClCompile>
+    <ClCompile Include="src\control\SCaption.cpp">
+      <Filter>soui2\src\control</Filter>
+    </ClCompile>
+    <ClCompile Include="src\control\SCmnCtrl.cpp">
+      <Filter>soui2\src\control</Filter>
+    </ClCompile>
+    <ClCompile Include="src\control\SComboBase.cpp">
+      <Filter>soui2\src\control</Filter>
+    </ClCompile>
+    <ClCompile Include="src\control\SComboBox.cpp">
+      <Filter>soui2\src\control</Filter>
+    </ClCompile>
+    <ClCompile Include="src\control\SComboView.cpp">
+      <Filter>soui2\src\control</Filter>
+    </ClCompile>
+    <ClCompile Include="src\control\SDropDown.cpp">
+      <Filter>soui2\src\control</Filter>
+    </ClCompile>
+    <ClCompile Include="src\control\SHeaderCtrl.cpp">
+      <Filter>soui2\src\control</Filter>
+    </ClCompile>
+    <ClCompile Include="src\control\SHotKeyCtrl.cpp">
+      <Filter>soui2\src\control</Filter>
+    </ClCompile>
+    <ClCompile Include="src\control\SListbox.cpp">
+      <Filter>soui2\src\control</Filter>
+    </ClCompile>
+    <ClCompile Include="src\control\SListCtrl.cpp">
+      <Filter>soui2\src\control</Filter>
+    </ClCompile>
+    <ClCompile Include="src\control\SListView.cpp">
+      <Filter>soui2\src\control</Filter>
+    </ClCompile>
+    <ClCompile Include="src\control\SMCListView.cpp">
+      <Filter>soui2\src\control</Filter>
+    </ClCompile>
+    <ClCompile Include="src\control\SMessageBox.cpp">
+      <Filter>soui2\src\control</Filter>
+    </ClCompile>
+    <ClCompile Include="src\control\SRealWnd.cpp">
+      <Filter>soui2\src\control</Filter>
+    </ClCompile>
+    <ClCompile Include="src\control\SRichEdit.cpp">
+      <Filter>soui2\src\control</Filter>
+    </ClCompile>
+    <ClCompile Include="src\control\SScrollbar.cpp">
+      <Filter>soui2\src\control</Filter>
+    </ClCompile>
+    <ClCompile Include="src\control\SSliderBar.cpp">
+      <Filter>soui2\src\control</Filter>
+    </ClCompile>
+    <ClCompile Include="src\control\SSpinButtonCtrl.cpp">
+      <Filter>soui2\src\control</Filter>
+    </ClCompile>
+    <ClCompile Include="src\control\SSplitWnd.cpp">
+      <Filter>soui2\src\control</Filter>
+    </ClCompile>
+    <ClCompile Include="src\control\STabCtrl.cpp">
+      <Filter>soui2\src\control</Filter>
+    </ClCompile>
+    <ClCompile Include="src\control\STileView.cpp">
+      <Filter>soui2\src\control</Filter>
+    </ClCompile>
+    <ClCompile Include="src\control\STreeCtrl.cpp">
+      <Filter>soui2\src\control</Filter>
+    </ClCompile>
+    <ClCompile Include="src\control\STreeView.cpp">
+      <Filter>soui2\src\control</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\Accelerator.cpp">
+      <Filter>soui2\src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\FocusManager.cpp">
+      <Filter>soui2\src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\SCaret.cpp">
+      <Filter>soui2\src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\SDropTargetDispatcher.cpp">
+      <Filter>soui2\src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\SHostDialog.cpp">
+      <Filter>soui2\src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\shostwnd.cpp">
+      <Filter>soui2\src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\SimpleWnd.cpp">
+      <Filter>soui2\src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\SItemPanel.cpp">
+      <Filter>soui2\src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\SMsgLoop.cpp">
+      <Filter>soui2\src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\SObjectFactory.cpp">
+      <Filter>soui2\src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\SPanel.cpp">
+      <Filter>soui2\src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\SSkin.cpp">
+      <Filter>soui2\src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\SWindowMgr.cpp">
+      <Filter>soui2\src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\Swnd.cpp">
+      <Filter>soui2\src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\SwndContainerImpl.cpp">
+      <Filter>soui2\src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\SwndStyle.cpp">
+      <Filter>soui2\src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\event\EventSet.cpp">
+      <Filter>soui2\src\event</Filter>
+    </ClCompile>
+    <ClCompile Include="src\event\NotifyCenter.cpp">
+      <Filter>soui2\src\event</Filter>
+    </ClCompile>
+    <ClCompile Include="src\helper\AppDir.cpp">
+      <Filter>soui2\src\helper</Filter>
+    </ClCompile>
+    <ClCompile Include="src\helper\DragWnd.cpp">
+      <Filter>soui2\src\helper</Filter>
+    </ClCompile>
+    <ClCompile Include="src\helper\MemDC.cpp">
+      <Filter>soui2\src\helper</Filter>
+    </ClCompile>
+    <ClCompile Include="src\helper\MenuWndHook.cpp">
+      <Filter>soui2\src\helper</Filter>
+    </ClCompile>
+    <ClCompile Include="src\helper\SDIBHelper.cpp">
+      <Filter>soui2\src\helper</Filter>
+    </ClCompile>
+    <ClCompile Include="src\helper\SListViewItemLocator.cpp">
+      <Filter>soui2\src\helper</Filter>
+    </ClCompile>
+    <ClCompile Include="src\helper\slog.cpp">
+      <Filter>soui2\src\helper</Filter>
+    </ClCompile>
+    <ClCompile Include="src\helper\SMatrix.cpp">
+      <Filter>soui2\src\helper</Filter>
+    </ClCompile>
+    <ClCompile Include="src\helper\SMenu.cpp">
+      <Filter>soui2\src\helper</Filter>
+    </ClCompile>
+    <ClCompile Include="src\helper\SMenuEx.cpp">
+      <Filter>soui2\src\helper</Filter>
+    </ClCompile>
+    <ClCompile Include="src\helper\SScriptTimer.cpp">
+      <Filter>soui2\src\helper</Filter>
+    </ClCompile>
+    <ClCompile Include="src\helper\STileViewItemLocator.cpp">
+      <Filter>soui2\src\helper</Filter>
+    </ClCompile>
+    <ClCompile Include="src\helper\STimerEx.cpp">
+      <Filter>soui2\src\helper</Filter>
+    </ClCompile>
+    <ClCompile Include="src\helper\SToolTip.cpp">
+      <Filter>soui2\src\helper</Filter>
+    </ClCompile>
+    <ClCompile Include="src\helper\SwndFinder.cpp">
+      <Filter>soui2\src\helper</Filter>
+    </ClCompile>
+    <ClCompile Include="src\layout\SLayoutSize.cpp">
+      <Filter>soui2\src\layout</Filter>
+    </ClCompile>
+    <ClCompile Include="src\layout\SLinearLayout.cpp">
+      <Filter>soui2\src\layout</Filter>
+    </ClCompile>
+    <ClCompile Include="src\layout\SouiLayout.cpp">
+      <Filter>soui2\src\layout</Filter>
+    </ClCompile>
+    <ClCompile Include="src\res.mgr\SDpiAwareFont.cpp">
+      <Filter>soui2\src\res.mgr</Filter>
+    </ClCompile>
+    <ClCompile Include="src\res.mgr\SFontPool.cpp">
+      <Filter>soui2\src\res.mgr</Filter>
+    </ClCompile>
+    <ClCompile Include="src\res.mgr\SNamedValue.cpp">
+      <Filter>soui2\src\res.mgr</Filter>
+    </ClCompile>
+    <ClCompile Include="src\res.mgr\SObjDefAttr.cpp">
+      <Filter>soui2\src\res.mgr</Filter>
+    </ClCompile>
+    <ClCompile Include="src\res.mgr\SResProvider.cpp">
+      <Filter>soui2\src\res.mgr</Filter>
+    </ClCompile>
+    <ClCompile Include="src\res.mgr\SResProviderMgr.cpp">
+      <Filter>soui2\src\res.mgr</Filter>
+    </ClCompile>
+    <ClCompile Include="src\res.mgr\SSkinPool.cpp">
+      <Filter>soui2\src\res.mgr</Filter>
+    </ClCompile>
+    <ClCompile Include="src\res.mgr\SStylePool.cpp">
+      <Filter>soui2\src\res.mgr</Filter>
+    </ClCompile>
+    <ClCompile Include="src\res.mgr\SUiDef.cpp">
+      <Filter>soui2\src\res.mgr</Filter>
+    </ClCompile>
+    <ClCompile Include="src\updatelayeredwindow\SUpdateLayeredWindow.cpp">
+      <Filter>soui2\src\updatelayeredwindow</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SApp.cpp">
+      <Filter>soui2\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\components\imgdecoder-gdip\imgdecoder-gdip.cpp">
+      <Filter>components\imgdecoder-gdip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\components\imgdecoder-png\decoder-apng.cpp">
+      <Filter>components\imgdecoder-png</Filter>
+    </ClCompile>
+    <ClCompile Include="..\components\imgdecoder-png\imgdecoder-png.cpp">
+      <Filter>components\imgdecoder-png</Filter>
+    </ClCompile>
+    <ClCompile Include="..\components\imgdecoder-stb\imgdecoder-stb.cpp">
+      <Filter>components\imgdecoder-stb</Filter>
+    </ClCompile>
+    <ClCompile Include="..\components\imgdecoder-wic\imgdecoder-wic.cpp">
+      <Filter>components\imgdecoder-wic</Filter>
+    </ClCompile>
+    <ClCompile Include="..\components\log4z\log4z.cpp">
+      <Filter>components\log4z</Filter>
+    </ClCompile>
+    <ClCompile Include="..\components\render-gdi\GradientFillHelper.cpp">
+      <Filter>components\render-gdi</Filter>
+    </ClCompile>
+    <ClCompile Include="..\components\render-gdi\render-gdi.cpp">
+      <Filter>components\render-gdi</Filter>
+    </ClCompile>
+    <ClCompile Include="..\components\render-skia\drawtext-skia.cpp">
+      <Filter>components\render-skia</Filter>
+    </ClCompile>
+    <ClCompile Include="..\components\render-skia\render-skia.cpp">
+      <Filter>components\render-skia</Filter>
+    </ClCompile>
+    <ClCompile Include="..\components\render-skia\Render-Skia2.cpp">
+      <Filter>components\render-skia</Filter>
+    </ClCompile>
+    <ClCompile Include="..\components\render-skia\skia2rop2.cpp">
+      <Filter>components\render-skia</Filter>
+    </ClCompile>
+    <ClCompile Include="..\components\resprovider-zip\cursoricon.cpp">
+      <Filter>components\resprovider-zip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\components\resprovider-zip\SResProviderZip.cpp">
+      <Filter>components\resprovider-zip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\components\resprovider-zip\zipArchive.cpp">
+      <Filter>components\resprovider-zip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\components\ScriptModule-LUA\lua_tinker\lua_tinker.cpp">
+      <Filter>components\ScriptModule-LUA\lua_tinker</Filter>
+    </ClCompile>
+    <ClCompile Include="..\components\ScriptModule-LUA\src\ScriptModule-Lua.cpp">
+      <Filter>components\ScriptModule-LUA\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\components\ScriptModule-LUA\src\exports\exp_soui.cpp">
+      <Filter>components\ScriptModule-LUA\src\exports</Filter>
+    </ClCompile>
+    <ClCompile Include="..\components\translator\translator.cpp">
+      <Filter>components\translator</Filter>
+    </ClCompile>
+    <ClCompile Include="..\controls.extend\gif\SGifPlayer.cpp">
+      <Filter>controls.extend\gif</Filter>
+    </ClCompile>
+    <ClCompile Include="..\controls.extend\gif\SSkinAPNG.cpp">
+      <Filter>controls.extend\gif</Filter>
+    </ClCompile>
+    <ClCompile Include="..\controls.extend\gif\SSkinGif.cpp">
+      <Filter>controls.extend\gif</Filter>
+    </ClCompile>
+    <ClCompile Include="..\controls.extend\image3d\3dlib.cpp">
+      <Filter>controls.extend\image3d</Filter>
+    </ClCompile>
+    <ClCompile Include="..\controls.extend\image3d\3dmatrix.cpp">
+      <Filter>controls.extend\image3d</Filter>
+    </ClCompile>
+    <ClCompile Include="..\controls.extend\image3d\3dtransform.cpp">
+      <Filter>controls.extend\image3d</Filter>
+    </ClCompile>
+    <ClCompile Include="..\controls.extend\propgrid\propitem\SPropertyItem-Color.cpp">
+      <Filter>controls.extend\propgrid\propitem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\controls.extend\propgrid\propitem\SPropertyItem-Option.cpp">
+      <Filter>controls.extend\propgrid\propitem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\controls.extend\propgrid\propitem\SPropertyItem-Size.cpp">
+      <Filter>controls.extend\propgrid\propitem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\controls.extend\propgrid\propitem\SPropertyItem-Text.cpp">
+      <Filter>controls.extend\propgrid\propitem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\controls.extend\propgrid\SPropertyGrid.cpp">
+      <Filter>controls.extend\propgrid</Filter>
+    </ClCompile>
+    <ClCompile Include="..\controls.extend\propgrid\SPropertyItemBase.cpp">
+      <Filter>controls.extend\propgrid</Filter>
+    </ClCompile>
+    <ClCompile Include="..\controls.extend\reole\dataobject.cpp">
+      <Filter>controls.extend\reole</Filter>
+    </ClCompile>
+    <ClCompile Include="..\controls.extend\reole\RichEditOle.cpp">
+      <Filter>controls.extend\reole</Filter>
+    </ClCompile>
+    <ClCompile Include="..\controls.extend\SMcListViewEx\SHeaderCtrlEx.cpp">
+      <Filter>controls.extend\SMcListViewEx</Filter>
+    </ClCompile>
+    <ClCompile Include="..\controls.extend\SMcListViewEx\SLoopButton.cpp">
+      <Filter>controls.extend\SMcListViewEx</Filter>
+    </ClCompile>
+    <ClCompile Include="..\controls.extend\SMcListViewEx\SMCListViewEx.cpp">
+      <Filter>controls.extend\SMcListViewEx</Filter>
+    </ClCompile>
+    <ClCompile Include="..\controls.extend\SMcListViewEx\STabCtrlHeaderBinder.cpp">
+      <Filter>controls.extend\SMcListViewEx</Filter>
+    </ClCompile>
+    <ClCompile Include="..\controls.extend\trayicon\SShellNotifyIcon.cpp">
+      <Filter>controls.extend\trayicon</Filter>
+    </ClCompile>
+    <ClCompile Include="..\controls.extend\SSkinImgFrame2.cpp">
+      <Filter>controls.extend</Filter>
+    </ClCompile>
+    <ClCompile Include="..\controls.extend\SSkinMutiFrameImg.cpp">
+      <Filter>controls.extend</Filter>
+    </ClCompile>
+    <ClCompile Include="..\controls.extend\STabCtrl2.cpp">
+      <Filter>controls.extend</Filter>
+    </ClCompile>
+    <ClCompile Include="..\controls.extend\SText.cpp">
+      <Filter>controls.extend</Filter>
+    </ClCompile>
+    <ClCompile Include="..\controls.extend\STurn3DView.cpp">
+      <Filter>controls.extend</Filter>
+    </ClCompile>
+    <ClCompile Include="..\controls.extend\SWkeWebkit.cpp">
+      <Filter>controls.extend</Filter>
+    </ClCompile>
+    <ClCompile Include="..\controls.extend\TipWnd.cpp">
+      <Filter>controls.extend</Filter>
+    </ClCompile>
+    <ClCompile Include="..\controls.extend\ExtendCtrls.cpp">
+      <Filter>controls.extend</Filter>
+    </ClCompile>
+    <ClCompile Include="..\controls.extend\ExtendSkins.cpp">
+      <Filter>controls.extend</Filter>
+    </ClCompile>
+    <ClCompile Include="..\controls.extend\SButtonEx.cpp">
+      <Filter>controls.extend</Filter>
+    </ClCompile>
+    <ClCompile Include="..\controls.extend\SCalendar2.cpp">
+      <Filter>controls.extend</Filter>
+    </ClCompile>
+    <ClCompile Include="..\controls.extend\SChatEdit.cpp">
+      <Filter>controls.extend</Filter>
+    </ClCompile>
+    <ClCompile Include="..\controls.extend\SChromeTabCtrl.cpp">
+      <Filter>controls.extend</Filter>
+    </ClCompile>
+    <ClCompile Include="..\controls.extend\SDateTimeEdit.cpp">
+      <Filter>controls.extend</Filter>
+    </ClCompile>
+    <ClCompile Include="..\controls.extend\SDocHostUIHandler.cpp">
+      <Filter>controls.extend</Filter>
+    </ClCompile>
+    <ClCompile Include="..\controls.extend\SFadeFrame.cpp">
+      <Filter>controls.extend</Filter>
+    </ClCompile>
+    <ClCompile Include="..\controls.extend\SFreeMoveWindow.cpp">
+      <Filter>controls.extend</Filter>
+    </ClCompile>
+    <ClCompile Include="..\controls.extend\SIECtrl.cpp">
+      <Filter>controls.extend</Filter>
+    </ClCompile>
+    <ClCompile Include="..\controls.extend\SImageEx.cpp">
+      <Filter>controls.extend</Filter>
+    </ClCompile>
+    <ClCompile Include="..\controls.extend\SImageMaskWnd.cpp">
+      <Filter>controls.extend</Filter>
+    </ClCompile>
+    <ClCompile Include="..\controls.extend\SIPAddressCtrl.cpp">
+      <Filter>controls.extend</Filter>
+    </ClCompile>
+    <ClCompile Include="..\controls.extend\SListboxex.cpp">
+      <Filter>controls.extend</Filter>
+    </ClCompile>
+    <ClCompile Include="..\controls.extend\SListCtrlEx.cpp">
+      <Filter>controls.extend</Filter>
+    </ClCompile>
+    <ClCompile Include="..\controls.extend\SRadioBox2.cpp">
+      <Filter>controls.extend</Filter>
+    </ClCompile>
+    <ClCompile Include="..\controls.extend\SRatingBar.cpp">
+      <Filter>controls.extend</Filter>
+    </ClCompile>
+    <ClCompile Include="..\controls.extend\SScrollText.cpp">
+      <Filter>controls.extend</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="UIEngine.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\controls.extend\readme.txt">
+      <Filter>controls.extend</Filter>
+    </None>
+  </ItemGroup>
+</Project>

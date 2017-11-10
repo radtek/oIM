@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<UIDEF>
+  <font face="宋体" size="15"/>
+
+  <string src="values:string" />
+  <skin src="values:skin"/>
+  <color src="values:color"/>
+
+
+  <style>
+    <class name="cls_sys_close" skin="skin.sys.close" tip="@string/sysClose" animate="1"/>
+
+    <class name="cls_btn_prev" skin="skin.btn.prev" tip="@string/tipPageN" animate="1"/>
+    <class name="cls_btn_next" skin="skin.btn.next" tip="@string/tipPageN" animate="1"/>
+    <class name="cls_btn_left" skin="skin.btn.left" tip="@string/btnLeft" animate="1"/>
+    <class name="cls_btn_right" skin="skin.btn.right" tip="@string/btnRight" animate="1"/>
+
+    <class name="normalbtn" font="" colorText="#385e8b" colorTextDisable="#91a7c0" textMode="0x25" cursor="hand" margin-x="0"/>
+    <class name="cls_btn_weblink" cursor="hand" colorText="#1e78d5" colorTextHover="#1e78d5" font="italic:1" fontHover="underline:1,italic:1" />
+  </style>
+
+  <objattr>
+  </objattr>
+</UIDEF>
