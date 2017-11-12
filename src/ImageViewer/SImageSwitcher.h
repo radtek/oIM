@@ -30,6 +30,7 @@ namespace SOUI
 		int  m_iMoveWidth;
 		int  m_iSelected;
 		int	 m_iTimesMove;
+		int  m_iRatio;
 		CRect m_rtDrawSrc;
 		CRect m_rtDrawDst;
 		 
@@ -42,6 +43,7 @@ namespace SOUI
 		HRESULT OnAttrImages(const SStringT& strValue,BOOL bLoading);
 		
 		BOOL DrawImage(IRenderTarget *pRT, CRect& rcWnd, int i32Index);
+		RECT GetDefaultDest(const CRect& rtWnd, const SIZE szImg);
 
 	protected:
 		SOUI_MSG_MAP_BEGIN()	

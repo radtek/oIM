@@ -7,12 +7,13 @@
 namespace SOUI
 {
 	SImageSwitcher::SImageSwitcher()
-		:m_bWantMove(FALSE)
-		,m_iDownX(0)
-		,m_iMoveWidth(0)
-		,m_bTimerMove(0)
-		,m_iSelected(0)
-		,m_iTimesMove(0)
+		: m_bWantMove(FALSE)
+		, m_iDownX(0)
+		, m_iMoveWidth(0)
+		, m_bTimerMove(0)
+		, m_iSelected(0)
+		, m_iTimesMove(0)
+		, m_iRatio(100)
 	{
 	}
 
@@ -21,19 +22,48 @@ namespace SOUI
 		RemoveAll();
 	}
 
-	BOOL SImageSwitcher::DrawImage(IRenderTarget *pRT, CRect& rcWnd, int i32Index)
+	RECT SImageSwitcher::GetDefaultDest(const CRect& rtWnd, const SIZE szImg)
+	{
+		RECT rtImg = { 0 };
+
+		if ( rtWnd.Width() >= szImg.cx && rtWnd.Height() >= szImg.cy )
+		{	// 窗口能显示全图
+			rtImg.left += (LONG)((rtWnd.Width() - szImg.cx) / 2.0);
+			rtImg.top  += (LONG)((rtWnd.Height() - szImg.cy) / 2.0);
+			rtImg.right = rtImg.left + szImg.cx;
+			rtImg.bottom= rtImg.top + szImg.cy;
+		}
+		else if ( rtWnd.Width() < szImg.cx )
+		{	// 窗口宽度不能显示全图
+			float fHeight = ((float)rtWnd.Width() / szImg.cx * szImg.cy);
+			rtImg.left    = rtWnd.left;
+			rtImg.right   = rtWnd.right;
+			rtImg.top    += (LONG)((rtWnd.Height() - fHeight) / 2.0);
+			rtImg.bottom  = rtImg.top + (LONG)fHeight;
+		}
+		else
+		{	// 窗口高度不能显示全图
+			float fWidth = ((float)rtWnd.Height() / szImg.cy * szImg.cx);
+			rtImg.left    = (LONG)((rtWnd.Width() - fWidth) / 2.0);
+			rtImg.right   = rtImg.left + fWidth;
+			rtImg.right   = rtWnd.right;
+			rtImg.top    += (LONG)((rtWnd.Height() - fWidth) / 2.0);
+			rtImg.bottom  = rtImg.top + (LONG)fWidth;
+		}
+
+		return rtImg;
+	}
+
+	BOOL SImageSwitcher::DrawImage(IRenderTarget *pRT, CRect& rtWnd, int i32Index)
 	{
 		if ( i32Index >= 0 && i32Index < (int)m_lstImages.GetCount() )
 		{
-			RECT rtImg;
 			IBitmap *pBmp = m_lstImages[i32Index];
 			SIZE szImg    = pBmp->Size();
+			RECT rtImg    = GetDefaultDest(rtWnd, szImg);
 
-			rtImg.left	= rcWnd.left + (i32Index * rcWnd.Width() - (m_iSelected * rcWnd.Width()) + m_iMoveWidth);
-			rtImg.right = rtImg.left + rcWnd.Width();
-			rtImg.top	= rcWnd.top; 
-			rtImg.bottom= rtImg.top + rcWnd.Height();
-			pRT->DrawBitmapEx(&rtImg, pBmp, CRect(CPoint(), szImg), EM_STRETCH);
+			rtImg.left	+= (i32Index * rtWnd.Width() - (m_iSelected * rtWnd.Width()) + m_iMoveWidth);
+			pRT->DrawBitmapEx(&rtImg, pBmp, CRect(CPoint(), szImg), EM_NULL);
 		}
 
 		return FALSE;
@@ -41,19 +71,21 @@ namespace SOUI
 
 	void SImageSwitcher::OnPaint(IRenderTarget *pRT)
 	{
-		CRect rcWnd = GetClientRect();
+		CRect rtWnd = GetClientRect();
 
 		if ( m_iMoveWidth == 0 )
 		{	// 显示当前图片
 			IBitmap *pBmp = m_lstImages[m_iSelected];
 			SIZE szImg  = pBmp->Size();
-			pRT->DrawBitmapEx(rcWnd, pBmp, CRect(CPoint(),szImg), EM_STRETCH);
+			RECT rtImg  = GetDefaultDest(rtWnd, szImg);
+
+			pRT->DrawBitmapEx(&rtImg, pBmp, CRect(CPoint(),szImg), EM_NULL);
 		}
 		else
 		{	// 图片切换的动画效果[过滤图片，其实最多画两张，这儿不纠结这点]
-			DrawImage(pRT, rcWnd, m_iSelected - 1);
-			DrawImage(pRT, rcWnd, m_iSelected);
-			DrawImage(pRT, rcWnd, m_iSelected + 1);
+			DrawImage(pRT, rtWnd, m_iSelected - 1);
+			DrawImage(pRT, rtWnd, m_iSelected);
+			DrawImage(pRT, rtWnd, m_iSelected + 1);
 		}
 	}
 
