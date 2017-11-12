@@ -8,7 +8,7 @@
 //  www.catch22.net
 //
  
-#include "stdafx.h"
+#include "souistd.h"
 #include "dataobject.h"
 #include <shlobj.h>
 #pragma comment(lib,"shell32.lib")

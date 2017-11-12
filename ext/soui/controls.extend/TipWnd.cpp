@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "souistd.h"
 #include "TipWnd.h"
 
 #define TIMER_END_TIP  100

@@ -38,13 +38,7 @@
 #include "StrUtil.h"
 #include "PathUtils.h"
 #include "ThreadUtil.h"
-#include "Configer.h"
-#include "eIMUICore\eIMConfigConst.h"
-#include "eIMZip\IeIMZip.h"
 
-//#include "eIM\eIMDbConst.h"
-//#include "XmlConfiger.h"
-//#include "XmlLang.h"
 
 #if 0
 # include "vld\vld.h"

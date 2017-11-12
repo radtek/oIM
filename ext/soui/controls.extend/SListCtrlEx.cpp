@@ -5,7 +5,7 @@
 //     Version: 2015.2.5 - 1.0 - Create
 //////////////////////////////////////////////////////////////////////////
 
-#include "stdafx.h"
+#include "souistd.h"
 #include "SlistCtrlex.h"
 #include "helper/mybuffer.h"
 #include "SListboxex.h"

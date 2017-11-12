@@ -16,8 +16,8 @@
 #define __IEIMUI_CORE_HEADER_2017_04_09_BY_YFGZ__
 
 #include "Public\Plugin.h"
-#include "Public\XmlLang.h"
-#include "eIMEngine\IeIMCmd.h"
+//#include "Public\XmlLang.h"
+//#include "eIMEngine\IeIMCmd.h"
 #include "eIMUICore\IeIMUIInviteWnd.h"
 
 #define INAME_EIMUI_CORE_DLL	_T("eIMUICore.dll")	
@@ -87,7 +87,7 @@ public:
 
 	// *** ÒýÇæ
 	virtual int		AddCmd(const void* pvData, DWORD dwCmdId, DWORD dwThreadId =1) = 0;
-	virtual int		AddCmd(I_EIMCmd* pCmd, DWORD dwThreadId = 1, BOOL bAddRef = TRUE) = 0;
+	virtual int		AddCmd(void* pICmd, DWORD dwThreadId = 1, BOOL bAddRef = TRUE) = 0;
 	virtual int 	Command(LPCTSTR pszXml, DWORD dwThreadId = 1) = 0;
 	virtual DWORD	GetTimeNow() = 0;
 	virtual int		GetLoginState() = 0;

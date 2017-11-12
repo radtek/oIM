@@ -1,7 +1,8 @@
-#include "stdafx.h"
+#include "souistd.h"
 #include "SImageEx.h"
 #include "SSkinMutiFrameImg.h"
-
+namespace SOUI
+{
 SImageEx::SImageEx()
 {
 }
@@ -24,3 +25,4 @@ HRESULT SImageEx::OnSrc(const SStringW& strValue, BOOL bLoading)
 	m_pBgSkin = pSkin;
 	return TRUE;
 }
+};

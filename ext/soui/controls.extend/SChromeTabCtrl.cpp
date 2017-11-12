@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "souistd.h"
 #include "SChromeTabCtrl.h"
 #include <control/SCmnCtrl.h>
 

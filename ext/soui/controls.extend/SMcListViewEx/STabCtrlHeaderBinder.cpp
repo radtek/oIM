@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "souistd.h"
 #include "STabCtrlHeaderBinder.h"
 using namespace SOUI;
 

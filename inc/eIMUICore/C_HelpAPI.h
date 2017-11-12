@@ -11,9 +11,9 @@
 
 #include "IeIMUICore.h"
 #include "Public\Utils.h"
-#include "Public\XmlLang.h"
-#include "eIMLogger\IeIMLogger.h"
-#include "eIMUICore\IeIMUIInviteWnd.h"
+//#include "Public\XmlLang.h"
+//#include "eIMLogger\IeIMLogger.h"
+//#include "eIMUICore\IeIMUIInviteWnd.h"
 
 #define hpi C_HelpApi::GetObject()
 
@@ -95,7 +95,7 @@ public:
 
 	inline I_EIMLogger* UIGetLogger(BOOL bAddRef=FALSE);
 	inline BOOL		UIGetMsgSummary(LPCTSTR pszXmlMsg, LPTSTR pszMsgSummary, int i32Size, BOOL bPrefixName=FALSE);
-	inline int		UIGetPortraitMode();
+//	inline int		UIGetPortraitMode();
 
 	inline DWORD	GetPurview(DWORD u32PurType, DWORD dwId=0);
 	inline int		GetLoginState();
@@ -103,7 +103,7 @@ public:
 	inline LPCTSTR	GetAttributeStr(LPCTSTR pszName, LPCTSTR pszDefault = NULL);
 	inline int		GetAttributeInt(LPCTSTR pszName, int i32Default = 0);
 	inline int		AddCmd(const void* pvData, DWORD dwCmdId, DWORD dwThreadId =1);
-	inline int		AddCmd(I_EIMCmd* pCmd, DWORD dwThreadId = 1, BOOL bAddRef = FALSE);
+	inline int		AddCmd(void* pICmd, DWORD dwThreadId = 1, BOOL bAddRef = FALSE);
 	inline int 		Command(LPCTSTR pszXml, DWORD dwThreadId = 1);
 	inline BOOL		IsTypeOfId(QEID qeid, E_TypeId eTypeId);
 	inline BOOL		IsFace(LPCTSTR pszFace);

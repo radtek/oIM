@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "souistd.h"
 #include "SSkinAPNG.h"
 #include <helper/SplitString.h>
 #include <interface/imgdecoder-i.h>

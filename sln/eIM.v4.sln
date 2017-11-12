@@ -5,8 +5,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "eIMMain", "..\src\eIMMain\e
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "eIMPinyin", "..\src\eIMPinyin\eIMPinyin.vcxproj", "{3696D68A-631E-40D4-9BDE-7BA0A60A0A51}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "eIMPluginMgr", "..\src\eIMPluginMgr\eIMPluginMgr.vcxproj", "{99198A14-0E33-432C-A5C9-6EE22D4395A5}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "playlib", "..\src\playlib\playlib.vcxproj", "{1E413D03-57D2-4271-B90A-3694CB439274}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UIEngine", "..\ext\soui\soui\UIEngine.vcxproj", "{856B81EC-F19F-4A88-B41B-2343FB519324}"
@@ -33,12 +31,6 @@ Global
 		{3696D68A-631E-40D4-9BDE-7BA0A60A0A51}.Release|Win32.ActiveCfg = Release|Win32
 		{3696D68A-631E-40D4-9BDE-7BA0A60A0A51}.Release|Win32.Build.0 = Release|Win32
 		{3696D68A-631E-40D4-9BDE-7BA0A60A0A51}.Release|x64.ActiveCfg = Release|Win32
-		{99198A14-0E33-432C-A5C9-6EE22D4395A5}.Debug|Win32.ActiveCfg = Debug|Win32
-		{99198A14-0E33-432C-A5C9-6EE22D4395A5}.Debug|Win32.Build.0 = Debug|Win32
-		{99198A14-0E33-432C-A5C9-6EE22D4395A5}.Debug|x64.ActiveCfg = Debug|Win32
-		{99198A14-0E33-432C-A5C9-6EE22D4395A5}.Release|Win32.ActiveCfg = Release|Win32
-		{99198A14-0E33-432C-A5C9-6EE22D4395A5}.Release|Win32.Build.0 = Release|Win32
-		{99198A14-0E33-432C-A5C9-6EE22D4395A5}.Release|x64.ActiveCfg = Release|Win32
 		{1E413D03-57D2-4271-B90A-3694CB439274}.Debug|Win32.ActiveCfg = Debug|Win32
 		{1E413D03-57D2-4271-B90A-3694CB439274}.Debug|Win32.Build.0 = Debug|Win32
 		{1E413D03-57D2-4271-B90A-3694CB439274}.Debug|x64.ActiveCfg = Debug|Win32

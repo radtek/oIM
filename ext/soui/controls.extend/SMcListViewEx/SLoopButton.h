@@ -1,6 +1,9 @@
 #pragma once
 #include "core\Swnd.h"
+#include "event\events.h"
 
+namespace SOUI
+{
 #define EVT_BTNSEL_CHANGING EVT_EXTERNAL_BEGIN+100
 #define EVT_BTNSEL_CHANGED EVT_BTNSEL_CHANGING+1
 
@@ -82,4 +85,4 @@ private:
 	//子图的状态数，不是总共有多少个子图，而是每种状态下的子图数
 	int m_iSkinStates;
 };
-
+};

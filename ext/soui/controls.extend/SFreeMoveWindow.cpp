@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "souistd.h"
 #include "SFreeMoveWindow.h"
 
 namespace SOUI

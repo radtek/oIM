@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "souistd.h"
 #include "SWkeWebkit.h"
 #include <Imm.h>
 #pragma comment(lib,"imm32.lib")

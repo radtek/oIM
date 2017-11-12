@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+#include "souistd.h"
 #include "SIECtrl.h"
 #include "SDocHostUIHandler.h"
 namespace SOUI

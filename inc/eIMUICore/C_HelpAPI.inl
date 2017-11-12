@@ -73,21 +73,21 @@ inline int C_HelpApi::SendMsg(/*PS_UISessionInfo*/void* psUISInfo, LPCTSTR pszXm
 //=============================================================================
 inline BOOL C_HelpApi::Unzip(LPCTSTR pszZipFile, LPCTSTR pszUnzipFile, const char* pszPsw)
 {
-	CHECK_NULL_RET_(pszZipFile, FALSE);
-	CHECK_NULL_RET_(pszUnzipFile, FALSE);
+	//CHECK_NULL_RET_(pszZipFile, FALSE);
+	//CHECK_NULL_RET_(pszUnzipFile, FALSE);
 
-	C_PluginDll dllZip(ePLUGIN_TYPE_NORMAL, INAME_EIMZIP);
-	I_eIMZip*	pIZip = NULL;
+	//C_PluginDll dllZip(ePLUGIN_TYPE_NORMAL, INAME_EIMZIP);
+	//I_eIMZip*	pIZip = NULL;
 
-	if ( dllZip.Load(_T("eIMZip.dll")) && SUCCEEDED(dllZip.eIMCreateInterface(INAME_EIMZIP, (void**)&pIZip)) )
-	{
-		AUTO_RELEASE_(pIZip);
-		BOOL bRet = (IMZIP_OK == pIZip->Decompression(pszZipFile, pszUnzipFile, COVER_BEFORE_FILE, pszPsw, NULL));
-		TRACE_( _T("Unzip [%s ==> %s] %s"), pszZipFile, pszUnzipFile, bRet ? _T("Succeeded") : _T("Failed!") );
-		return bRet;
-	}
-	
-	TRACE_( _T("Unzip [%s] failed!"), pszZipFile, pszUnzipFile);
+	//if ( dllZip.Load(_T("eIMZip.dll")) && SUCCEEDED(dllZip.eIMCreateInterface(INAME_EIMZIP, (void**)&pIZip)) )
+	//{
+	//	AUTO_RELEASE_(pIZip);
+	//	BOOL bRet = (IMZIP_OK == pIZip->Decompression(pszZipFile, pszUnzipFile, COVER_BEFORE_FILE, pszPsw, NULL));
+	//	TRACE_( _T("Unzip [%s ==> %s] %s"), pszZipFile, pszUnzipFile, bRet ? _T("Succeeded") : _T("Failed!") );
+	//	return bRet;
+	//}
+	//
+	//TRACE_( _T("Unzip [%s] failed!"), pszZipFile, pszUnzipFile);
 	return FALSE;
 }
 
@@ -247,10 +247,10 @@ inline BOOL C_HelpApi::UISetAttributeInt( LPCTSTR lpszPath, LPCTSTR lpszAttrName
 	return m_pIUICore->UISetAttributeInt(lpszPath, lpszAttrName, i32Value);
 }
 
-inline int C_HelpApi::UIGetPortraitMode()
-{
-    return UIGetAttributeInt(PATH_FUNC, FUNC_PORTRAIT_MODE, PORTRAIT_MODE_DEFAULT );
-}
+//inline int C_HelpApi::UIGetPortraitMode()
+//{
+//    return UIGetAttributeInt(PATH_FUNC, FUNC_PORTRAIT_MODE, PORTRAIT_MODE_DEFAULT );
+//}
 
 inline int C_HelpApi::UIGetText( LPCTSTR lpszPath, LPTSTR pszValue, int i32Size, BOOL bEnableRedirect )
 {
@@ -330,10 +330,10 @@ inline int C_HelpApi::AddCmd(const void* pvData, DWORD dwCmdId, DWORD dwThreadId
 	return m_pIUICore->AddCmd(pvData, dwCmdId, dwThreadId);
 }
 
-inline int C_HelpApi::AddCmd(I_EIMCmd* pCmd, DWORD dwThreadId, BOOL bAddRef)
+inline int C_HelpApi::AddCmd(void* pICmd, DWORD dwThreadId, BOOL bAddRef)
 {
 	CHECK_NULL_RET_( m_pIUICore, EIMERR_NO_INTERFACE );
-	return m_pIUICore->AddCmd(pCmd, dwThreadId, bAddRef);
+	return m_pIUICore->AddCmd(pICmd, dwThreadId, bAddRef);
 }
 
 inline int C_HelpApi::Command(LPCTSTR pszXml, DWORD dwThreadId)

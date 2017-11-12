@@ -41,8 +41,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "translator", "..\ext\soui\c
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "soui", "..\ext\soui\soui\soui.vcxproj", "{7F52EC7A-F826-3F3B-B732-37C03FAF5932}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TinyXmlSTL", "..\ext\TinyXml\TinyXmlSTL.vcxproj", "{1BC1D73A-4270-4561-8808-52D3D13BFD45}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SQLite3", "..\ext\sqlite3\SQLite3.vcxproj", "{DF4A9501-2110-49DB-B008-AE94333CAAB8}"
 EndProject
 Global
@@ -131,10 +129,6 @@ Global
 		{7F52EC7A-F826-3F3B-B732-37C03FAF5932}.Debug|Win32.Build.0 = Debug|Win32
 		{7F52EC7A-F826-3F3B-B732-37C03FAF5932}.Release|Win32.ActiveCfg = Release|Win32
 		{7F52EC7A-F826-3F3B-B732-37C03FAF5932}.Release|Win32.Build.0 = Release|Win32
-		{1BC1D73A-4270-4561-8808-52D3D13BFD45}.Debug|Win32.ActiveCfg = Debug|Win32
-		{1BC1D73A-4270-4561-8808-52D3D13BFD45}.Debug|Win32.Build.0 = Debug|Win32
-		{1BC1D73A-4270-4561-8808-52D3D13BFD45}.Release|Win32.ActiveCfg = Release|Win32
-		{1BC1D73A-4270-4561-8808-52D3D13BFD45}.Release|Win32.Build.0 = Release|Win32
 		{DF4A9501-2110-49DB-B008-AE94333CAAB8}.Debug|Win32.ActiveCfg = Debug|Win32
 		{DF4A9501-2110-49DB-B008-AE94333CAAB8}.Debug|Win32.Build.0 = Debug|Win32
 		{DF4A9501-2110-49DB-B008-AE94333CAAB8}.Release|Win32.ActiveCfg = Release|Win32
