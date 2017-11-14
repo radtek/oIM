@@ -16,7 +16,9 @@ namespace SOUI
 
 	public:
 		BOOL	Switch(int iSelect);
-		void	InsertImage(int iTo, IBitmap * pImage);
+		BOOL	InsertImage(IBitmap * pImage, int iTo = -1);
+		BOOL	InsertImage(const SStringT& szImage, int iTo = -1);
+
 		void	RemoveAll();
 		int		GetCurSel();
 		size_t	GetCount();
@@ -30,7 +32,7 @@ namespace SOUI
 		int  m_iMoveWidth;
 		int  m_iSelected;
 		int	 m_iTimesMove;
-		int  m_iRatio;
+		float m_fRatio;
 		CRect m_rtDrawSrc;
 		CRect m_rtDrawDst;
 		 

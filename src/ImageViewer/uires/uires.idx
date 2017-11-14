@@ -29,8 +29,8 @@
     <file name="BTN_RIGHT" path="image\btn_right.png" />
 
     <!-- 测试图片 -->
-    <file name="IMG_TEST1" path="image\test1.png" />
-    <file name="IMG_TEST2" path="image\test2.png" />
+    <!-- <file name="IMG_TEST1" path="image\test1.png" />
+    <file name="IMG_TEST2" path="image\test2.png" /> -->
 
   </IMG>
 

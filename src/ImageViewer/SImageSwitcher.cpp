@@ -13,7 +13,7 @@ namespace SOUI
 		, m_bTimerMove(0)
 		, m_iSelected(0)
 		, m_iTimesMove(0)
-		, m_iRatio(100)
+		, m_fRatio(100.f)
 	{
 	}
 
@@ -32,23 +32,26 @@ namespace SOUI
 			rtImg.top  += (LONG)((rtWnd.Height() - szImg.cy) / 2.0);
 			rtImg.right = rtImg.left + szImg.cx;
 			rtImg.bottom= rtImg.top + szImg.cy;
+			m_fRatio = 100.f;
 		}
 		else if ( rtWnd.Width() < szImg.cx )
-		{	// 窗口宽度不能显示全图
-			float fHeight = ((float)rtWnd.Width() / szImg.cx * szImg.cy);
+		{	// 窗口宽度不能显示全图, 就以宽度进行缩放
+			m_fRatio = (float)rtWnd.Width() / szImg.cx;
+			LONG lHeight = (LONG)(m_fRatio * szImg.cy);
 			rtImg.left    = rtWnd.left;
 			rtImg.right   = rtWnd.right;
-			rtImg.top    += (LONG)((rtWnd.Height() - fHeight) / 2.0);
-			rtImg.bottom  = rtImg.top + (LONG)fHeight;
+			rtImg.top    += (LONG)((rtWnd.Height() - lHeight) / 2.0);
+			rtImg.bottom  = rtImg.top + lHeight;
 		}
 		else
-		{	// 窗口高度不能显示全图
-			float fWidth = ((float)rtWnd.Height() / szImg.cy * szImg.cx);
-			rtImg.left    = (LONG)((rtWnd.Width() - fWidth) / 2.0);
-			rtImg.right   = rtImg.left + fWidth;
+		{	// 窗口高度不能显示全图, 就以高度进行缩放
+			m_fRatio = (float)rtWnd.Height() / szImg.cy;
+			LONG lWidth   = (LONG)(m_fRatio * szImg.cx);
+			rtImg.left    = (LONG)((rtWnd.Width() - lWidth) / 2.0);
+			rtImg.right   = (LONG)(rtImg.left + lWidth);
 			rtImg.right   = rtWnd.right;
-			rtImg.top    += (LONG)((rtWnd.Height() - fWidth) / 2.0);
-			rtImg.bottom  = rtImg.top + (LONG)fWidth;
+			rtImg.top    += (LONG)((rtWnd.Height() - lWidth) / 2.0);
+			rtImg.bottom  = rtImg.top + (LONG)lWidth;
 		}
 
 		return rtImg;
@@ -71,6 +74,8 @@ namespace SOUI
 
 	void SImageSwitcher::OnPaint(IRenderTarget *pRT)
 	{
+		if ( m_lstImages.IsEmpty() )
+			return;
 		CRect rtWnd = GetClientRect();
 
 		if ( m_iMoveWidth == 0 )
@@ -223,12 +228,22 @@ namespace SOUI
 		}
 	}
 
-	void SImageSwitcher::InsertImage(int iTo, IBitmap * pImage)
+	BOOL SImageSwitcher::InsertImage(const SStringT& szImage, int iTo)
+	{
+		if(IBitmap * pImg = LOADIMAGE2(szImage)) 
+			return InsertImage(pImg, iTo);
+		
+		return FALSE;
+	}
+
+	BOOL SImageSwitcher::InsertImage(IBitmap * pImage, int iTo)
 	{
 		if(iTo<0) iTo = m_lstImages.GetCount();
 		m_lstImages.InsertAt(iTo,pImage);
 		pImage->AddRef();
-		Invalidate();
+		//Invalidate();
+
+		return TRUE;
 	}
 
 	void SImageSwitcher::RemoveAll()
