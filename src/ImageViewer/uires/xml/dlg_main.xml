@@ -1,4 +1,4 @@
-﻿<SOUI name="mainWindow" trCtx="dlg_main" title="@string/title" bigIcon="ICON_LOGO:32" smallIcon="ICON_LOGO:16" width="600" height="400"
+﻿<SOUI name="mainWindow" trCtx="dlg_main" title="@string/title" bigIcon="ICON_LOGO:32" smallIcon="ICON_LOGO:16" width="600" height="400" sendWheel2Hover="1"
   maxInset="5,3,10,10" margin="5,3,5,7" resizable="1" wndType="appMain" appWnd="1" minsize="600,400" translucent="1">
   <root skin="skin.sys.bkgnd" cache="1">
     <imageSwitcher name="imageSwitcher" pos="5,3,-5,-7" >

@@ -32,24 +32,28 @@ namespace SOUI
 		int  m_iMoveWidth;
 		int  m_iSelected;
 		int	 m_iTimesMove;
-		float m_fRatio;
-		CRect m_rtDrawSrc;
-		CRect m_rtDrawDst;
+		float  m_fRatio;
+		CPoint m_ptCenter;
+//		CRect m_rtDrawSrc;
+//		CRect m_rtDrawDst;
 		 
 	protected:
 		void OnPaint(IRenderTarget *pRT);
 		void OnLButtonDown(UINT nFlags, CPoint point);
 		void OnLButtonUp(UINT nFlags, CPoint point);
 		void OnMouseMove(UINT nFlags,CPoint pt);
+		BOOL OnMouseWheel(UINT nFlags, short zDelta, CPoint pt);
 		void OnTimer(char nIDEvent);
 		HRESULT OnAttrImages(const SStringT& strValue,BOOL bLoading);
 		
 		BOOL DrawImage(IRenderTarget *pRT, CRect& rcWnd, int i32Index);
-		RECT GetDefaultDest(const CRect& rtWnd, const SIZE szImg);
+		RECT GetDefaultDest(const CRect& rtWnd, const SIZE& szImg, BOOL bRatio = TRUE);
+		RECT GetDest(const CRect& rtWnd, const SIZE& szImg, CRect& rtImg);
 
 	protected:
 		SOUI_MSG_MAP_BEGIN()	
 			MSG_WM_PAINT_EX(OnPaint)    //窗口绘制消息
+			MSG_WM_MOUSEWHEEL(OnMouseWheel)
 			MSG_WM_LBUTTONDOWN(OnLButtonDown)
 			MSG_WM_LBUTTONUP(OnLButtonUp)
 			MSG_WM_MOUSEMOVE(OnMouseMove)
