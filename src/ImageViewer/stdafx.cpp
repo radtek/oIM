@@ -3,4 +3,4 @@
 //	stdafx.obj will contain the pre-compiled type information
 
 #include "stdafx.h"
-static S_Params s_sParams;
+S_Params g_sParams;

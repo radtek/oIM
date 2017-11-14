@@ -15,7 +15,7 @@ namespace SOUI
 		virtual ~SImageSwitcher();
 
 	public:
-		BOOL	Switch(int iSelect);
+		BOOL	Switch(int iSelect, BOOL bMoive = TRUE);
 		BOOL	InsertImage(IBitmap * pImage, int iTo = -1);
 		BOOL	InsertImage(const SStringT& szImage, int iTo = -1);
 

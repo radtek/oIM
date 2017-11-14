@@ -23,38 +23,46 @@ namespace SOUI
 	}
 
 	RECT SImageSwitcher::GetDefaultDest(const CRect& rtWnd, const SIZE szImg)
-	{
-		RECT rtImg = { 0 };
+	{	// 计算默认的目标位置
+		RECT rtDst = { 0 };
 
 		if ( rtWnd.Width() >= szImg.cx && rtWnd.Height() >= szImg.cy )
 		{	// 窗口能显示全图
-			rtImg.left += (LONG)((rtWnd.Width() - szImg.cx) / 2.0);
-			rtImg.top  += (LONG)((rtWnd.Height() - szImg.cy) / 2.0);
-			rtImg.right = rtImg.left + szImg.cx;
-			rtImg.bottom= rtImg.top + szImg.cy;
 			m_fRatio = 100.f;
+			rtDst.left  = rtWnd.left + (LONG)((rtWnd.Width() - szImg.cx) / 2.0);
+			rtDst.top	= rtWnd.top  + (LONG)((rtWnd.Height() - szImg.cy) / 2.0);
+			rtDst.right = rtDst.left + szImg.cx;
+			rtDst.bottom= rtDst.top  + szImg.cy;
 		}
-		else if ( rtWnd.Width() < szImg.cx )
-		{	// 窗口宽度不能显示全图, 就以宽度进行缩放
-			m_fRatio = (float)rtWnd.Width() / szImg.cx;
-			LONG lHeight = (LONG)(m_fRatio * szImg.cy);
-			rtImg.left    = rtWnd.left;
-			rtImg.right   = rtWnd.right;
-			rtImg.top    += (LONG)((rtWnd.Height() - lHeight) / 2.0);
-			rtImg.bottom  = rtImg.top + lHeight;
-		}
-		else
-		{	// 窗口高度不能显示全图, 就以高度进行缩放
-			m_fRatio = (float)rtWnd.Height() / szImg.cy;
-			LONG lWidth   = (LONG)(m_fRatio * szImg.cx);
-			rtImg.left    = (LONG)((rtWnd.Width() - lWidth) / 2.0);
-			rtImg.right   = (LONG)(rtImg.left + lWidth);
-			rtImg.right   = rtWnd.right;
-			rtImg.top    += (LONG)((rtWnd.Height() - lWidth) / 2.0);
-			rtImg.bottom  = rtImg.top + (LONG)lWidth;
+		else// if ( rtWnd.Width() < szImg.cx )
+		{
+			float fRatioX = (float)rtWnd.Width() / szImg.cx;
+			float fRatioY = (float)rtWnd.Height() / szImg.cy;
+			if ( fRatioX < fRatioY )
+			{	// 窗口宽度不能显示全图, 就以宽度进行缩放
+				m_fRatio = fRatioX;
+				LONG lHeight= (LONG)(m_fRatio * szImg.cy);
+				rtDst.left	= rtWnd.left;
+				rtDst.right = rtWnd.right;
+				rtDst.top   = rtWnd.top + (LONG)((rtWnd.Height() - lHeight) / 2.0);
+				rtDst.bottom= rtDst.top + lHeight;
+			}
+			else
+			{	// 窗口高度不能显示全图, 就以高度进行缩放
+				m_fRatio = fRatioY;
+				LONG lWidth = (LONG)(m_fRatio * szImg.cx);
+				rtDst.top   = rtWnd.top;
+				rtDst.bottom= rtWnd.bottom;
+				rtDst.left  = rtWnd.left + (LONG)((rtWnd.Width() - lWidth) / 2.0);
+				rtDst.right = (LONG)(rtDst.left + lWidth);
+			}
+
+		//	RECT rtSub = { 0 };
+		//	if (SubtractRect(&rtSub, &rtWnd, &rtDst))
+		//		return rtSub;
 		}
 
-		return rtImg;
+		return rtDst;
 	}
 
 	BOOL SImageSwitcher::DrawImage(IRenderTarget *pRT, CRect& rtWnd, int i32Index)
@@ -62,11 +70,12 @@ namespace SOUI
 		if ( i32Index >= 0 && i32Index < (int)m_lstImages.GetCount() )
 		{
 			IBitmap *pBmp = m_lstImages[i32Index];
-			SIZE szImg    = pBmp->Size();
-			RECT rtImg    = GetDefaultDest(rtWnd, szImg);
-
-			rtImg.left	+= (i32Index * rtWnd.Width() - (m_iSelected * rtWnd.Width()) + m_iMoveWidth);
-			pRT->DrawBitmapEx(&rtImg, pBmp, CRect(CPoint(), szImg), EM_NULL);
+			SIZE szImg	= pBmp->Size();
+			RECT rtDst	= GetDefaultDest(rtWnd, szImg);
+			int i32Delta= (i32Index * rtWnd.Width() - (m_iSelected * rtWnd.Width()) + m_iMoveWidth);
+			rtDst.left += i32Delta;
+			rtDst.right+= i32Delta;
+			pRT->DrawBitmapEx(&rtDst, pBmp, CRect(CPoint(), szImg), EM_STRETCH);
 		}
 
 		return FALSE;
@@ -84,17 +93,24 @@ namespace SOUI
 			SIZE szImg  = pBmp->Size();
 			RECT rtImg  = GetDefaultDest(rtWnd, szImg);
 
-			pRT->DrawBitmapEx(&rtImg, pBmp, CRect(CPoint(),szImg), EM_NULL);
+			pRT->DrawBitmapEx(&rtImg, pBmp, CRect(CPoint(),szImg), EM_STRETCH);
 		}
 		else
-		{	// 图片切换的动画效果[过滤图片，其实最多画两张，这儿不纠结这点]
-			DrawImage(pRT, rtWnd, m_iSelected - 1);
-			DrawImage(pRT, rtWnd, m_iSelected);
-			DrawImage(pRT, rtWnd, m_iSelected + 1);
+		{	
+			if ( m_iMoveWidth > 0 )
+			{	// 上一帧
+				DrawImage(pRT, rtWnd, m_iSelected - 1);
+				DrawImage(pRT, rtWnd, m_iSelected);
+			}
+			else
+			{	// 下一帧
+				DrawImage(pRT, rtWnd, m_iSelected);
+				DrawImage(pRT, rtWnd, m_iSelected + 1);
+			}
 		}
 	}
 
-	BOOL  SImageSwitcher::Switch(int iSelect)
+	BOOL  SImageSwitcher::Switch(int iSelect, BOOL bMoive)
 	{
 		if (iSelect >= (int)m_lstImages.GetCount() || iSelect < 0)
 			return FALSE;
@@ -103,10 +119,16 @@ namespace SOUI
 		if(m_bTimerMove)
 			return TRUE;	// 正在显示过渡效果时，不再切换
 
+		if ( bMoive == FALSE )
+		{
+			m_iSelected = iSelect;
+			return TRUE;
+		}
+
 		m_iMoveWidth = (iSelect-m_iSelected)*rcWnd.Width();
 		m_iSelected = iSelect;
 
-		m_iTimesMove = (m_iMoveWidth > 0 ? m_iMoveWidth : -m_iMoveWidth) / 10;
+		m_iTimesMove = (m_iMoveWidth > 0 ? m_iMoveWidth : -m_iMoveWidth) / 20;
 		if(m_iTimesMove < 20)
 			m_iTimesMove = 20;
 		SetTimer(TIMER_MOVE, 30);
@@ -230,7 +252,7 @@ namespace SOUI
 
 	BOOL SImageSwitcher::InsertImage(const SStringT& szImage, int iTo)
 	{
-		if(IBitmap * pImg = LOADIMAGE2(szImage)) 
+		if(IBitmap * pImg = LOADIMAGE(_T("file"), szImage)) 
 			return InsertImage(pImg, iTo);
 		
 		return FALSE;
