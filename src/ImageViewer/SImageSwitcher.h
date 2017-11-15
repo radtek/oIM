@@ -30,6 +30,7 @@ namespace SOUI
 		int  m_iDownX;
 		BOOL m_bTimerMove;
 		BOOL m_bMovable;
+		BOOL m_bMoved;
 		int  m_iMoveWidth;
 		int  m_iSelected;
 		int	 m_iTimesMove;

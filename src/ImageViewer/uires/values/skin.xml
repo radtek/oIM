@@ -10,8 +10,8 @@
 	<imglist name="skin.thumb" src="IMG:IMG_THUMB" />
 	<imglist name="skin.error" src="IMG:IMG_ERROR" />
 
-	<imglist name="skin.btn.prev" src="IMG:BTN_PREV" states="3" />
-	<imglist name="skin.btn.next" src="IMG:BTN_NEXT" states="3" />
+	<imglist name="skin.btn.prev" src="IMG:BTN_PREV" states="4" />
+	<imglist name="skin.btn.next" src="IMG:BTN_NEXT" states="4" />
 	<imglist name="skin.btn.left" src="IMG:BTN_LEFT" states="3" />
 	<imglist name="skin.btn.right" src="IMG:BTN_RIGHT" states="3" />
 

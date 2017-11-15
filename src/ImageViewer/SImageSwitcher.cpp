@@ -16,6 +16,7 @@ namespace SOUI
 		, m_fRatio(1.f)
 		, m_ptCenter(0)
 		, m_bMovable(FALSE)
+		, m_bMoved(FALSE)
 	{
 
 	}
@@ -35,6 +36,7 @@ namespace SOUI
 			return GetDefaultDest(rtWnd, szImg);
 		}
 
+		BOOL bOutWnd = FALSE;	// 是否有超出rtWnd
 		SIZE szReal  = {(LONG)(szImg.cx * m_fRatio), (LONG)(szImg.cy * m_fRatio)};			// 得到实际要显示的大小
 		POINT ptReal = {(LONG)(m_ptCenter.x * m_fRatio), (LONG)(m_ptCenter.y * m_fRatio)};	// 得到中心位置的实际要显示的位置
 		CRect rtDst  = rtWnd;
@@ -70,6 +72,7 @@ namespace SOUI
 					{	// 图片靠右边
 						rtImg.left += (szReal.cx - rtImg.right);
 						rtImg.right = szReal.cx;
+						bOutWnd = TRUE;
 					}
 				}
 				else
@@ -83,6 +86,7 @@ namespace SOUI
 					{	// 图片靠左边
 						rtImg.right-= rtImg.left;
 						rtImg.left	= 0;
+						bOutWnd = TRUE;
 					}
 				}
 			}
@@ -114,6 +118,7 @@ namespace SOUI
 					{	// 图片靠下边
 						rtImg.top	+= (szReal.cy - rtImg.bottom);
 						rtImg.bottom = szReal.cy;
+						bOutWnd = TRUE;
 					}
 				}
 				else
@@ -127,6 +132,7 @@ namespace SOUI
 					{	// 图片靠上边
 						rtImg.bottom-= rtImg.top;
 						rtImg.top	 = 0;
+						bOutWnd = TRUE;
 					}
 				}
 			}
@@ -143,9 +149,18 @@ namespace SOUI
 			rtImg.right = (LONG)(rtImg.right / m_fRatio);
 			rtImg.bottom= (LONG)(rtImg.bottom / m_fRatio);
 
-			// 修正中心点
-			m_ptCenter.x = rtImg.left + rtImg.Width() / 2;
-			m_ptCenter.y = rtImg.top  + rtImg.Height() / 2;
+			if ( m_bMoved && bOutWnd )
+			{	// 修正中心点
+				if ( rtImg.Width() % 2) 
+					rtImg.right--;	// 变成偶数
+
+				if ( rtImg.Height() % 2)
+					rtImg.bottom--;	// 变成偶数
+
+				m_bMoved = FALSE;
+				m_ptCenter.x = rtImg.left + rtImg.Width() / 2;
+				m_ptCenter.y = rtImg.top  + rtImg.Height() / 2;
+			}
 		}
 
 		return rtDst;
@@ -271,10 +286,11 @@ namespace SOUI
 
 	void SImageSwitcher::OnLButtonDown(UINT nFlags, CPoint point)
 	{
+		__super::OnLButtonDown(nFlags,point);
 		m_ptMoveOld  = point;
 		m_ptCenterOld= m_ptCenter;
+		m_bMoved = FALSE;
 		SetCapture();
-		__super::OnLButtonDown(nFlags,point);
 	}
 
 	void SImageSwitcher::OnMouseMove(UINT nFlags,CPoint pt)
@@ -282,6 +298,7 @@ namespace SOUI
 		__super::OnMouseMove(nFlags,pt);
 		if ( m_bMovable && (nFlags & MK_LBUTTON) )
 		{
+			m_bMoved = TRUE;
 			m_ptCenter.x = m_ptCenterOld.x - (LONG)((pt.x - m_ptMoveOld.x) / m_fRatio);
 			m_ptCenter.y = m_ptCenterOld.y - (LONG)((pt.y - m_ptMoveOld.y) / m_fRatio);
 			Invalidate();
@@ -292,10 +309,12 @@ namespace SOUI
 	{
 		__super::OnLButtonUp(nFlags,pt);
 		ReleaseCapture();
-		if ( m_bMovable )
+		if ( m_bMovable && !(m_ptCenter.x == m_ptCenterOld.x && m_ptCenter.y == m_ptCenterOld.y))
 		{
+			m_bMoved = TRUE;
 			m_ptCenter.x = m_ptCenterOld.x - (LONG)((pt.x - m_ptMoveOld.x) / m_fRatio);
 			m_ptCenter.y = m_ptCenterOld.y - (LONG)((pt.y - m_ptMoveOld.y) / m_fRatio);
+		//	m_ptCenterOld= m_ptCenter;
 			Invalidate();
 		}
 	}
