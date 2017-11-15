@@ -8,7 +8,7 @@ namespace SOUI
 {
 	SImageSwitcher::SImageSwitcher()
 		: m_iMoveWidth(0)
-		, m_bTimerMove(0)
+		, m_bTimerMove(FALSE)
 		, m_iSelected(0)
 		, m_iTimesMove(0)
 		, m_fRatio(1.f)
@@ -30,7 +30,7 @@ namespace SOUI
 		{	// 首次正常显示当前图片， 显示默认的全图
 			SetRect(&rtImg, 0, 0, szImg.cx, szImg.cy);
 			m_ptCenter.SetPoint(szImg.cx/2, szImg.cy/2);
-			return GetDefaultDest(rtWnd, szImg);
+			return GetDefaultDest(rtWnd, szImg, &m_fRatio);
 		}
 
 		BOOL bOutWnd = FALSE;	// 是否有超出rtWnd
@@ -40,7 +40,8 @@ namespace SOUI
 
 		if ( rtWnd.Width() >= szReal.cx && rtWnd.Height() >= szReal.cy )
 		{	// 能显示缩放之后的全图
-			rtDst = GetDefaultDest(rtWnd, szReal, FALSE);		// 用实际要显示的大小，来计算目标位置
+			float fRatio = 0;	// dummy
+			rtDst = GetDefaultDest(rtWnd, szReal);		// 用实际要显示的大小，来计算目标位置
 			rtImg.SetRect(0, 0, szImg.cx, szImg.cy);	
 			m_ptCenter.SetPoint(szImg.cx / 2, szImg.cy / 2);	// 复位中心点为图片中心
 		}
@@ -162,14 +163,14 @@ namespace SOUI
 		return rtDst;
 	}
 
-	RECT SImageSwitcher::GetDefaultDest(const CRect& rtWnd, const SIZE& szImg, BOOL bRatio)
+	RECT SImageSwitcher::GetDefaultDest(const CRect& rtWnd, const SIZE& szImg, float* pfRatio)
 	{	// 计算默认的目标位置
 		RECT rtDst = { 0 };
 
 		if ( rtWnd.Width() >= szImg.cx && rtWnd.Height() >= szImg.cy )
 		{	// 窗口能显示全图
-			if ( bRatio )
-				m_fRatio = 1.f;
+			if ( pfRatio )
+				*pfRatio = 1.f;
 
 			rtDst.left  = rtWnd.left + (LONG)((rtWnd.Width() - szImg.cx) / 2.0);
 			rtDst.top	= rtWnd.top  + (LONG)((rtWnd.Height() - szImg.cy) / 2.0);
@@ -182,8 +183,8 @@ namespace SOUI
 			float fRatioY = (float)rtWnd.Height() / szImg.cy;
 			if ( fRatioX < fRatioY )
 			{	// 窗口宽度不能显示全图, 就以宽度进行缩放
-				if ( bRatio )
-					m_fRatio = fRatioX;
+				if ( pfRatio )
+					*pfRatio = fRatioX;
 
 				LONG lHeight= (LONG)(fRatioX * szImg.cy);
 				rtDst.left	= rtWnd.left;
@@ -193,8 +194,8 @@ namespace SOUI
 			}
 			else
 			{	// 窗口高度不能显示全图, 就以高度进行缩放
-				if ( bRatio )
-					m_fRatio = fRatioY;
+				if ( pfRatio )
+					*pfRatio = fRatioY;
 
 				LONG lWidth = (LONG)(fRatioY * szImg.cx);
 				rtDst.top   = rtWnd.top;
@@ -213,7 +214,7 @@ namespace SOUI
 		{
 			IBitmap *pBmp = m_lstImages[i32Index];
 			SIZE szImg	= pBmp->Size();
-			RECT rtDst	= GetDefaultDest(rtWnd, szImg);
+			RECT rtDst	= GetDefaultDest(rtWnd, szImg, &m_fRatio);
 			int i32Delta= (i32Index * rtWnd.Width() - (m_iSelected * rtWnd.Width()) + m_iMoveWidth);
 			rtDst.left += i32Delta;
 			rtDst.right+= i32Delta;
@@ -235,6 +236,9 @@ namespace SOUI
 			RECT rtDst = GetDest(rtWnd, pBmp->Size(), m_rtImgSrc);
 
 			pRT->DrawBitmapEx(&rtDst, pBmp, &m_rtImgSrc, EM_STRETCH);
+			
+			EventImagePosChanged evt(this, m_bImgMovable, m_rtImgSrc, pBmp);
+			FireEvent(evt);
 		}
 		else
 		{	
@@ -259,6 +263,9 @@ namespace SOUI
 		CRect rcWnd = GetClientRect();
 		if(m_bTimerMove)
 			return TRUE;	// 正在显示过渡效果时，不再切换
+
+		EventImagePosChanged evt(this, FALSE, m_rtImgSrc, NULL);
+		FireEvent(evt);		// 隐藏地图
 
 		m_ptCenter.SetPoint(0, 0);	// Reset
 		if ( bMoive == FALSE )
@@ -360,6 +367,9 @@ namespace SOUI
 
 	void SImageSwitcher::OnTimer(char nIDEvent)
 	{
+		if ( nIDEvent != TIMER_MOVE )
+			return SetMsgHandled(FALSE);
+
 		if(m_iMoveWidth > 0)
 		{
 			if(m_iMoveWidth - m_iTimesMove <= 0)

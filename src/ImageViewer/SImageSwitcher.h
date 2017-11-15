@@ -15,7 +15,9 @@ namespace SOUI
 	{
 		SOUI_CLASS_NAME(EventRatioChanged, L"on_ratio_changed")
 	public:
-		EventRatioChanged(SObject *pSender, float fRatio):TplEventArgs<EventRatioChanged>(pSender),m_fRatio(fRatio){}
+		EventRatioChanged(SObject *pSender, float fRatio)
+			: TplEventArgs<EventRatioChanged>(pSender)
+			, m_fRatio(fRatio){}
 		enum {EventID=EVT_RATIO_CHANGED};
 		float m_fRatio;
 	};
@@ -24,9 +26,15 @@ namespace SOUI
 	{
 		SOUI_CLASS_NAME(EventRatioChanged, L"on_image_pos_changed")
 	public:
-		EventImagePosChanged(SObject *pSender, const CRect& rtImgPos):TplEventArgs<EventImagePosChanged>(pSender), m_rtImgPos(rtImgPos){}
+		EventImagePosChanged(SObject *pSender, BOOL bShow, const CRect& rtImgPos, IBitmap* pImg = NULL)
+			: TplEventArgs<EventImagePosChanged>(pSender)
+			, m_pImg(pImg)
+			, m_bShow(bShow)
+			, m_rtImgPos(rtImgPos){}
 		enum {EventID=EVT_IMGPOS_CHANGED};
-		CRect m_rtImgPos;
+		CRect	 m_rtImgPos;
+		IBitmap* m_pImg;
+		BOOL	 m_bShow;
 	};
 
 	class SImageSwitcher : public SWindow
@@ -46,6 +54,7 @@ namespace SOUI
 		size_t	GetCount();
 		float   GetRatio()const { return m_fRatio; }
 		CRect	GetImgSrcPos()const { return m_rtImgSrc; }
+		RECT	GetDefaultDest(const CRect& rtWnd, const SIZE& szImg, float* pfRatio = NULL);
 
 	private:
 		SArray<IBitmap*> m_lstImages;
@@ -72,7 +81,6 @@ namespace SOUI
 		HRESULT OnAttrImages(const SStringT& strValue,BOOL bLoading);
 		
 		BOOL DrawImage(IRenderTarget *pRT, CRect& rcWnd, int i32Index);
-		RECT GetDefaultDest(const CRect& rtWnd, const SIZE& szImg, BOOL bRatio = TRUE);
 		RECT GetDest(const CRect& rtWnd, const SIZE& szImg, CRect& rtImg);
 
 	protected:
