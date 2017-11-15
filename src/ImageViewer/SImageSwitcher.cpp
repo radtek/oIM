@@ -142,6 +142,10 @@ namespace SOUI
 			rtImg.top   = (LONG)(rtImg.top / m_fRatio);
 			rtImg.right = (LONG)(rtImg.right / m_fRatio);
 			rtImg.bottom= (LONG)(rtImg.bottom / m_fRatio);
+
+			// 修正中心点
+			m_ptCenter.x = rtImg.left + rtImg.Width() / 2;
+			m_ptCenter.y = rtImg.top  + rtImg.Height() / 2;
 		}
 
 		return rtDst;
@@ -267,7 +271,8 @@ namespace SOUI
 
 	void SImageSwitcher::OnLButtonDown(UINT nFlags, CPoint point)
 	{
-		m_ptMoveOld = point;
+		m_ptMoveOld  = point;
+		m_ptCenterOld= m_ptCenter;
 		SetCapture();
 		__super::OnLButtonDown(nFlags,point);
 	}
@@ -277,9 +282,8 @@ namespace SOUI
 		__super::OnMouseMove(nFlags,pt);
 		if ( m_bMovable && (nFlags & MK_LBUTTON) )
 		{
-			m_ptCenter.x -= (LONG)((pt.x - m_ptMoveOld.x) / m_fRatio);
-			m_ptCenter.y -= (LONG)((pt.y - m_ptMoveOld.y) / m_fRatio);
-			m_ptMoveOld = pt;
+			m_ptCenter.x = m_ptCenterOld.x - (LONG)((pt.x - m_ptMoveOld.x) / m_fRatio);
+			m_ptCenter.y = m_ptCenterOld.y - (LONG)((pt.y - m_ptMoveOld.y) / m_fRatio);
 			Invalidate();
 		}
 	}
@@ -290,8 +294,8 @@ namespace SOUI
 		ReleaseCapture();
 		if ( m_bMovable )
 		{
-			m_ptCenter.x -= (LONG)((pt.x - m_ptMoveOld.x) / m_fRatio);
-			m_ptCenter.y -= (LONG)((pt.y - m_ptMoveOld.y) / m_fRatio);
+			m_ptCenter.x = m_ptCenterOld.x - (LONG)((pt.x - m_ptMoveOld.x) / m_fRatio);
+			m_ptCenter.y = m_ptCenterOld.y - (LONG)((pt.y - m_ptMoveOld.y) / m_fRatio);
 			Invalidate();
 		}
 	}

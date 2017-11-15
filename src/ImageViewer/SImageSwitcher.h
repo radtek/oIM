@@ -35,6 +35,7 @@ namespace SOUI
 		int	 m_iTimesMove;
 		float  m_fRatio;
 		CPoint m_ptMoveOld;	// 移动时的上一次的位置。
+		CPoint m_ptCenterOld;
 		CPoint m_ptCenter;
 		CRect  m_rtImgSrc;
 //		CRect m_rtDrawDst;
