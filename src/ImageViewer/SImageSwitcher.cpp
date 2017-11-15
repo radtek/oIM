@@ -33,25 +33,52 @@ namespace SOUI
 			return GetDefaultDest(rtWnd, szImg);
 		}
 
-		SIZE szReal = {(LONG)(szImg.cx * m_fRatio), (LONG)(szImg.cy * m_fRatio)};	// 得到实际要显示的大小
-		CRect rtDest = GetDefaultDest(rtWnd, szReal, FALSE);		// 用实际要显示的大小，来计算目标位置
-		if ( rtDest.Width() >= szReal.cx && rtDest.Height() >= szReal.cy )
+		SIZE szReal  = {(LONG)(szImg.cx * m_fRatio), (LONG)(szImg.cy * m_fRatio)};	// 得到实际要显示的大小
+		CRect rtDst  = rtWnd;
+
+		if ( rtWnd.Width() >= szReal.cx && rtWnd.Height() >= szReal.cy )
 		{	// 能显示缩放之后的全图
-			rtImg.SetRect(0, 0, szImg.cx, szImg.cy);
-			m_ptCenter.SetPoint(szImg.cx/2, szImg.cy/2);			// 复位中心点
+			rtDst = GetDefaultDest(rtWnd, szReal, FALSE);		// 用实际要显示的大小，来计算目标位置
+			rtImg.SetRect(0, 0, szImg.cx, szImg.cy);	
 		}
 		else
-		{	// 只能显示部分
-			szReal.cx = szImg.cx / m_fRatio;
-			szReal.cy = szImg.cy / m_fRatio;
+		{	// 不能显示全图
+			rtImg.SetRect(0, 0, szReal.cx, szReal.cy);
+			if ( szReal.cx >= rtDst.Width() )
+			{	// 图片宽度 >= 窗口宽度
+				int iDeltaX1= (szReal.cx - rtDst.Width()) / 2;
+				rtImg.left += iDeltaX1;
+				rtImg.right-= iDeltaX1;
+			}
+			else
+			{
+				int iDeltaX2= (rtDst.Width() - szReal.cx ) / 2;
+				rtDst.left += iDeltaX2;
+				rtDst.right-= iDeltaX2;
+			}
 
-			rtImg.left	= m_ptCenter.x - szReal.cx / 2;
-			rtImg.top	= m_ptCenter.y - szReal.cy / 2;
-			rtImg.right	= rtImg.left + szReal.cx;
-			rtImg.bottom= rtImg.top + szReal.cy;
+			if ( szReal.cy >= rtDst.Height() )
+			{// 图片高度 >= 窗口高度
+				int iDeltaY1 = (szReal.cy - rtDst.Height()) / 2;
+				rtImg.top   += iDeltaY1;
+				rtImg.bottom-= iDeltaY1;
+			}
+			else
+			{
+				int iDeltaY2 = (rtDst.Height() - szReal.cy) / 2;
+				rtDst.top   += iDeltaY2;
+				rtDst.bottom-= iDeltaY2;
+			}
+
+			// 再换算加原图的坐标
+			rtImg.left  = (LONG)(rtImg.left / m_fRatio);
+			rtImg.top   = (LONG)(rtImg.top / m_fRatio);
+			rtImg.right = (LONG)(rtImg.right / m_fRatio);
+			rtImg.bottom= (LONG)(rtImg.bottom / m_fRatio);
 		}
 
-		return rtDest;
+
+		return rtDst;
 	}
 
 	RECT SImageSwitcher::GetDefaultDest(const CRect& rtWnd, const SIZE& szImg, BOOL bRatio)
@@ -77,7 +104,7 @@ namespace SOUI
 				if ( bRatio )
 					m_fRatio = fRatioX;
 
-				LONG lHeight= (LONG)(m_fRatio * szImg.cy);
+				LONG lHeight= (LONG)(fRatioX * szImg.cy);
 				rtDst.left	= rtWnd.left;
 				rtDst.right = rtWnd.right;
 				rtDst.top   = rtWnd.top + (LONG)((rtWnd.Height() - lHeight) / 2.0);
@@ -88,7 +115,7 @@ namespace SOUI
 				if ( bRatio )
 					m_fRatio = fRatioY;
 
-				LONG lWidth = (LONG)(m_fRatio * szImg.cx);
+				LONG lWidth = (LONG)(fRatioY * szImg.cx);
 				rtDst.top   = rtWnd.top;
 				rtDst.bottom= rtWnd.bottom;
 				rtDst.left  = rtWnd.left + (LONG)((rtWnd.Width() - lWidth) / 2.0);
@@ -254,11 +281,12 @@ namespace SOUI
 
 	BOOL SImageSwitcher::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
 	{
-		BOOL bRet = __super::OnMouseWheel(nFlags, zDelta, pt);
-		float fDelta = (zDelta / WHEEL_DELTA) / 100.0f;
+		BOOL bRet	= __super::OnMouseWheel(nFlags, zDelta, pt);
+		BOOL bFixed = GetAsyncKeyState(VK_CONTROL);	// Ctrl + Wheel
+		float fDelta= (zDelta / WHEEL_DELTA) / 100.0f;
 
-		if(GetAsyncKeyState(VK_CONTROL) )
-		{	// Ctrl + Wheel
+		if ( bFixed )
+		{	
 			m_fRatio += fDelta * 10.0f;	// 固定的Delta
 		}
 		else
@@ -276,11 +304,14 @@ namespace SOUI
 		}
 
 		if ( m_fRatio < 0.04f )
-			m_fRatio = 0.04f;
+			m_fRatio = 0.04f;		// Min as 4%
 		else if ( m_fRatio > 0.1f )
 		{
-			INT i32Ratio = (INT)(m_fRatio * 10.0f);
-			m_fRatio = i32Ratio / 10.0f;
+			if ( bFixed == FALSE )
+			{
+				INT i32Ratio = (INT)(m_fRatio * 10.0f);
+				m_fRatio = i32Ratio / 10.0f;
+			}
 
 			if ( m_fRatio > 20.0f )
 				m_fRatio = 20.0f;	// Max as 2000%
@@ -289,6 +320,7 @@ namespace SOUI
 		Invalidate();
 		return bRet;
 	}
+
 	void SImageSwitcher::OnTimer(char nIDEvent)
 	{
 		if(m_iMoveWidth > 0)
