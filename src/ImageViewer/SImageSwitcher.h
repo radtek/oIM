@@ -7,6 +7,28 @@ by ∂‡µ„√‚∑—WIFI
 
 namespace SOUI
 {
+#define EVT_RATIO_CHANGED	(EVT_EXTERNAL_BEGIN+120)
+#define EVT_IMGPOS_CHANGED	(EVT_EXTERNAL_BEGIN+121)
+
+
+	class EventRatioChanged : public TplEventArgs<EventRatioChanged>
+	{
+		SOUI_CLASS_NAME(EventRatioChanged, L"on_ratio_changed")
+	public:
+		EventRatioChanged(SObject *pSender, float fRatio):TplEventArgs<EventRatioChanged>(pSender),m_fRatio(fRatio){}
+		enum {EventID=EVT_RATIO_CHANGED};
+		float m_fRatio;
+	};
+
+	class EventImagePosChanged : public TplEventArgs<EventImagePosChanged>
+	{
+		SOUI_CLASS_NAME(EventRatioChanged, L"on_image_pos_changed")
+	public:
+		EventImagePosChanged(SObject *pSender, const CRect& rtImgPos):TplEventArgs<EventImagePosChanged>(pSender), m_rtImgPos(rtImgPos){}
+		enum {EventID=EVT_IMGPOS_CHANGED};
+		CRect m_rtImgPos;
+	};
+
 	class SImageSwitcher : public SWindow
 	{
 		SOUI_CLASS_NAME(SImageSwitcher,L"imageSwitcher")
@@ -22,6 +44,8 @@ namespace SOUI
 		void	RemoveAll();
 		int		GetCurSel();
 		size_t	GetCount();
+		float   GetRatio()const { return m_fRatio; }
+		CRect	GetImgSrcPos()const { return m_rtImgSrc; }
 
 	private:
 		SArray<IBitmap*> m_lstImages;

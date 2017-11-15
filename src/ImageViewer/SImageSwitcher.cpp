@@ -350,6 +350,11 @@ namespace SOUI
 		}
 
 		Invalidate();
+
+		// 激发放大率更新事件
+		EventRatioChanged evt(this, m_fRatio);
+		FireEvent(evt);
+		
 		return bRet;
 	}
 

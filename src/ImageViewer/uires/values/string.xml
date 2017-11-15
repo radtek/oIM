@@ -2,6 +2,7 @@
 <string>
   <title value="图片预览工具"/>
   <ver value="1.0"/>
+  <ratio value="%.0f%%" />
   <sysClose value="sysClose"/>
   <tipPageN value="%d/%d" />
   <tipLast value="tipLast" />

@@ -9,6 +9,7 @@
 
   <style>
     <class name="cls_sys_close" skin="skin.sys.close" tip="@string/sysClose" animate="1"/>
+    <class name="cls_btn_ratio" skin="skin.ratio" colorText="#FFFFFF" font="bold:1,adding:4" align="center" valign="middle" animate="1"/>
 
     <class name="cls_btn_prev" skin="skin.btn.prev" tip="@string/tipPageN" animate="1"/>
     <class name="cls_btn_next" skin="skin.btn.next" tip="@string/tipPageN" animate="1"/>

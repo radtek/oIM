@@ -17,6 +17,9 @@
         <imgbtn name="btn_close" class="cls_sys_close" pos="-40dp,0dp,@40dp,@40dp" />
       </caption>
 
+      <!-- 放大率 -->
+      <text name="txt_ratio" class="cls_btn_ratio" pos="|-50dp,|-20dp,@100dp,@38dp" text="100%" />
+
       <!-- 缩略图 -->
       <window pos="-220dp,-140dp,@220dp,@140dp">
         <img name="img_thumb" skin="skin.thumb" pos="0,0,-0,-0" />
