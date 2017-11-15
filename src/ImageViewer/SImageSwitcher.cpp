@@ -7,16 +7,13 @@
 namespace SOUI
 {
 	SImageSwitcher::SImageSwitcher()
-		: m_bWantMove(FALSE)
-		, m_iDownX(0)
-		, m_iMoveWidth(0)
+		: m_iMoveWidth(0)
 		, m_bTimerMove(0)
 		, m_iSelected(0)
 		, m_iTimesMove(0)
 		, m_fRatio(1.f)
 		, m_ptCenter(0)
-		, m_bMovable(FALSE)
-		, m_bMoved(FALSE)
+		, m_bImgMovable(FALSE)
 	{
 
 	}
@@ -28,7 +25,7 @@ namespace SOUI
 
 	RECT SImageSwitcher::GetDest(const CRect& rtWnd, const SIZE& szImg, CRect& rtImg)
 	{
-		m_bMovable = FALSE;	// 默认不可以移动
+		m_bImgMovable = FALSE;	// 默认不可以移动
 		if ( m_ptCenter.x == 0 || m_ptCenter.y == 0 )
 		{	// 首次正常显示当前图片， 显示默认的全图
 			SetRect(&rtImg, 0, 0, szImg.cx, szImg.cy);
@@ -49,7 +46,7 @@ namespace SOUI
 		}
 		else
 		{	// 不能显示全图
-			m_bMovable = TRUE;	// 可以移动
+			m_bImgMovable = TRUE;	// 可以移动
 			rtImg.SetRect(0, 0, szReal.cx, szReal.cy);
 			if ( szReal.cx >= rtDst.Width() )
 			{	// 图片宽度 >= 窗口宽度
@@ -149,7 +146,7 @@ namespace SOUI
 			rtImg.right = (LONG)(rtImg.right / m_fRatio);
 			rtImg.bottom= (LONG)(rtImg.bottom / m_fRatio);
 
-			if ( m_bMoved && bOutWnd )
+			if ( bOutWnd )
 			{	// 修正中心点
 				if ( rtImg.Width() % 2) 
 					rtImg.right--;	// 变成偶数
@@ -157,7 +154,6 @@ namespace SOUI
 				if ( rtImg.Height() % 2)
 					rtImg.bottom--;	// 变成偶数
 
-				m_bMoved = FALSE;
 				m_ptCenter.x = rtImg.left + rtImg.Width() / 2;
 				m_ptCenter.y = rtImg.top  + rtImg.Height() / 2;
 			}
@@ -287,20 +283,18 @@ namespace SOUI
 	void SImageSwitcher::OnLButtonDown(UINT nFlags, CPoint point)
 	{
 		__super::OnLButtonDown(nFlags,point);
-		m_ptMoveOld  = point;
+		m_ptMoveStart= point;
 		m_ptCenterOld= m_ptCenter;
-		m_bMoved = FALSE;
 		SetCapture();
 	}
 
 	void SImageSwitcher::OnMouseMove(UINT nFlags,CPoint pt)
 	{
 		__super::OnMouseMove(nFlags,pt);
-		if ( m_bMovable && (nFlags & MK_LBUTTON) )
+		if ( m_bImgMovable && (nFlags & MK_LBUTTON) )
 		{
-			m_bMoved = TRUE;
-			m_ptCenter.x = m_ptCenterOld.x - (LONG)((pt.x - m_ptMoveOld.x) / m_fRatio);
-			m_ptCenter.y = m_ptCenterOld.y - (LONG)((pt.y - m_ptMoveOld.y) / m_fRatio);
+			m_ptCenter.x = m_ptCenterOld.x - (LONG)((pt.x - m_ptMoveStart.x) / m_fRatio);
+			m_ptCenter.y = m_ptCenterOld.y - (LONG)((pt.y - m_ptMoveStart.y) / m_fRatio);
 			Invalidate();
 		}
 	}
@@ -309,12 +303,10 @@ namespace SOUI
 	{
 		__super::OnLButtonUp(nFlags,pt);
 		ReleaseCapture();
-		if ( m_bMovable && !(m_ptCenter.x == m_ptCenterOld.x && m_ptCenter.y == m_ptCenterOld.y))
+		if ( m_bImgMovable && !(m_ptCenter.x == m_ptCenterOld.x && m_ptCenter.y == m_ptCenterOld.y))
 		{
-			m_bMoved = TRUE;
-			m_ptCenter.x = m_ptCenterOld.x - (LONG)((pt.x - m_ptMoveOld.x) / m_fRatio);
-			m_ptCenter.y = m_ptCenterOld.y - (LONG)((pt.y - m_ptMoveOld.y) / m_fRatio);
-		//	m_ptCenterOld= m_ptCenter;
+			m_ptCenter.x = m_ptCenterOld.x - (LONG)((pt.x - m_ptMoveStart.x) / m_fRatio);
+			m_ptCenter.y = m_ptCenterOld.y - (LONG)((pt.y - m_ptMoveStart.y) / m_fRatio);
 			Invalidate();
 		}
 	}

@@ -24,21 +24,18 @@ namespace SOUI
 		size_t	GetCount();
 
 	private:
-		SArray<IBitmap *> m_lstImages;
+		SArray<IBitmap*> m_lstImages;
 
-		BOOL m_bWantMove;
-		int  m_iDownX;
-		BOOL m_bTimerMove;
-		BOOL m_bMovable;
-		BOOL m_bMoved;
-		int  m_iMoveWidth;
-		int  m_iSelected;
-		int	 m_iTimesMove;
-		float  m_fRatio;
-		CPoint m_ptMoveOld;	// 移动时的上一次的位置。
-		CPoint m_ptCenterOld;
-		CPoint m_ptCenter;
-		CRect  m_rtImgSrc;
+		BOOL	m_bImgMovable;		// 图片是否可以移动（无法显全图时）
+		BOOL	m_bTimerMove;		// 翻页动画的Timer启用标识
+		int		m_iMoveWidth;		// 翻页动画移动的大小
+		int		m_iTimesMove;		// 翻页动画，移动的次数
+		int		m_iSelected;		// 当前显示的图片索引
+		float	m_fRatio;			// 放大比率，1.0f 是原始图片大小
+		CPoint	m_ptMoveStart;		// 鼠标按下时的坐标位置
+		CPoint	m_ptCenterOld;		// 鼠标按下时原来的中心位置
+		CPoint	m_ptCenter;			// 中心位置
+		CRect	m_rtImgSrc;			// 图片显示的区域
 //		CRect m_rtDrawDst;
 		 
 	protected:
