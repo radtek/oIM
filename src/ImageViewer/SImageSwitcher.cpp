@@ -15,6 +15,7 @@ namespace SOUI
 		, m_iTimesMove(0)
 		, m_fRatio(1.f)
 		, m_ptCenter(0)
+		, m_bMovable(FALSE)
 	{
 
 	}
@@ -26,6 +27,7 @@ namespace SOUI
 
 	RECT SImageSwitcher::GetDest(const CRect& rtWnd, const SIZE& szImg, CRect& rtImg)
 	{
+		m_bMovable = FALSE;	// 默认不可以移动
 		if ( m_ptCenter.x == 0 || m_ptCenter.y == 0 )
 		{	// 首次正常显示当前图片， 显示默认的全图
 			SetRect(&rtImg, 0, 0, szImg.cx, szImg.cy);
@@ -33,38 +35,103 @@ namespace SOUI
 			return GetDefaultDest(rtWnd, szImg);
 		}
 
-		SIZE szReal  = {(LONG)(szImg.cx * m_fRatio), (LONG)(szImg.cy * m_fRatio)};	// 得到实际要显示的大小
+		SIZE szReal  = {(LONG)(szImg.cx * m_fRatio), (LONG)(szImg.cy * m_fRatio)};			// 得到实际要显示的大小
+		POINT ptReal = {(LONG)(m_ptCenter.x * m_fRatio), (LONG)(m_ptCenter.y * m_fRatio)};	// 得到中心位置的实际要显示的位置
 		CRect rtDst  = rtWnd;
 
 		if ( rtWnd.Width() >= szReal.cx && rtWnd.Height() >= szReal.cy )
 		{	// 能显示缩放之后的全图
 			rtDst = GetDefaultDest(rtWnd, szReal, FALSE);		// 用实际要显示的大小，来计算目标位置
 			rtImg.SetRect(0, 0, szImg.cx, szImg.cy);	
+			m_ptCenter.SetPoint(szImg.cx / 2, szImg.cy / 2);	// 复位中心点为图片中心
 		}
 		else
 		{	// 不能显示全图
+			m_bMovable = TRUE;	// 可以移动
 			rtImg.SetRect(0, 0, szReal.cx, szReal.cy);
 			if ( szReal.cx >= rtDst.Width() )
 			{	// 图片宽度 >= 窗口宽度
+				int iOffsetX= (ptReal.x  - szReal.cx / 2);		// 与显示图片的水平中心位置的偏移量
 				int iDeltaX1= (szReal.cx - rtDst.Width()) / 2;
+				
+				// 以图片中心位置来计算位置
 				rtImg.left += iDeltaX1;
-				rtImg.right-= iDeltaX1;
+				rtImg.right-= iDeltaX1;	
+
+				// 计算X偏移
+				if ( iOffsetX >= 0 )
+				{	// 中心点向右偏移
+					if ( rtImg.right + iOffsetX <= szReal.cx )
+					{	// 向右偏移后，仍然在图片大小之内
+						rtImg.left += iOffsetX;
+						rtImg.right+= iOffsetX;
+					}
+					else
+					{	// 图片靠右边
+						rtImg.left += (szReal.cx - rtImg.right);
+						rtImg.right = szReal.cx;
+					}
+				}
+				else
+				{	// 中心点向左偏移
+					if ( rtImg.left + iOffsetX >= 0 )
+					{	// 向左偏移后，仍然在图片大小之内
+						rtImg.left += iOffsetX;
+						rtImg.right+= iOffsetX;
+					}
+					else
+					{	// 图片靠左边
+						rtImg.right-= rtImg.left;
+						rtImg.left	= 0;
+					}
+				}
 			}
 			else
-			{
+			{	// 图片宽度 < 窗口宽度
 				int iDeltaX2= (rtDst.Width() - szReal.cx ) / 2;
 				rtDst.left += iDeltaX2;
 				rtDst.right-= iDeltaX2;
 			}
 
 			if ( szReal.cy >= rtDst.Height() )
-			{// 图片高度 >= 窗口高度
+			{	// 图片高度 >= 窗口高度
+				int iOffsetY = (ptReal.y  - szReal.cy / 2);		// 与显示图片的垂直中心位置的偏移量
 				int iDeltaY1 = (szReal.cy - rtDst.Height()) / 2;
-				rtImg.top   += iDeltaY1;
+
+				// 以图片中心位置来计算位置
+				rtImg.top   += iDeltaY1;	
 				rtImg.bottom-= iDeltaY1;
+
+				// 计算Y偏移
+				if ( iOffsetY >= 0 )
+				{	// 中心点向下偏移
+					if ( rtImg.bottom + iOffsetY <= szReal.cy )
+					{	// 向右偏移后，仍然在图片大小之内
+						rtImg.top	+= iOffsetY;
+						rtImg.bottom+= iOffsetY;
+					}
+					else
+					{	// 图片靠下边
+						rtImg.top	+= (szReal.cy - rtImg.bottom);
+						rtImg.bottom = szReal.cy;
+					}
+				}
+				else
+				{	// 中心点向上偏移
+					if ( rtImg.top + iOffsetY >= 0 )
+					{	// 向上偏移后，仍然在图片大小之内
+						rtImg.top	+= iOffsetY;
+						rtImg.bottom+= iOffsetY;
+					}
+					else
+					{	// 图片靠上边
+						rtImg.bottom-= rtImg.top;
+						rtImg.top	 = 0;
+					}
+				}
 			}
 			else
-			{
+			{	// 图片高度 < 窗口高度
 				int iDeltaY2 = (rtDst.Height() - szReal.cy) / 2;
 				rtDst.top   += iDeltaY2;
 				rtDst.bottom-= iDeltaY2;
@@ -76,7 +143,6 @@ namespace SOUI
 			rtImg.right = (LONG)(rtImg.right / m_fRatio);
 			rtImg.bottom= (LONG)(rtImg.bottom / m_fRatio);
 		}
-
 
 		return rtDst;
 	}
@@ -151,10 +217,9 @@ namespace SOUI
 		if ( m_iMoveWidth == 0 )
 		{	// 显示当前图片
 			IBitmap *pBmp = m_lstImages[m_iSelected];
-			CRect rtImg;
-			RECT rtDst = GetDest(rtWnd, pBmp->Size(), rtImg);
+			RECT rtDst = GetDest(rtWnd, pBmp->Size(), m_rtImgSrc);
 
-			pRT->DrawBitmapEx(&rtDst, pBmp, &rtImg, EM_STRETCH);
+			pRT->DrawBitmapEx(&rtDst, pBmp, &m_rtImgSrc, EM_STRETCH);
 		}
 		else
 		{	
@@ -202,81 +267,33 @@ namespace SOUI
 
 	void SImageSwitcher::OnLButtonDown(UINT nFlags, CPoint point)
 	{
-		//if(m_bWantMove)
-		//	return;
-
-		//if(m_bTimerMove)
-		//{
-		//	m_bTimerMove = FALSE;
-		//	KillTimer(TIMER_MOVE);
-		//	m_bWantMove = TRUE;
-		//	m_iDownX = point.x - m_iMoveWidth;
-		//	SetCapture();
-
-		//}
-		//else
-		//{
-		//	m_bWantMove = TRUE;
-		//	m_iDownX = point.x;
-		//	SetCapture();
-		//}
+		m_ptMoveOld = point;
+		SetCapture();
 		__super::OnLButtonDown(nFlags,point);
 	}
+
 	void SImageSwitcher::OnMouseMove(UINT nFlags,CPoint pt)
 	{
 		__super::OnMouseMove(nFlags,pt);
-
-		//CRect rcWnd = GetWindowRect();
-
-		//if(m_bWantMove)
-		//{
-		//	m_iMoveWidth = pt.x - m_iDownX;
-		//	if(m_iSelected == 0 && m_iMoveWidth > rcWnd.Width())
-		//	{
-		//		m_iMoveWidth = rcWnd.Width();
-		//	}
-		//	if(m_iSelected == (int)m_lstImages.GetCount()-1 && -m_iMoveWidth > GetWindowRect().Width())
-		//	{
-		//		m_iMoveWidth = -rcWnd.Width();
-		//	}
-		//	Invalidate();
-		//	return;
-		//}
-
+		if ( m_bMovable && (nFlags & MK_LBUTTON) )
+		{
+			m_ptCenter.x -= (LONG)((pt.x - m_ptMoveOld.x) / m_fRatio);
+			m_ptCenter.y -= (LONG)((pt.y - m_ptMoveOld.y) / m_fRatio);
+			m_ptMoveOld = pt;
+			Invalidate();
+		}
 	}
+
 	void SImageSwitcher::OnLButtonUp(UINT nFlags, CPoint pt)
 	{
 		__super::OnLButtonUp(nFlags,pt);
-
-		//CRect rcWnd = GetClientRect();
-
-		//if(m_bWantMove)
-		//{
-		//	m_bWantMove = FALSE;
-		//	ReleaseCapture();
-		//	if(m_iMoveWidth > 0)
-		//	{
-		//		if(m_iSelected > 0 && m_iMoveWidth > rcWnd.Width()/4)
-		//		{
-		//			m_iMoveWidth -= rcWnd.Width();
-		//			m_iSelected--;
-		//		}
-		//	}
-		//	else
-		//	{
-		//		if(m_iSelected < (int)m_lstImages.GetCount()-1 && -m_iMoveWidth > rcWnd.Width()/4)
-		//		{
-		//			m_iMoveWidth += rcWnd.Width();
-		//			m_iSelected++;
-		//		}
-		//	}
-		//	m_iTimesMove = (m_iMoveWidth>0?m_iMoveWidth:-m_iMoveWidth)/10;
-		//	if(m_iTimesMove < 20)m_iTimesMove = 20;
-		//	SetTimer(TIMER_MOVE, 30);
-		//	m_bWantMove = FALSE;
-		//	m_bTimerMove = TRUE;
-		//	return;
-		//}
+		ReleaseCapture();
+		if ( m_bMovable )
+		{
+			m_ptCenter.x -= (LONG)((pt.x - m_ptMoveOld.x) / m_fRatio);
+			m_ptCenter.y -= (LONG)((pt.y - m_ptMoveOld.y) / m_fRatio);
+			Invalidate();
+		}
 	}
 
 	BOOL SImageSwitcher::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)

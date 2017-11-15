@@ -29,12 +29,14 @@ namespace SOUI
 		BOOL m_bWantMove;
 		int  m_iDownX;
 		BOOL m_bTimerMove;
+		BOOL m_bMovable;
 		int  m_iMoveWidth;
 		int  m_iSelected;
 		int	 m_iTimesMove;
 		float  m_fRatio;
+		CPoint m_ptMoveOld;	// 移动时的上一次的位置。
 		CPoint m_ptCenter;
-//		CRect m_rtDrawSrc;
+		CRect  m_rtImgSrc;
 //		CRect m_rtDrawDst;
 		 
 	protected:
