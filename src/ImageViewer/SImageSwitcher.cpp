@@ -6,8 +6,12 @@
 
 namespace SOUI
 {
+#define SAFE_RELEASE_(P) do { if ( P ) P->Release(); P = NULL; } while(0)
+
 	SImageSwitcher::SImageSwitcher()
-		: m_iMoveWidth(0)
+		: m_pImgSel(NULL)
+		, m_pImgNext(NULL)
+		, m_iMoveWidth(0)
 		, m_bTimerMove(FALSE)
 		, m_iSelected(0)
 		, m_iTimesMove(0)
@@ -208,76 +212,88 @@ namespace SOUI
 		return rtDst;
 	}
 
-	BOOL SImageSwitcher::DrawImage(IRenderTarget *pRT, CRect& rtWnd, int i32Index)
+	BOOL SImageSwitcher::DrawImage(IRenderTarget *pRT, IBitmap *pBmp, CRect& rtWnd, int i32Index)
 	{
-		if ( i32Index >= 0 && i32Index < (int)m_lstImages.GetCount() )
-		{
-			IBitmap *pBmp = m_lstImages[i32Index];
-			SIZE szImg	= pBmp->Size();
-			RECT rtDst	= GetDefaultDest(rtWnd, szImg, &m_fRatio);
-			int i32Delta= (i32Index * rtWnd.Width() - (m_iSelected * rtWnd.Width()) + m_iMoveWidth);
-			rtDst.left += i32Delta;
-			rtDst.right+= i32Delta;
-			pRT->DrawBitmapEx(&rtDst, pBmp, CRect(CPoint(), szImg), EM_STRETCH);
-		}
+		if ( !pBmp )
+			return FALSE;
 
-		return FALSE;
+		SIZE szImg	= pBmp->Size();
+		RECT rtDst	= GetDefaultDest(rtWnd, szImg, &m_fRatio);
+		int i32Delta= (i32Index * rtWnd.Width() - (m_iSelected * rtWnd.Width()) + m_iMoveWidth);
+		rtDst.left += i32Delta;
+		rtDst.right+= i32Delta;
+		pRT->DrawBitmapEx(&rtDst, pBmp, CRect(CPoint(), szImg), EM_STRETCH);
+
+		return TRUE;
 	}
 
 	void SImageSwitcher::OnPaint(IRenderTarget *pRT)
 	{
-		if ( m_lstImages.IsEmpty() )
+		if ( m_pImgSel == NULL )
 			return;
 
 		CRect rtWnd = GetClientRect();
 		if ( m_iMoveWidth == 0 )
 		{	// 显示当前图片
-			IBitmap *pBmp = m_lstImages[m_iSelected];
-			RECT rtDst = GetDest(rtWnd, pBmp->Size(), m_rtImgSrc);
-
-			pRT->DrawBitmapEx(&rtDst, pBmp, &m_rtImgSrc, EM_STRETCH);
+			//IBitmap *pBmp = m_lstImages[m_iSelected];
+			CRect szOld = m_rtImgSrc;
+			RECT  rtDst = GetDest(rtWnd, m_pImgSel->Size(), m_rtImgSrc);
+			pRT->DrawBitmapEx(&rtDst, m_pImgSel, &m_rtImgSrc, EM_STRETCH);
 			
-			EventImagePosChanged evt(this, m_bImgMovable, m_rtImgSrc, pBmp);
-			FireEvent(evt);
+			if ( !m_rtImgSrc.EqualRect(m_rtImgSrc) )
+			{	// 图片的显示区域变了，才通知
+				EventImagePosChanged evt(this, m_bImgMovable, m_rtImgSrc, m_pImgSel);
+				FireEvent(evt);
+			}
 		}
 		else
 		{	
 			if ( m_iMoveWidth > 0 )
 			{	// 上一帧
-				DrawImage(pRT, rtWnd, m_iSelected - 1);
-				DrawImage(pRT, rtWnd, m_iSelected);
+				DrawImage(pRT, m_pImgNext, rtWnd, m_iSelected - 1);
+				DrawImage(pRT, m_pImgSel,  rtWnd, m_iSelected);
 			}
 			else
 			{	// 下一帧
-				DrawImage(pRT, rtWnd, m_iSelected);
-				DrawImage(pRT, rtWnd, m_iSelected + 1);
+				DrawImage(pRT, m_pImgSel,  rtWnd, m_iSelected);
+				DrawImage(pRT, m_pImgNext, rtWnd, m_iSelected + 1);
 			}
 		}
 	}
 
 	BOOL  SImageSwitcher::Switch(int iSelect, BOOL bMoive)
 	{
-		if (iSelect >= (int)m_lstImages.GetCount() || iSelect < 0)
+		if (iSelect >= (int)m_vectImage.size() || iSelect < 0)
 			return FALSE;
 
 		CRect rcWnd = GetClientRect();
 		if(m_bTimerMove)
 			return TRUE;	// 正在显示过渡效果时，不再切换
 
+		m_rtImgSrc.SetRectEmpty();	// 清空
 		EventImagePosChanged evt(this, FALSE, m_rtImgSrc, NULL);
-		FireEvent(evt);		// 隐藏地图
+		FireEvent(evt);				// 隐藏地图
 
 		m_ptCenter.SetPoint(0, 0);	// Reset
 		if ( bMoive == FALSE )
 		{	// 不显示动画
 			m_iSelected = iSelect;
+			m_pImgSel = LOADIMAGE(_T("file"), m_vectImage[m_iSelected]);
 			return TRUE;
 		}
 
 		m_iMoveWidth = (iSelect-m_iSelected)*rcWnd.Width();
 		m_iSelected = iSelect;
 
-		m_iTimesMove = (m_iMoveWidth > 0 ? m_iMoveWidth : -m_iMoveWidth) / 20;
+		// 更新加载的图片
+		SAFE_RELEASE_(m_pImgSel);
+		SAFE_RELEASE_(m_pImgNext);
+		m_pImgSel = LOADIMAGE(_T("file"), m_vectImage[m_iSelected]);
+		int i32Next = m_iMoveWidth > 0 ? m_iSelected - 1 : m_iSelected + 1;
+		if ( i32Next >= 0 && i32Next < (int)m_vectImage.size() )
+			m_pImgNext = LOADIMAGE(_T("file"), m_vectImage[m_iSelected - 1]);
+
+		m_iTimesMove = (m_iMoveWidth > 0 ? m_iMoveWidth : -m_iMoveWidth) / 30;
 		if(m_iTimesMove < 20)
 			m_iTimesMove = 20;
 
@@ -404,29 +420,25 @@ namespace SOUI
 
 	BOOL SImageSwitcher::InsertImage(const SStringT& szImage, int iTo)
 	{
-		if(IBitmap * pImg = LOADIMAGE(_T("file"), szImage)) 
-			return InsertImage(pImg, iTo);
+		if( iTo < 0 || iTo >= (int)m_vectImage.size() )
+			m_vectImage.push_back(szImage);
+		else
+			m_vectImage.insert(m_vectImage.begin() + iTo, szImage);
 		
-		return FALSE;
+		return TRUE;
 	}
 
-	BOOL SImageSwitcher::InsertImage(IBitmap * pImage, int iTo)
+	BOOL SImageSwitcher::InitImages(const VectImage& vectImg, int i32Sel)
 	{
-		if(iTo<0) iTo = m_lstImages.GetCount();
-		m_lstImages.InsertAt(iTo,pImage);
-		pImage->AddRef();
-		//Invalidate();
-
-		return TRUE;
+		m_vectImage.assign(vectImg.begin(), vectImg.end());
+		return Switch(i32Sel >= 0 ? i32Sel : 0, FALSE);
 	}
 
 	void SImageSwitcher::RemoveAll()
 	{
-		for(UINT i=0;i<m_lstImages.GetCount();i++)
-		{
-			m_lstImages[i]->Release();
-		}
-		m_lstImages.RemoveAll();
+		m_vectImage.clear();
+		SAFE_RELEASE_(m_pImgSel);
+		SAFE_RELEASE_(m_pImgNext);
 	}
 
 	int SImageSwitcher::GetCurSel()
@@ -436,22 +448,12 @@ namespace SOUI
 
 	HRESULT SImageSwitcher::OnAttrImages(const SStringT& strValue,BOOL bLoading)
 	{
-		SStringWList imgLstSrc ;
-		SplitString(strValue,L'|',imgLstSrc);
-		for(UINT i=0;i<imgLstSrc.GetCount();i++)
-		{
-			IBitmap * pImg = LOADIMAGE2(imgLstSrc[i]);
-			if(pImg) 
-			{
-				m_lstImages.Add(pImg);
-			}
-		}
 		return bLoading?S_OK:S_FALSE;
 	}
 
 	size_t SImageSwitcher::GetCount()
 	{
-		return m_lstImages.GetCount();
+		return m_vectImage.size();
 	}
 
 

@@ -1,6 +1,33 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <language name="简体中文" guid="{0DAEDE3C-6B94-4a81-9A55-C304FDD69D98}">
   <context>
+   <message>
+      <source>usage_help</source>
+      <translation>帮助</translation>
+    </message>
+    <message>
+      <source>usages</source>
+      <translation>
+ImageViewer.exe [选项]
+选项:
+  -ipath="path"    将替换images值中的"${ipath}" 和 ".\"，必须在参数"-images"的之前
+  -ifilter="filter" 图片过滤器，必须在"-ipath"之后，自动搜索"-ipath"位置中的图片，如：*.png|*.jpg
+  -images="image[|image][|...]" 指定图片文件的路径列表，以"|"分隔
+                    当只有文件名时，会自动添加路径"${ipath}"
+                    当前路径".\"也会被替换成"${ipath}"
+  -db="dbfile"      指定消息数据库（msg.db）的路径
+  -fid=fid          指定要显示的当前图片，没有指定或者指定无效时，默认显示第一张图片
+                    当与参数"-db"结合使用时，表示当前的图片fid
+                    当与参数"-images" 或者自动搜索时，表示当前图片从0开始的索引
+  -help             显示本帮助信息
+
+Example:
+   ImageViewer.exe -ipath="d:\a\b" -images="${ipath}a.png|b.png"
+   ImageViewer.exe -ipath="d:\a\b" -ifilter="*.jpg|*.png"
+   ImageViewer.exe -db="d:\msg.db"
+   ImageViewer.exe -db="d:\msg.db" -fid=234235235232423432432
+      </translation>
+    </message>
     <!--没有上下文的翻译-->
   </context>
   <context name="messagebox">

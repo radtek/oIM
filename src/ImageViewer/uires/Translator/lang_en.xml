@@ -1,7 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <language name="日本语" guid="{23D209C4-2268-49A2-B7F4-8CB57D908D47}">
   <context>
-    <!--没有上下文的翻译-->
+     <message>
+      <source>usage_help</source>
+      <translation>Help</translation>
+    </message>
+    <message>
+      <source>usages</source>
+      <translation>
+ImageViewer.exe [options]
+options:
+  -ipath="path"    Replace the ${ipath} in images, MUST be at before of "-images"
+  -ifilter="filter" The filter with ipath auto search image, MUST be at after of "-ipath', eg.: *.png|*.jpg
+  -images="image[|image][|...]" The image file list, splited by '|';
+                    Will add "${ipath}" when not any path item;
+                    Will replaced ".\" with ${ipath}
+  -db="dbfile"      The msg.db file path
+  -fid=fid          The current image's fid when use '-db', or index based 0 when use '-images'
+  -help             Show this help
+
+Example:
+   ImageViewer.exe -ipath="d:\a\b" -images="${ipath}a.png|${ipath}b.png"
+   ImageViewer.exe -ipath="d:\a\b" -ifilter="*.jpg"
+   ImageViewer.exe -db="d:\msg.db"
+   ImageViewer.exe -db="d:\msg.db" -fid=234235235232423432432
+      </translation>
+    </message>
   </context>
   <context name="messagebox">
     <message>
