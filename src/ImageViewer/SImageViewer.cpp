@@ -259,7 +259,7 @@ namespace SOUI
 		}
 	}
 
-	BOOL  SImageViewer::Switch(int iSelect, BOOL bMoive)
+	BOOL  SImageViewer::Switch(int iSelect, BOOL bMoive, LPSIZE pSize)
 	{
 		if (iSelect >= (int)m_vectImage.size() || iSelect < 0)
 			return FALSE;
@@ -277,6 +277,9 @@ namespace SOUI
 		{	// ²»ÏÔÊ¾¶¯»­
 			m_iSelected = iSelect;
 			m_pImgSel = LOADIMAGE(_T("file"), m_vectImage[m_iSelected]);
+			if ( pSize )
+				*pSize = m_pImgSel->Size();
+
 			return TRUE;
 		}
 

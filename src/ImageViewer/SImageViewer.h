@@ -46,7 +46,7 @@ namespace SOUI
 	public:
 		SImageViewer();
 		virtual ~SImageViewer();
-		BOOL	Switch(int iSelect, BOOL bMoive = TRUE);
+		BOOL	Switch(int iSelect, BOOL bMoive = TRUE, LPSIZE pSize = NULL);
 		BOOL	InitImages(VectImage& vectImg, int i32Sel = -1);
 		BOOL	InsertImage(const SStringT& szImage, int iTo = -1);
 
