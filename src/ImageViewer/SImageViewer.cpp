@@ -306,31 +306,39 @@ namespace SOUI
 	void SImageViewer::OnLButtonDown(UINT nFlags, CPoint point)
 	{
 		__super::OnLButtonDown(nFlags,point);
-		m_ptMoveStart= point;
-		m_ptCenterOld= m_ptCenter;
-		SetCapture();
+		if ( m_bImgMovable )
+		{
+			m_ptMoveStart= point;
+			m_ptCenterOld= m_ptCenter;
+			SetCapture();
+		}
 	}
 
 	void SImageViewer::OnMouseMove(UINT nFlags,CPoint pt)
 	{
 		__super::OnMouseMove(nFlags,pt);
-		if ( m_bImgMovable && (nFlags & MK_LBUTTON) )
+		BOOL bLPress = (nFlags & MK_LBUTTON);
+		if ( m_bImgMovable && bLPress )
 		{
 			m_ptCenter.x = m_ptCenterOld.x - (LONG)((pt.x - m_ptMoveStart.x) / m_fRatio);
 			m_ptCenter.y = m_ptCenterOld.y - (LONG)((pt.y - m_ptMoveStart.y) / m_fRatio);
 			Invalidate();
 		}
+
 	}
 
 	void SImageViewer::OnLButtonUp(UINT nFlags, CPoint pt)
 	{
 		__super::OnLButtonUp(nFlags,pt);
-		ReleaseCapture();
-		if ( m_bImgMovable && !(m_ptCenter.x == m_ptCenterOld.x && m_ptCenter.y == m_ptCenterOld.y))
+		if ( m_bImgMovable )
 		{
-			m_ptCenter.x = m_ptCenterOld.x - (LONG)((pt.x - m_ptMoveStart.x) / m_fRatio);
-			m_ptCenter.y = m_ptCenterOld.y - (LONG)((pt.y - m_ptMoveStart.y) / m_fRatio);
-			Invalidate();
+			ReleaseCapture();
+			if (!(m_ptCenter.x == m_ptCenterOld.x && m_ptCenter.y == m_ptCenterOld.y))
+			{
+				m_ptCenter.x = m_ptCenterOld.x - (LONG)((pt.x - m_ptMoveStart.x) / m_fRatio);
+				m_ptCenter.y = m_ptCenterOld.y - (LONG)((pt.y - m_ptMoveStart.y) / m_fRatio);
+				Invalidate();
+			}
 		}
 	}
 
