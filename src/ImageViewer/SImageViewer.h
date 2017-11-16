@@ -1,15 +1,10 @@
 #pragma once
-
-/**
-by 多点免费WIFI
-*/
 #include <core/Swnd.h>
 
 namespace SOUI
 {
 #define EVT_RATIO_CHANGED	(EVT_EXTERNAL_BEGIN+120)
 #define EVT_IMGPOS_CHANGED	(EVT_EXTERNAL_BEGIN+121)
-
 
 	class EventRatioChanged : public TplEventArgs<EventRatioChanged>
 	{
@@ -71,7 +66,6 @@ namespace SOUI
 		CPoint	m_ptCenterOld;		// 鼠标按下时原来的中心位置
 		CPoint	m_ptCenter;			// 中心位置
 		CRect	m_rtImgSrc;			// 图片显示的区域
-//		CRect m_rtDrawDst;
 		 
 	protected:
 		void OnPaint(IRenderTarget *pRT);
@@ -96,7 +90,7 @@ namespace SOUI
 		SOUI_MSG_MAP_END()
 
 		SOUI_ATTRS_BEGIN()
-			ATTR_CUSTOM(L"images",OnAttrImages)
+		//	ATTR_CUSTOM(L"images",OnAttrImages)
 		SOUI_ATTRS_END()
 	};
 }
