@@ -6,8 +6,6 @@
 
 namespace SOUI
 {
-#define SAFE_RELEASE_(P) do { if ( P ) P->Release(); P = NULL; } while(0)
-
 	SImageViewer::SImageViewer()
 		: m_pImgSel(NULL)
 		, m_pImgNext(NULL)
@@ -240,9 +238,9 @@ namespace SOUI
 			pRT->DrawBitmapEx(&rtDst, m_pImgSel, &m_rtImgSrc, EM_STRETCH);
 			SAFE_RELEASE_(m_pImgNext);	// 上/下一张图片，过渡动画时才需要
 
-			if ( !m_rtImgSrc.EqualRect(m_rtImgSrc) )
+			if ( !m_rtImgSrc.EqualRect(szOld) )
 			{	// 图片的显示区域变了，才通知
-				EventImagePosChanged evt(this, m_bImgMovable, m_rtImgSrc, m_pImgSel);
+				EventImagePosChanged evt(this, m_bImgMovable, m_rtImgSrc, m_fRatio, m_pImgSel);
 				FireEvent(evt);
 			}
 		}
@@ -376,8 +374,8 @@ namespace SOUI
 				m_fRatio = i32Ratio / 10.0f;
 			}
 
-			if ( m_fRatio > 20.0f )
-				m_fRatio = 20.0f;	// Max as 2000%
+			if ( m_fRatio > 16.0f )
+				m_fRatio = 16.0f;	// Max as 1600%
 		}
 
 		Invalidate();

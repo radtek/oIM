@@ -3,6 +3,8 @@
 
 namespace SOUI
 {
+#define SAFE_RELEASE_(P) do { if ( P ) P->Release(); P = NULL; } while(0)
+
 #define EVT_RATIO_CHANGED	(EVT_EXTERNAL_BEGIN+120)
 #define EVT_IMGPOS_CHANGED	(EVT_EXTERNAL_BEGIN+121)
 
@@ -21,15 +23,17 @@ namespace SOUI
 	{
 		SOUI_CLASS_NAME(EventRatioChanged, L"on_image_pos_changed")
 	public:
-		EventImagePosChanged(SObject *pSender, BOOL bShow, const CRect& rtImgPos, IBitmap* pImg = NULL)
+		EventImagePosChanged(SObject *pSender, BOOL bShow, const CRect& rtImgPos, float fRatio, IBitmap* pImg = NULL)
 			: TplEventArgs<EventImagePosChanged>(pSender)
 			, m_pImg(pImg)
 			, m_bShow(bShow)
+			, m_fRatio(fRatio)
 			, m_rtImgPos(rtImgPos){}
 		enum {EventID=EVT_IMGPOS_CHANGED};
 		CRect	 m_rtImgPos;
 		IBitmap* m_pImg;
 		BOOL	 m_bShow;
+		float	 m_fRatio;
 	};
 
 	class SImageViewer : public SWindow

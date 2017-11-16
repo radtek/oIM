@@ -15,6 +15,6 @@
 	<imglist name="skin.btn.left" src="IMG:BTN_LEFT" states="3" />
 	<imglist name="skin.btn.right" src="IMG:BTN_RIGHT" states="3" />
 
-	<imglist name="skin.test1" src="IMG:IMG_TEST1" />
+	<imgframe name="skin.pos" src="IMG:IMG_POS" margin="2,2,2,2" />
 
 </skin>
