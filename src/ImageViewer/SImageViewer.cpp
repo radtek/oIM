@@ -439,7 +439,7 @@ namespace SOUI
 	BOOL SImageViewer::InitImages(VectImage& vectImg, int i32Sel)
 	{
 		m_vectImage.swap(vectImg);
-		if ( i32Sel >= 0 && i32Sel < m_vectImage.size() )
+		if ( i32Sel >= 0 && i32Sel < (int)m_vectImage.size() )
 			return Switch(i32Sel, FALSE);
 
 		return TRUE;

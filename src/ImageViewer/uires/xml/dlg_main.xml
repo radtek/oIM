@@ -13,9 +13,9 @@
       </window>
 
       <!-- 窗口标题，需要在这个位置，才不会因为 【下一张】位置在上面，而点击不了 -->
-      <caption pos="0,0,-1,@40dp">
+      <!-- <caption name="titlebar" pos="0,0,-1,@40dp"> -->
         <imgbtn name="btn_close" class="cls_sys_close" pos="-40dp,0dp,@40dp,@40dp" />
-      </caption>
+      <!-- </caption> -->
 
       <!-- 放大率 -->
       <text name="txt_ratio" class="cls_btn_ratio" pos="|-50dp,|-20dp,@100dp,@38dp" text="100%" />

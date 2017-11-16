@@ -47,6 +47,7 @@ namespace SOUI
 		size_t	GetCount();
 		float   GetRatio()const { return m_fRatio; }
 		CRect	GetImgSrcPos()const { return m_rtImgSrc; }
+		BOOL	IsImgMovable() const { return m_bImgMovable; }
 		RECT	GetDefaultDest(const CRect& rtWnd, const SIZE& szImg, float* pfRatio = NULL);
 	 
 	protected:
@@ -62,7 +63,7 @@ namespace SOUI
 
 	protected:
 		SOUI_MSG_MAP_BEGIN()	
-			MSG_WM_PAINT_EX(OnPaint)    //窗口绘制消息
+			MSG_WM_PAINT_EX(OnPaint)
 			MSG_WM_MOUSEWHEEL(OnMouseWheel)
 			MSG_WM_LBUTTONDOWN(OnLButtonDown)
 			MSG_WM_LBUTTONUP(OnLButtonUp)
