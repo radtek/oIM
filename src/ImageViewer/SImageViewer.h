@@ -38,10 +38,8 @@ namespace SOUI
 	public:
 		SImageViewer();
 		virtual ~SImageViewer();
-
-	public:
 		BOOL	Switch(int iSelect, BOOL bMoive = TRUE);
-		BOOL	InitImages(const VectImage& vectImg, int i32Sel);
+		BOOL	InitImages(VectImage& vectImg, int i32Sel = -1);
 		BOOL	InsertImage(const SStringT& szImage, int iTo = -1);
 
 		void	RemoveAll();
@@ -50,6 +48,30 @@ namespace SOUI
 		float   GetRatio()const { return m_fRatio; }
 		CRect	GetImgSrcPos()const { return m_rtImgSrc; }
 		RECT	GetDefaultDest(const CRect& rtWnd, const SIZE& szImg, float* pfRatio = NULL);
+	 
+	protected:
+		void OnPaint(IRenderTarget *pRT);
+		void OnLButtonDown(UINT nFlags, CPoint point);
+		void OnLButtonUp(UINT nFlags, CPoint point);
+		void OnMouseMove(UINT nFlags,CPoint pt);
+		BOOL OnMouseWheel(UINT nFlags, short zDelta, CPoint pt);
+		void OnTimer(char nIDEvent);
+		
+		BOOL DrawImage(IRenderTarget *pRT, IBitmap *pBmp, CRect& rcWnd, int i32Index);
+		RECT GetDest(const CRect& rtWnd, const SIZE& szImg, CRect& rtImg);
+
+	protected:
+		SOUI_MSG_MAP_BEGIN()	
+			MSG_WM_PAINT_EX(OnPaint)    //窗口绘制消息
+			MSG_WM_MOUSEWHEEL(OnMouseWheel)
+			MSG_WM_LBUTTONDOWN(OnLButtonDown)
+			MSG_WM_LBUTTONUP(OnLButtonUp)
+			MSG_WM_MOUSEMOVE(OnMouseMove)
+			MSG_WM_TIMER_EX(OnTimer)
+		SOUI_MSG_MAP_END()
+
+		SOUI_ATTRS_BEGIN()
+		SOUI_ATTRS_END()
 
 	private:
 		VectImage m_vectImage;		// 图片列表（所有图片的全路径，不能全部加载，可能会造成内存不足）
@@ -66,31 +88,5 @@ namespace SOUI
 		CPoint	m_ptCenterOld;		// 鼠标按下时原来的中心位置
 		CPoint	m_ptCenter;			// 中心位置
 		CRect	m_rtImgSrc;			// 图片显示的区域
-		 
-	protected:
-		void OnPaint(IRenderTarget *pRT);
-		void OnLButtonDown(UINT nFlags, CPoint point);
-		void OnLButtonUp(UINT nFlags, CPoint point);
-		void OnMouseMove(UINT nFlags,CPoint pt);
-		BOOL OnMouseWheel(UINT nFlags, short zDelta, CPoint pt);
-		void OnTimer(char nIDEvent);
-		HRESULT OnAttrImages(const SStringT& strValue,BOOL bLoading);
-		
-		BOOL DrawImage(IRenderTarget *pRT, IBitmap *pBmp, CRect& rcWnd, int i32Index);
-		RECT GetDest(const CRect& rtWnd, const SIZE& szImg, CRect& rtImg);
-
-	protected:
-		SOUI_MSG_MAP_BEGIN()	
-			MSG_WM_PAINT_EX(OnPaint)    //窗口绘制消息
-			MSG_WM_MOUSEWHEEL(OnMouseWheel)
-			MSG_WM_LBUTTONDOWN(OnLButtonDown)
-			MSG_WM_LBUTTONUP(OnLButtonUp)
-			MSG_WM_MOUSEMOVE(OnMouseMove)
-			MSG_WM_TIMER_EX(OnTimer)
-		SOUI_MSG_MAP_END()
-
-		SOUI_ATTRS_BEGIN()
-		//	ATTR_CUSTOM(L"images",OnAttrImages)
-		SOUI_ATTRS_END()
 	};
 }

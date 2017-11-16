@@ -235,11 +235,11 @@ namespace SOUI
 		CRect rtWnd = GetClientRect();
 		if ( m_iMoveWidth == 0 )
 		{	// 显示当前图片
-			//IBitmap *pBmp = m_lstImages[m_iSelected];
 			CRect szOld = m_rtImgSrc;
 			RECT  rtDst = GetDest(rtWnd, m_pImgSel->Size(), m_rtImgSrc);
 			pRT->DrawBitmapEx(&rtDst, m_pImgSel, &m_rtImgSrc, EM_STRETCH);
-			
+			SAFE_RELEASE_(m_pImgNext);	// 上/下一张图片，过渡动画时才需要
+
 			if ( !m_rtImgSrc.EqualRect(m_rtImgSrc) )
 			{	// 图片的显示区域变了，才通知
 				EventImagePosChanged evt(this, m_bImgMovable, m_rtImgSrc, m_pImgSel);
@@ -428,10 +428,13 @@ namespace SOUI
 		return TRUE;
 	}
 
-	BOOL SImageViewer::InitImages(const VectImage& vectImg, int i32Sel)
+	BOOL SImageViewer::InitImages(VectImage& vectImg, int i32Sel)
 	{
-		m_vectImage.assign(vectImg.begin(), vectImg.end());
-		return Switch(i32Sel >= 0 ? i32Sel : 0, FALSE);
+		m_vectImage.swap(vectImg);
+		if ( i32Sel >= 0 && i32Sel < m_vectImage.size() )
+			return Switch(i32Sel, FALSE);
+
+		return TRUE;
 	}
 
 	void SImageViewer::RemoveAll()
@@ -444,11 +447,6 @@ namespace SOUI
 	int SImageViewer::GetCurSel()
 	{
 		return m_iSelected;
-	}
-
-	HRESULT SImageViewer::OnAttrImages(const SStringT& strValue,BOOL bLoading)
-	{
-		return bLoading?S_OK:S_FALSE;
 	}
 
 	size_t SImageViewer::GetCount()
