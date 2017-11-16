@@ -37,12 +37,12 @@ namespace SOUI
 		BOOL	 m_bShow;
 	};
 
-	class SImageSwitcher : public SWindow
+	class SImageViewer : public SWindow
 	{
-		SOUI_CLASS_NAME(SImageSwitcher,L"imageSwitcher")
+		SOUI_CLASS_NAME(SImageViewer,L"imageViewer")
 	public:
-		SImageSwitcher();
-		virtual ~SImageSwitcher();
+		SImageViewer();
+		virtual ~SImageViewer();
 
 	public:
 		BOOL	Switch(int iSelect, BOOL bMoive = TRUE);

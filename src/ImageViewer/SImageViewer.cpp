@@ -1,5 +1,5 @@
 #include "StdAfx.h"
-#include "SImageSwitcher.h"
+#include "SImageViewer.h"
 #include <helper/SplitString.h>
 
 #define TIMER_MOVE		1
@@ -8,7 +8,7 @@ namespace SOUI
 {
 #define SAFE_RELEASE_(P) do { if ( P ) P->Release(); P = NULL; } while(0)
 
-	SImageSwitcher::SImageSwitcher()
+	SImageViewer::SImageViewer()
 		: m_pImgSel(NULL)
 		, m_pImgNext(NULL)
 		, m_iMoveWidth(0)
@@ -22,12 +22,12 @@ namespace SOUI
 
 	}
 
-	SImageSwitcher::~SImageSwitcher()
+	SImageViewer::~SImageViewer()
 	{
 		RemoveAll();
 	}
 
-	RECT SImageSwitcher::GetDest(const CRect& rtWnd, const SIZE& szImg, CRect& rtImg)
+	RECT SImageViewer::GetDest(const CRect& rtWnd, const SIZE& szImg, CRect& rtImg)
 	{
 		m_bImgMovable = FALSE;	// 默认不可以移动
 		if ( m_ptCenter.x == 0 || m_ptCenter.y == 0 )
@@ -167,7 +167,7 @@ namespace SOUI
 		return rtDst;
 	}
 
-	RECT SImageSwitcher::GetDefaultDest(const CRect& rtWnd, const SIZE& szImg, float* pfRatio)
+	RECT SImageViewer::GetDefaultDest(const CRect& rtWnd, const SIZE& szImg, float* pfRatio)
 	{	// 计算默认的目标位置
 		RECT rtDst = { 0 };
 
@@ -212,7 +212,7 @@ namespace SOUI
 		return rtDst;
 	}
 
-	BOOL SImageSwitcher::DrawImage(IRenderTarget *pRT, IBitmap *pBmp, CRect& rtWnd, int i32Index)
+	BOOL SImageViewer::DrawImage(IRenderTarget *pRT, IBitmap *pBmp, CRect& rtWnd, int i32Index)
 	{
 		if ( !pBmp )
 			return FALSE;
@@ -227,7 +227,7 @@ namespace SOUI
 		return TRUE;
 	}
 
-	void SImageSwitcher::OnPaint(IRenderTarget *pRT)
+	void SImageViewer::OnPaint(IRenderTarget *pRT)
 	{
 		if ( m_pImgSel == NULL )
 			return;
@@ -261,7 +261,7 @@ namespace SOUI
 		}
 	}
 
-	BOOL  SImageSwitcher::Switch(int iSelect, BOOL bMoive)
+	BOOL  SImageViewer::Switch(int iSelect, BOOL bMoive)
 	{
 		if (iSelect >= (int)m_vectImage.size() || iSelect < 0)
 			return FALSE;
@@ -291,7 +291,7 @@ namespace SOUI
 		m_pImgSel = LOADIMAGE(_T("file"), m_vectImage[m_iSelected]);
 		int i32Next = m_iMoveWidth > 0 ? m_iSelected - 1 : m_iSelected + 1;
 		if ( i32Next >= 0 && i32Next < (int)m_vectImage.size() )
-			m_pImgNext = LOADIMAGE(_T("file"), m_vectImage[m_iSelected - 1]);
+			m_pImgNext = LOADIMAGE(_T("file"), m_vectImage[i32Next]);
 
 		m_iTimesMove = (m_iMoveWidth > 0 ? m_iMoveWidth : -m_iMoveWidth) / 30;
 		if(m_iTimesMove < 20)
@@ -303,7 +303,7 @@ namespace SOUI
 		return TRUE;
 	}
 
-	void SImageSwitcher::OnLButtonDown(UINT nFlags, CPoint point)
+	void SImageViewer::OnLButtonDown(UINT nFlags, CPoint point)
 	{
 		__super::OnLButtonDown(nFlags,point);
 		m_ptMoveStart= point;
@@ -311,7 +311,7 @@ namespace SOUI
 		SetCapture();
 	}
 
-	void SImageSwitcher::OnMouseMove(UINT nFlags,CPoint pt)
+	void SImageViewer::OnMouseMove(UINT nFlags,CPoint pt)
 	{
 		__super::OnMouseMove(nFlags,pt);
 		if ( m_bImgMovable && (nFlags & MK_LBUTTON) )
@@ -322,7 +322,7 @@ namespace SOUI
 		}
 	}
 
-	void SImageSwitcher::OnLButtonUp(UINT nFlags, CPoint pt)
+	void SImageViewer::OnLButtonUp(UINT nFlags, CPoint pt)
 	{
 		__super::OnLButtonUp(nFlags,pt);
 		ReleaseCapture();
@@ -334,7 +334,7 @@ namespace SOUI
 		}
 	}
 
-	BOOL SImageSwitcher::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
+	BOOL SImageViewer::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
 	{
 		BOOL bRet	= __super::OnMouseWheel(nFlags, zDelta, pt);
 		BOOL bFixed = GetAsyncKeyState(VK_CONTROL);	// Ctrl + Wheel
@@ -381,7 +381,7 @@ namespace SOUI
 		return bRet;
 	}
 
-	void SImageSwitcher::OnTimer(char nIDEvent)
+	void SImageViewer::OnTimer(char nIDEvent)
 	{
 		if ( nIDEvent != TIMER_MOVE )
 			return SetMsgHandled(FALSE);
@@ -418,7 +418,7 @@ namespace SOUI
 		}
 	}
 
-	BOOL SImageSwitcher::InsertImage(const SStringT& szImage, int iTo)
+	BOOL SImageViewer::InsertImage(const SStringT& szImage, int iTo)
 	{
 		if( iTo < 0 || iTo >= (int)m_vectImage.size() )
 			m_vectImage.push_back(szImage);
@@ -428,30 +428,30 @@ namespace SOUI
 		return TRUE;
 	}
 
-	BOOL SImageSwitcher::InitImages(const VectImage& vectImg, int i32Sel)
+	BOOL SImageViewer::InitImages(const VectImage& vectImg, int i32Sel)
 	{
 		m_vectImage.assign(vectImg.begin(), vectImg.end());
 		return Switch(i32Sel >= 0 ? i32Sel : 0, FALSE);
 	}
 
-	void SImageSwitcher::RemoveAll()
+	void SImageViewer::RemoveAll()
 	{
 		m_vectImage.clear();
 		SAFE_RELEASE_(m_pImgSel);
 		SAFE_RELEASE_(m_pImgNext);
 	}
 
-	int SImageSwitcher::GetCurSel()
+	int SImageViewer::GetCurSel()
 	{
 		return m_iSelected;
 	}
 
-	HRESULT SImageSwitcher::OnAttrImages(const SStringT& strValue,BOOL bLoading)
+	HRESULT SImageViewer::OnAttrImages(const SStringT& strValue,BOOL bLoading)
 	{
 		return bLoading?S_OK:S_FALSE;
 	}
 
-	size_t SImageSwitcher::GetCount()
+	size_t SImageViewer::GetCount()
 	{
 		return m_vectImage.size();
 	}

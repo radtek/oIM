@@ -205,7 +205,7 @@
   <ItemGroup>
     <ClCompile Include="ImageViewer.cpp" />
     <ClCompile Include="MainDlg.cpp" />
-    <ClCompile Include="SImageSwitcher.cpp" />
+    <ClCompile Include="SImageViewer.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -219,7 +219,7 @@
   <ItemGroup>
     <ClInclude Include="MainDlg.h" />
     <ClInclude Include="resource.h" />
-    <ClInclude Include="SImageSwitcher.h" />
+    <ClInclude Include="SImageViewer.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
