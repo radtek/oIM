@@ -460,7 +460,7 @@ namespace SOUI
 		return m_vectImage.size();
 	}
 
-	CPoint SImageViewer::Move(const CPoint& ptCenter, int i32Oper)
+	CPoint SImageViewer::Move(int i32Oper, LPPOINT ptCenter)
 	{
 		switch( i32Oper )
 		{
@@ -468,17 +468,11 @@ namespace SOUI
 			m_ptCenterOld = m_ptCenter;
 			return m_ptCenterOld;
 		case MOVE_POS_MOVING:
-			if ( m_ptCenter != ptCenter )
-			{
-				m_ptCenter = ptCenter;
-				Invalidate();
-			}
-			return m_ptCenter;
 		case MOVE_POS_STOP:
-			if ( m_ptCenter != ptCenter )
+			if ( ptCenter && (m_ptCenter.x != ptCenter->x || m_ptCenter.y != ptCenter->y) )
 			{
-			//	m_ptCenter = ptCenter;
-			//	Invalidate();
+				m_ptCenter.SetPoint(ptCenter->x, ptCenter->y);
+				Invalidate();
 			}
 			return m_ptCenter;
 		default:
@@ -486,6 +480,7 @@ namespace SOUI
 			break;
 		}
 
+		return m_ptCenter;
 	}
 
 }

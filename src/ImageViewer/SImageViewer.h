@@ -57,7 +57,7 @@ namespace SOUI
 		CRect	GetImgSrcPos()const { return m_rtImgSrc; }
 		BOOL	IsImgMovable() const { return m_bImgMovable; }
 		RECT	GetDefaultDest(const CRect& rtWnd, const SIZE& szImg, float* pfRatio = NULL);
-		CPoint	Move(const CPoint& ptCenter, int i32Oper);
+		CPoint	Move(int i32Oper, LPPOINT ptCenter = NULL);
 
 	protected:
 		void OnPaint(IRenderTarget *pRT);
