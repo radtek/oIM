@@ -5,6 +5,10 @@ namespace SOUI
 {
 #define SAFE_RELEASE_(P) do { if ( P ) P->Release(); P = NULL; } while(0)
 
+#define MOVE_POS_START		1	// 开始移动
+#define MOVE_POS_MOVING		2	// 移动过程中
+#define MOVE_POS_STOP		3	// 移动完成
+
 #define EVT_RATIO_CHANGED	(EVT_EXTERNAL_BEGIN+120)
 #define EVT_IMGPOS_CHANGED	(EVT_EXTERNAL_BEGIN+121)
 
@@ -53,7 +57,8 @@ namespace SOUI
 		CRect	GetImgSrcPos()const { return m_rtImgSrc; }
 		BOOL	IsImgMovable() const { return m_bImgMovable; }
 		RECT	GetDefaultDest(const CRect& rtWnd, const SIZE& szImg, float* pfRatio = NULL);
-	 
+		CPoint	Move(const CPoint& ptCenter, int i32Oper);
+
 	protected:
 		void OnPaint(IRenderTarget *pRT);
 		void OnLButtonDown(UINT nFlags, CPoint point);

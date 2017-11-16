@@ -460,5 +460,32 @@ namespace SOUI
 		return m_vectImage.size();
 	}
 
+	CPoint SImageViewer::Move(const CPoint& ptCenter, int i32Oper)
+	{
+		switch( i32Oper )
+		{
+		case MOVE_POS_START:
+			m_ptCenterOld = m_ptCenter;
+			return m_ptCenterOld;
+		case MOVE_POS_MOVING:
+			if ( m_ptCenter != ptCenter )
+			{
+				m_ptCenter = ptCenter;
+				Invalidate();
+			}
+			return m_ptCenter;
+		case MOVE_POS_STOP:
+			if ( m_ptCenter != ptCenter )
+			{
+			//	m_ptCenter = ptCenter;
+			//	Invalidate();
+			}
+			return m_ptCenter;
+		default:
+			SASSERT(FALSE);
+			break;
+		}
+
+	}
 
 }
