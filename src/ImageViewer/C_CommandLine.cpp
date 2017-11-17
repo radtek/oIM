@@ -201,9 +201,9 @@ BOOL C_CommandLine::Parse(LPWSTR* pszArgs, int nArgs)
 		{
 			SStringT szValue = GetParamValue(pszArg, pszNext, i32Index);
 			if ( szValue.CompareNoCase(_T("cn")) == 0 )
-				m_szLang = szValue;
+				m_szLang = GETSTRING(R.string.lang_cn);
 			else if ( szValue.CompareNoCase(_T("en")) == 0 )
-				m_szLang = szValue;
+				m_szLang = GETSTRING(R.string.lang_en);
 			else 
 				return FALSE;
 		}
