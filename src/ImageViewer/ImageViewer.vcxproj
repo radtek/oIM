@@ -203,6 +203,7 @@
     <None Include="uires\xml\dlg_main.xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="C_CommandLine.cpp" />
     <ClCompile Include="ImageViewer.cpp" />
     <ClCompile Include="MainDlg.cpp" />
     <ClCompile Include="SImageViewer.cpp" />
@@ -217,6 +218,7 @@
     <ResourceCompile Include="ImageViewer.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="C_CommandLine.h" />
     <ClInclude Include="MainDlg.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="SImageViewer.h" />
