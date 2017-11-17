@@ -379,8 +379,8 @@ namespace SOUI
 				m_fRatio = i32Ratio / 10.0f;
 			}
 
-			if ( m_fRatio > 16.0f )
-				m_fRatio = 16.0f;	// Max as 1600%
+			if ( m_fRatio > 20.0f )
+				m_fRatio = 20.0f;	// Max as 2000%
 		}
 
 		Invalidate();
