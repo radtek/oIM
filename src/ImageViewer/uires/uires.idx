@@ -20,14 +20,29 @@
     <file name="SYS_BKGND" path="image\sys_bkgnd.png" />
     <file name="IMG_ERROR" path="image\error.png" />
     <file name="IMG_RATIO" path="image\ratio.png" />
-    <file name="IMG_THUMB" path="image\thumb.png" />
-    <file name="IMG_POS" path="image\pos.png" />
+
+    <!-- 地图 -->
+    <file name="THUMB_BKGND" path="image\thumb.png" />
+    <file name="THUMB_POS" path="image\pos.png" />
+    <file name="THUMB_SHOW" path="image\thumb_show.png"/>
+    <file name="THUMB_HIDE" path="image\thumb_hide.png"/>
+
     <!-- 按钮 -->
     <file name="BTN_PREV" path="image\btn_prev.png" />
     <file name="BTN_NEXT" path="image\btn_next.png" />
     <file name="BTN_LEFT" path="image\btn_left.png" />
     <file name="BTN_RIGHT" path="image\btn_right.png" />
 
+    <!-- 工具栏 -->
+    <file name="TOOLBAR_1TO1" path="image\1to1.png"/>
+    <file name="TOOLBAR_MAX" path="image\max.png"/>
+    <file name="TOOLBAR_RESTORE" path="image\restore.png"/>
+    <file name="TOOLBAR_ZOOMOUT" path="image\zoomout.png"/>
+    <file name="TOOLBAR_ZOOMIN" path="image\zoomin.png"/>
+    <file name="TOOLBAR_ROTATE" path="image\rotate.png"/>
+    <file name="TOOLBAR_SAVEAS" path="image\saveas.png"/>
+    <file name="TOOLBAR_HIDE" path="image\toolbar_hide.png"/>
+    <file name="TOOLBAR_SHOW" path="image\toolbar_show.png"/>
   </IMG>
 
   <ICON>

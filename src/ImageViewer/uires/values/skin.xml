@@ -1,20 +1,34 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
 <skin>
+	<!-- 系统图片 -->
 	<imglist name="skin.traymenu.icons" src="IMG:traymenu_icons" states="9"/>
 	<imglist name="skin.sys.close" src="IMG:SYS_CLOSE" states="3" />
 	<imgframe name="skin.sys.bkgnd" src="IMG:SYS_BKGND" margin="5,3,5,7" />
-
-
-	<imglist name="skin.ratio" src="IMG:IMG_RATIO" />
-	<imglist name="skin.thumb" src="IMG:IMG_THUMB" />
 	<imglist name="skin.error" src="IMG:IMG_ERROR" />
+	<imglist name="skin.ratio" src="IMG:IMG_RATIO" />
 
+	<!-- 地图 -->
+	<imglist name="skin.thumb.bkgnd" src="IMG:THUMB_BKGND" />
+	<imgframe name="skin.thumb.pos" src="IMG:THUMB_POS" margin="2,2,2,2" />
+	<imglist name="skin.thumb.show" src="IMG:THUMB_SHOW"/>
+	<imglist name="skin.thumb.hide" src="IMG:THUMB_HIDE"/>
+
+	<!-- 按钮 -->
 	<imglist name="skin.btn.prev" src="IMG:BTN_PREV" states="4" />
 	<imglist name="skin.btn.next" src="IMG:BTN_NEXT" states="4" />
 	<imglist name="skin.btn.left" src="IMG:BTN_LEFT" states="3" />
 	<imglist name="skin.btn.right" src="IMG:BTN_RIGHT" states="3" />
 
-	<imgframe name="skin.pos" src="IMG:IMG_POS" margin="2,2,2,2" />
+	<!-- 工具栏 -->
+	<imglist name="skin.toolbar.1to1" src="IMG:TOOLBAR_1TO1" states="4" />
+	<imglist name="skin.toolbar.max" src="IMG:TOOLBAR_MAX" states="3"/>
+	<imglist name="skin.toolbar.restore" src="IMG:TOOLBAR_RESTORE" states="3"/>
+	<imglist name="skin.toolbar.zoomout" src="IMG:TOOLBAR_ZOOMOUT" states="4"/>
+	<imglist name="skin.toolbar.zoomin" src="IMG:TOOLBAR_ZOOMIN" states="4"/>
+	<imglist name="skin.toolbar.rotate" src="IMG:TOOLBAR_ROTATE" states="4"/>
+	<imglist name="skin.toolbar.saveas" src="IMG:TOOLBAR_SAVEAS" states="4"/>
+	<imglist name="skin.toolbar.hide" src="IMG:TOOLBAR_HIDE" states="3"/>
+	<imglist name="skin.toolbar.show" src="IMG:TOOLBAR_SHOW" states="3"/>
 
 </skin>

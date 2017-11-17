@@ -15,9 +15,9 @@
       <text name="txt_ratio" class="cls_btn_ratio" pos="|-50dp,|-20dp,@100dp,@38dp" text="100%" />
 
       <!-- 缩略图 -->
-      <window name="thumb_view" skin="skin.thumb" pos="-224dp,-144dp,@224dp,@144dp">
+      <window name="thumb_view" skin="skin.thumb.bkgnd" pos="-224dp,-144dp,@224dp,@144dp">
         <img name="img_thumb" pos="0,0,-0,-0" />
-        <img name="img_pos" pos="0,0,-0,-0" skin="skin.pos" />
+        <img name="img_pos" pos="0,0,-0,-0" skin="skin.thumb.pos" />
       </window>
     </imageViewer>
 
