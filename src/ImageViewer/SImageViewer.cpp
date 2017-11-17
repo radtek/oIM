@@ -261,6 +261,8 @@ namespace SOUI
 
 	BOOL  SImageViewer::Switch(int iSelect, BOOL bMoive, LPSIZE pSize)
 	{
+#define LOADIMAGE_(N, R) do {R=LOADIMAGE(_T("file"), N); if (R==NULL) R=LOADIMAGE(_T("IMG"), _T("IMG_ERROR")); }while(0)
+
 		if (iSelect >= (int)m_vectImage.size() || iSelect < 0)
 			return FALSE;
 
@@ -276,7 +278,7 @@ namespace SOUI
 		if ( bMoive == FALSE )
 		{	// 不显示动画
 			m_iSelected = iSelect;
-			m_pImgSel = LOADIMAGE(_T("file"), m_vectImage[m_iSelected]);
+			LOADIMAGE_(m_vectImage[m_iSelected], m_pImgSel);
 			if ( pSize )
 				*pSize = m_pImgSel->Size();
 
@@ -289,10 +291,10 @@ namespace SOUI
 		// 更新加载的图片
 		SAFE_RELEASE_(m_pImgSel);
 		SAFE_RELEASE_(m_pImgNext);
-		m_pImgSel = LOADIMAGE(_T("file"), m_vectImage[m_iSelected]);
+		LOADIMAGE_(m_vectImage[m_iSelected], m_pImgSel);
 		int i32Next = m_iMoveWidth > 0 ? m_iSelected - 1 : m_iSelected + 1;
 		if ( i32Next >= 0 && i32Next < (int)m_vectImage.size() )
-			m_pImgNext = LOADIMAGE(_T("file"), m_vectImage[i32Next]);
+			LOADIMAGE_(m_vectImage[i32Next], m_pImgNext);
 
 		m_iTimesMove = (m_iMoveWidth > 0 ? m_iMoveWidth : -m_iMoveWidth) / 30;
 		if(m_iTimesMove < 20)
