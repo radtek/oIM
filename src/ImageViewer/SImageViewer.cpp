@@ -275,34 +275,34 @@ namespace SOUI
 		FireEvent(evt);				// 隐藏地图
 
 		m_ptCenter.SetPoint(0, 0);	// Reset
-		if ( bMoive == FALSE )
-		{	// 不显示动画
-			m_iSelected = iSelect;
-			LOADIMAGE_(m_vectImage[m_iSelected], m_pImgSel);
-			if ( pSize )
-				*pSize = m_pImgSel->Size();
-
-			return TRUE;
-		}
-
-		m_iMoveWidth = (iSelect-m_iSelected)*rcWnd.Width();
+		m_iMoveWidth = (m_iSelected - iSelect)*rcWnd.Width();
 		m_iSelected = iSelect;
 
 		// 更新加载的图片
 		SAFE_RELEASE_(m_pImgSel);
 		SAFE_RELEASE_(m_pImgNext);
 		LOADIMAGE_(m_vectImage[m_iSelected], m_pImgSel);
-		int i32Next = m_iMoveWidth > 0 ? m_iSelected - 1 : m_iSelected + 1;
+		if ( pSize )
+			*pSize = m_pImgSel->Size();
+
+		int i32Next = m_iMoveWidth > 0 ? m_iSelected + 1 : m_iSelected - 1;
 		if ( i32Next >= 0 && i32Next < (int)m_vectImage.size() )
 			LOADIMAGE_(m_vectImage[i32Next], m_pImgNext);
+		else
+			bMoive = FALSE;	// 没有了，禁止翻页动画
 
-		m_iTimesMove = (m_iMoveWidth > 0 ? m_iMoveWidth : -m_iMoveWidth) / 30;
-		if(m_iTimesMove < 20)
-			m_iTimesMove = 20;
+		if ( bMoive )
+		{
+			m_iTimesMove = (m_iMoveWidth > 0 ? m_iMoveWidth : -m_iMoveWidth) / 30;
+			if(m_iTimesMove < 20)
+				m_iTimesMove = 20;
 
-		SetTimer(TIMER_MOVE, 30);
-		m_bTimerMove = TRUE;
+			SetTimer(TIMER_MOVE, 30);
+			m_bTimerMove = TRUE;
+			return TRUE;
+		}
 
+		m_iMoveWidth = 0;
 		return TRUE;
 	}
 

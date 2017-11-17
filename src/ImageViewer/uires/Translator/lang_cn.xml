@@ -23,7 +23,7 @@ ImageViewer.exe [选项]
   -scale=[100,125,150,200] 指定放大倍数，默认根据系统DPI来设定
   -help             显示本帮助信息
 
-Example:
+示例:
    ImageViewer.exe -ipath="d:\a\b" -images="${ipath}a.png|b.png"
    ImageViewer.exe -ipath="d:\a\b" -ifilter="*.jpg|*.png"
    ImageViewer.exe -db="d:\msg.db"
