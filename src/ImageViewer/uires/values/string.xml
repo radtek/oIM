@@ -3,6 +3,8 @@
   <title value="图片预览工具"/>
   <ver value="1.0"/>
   <ratio value="%.0f%%" />
+  <lang_cn value="lang_cn" />
+  <lang_en value="lang_en" />
   <usage_help value="usage_help" />
   <usages value="usages" />
   <sysClose value="sysClose"/>

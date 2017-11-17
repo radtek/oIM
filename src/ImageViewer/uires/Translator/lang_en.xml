@@ -17,6 +17,8 @@ options:
                     Will replaced ".\" with ${ipath}
   -db="dbfile"      The msg.db file path
   -fid=fid          The current image's fid when use '-db', or index based 0 when use '-images'
+  -lang=[cn,en]     The language, default as system
+  -scale=[100,125,150,200] The scale, default by system DPI
   -help             Show this help
 
 Example:

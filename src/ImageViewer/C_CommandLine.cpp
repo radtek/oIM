@@ -9,9 +9,34 @@ C_CommandLine& C_CommandLine::GetObject()
 }
 
 C_CommandLine::C_CommandLine(void)
+	: m_nScale(100)
+	, m_u64Fid(0)
 {
-}
+	// 获取用户当前语言
+	LANGID lang = GetUserDefaultLangID(); //GetSystemDefaultLangID();
+	if ( LOBYTE(lang) == LANG_CHINESE )
+		m_szLang = GETSTRING(R.string.lang_cn);
+	else 
+		m_szLang = GETSTRING(R.string.lang_en);
 
+	// 根据当前系统DPI，设置默认值
+	HWND hWnd = ::GetDesktopWindow();
+	HDC hdc   = ::GetWindowDC(hWnd);
+	int nDpiX = ::GetDeviceCaps(hdc, LOGPIXELSX); // 启用高DPI功能
+	:: ReleaseDC(hWnd, hdc);
+	if ( nDpiX >= 288 )			// *3
+		m_nScale = 300;
+	else if ( nDpiX >= 240 )	// *2.5
+		m_nScale = 250;
+	else if ( nDpiX >= 192 )	// *2
+		m_nScale = 200;
+	else if ( nDpiX >= 144 )	// *1.5
+		m_nScale = 150;
+	else if (nDpiX >= 120 )		// *1.25
+		m_nScale = 125;
+	else						// *1
+		m_nScale = 100;
+}
 
 C_CommandLine::~C_CommandLine(void)
 {
@@ -107,8 +132,6 @@ BOOL C_CommandLine::ParseCommandLine()
 	{
 		if ( nArgs > 1 )
 			bRet = Parse(pszArgs, nArgs);
-		else
-			bRet = Usage();
 
 		LocalFree(pszArgs);
 	}
@@ -128,13 +151,17 @@ BOOL C_CommandLine::Parse(LPWSTR* pszArgs, int nArgs)
 			SStringT szImgPath = _T("${ipath}");	// 不能使用格式: $(ipath), 因为它会被VS替换成空的。
 			SStringT szValue = GetParamValue(pszArg, pszNext, i32Index);
 			if ( szValue.IsEmpty() )
-				return Usage();
+				return FALSE;
 
 			for (LPWSTR pszToken = _tcstok((TCHAR*)(const TCHAR*)szValue, _T("|")); pszToken; pszToken = _tcstok(NULL, _T("|")) )
 			{
 				SStringT szImage = pszToken;
-				if (szImage.Find(szImgPath) >= 0 )
+				if (szImage.Find(szImgPath) >= 0 )	// 有"${ipath}"
 					szImage.Replace(szImgPath, m_szImgPath);
+				else if (szImage.Left(2) == _T(".\\") || szImage.Left(2) == _T("./"))	// 是要对路径".\" 或者 "./"
+					szImage = m_szImgPath + szImage.Right(szImage.GetLength() - 2);	
+				else if (!(szImage.Find(_T('\\')) > 0 || szImage.Find(_T('/')) > 0))	// 只是文件名，没有路径
+					szImage = m_szImgPath + szImage;
 		
 				m_vectImage.push_back(szImage);
 			}
@@ -143,7 +170,7 @@ BOOL C_CommandLine::Parse(LPWSTR* pszArgs, int nArgs)
 		{
 			m_szImgFilter = GetParamValue(pszArg, pszNext, i32Index);
 			if ( m_szImgFilter.IsEmpty() || m_szImgPath.IsEmpty() )
-				return Usage();
+				return FALSE;
 
 			FindImages(m_szImgPath, m_szImgFilter, m_vectImage);
 		}
@@ -153,26 +180,45 @@ BOOL C_CommandLine::Parse(LPWSTR* pszArgs, int nArgs)
 			m_szImgPath.TrimRight(_T('\\'));
 			m_szImgPath.TrimRight(_T('/'));
 			m_szImgPath += _T("\\");
-			if ( m_szImgPath.IsEmpty() )
-				return Usage();
+			if ( m_szImgPath.IsEmpty() || !PathFileExists(m_szImgPath) )
+				return FALSE;
 		}
 		else if ( IsOption(pszArg, _T("db")) )
 		{
 			m_szDbFile = GetParamValue(pszArg, pszNext, i32Index);
 			if ( m_szDbFile.IsEmpty() || !PathFileExists(m_szDbFile) )
-				return Usage();
+				return FALSE;
 		}
 		else if ( IsOption(pszArg, _T("fid")) )
 		{
 			SStringT szValue = GetParamValue(pszArg, pszNext, i32Index);
 			if ( szValue.IsEmpty() )
-				return Usage();
+				return FALSE;
 
 			m_u64Fid = _tcstoui64(szValue, NULL, 0);
 		}
+		else if ( IsOption(pszArg, _T("lang")) )
+		{
+			SStringT szValue = GetParamValue(pszArg, pszNext, i32Index);
+			if ( szValue.CompareNoCase(_T("cn")) == 0 )
+				m_szLang = szValue;
+			else if ( szValue.CompareNoCase(_T("en")) == 0 )
+				m_szLang = szValue;
+			else 
+				return FALSE;
+		}
+		else if ( IsOption(pszArg, _T("scale")) )
+		{
+			SStringT szValue = GetParamValue(pszArg, pszNext, i32Index);
+			m_nScale = _tcstol(szValue, NULL, 0);
+			if ( m_nScale < 100 )
+				m_nScale = 100;
+			else if ( m_nScale > 300 )
+				m_nScale = 300;
+		}
 		else if ( IsOption(pszArg, _T("h")) || IsOption(pszArg, _T("?")) )
 		{
-			return Usage();
+			return FALSE;
 		}
 	}
 
