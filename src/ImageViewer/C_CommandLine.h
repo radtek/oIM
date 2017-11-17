@@ -10,6 +10,9 @@ private:
 	SStringT GetParamValue(LPWSTR pszArg, LPWSTR pszNext, int& i32Index);
 	BOOL IsOption(LPWSTR pszArg, LPWSTR pszName);
 	BOOL Parse(LPWSTR* pszArgs, int nArgs);
+
+	static int __cdecl CompareFunc(void *pvlocale, const void *item1, const void *item2);
+
 public:
 	friend class CMainDlg;
 	~C_CommandLine(void);

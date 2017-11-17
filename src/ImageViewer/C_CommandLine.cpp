@@ -51,6 +51,14 @@ BOOL C_CommandLine::Usage()
 	return FALSE;
 }
 
+int __cdecl C_CommandLine::CompareFunc(void *pvlocale, const void *item1, const void *item2)
+{
+	SStringT* pszItem1 = (SStringT*)item1;
+	SStringT* pszItem2 = (SStringT*)item2;
+
+	return pszItem1->CompareNoCase(*pszItem2);
+}
+
 DWORD C_CommandLine::FindImages(const SStringT& szFindPath, const SStringT& szFilter, VectImage& vectImage)
 {
 	WIN32_FIND_DATA ffd = { 0 };
@@ -77,6 +85,8 @@ DWORD C_CommandLine::FindImages(const SStringT& szFindPath, const SStringT& szFi
 
 	FindClose(hFind);
 	STRACE(_T("Find '%s' result count: %d"), szFilter, vectImage.size());
+	qsort_s(vectImage.data(), vectImage.size(), sizeof(SStringT), CompareFunc,(void*)&vectImage);
+
 	return vectImage.size();
 }
 
