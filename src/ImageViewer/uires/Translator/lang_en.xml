@@ -1,32 +1,34 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <language name="lang_en" guid="{23D209C4-2268-49A2-B7F4-8CB57D908D47}">
   <context>
-     <message>
+    <message>
       <source>usage_help</source>
       <translation>Help</translation>
     </message>
     <message>
       <source>usages</source>
-      <translation><![CDATA[
-ImageViewer.exe [options]
-options:
-  -ipath="path"    Replace the ${ipath} in images, MUST be at before of "-images"
-  -ifilter="filter" The filter with ipath auto search image, MUST be at after of "-ipath', eg.: *.png|*.jpg
-  -images="image[|image][|...]" The image file list, splited by '|';
-                    Will add "${ipath}" when not any path item;
-                    Will replaced ".\" with ${ipath}
-  -db="dbfile"      The msg.db file path
-  -fid=fid          The current image's fid when use '-db', or index based 0 when use '-images'
-  -lang=[cn,en]     The language, default as system
-  -scale=[100,125,150,200] The scale, default by system DPI
-  -help             Show this help
+      <translation>
+        <![CDATA[
+          ImageViewer.exe [options]
+          options:
+          -ipath="path" Replace the ${ipath} in images, MUST be at before of "-images"
+          -ifilter="filter" The filter with ipath auto search image, MUST be at after of "-ipath', eg.: *.png|*.jpg
+          -images="image[|image][|...]" The image file list, splited by '|';
+          Will add "${ipath}" when not any path item;
+          Will replaced ".\" with ${ipath}
+          -db="dbfile" The msg.db file path
+          -fid=fid The current image's fid when use '-db', or index based 0 when use '-images'
+          -lang=[cn,en] The language, default as system
+          -scale=[100,125,150,200] The scale, default by system DPI
+          -help Show this help
 
-Example:
-   ImageViewer.exe -ipath="d:\a\b" -images="${ipath}a.png|${ipath}b.png"
-   ImageViewer.exe -ipath="d:\a\b" -ifilter="*.jpg"
-   ImageViewer.exe -db="d:\msg.db"
-   ImageViewer.exe -db="d:\msg.db" -fid=234235235232423432432
-      ]]></translation>
+          Example:
+          ImageViewer.exe -ipath="d:\a\b" -images="${ipath}a.png|${ipath}b.png"
+          ImageViewer.exe -ipath="d:\a\b" -ifilter="*.jpg"
+          ImageViewer.exe -db="d:\msg.db"
+          ImageViewer.exe -db="d:\msg.db" -fid=234235235232423432432
+          ]]>
+      </translation>
     </message>
   </context>
   <context name="messagebox">
@@ -72,7 +74,7 @@ Example:
       <source>tipLast</source>
       <translation>It's the last one.</translation>
     </message>
-        <message>
+    <message>
       <source>btnThumbShow</source>
       <translation>Show thumbnail</translation>
     </message>
@@ -85,11 +87,15 @@ Example:
       <translation>The actual size</translation>
     </message>
     <message>
-      <source>btnToolbarMax</source>
+      <source>btnToolbarIs1to1</source>
+      <translation>The actual size is now displayed</translation>
+    </message>
+    <message>
+      <source>btnToolbarFullscreen</source>
       <translation>Full screen view</translation>
     </message>
     <message>
-      <source>btnToolbarRestore</source>
+      <source>btnToolbarExitFullscreen</source>
       <translation>Exit full screen</translation>
     </message>
     <message>

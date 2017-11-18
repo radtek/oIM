@@ -344,16 +344,23 @@ namespace SOUI
 			}
 		}
 	}
-
-	BOOL SImageViewer::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
+		
+	BOOL SImageViewer::RealSize()
 	{
-		BOOL bRet	= __super::OnMouseWheel(nFlags, zDelta, pt);
-		BOOL bFixed = GetAsyncKeyState(VK_CONTROL);	// Ctrl + Wheel
-		float fDelta= (zDelta / WHEEL_DELTA) / 100.0f;
+		m_fRatio = 1.0f;
+		Invalidate();
+			
+		// 激发放大率更新事件
+		EventRatioChanged evt(this, m_fRatio);
+		FireEvent(evt);
+		return TRUE;
+	}
 
+	float SImageViewer::Zoom(float fDelta, BOOL bFixed)
+	{
 		if ( bFixed )
 		{	
-			m_fRatio += fDelta * 10.0f;	// 固定的Delta
+			m_fRatio += fDelta;	// 固定的Delta
 		}
 		else
 		{
@@ -369,8 +376,8 @@ namespace SOUI
 				m_fRatio += fDelta * 50.0f;
 		}
 
-		if ( m_fRatio < 0.04f )
-			m_fRatio = 0.04f;		// Min as 4%
+		if ( m_fRatio < RATIOF_(RATIO_MIN) )
+			m_fRatio =  RATIOF_(RATIO_MIN);		// Min 
 		else if ( m_fRatio > 0.1f )
 		{
 			if ( bFixed == FALSE )
@@ -379,8 +386,8 @@ namespace SOUI
 				m_fRatio = i32Ratio / 10.0f;
 			}
 
-			if ( m_fRatio > 20.0f )
-				m_fRatio = 20.0f;	// Max as 2000%
+			if ( m_fRatio > RATIOF_(RATIO_MAX) )
+				m_fRatio = RATIOF_(RATIO_MAX);	// Max
 		}
 
 		Invalidate();
@@ -388,7 +395,21 @@ namespace SOUI
 		// 激发放大率更新事件
 		EventRatioChanged evt(this, m_fRatio);
 		FireEvent(evt);
-		
+
+		return m_fRatio;
+	}
+
+	BOOL SImageViewer::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
+	{
+		BOOL bRet	= __super::OnMouseWheel(nFlags, zDelta, pt);
+		BOOL bFixed = GetAsyncKeyState(VK_CONTROL);	// Ctrl + Wheel
+		float fDelta= (zDelta / WHEEL_DELTA) / 100.0f;
+
+		if ( bFixed )
+			Zoom(fDelta * 10.0f, TRUE);	// 固定的Delta
+		else
+			Zoom(fDelta);
+
 		return bRet;
 	}
 

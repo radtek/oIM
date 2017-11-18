@@ -12,6 +12,11 @@ namespace SOUI
 #define EVT_RATIO_CHANGED	(EVT_EXTERNAL_BEGIN+120)
 #define EVT_IMGPOS_CHANGED	(EVT_EXTERNAL_BEGIN+121)
 
+#define RATIO_MIN		(4)		// 4%
+#define RATIO_100		(100)	// 100%
+#define RATIO_MAX		(2000)	// 20000%
+#define RATIOF_(F)		((F) / 100.f)
+
 	class EventRatioChanged : public TplEventArgs<EventRatioChanged>
 	{
 		SOUI_CLASS_NAME(EventRatioChanged, L"on_ratio_changed")
@@ -58,6 +63,8 @@ namespace SOUI
 		BOOL	IsImgMovable() const { return m_bImgMovable; }
 		RECT	GetDefaultDest(const CRect& rtWnd, const SIZE& szImg, float* pfRatio = NULL);
 		CPoint	Move(int i32Oper, LPPOINT ptCenter = NULL);
+		BOOL	RealSize();
+		float	Zoom(float fDelta, BOOL bFixed = FALSE);
 
 	protected:
 		void OnPaint(IRenderTarget *pRT);

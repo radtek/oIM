@@ -2,7 +2,7 @@
 <string>
   <title value="图片预览工具"/>
   <ver value="1.0"/>
-  <ratio value="%.0f%%" />
+  <ratio value="%d%%" />
   <lang_cn value="lang_cn" />
   <lang_en value="lang_en" />
   <usage_help value="usage_help" />
@@ -14,8 +14,9 @@
   <btnThumbShow value="btnThumbShow"/>
   <btnThumbHide value="btnThumbHide"/>
   <btnToolbar1to1 value="btnToolbar1to1" />
-  <btnToolbarMax value="btnToolbarFullscreen" />
-  <btnToolbarRestore value="btnToolbarExitFullscreen" />
+  <btnToolbarIs1to1 value="btnToolbarIs1to1" />
+  <btnToolbarFullscreen value="btnToolbarFullscreen" />
+  <btnToolbarExitFullscreen value="btnToolbarExitFullscreen" />
   <btnToolbarZoomout value="btnToolbarZoomout" />
   <btnToolbarZoomin value="btnToolbarZoomin" />
   <btnToolbarRotate value="btnToolbarRotate" />

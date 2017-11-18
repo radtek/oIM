@@ -7,28 +7,30 @@
     </message>
     <message>
       <source>usages</source>
-      <translation><![CDATA[
-ImageViewer.exe [选项]
-选项:
-  -ipath="path"    将替换images值中的"${ipath}" 和 ".\"，必须在参数"-images"的之前
-  -ifilter="filter" 图片过滤器，必须在"-ipath"之后，自动搜索"-ipath"位置中的图片，如：*.png|*.jpg
-  -images="image[|image][|...]" 指定图片文件的路径列表，以"|"分隔
-                    当只有文件名时，会自动添加路径"${ipath}"
-                    当前路径".\"也会被替换成"${ipath}"
-  -db="dbfile"      指定消息数据库（msg.db）的路径
-  -fid=fid          指定要显示的当前图片，没有指定或者指定无效时，默认显示第一张图片
-                    当与参数"-db"结合使用时，表示当前的图片fid
-                    当与参数"-images" 或者自动搜索时，表示当前图片从0开始的索引
-  -lang=[cn,en]     指定要使用的语言，默认跟随系统
-  -scale=[100,125,150,200] 指定放大倍数，默认根据系统DPI来设定
-  -help             显示本帮助信息
+      <translation>
+        <![CDATA[
+          ImageViewer.exe [选项]
+          选项:
+          -ipath="path" 将替换images值中的"${ipath}" 和 ".\"，必须在参数"-images"的之前
+          -ifilter="filter" 图片过滤器，必须在"-ipath"之后，自动搜索"-ipath"位置中的图片，如：*.png|*.jpg
+          -images="image[|image][|...]" 指定图片文件的路径列表，以"|"分隔
+          当只有文件名时，会自动添加路径"${ipath}"
+          当前路径".\"也会被替换成"${ipath}"
+          -db="dbfile" 指定消息数据库（msg.db）的路径
+          -fid=fid 指定要显示的当前图片，没有指定或者指定无效时，默认显示第一张图片
+          当与参数"-db"结合使用时，表示当前的图片fid
+          当与参数"-images" 或者自动搜索时，表示当前图片从0开始的索引
+          -lang=[cn,en] 指定要使用的语言，默认跟随系统
+          -scale=[100,125,150,200] 指定放大倍数，默认根据系统DPI来设定
+          -help 显示本帮助信息
 
-示例:
-   ImageViewer.exe -ipath="d:\a\b" -images="${ipath}a.png|b.png"
-   ImageViewer.exe -ipath="d:\a\b" -ifilter="*.jpg|*.png"
-   ImageViewer.exe -db="d:\msg.db"
-   ImageViewer.exe -db="d:\msg.db" -fid=234235235232423432432
-      ]]></translation>
+          示例:
+          ImageViewer.exe -ipath="d:\a\b" -images="${ipath}a.png|b.png"
+          ImageViewer.exe -ipath="d:\a\b" -ifilter="*.jpg|*.png"
+          ImageViewer.exe -db="d:\msg.db"
+          ImageViewer.exe -db="d:\msg.db" -fid=234235235232423432432
+          ]]>
+      </translation>
     </message>
     <!--没有上下文的翻译-->
   </context>
@@ -89,11 +91,15 @@ ImageViewer.exe [选项]
       <translation>实际大小</translation>
     </message>
     <message>
-      <source>btnToolbarMax</source>
+      <source>btnToolbarIs1to1</source>
+      <translation>当前已显示实际大小</translation>
+    </message>
+    <message>
+      <source>btnToolbarFullscreen</source>
       <translation>全屏查看</translation>
     </message>
     <message>
-      <source>btnToolbarRestore</source>
+      <source>btnToolbarExitFullscreen</source>
       <translation>退出全屏</translation>
     </message>
     <message>
