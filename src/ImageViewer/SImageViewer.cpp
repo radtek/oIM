@@ -1,6 +1,7 @@
 #include "StdAfx.h"
 #include "SImageViewer.h"
 #include <helper/SplitString.h>
+#include "../../ext/soui/controls.extend/FileHelper.h"
 
 #define TIMER_MOVE		1
 
@@ -509,4 +510,59 @@ namespace SOUI
 		return m_ptCenter;
 	}
 
+	BOOL SImageViewer::OpenFolder(LPCTSTR pszPathImage)
+	{
+		if ( m_iSelected < 0 || m_iSelected >= (int)m_vectImage.size() )
+			return FALSE;
+
+		SStringT szImage = pszPathImage ? pszPathImage : m_vectImage[m_iSelected];
+		if ( !PathFileExists(szImage) )
+		{
+			TCHAR szPath[MAX_PATH] = { 0 };
+
+			_tcsncpy(szPath, szImage, MAX_PATH);
+			PathRemoveFileSpec(szPath);
+			::ShellExecute(NULL, NULL, _T("explorer.exe"), szPath, NULL, SW_SHOW);
+		}
+		else
+		{
+			SStringT szCmd;
+
+			if ( PathIsDirectory(szImage) )
+				szCmd = szImage;
+			else
+				szCmd.Format(_T("/select,\"%s\""), szImage);
+
+			::ShellExecute(NULL, NULL, _T("explorer.exe"), szCmd, NULL, SW_SHOW);
+		}
+
+		return TRUE;
+	}
+
+	BOOL SImageViewer::Saveas()
+	{
+		if ( m_iSelected < 0 || m_iSelected >= (int)m_vectImage.size() )
+			return FALSE;
+		
+		SStringT szImage = m_vectImage[m_iSelected];
+		if ( !PathFileExists(szImage) )
+			return FALSE;
+
+		SStringT szFilter;
+		TCHAR* pszExt = PathFindExtension(szImage);
+		TCHAR* pszName= PathFindFileName(szImage);
+		szFilter.Format(_T("Image file(*%s)|*%s||"), pszExt, pszExt);
+		CFileDialogEx dlgFile(FALSE, szImage, pszName, OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT, szFilter );
+
+		if ( IDOK != dlgFile.DoModal() )
+			return FALSE;
+
+		if ( CopyFile(szImage, dlgFile.GetPathName(), FALSE) )
+		{
+			OpenFolder(dlgFile.GetPathName());
+			return TRUE;
+		}
+
+		return FALSE;
+	}
 }

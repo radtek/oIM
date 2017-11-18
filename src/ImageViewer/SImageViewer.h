@@ -65,6 +65,8 @@ namespace SOUI
 		CPoint	Move(int i32Oper, LPPOINT ptCenter = NULL);
 		BOOL	RealSize();
 		float	Zoom(float fDelta, BOOL bFixed = FALSE);
+		BOOL	OpenFolder(LPCTSTR pszPathImage = NULL);
+		BOOL	Saveas();
 
 	protected:
 		void OnPaint(IRenderTarget *pRT);
