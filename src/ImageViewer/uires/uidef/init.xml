@@ -19,7 +19,7 @@
     <class name="cls_btn_thumb_toggle" skin="skin.thumb.toggle" tip="@string/btnThumbShow" animate="1"/>
 
     <class name="cls_btn_toolbar_1to1" skin="skin.toolbar.1to1" tip="@string/btnToolbar1to1" animate="1"/>
-    <class name="cls_btn_toolbar_fullscreen" skin="skin.toolbar.fullscreen" tip="@string/btnToolbarFullscreen" animate="1"/>
+    <class name="cls_tgl_toolbar_fullscreen" skin="skin.toolbar.fullscreen" tip="@string/btnToolbarFullscreen" animate="1"/>
     <class name="cls_btn_toolbar_zoomout" skin="skin.toolbar.zoomout" tip="@string/btnToolbarZoomout" animate="1"/>
     <class name="cls_btn_toolbar_zoomin" skin="skin.toolbar.zoomin" tip="@string/btnToolbarZoomin" animate="1"/>
     <class name="cls_btn_toolbar_rotate" skin="skin.toolbar.rotate" tip="@string/btnToolbarRotate" animate="1"/>

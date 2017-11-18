@@ -14,8 +14,8 @@
   <btnThumbShow value="btnThumbShow"/>
   <btnThumbHide value="btnThumbHide"/>
   <btnToolbar1to1 value="btnToolbar1to1" />
-  <btnToolbarMax value="btnToolbarMax" />
-  <btnToolbarRestore value="btnToolbarRestore" />
+  <btnToolbarMax value="btnToolbarFullscreen" />
+  <btnToolbarRestore value="btnToolbarExitFullscreen" />
   <btnToolbarZoomout value="btnToolbarZoomout" />
   <btnToolbarZoomin value="btnToolbarZoomin" />
   <btnToolbarRotate value="btnToolbarRotate" />
