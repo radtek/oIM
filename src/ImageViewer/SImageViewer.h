@@ -107,6 +107,7 @@ namespace SOUI
 		CPoint	m_ptMoveStart;		// 鼠标按下时的坐标位置
 		CPoint	m_ptCenterOld;		// 鼠标按下时原来的中心位置
 		CPoint	m_ptCenter;			// 中心位置
-		CRect	m_rtImgSrc;			// 图片显示的区域
+		CRect	m_rtImgSrc;			// 图片显示的区域src
+		CRect	m_rtImgDst;			// 图片显示的区域dst
 	};
 }

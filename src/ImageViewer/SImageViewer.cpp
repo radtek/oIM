@@ -236,12 +236,13 @@ namespace SOUI
 		CRect rtWnd = GetClientRect();
 		if ( m_iMoveWidth == 0 )
 		{	// 显示当前图片
-			CRect szOld = m_rtImgSrc;
-			RECT  rtDst = GetDest(rtWnd, m_pImgSel->Size(), m_rtImgSrc);
-			pRT->DrawBitmapEx(&rtDst, m_pImgSel, &m_rtImgSrc, EM_STRETCH);
+			CRect szSrcOld = m_rtImgSrc;
+			CRect szDstOld = m_rtImgDst;
+			m_rtImgDst = GetDest(rtWnd, m_pImgSel->Size(), m_rtImgSrc);
+			pRT->DrawBitmapEx(&m_rtImgDst, m_pImgSel, &m_rtImgSrc, EM_STRETCH);
 			SAFE_RELEASE_(m_pImgNext);	// 上/下一张图片，过渡动画时才需要
 
-			if ( !m_rtImgSrc.EqualRect(szOld) )
+			if ( !m_rtImgSrc.EqualRect(szSrcOld) || !m_rtImgDst.EqualRect(szDstOld) )
 			{	// 图片的显示区域变了，才通知
 				EventImagePosChanged evt(this, m_bImgMovable, m_rtImgSrc, m_fRatio, m_pImgSel);
 				FireEvent(evt);
