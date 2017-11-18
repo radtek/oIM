@@ -1,17 +1,11 @@
 ﻿<SOUI name="mainWindow" trCtx="dlg_main" title="@string/title" bigIcon="ICON_LOGO:32" smallIcon="ICON_LOGO:16" width="600" height="400" sendWheel2Hover="1"
   maxInset="5,3,10,10" margin="5,3,5,7" resizable="1" wndType="appMain" appWnd="1" minsize="600,400" translucent="1">
   <root skin="skin.sys.bkgnd" cache="1">
+    
     <imageViewer name="imageViewer" pos="5,3,-5,-6">
-      <!-- 左边的 【上一张】按钮 -->
-      <imgbtn name="btn_prev" class="cls_btn_prev" pos="0dp,|0dp,@40dp,@40dp" />
-
-      <!-- 右边的 【下一张】按钮 -->
-      <imgbtn name="btn_next" class="cls_btn_next" pos="-40dp,|0dp,@40dp,@40dp" />
-
-      <!-- 窗口标题，需要在这个位置，才不会因为 【下一张】位置在上面，而点击不了 -->
       <imgbtn name="btn_close" class="cls_sys_close" pos="-40dp,0dp,@40dp,@40dp" />
-
-      <!-- 放大率 -->
+      <imgbtn name="btn_prev" class="cls_btn_prev" pos="0dp,|0dp,@40dp,@40dp" />
+      <imgbtn name="btn_next" class="cls_btn_next" pos="-40dp,|0dp,@40dp,@40dp" />
       <text name="txt_ratio" class="cls_btn_ratio" pos="|-50dp,|-20dp,@100dp,@38dp" text="100%" />
 
       <!-- 缩略图 -->
@@ -19,6 +13,22 @@
         <img name="img_thumb" pos="0,0,-0,-0" />
         <img name="img_pos" pos="0,0,-0,-0" skin="skin.thumb.pos" />
       </window>
+
+      <!-- 工具 栏 -->
+      <window name="toolbar_view" skin="skin.toolbar.bkgnd" pos="|0dp,-46dp,@-1,-0" offset="-0.5,0" >
+        <imgbtn name="btn_toolbar.1to1" class="cls_btn_toolbar_1to1"  offset="0,0.5"  />
+        <imgbtn name="btn_toolbar.max" class="cls_btn_toolbar_max" />
+        <imgbtn name="btn_toolbar.restore" class="cls_btn_toolbar_restore"  />
+        <imgbtn name="btn_toolbar.zoomout" class="cls_btn_toolbar_zoomout"  />
+        <imgbtn name="btn_toolbar.zoomin" class="cls_btn_toolbar_zoomin"  />
+        <imgbtn name="btn_toolbar.rotate" class="cls_btn_toolbar_rotate"  />
+        <imgbtn name="btn_toolbar.folder" class="cls_btn_toolbar_folder"  />
+        <imgbtn name="btn_toolbar.saveas" class="cls_btn_toolbar_saveas"  />
+      </window>
+
+      <!-- <imgbtn name="btn_toolbar.hide" class="cls_btn_toolbar_hide" size="-1,-1" />
+      <imgbtn name="btn_toolbar.show" class="cls_btn_toolbar_show" size="-1,-1" /> -->
+
     </imageViewer>
 
   </root>
