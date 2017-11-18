@@ -97,6 +97,7 @@ namespace SOUI
 		IBitmap*  m_pImgSel;		// 当前显示的图片
 		IBitmap*  m_pImgNext;		// 上/下一张图片，显示过滤动画时使用
 
+		BOOL	m_bSwitched;		// 是否有切换图片
 		BOOL	m_bImgMovable;		// 图片是否可以移动（无法显全图时）
 		BOOL	m_bTimerMove;		// 翻页动画的Timer启用标识
 		int		m_iMoveWidth;		// 翻页动画移动的大小

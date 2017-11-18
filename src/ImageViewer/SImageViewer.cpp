@@ -16,6 +16,7 @@ namespace SOUI
 		, m_iTimesMove(0)
 		, m_fRatio(1.f)
 		, m_ptCenter(0)
+		, m_bSwitched(FALSE)
 		, m_bImgMovable(FALSE)
 	{
 
@@ -29,8 +30,9 @@ namespace SOUI
 	RECT SImageViewer::GetDest(const CRect& rtWnd, const SIZE& szImg, CRect& rtImg)
 	{
 		m_bImgMovable = FALSE;	// 默认不可以移动
-		if ( m_ptCenter.x == 0 || m_ptCenter.y == 0 )
+		if ( m_bSwitched )
 		{	// 首次正常显示当前图片， 显示默认的全图
+			m_bSwitched = FALSE;
 			SetRect(&rtImg, 0, 0, szImg.cx, szImg.cy);
 			m_ptCenter.SetPoint(szImg.cx/2, szImg.cy/2);
 			return GetDefaultDest(rtWnd, szImg, &m_fRatio);
@@ -275,6 +277,7 @@ namespace SOUI
 		EventImagePosChanged evt(this, FALSE, m_rtImgSrc, NULL);
 		FireEvent(evt);				// 隐藏地图
 
+		m_bSwitched = TRUE;
 		m_ptCenter.SetPoint(0, 0);	// Reset
 		m_iMoveWidth = (m_iSelected - iSelect)*rcWnd.Width();
 		m_iSelected = iSelect;
