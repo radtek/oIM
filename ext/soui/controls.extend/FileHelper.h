@@ -122,7 +122,7 @@ public:
 	// 单选方式时，获取文件名
 	SStringT GetFileName() const
 	{
-		PathFindFileName(m_ofn.lpstrFile);
+		return PathFindFileName(m_ofn.lpstrFile);
 	}
 	
 	// 单选方式时，获取文件全路径；多选时，获取路径
