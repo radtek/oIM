@@ -14,8 +14,7 @@
 
 	<!-- 地图 -->
 	<imgframe name="skin.thumb.pos" src="IMG:THUMB_POS" margin="2,2,2,2" />
-	<imglist name="skin.thumb.show" src="IMG:THUMB_SHOW"/>
-	<imglist name="skin.thumb.hide" src="IMG:THUMB_HIDE"/>
+	<imglist name="skin.thumb.toggle" src="IMG:THUMB_TOGGLE" states="6"/>
 
 	<!-- 按钮 -->
 	<imglist name="skin.btn.prev" src="IMG:BTN_PREV" states="4" />
@@ -25,14 +24,12 @@
 
 	<!-- 工具栏 -->
 	<imglist name="skin.toolbar.1to1" src="IMG:TOOLBAR_1TO1" states="4" />
-	<imglist name="skin.toolbar.max" src="IMG:TOOLBAR_MAX" states="3"/>
-	<imglist name="skin.toolbar.restore" src="IMG:TOOLBAR_RESTORE" states="3"/>
+	<imglist name="skin.toolbar.fullscreen" src="IMG:TOOLBAR_FULLSCREEN" states="6"/>
 	<imglist name="skin.toolbar.zoomout" src="IMG:TOOLBAR_ZOOMOUT" states="4"/>
 	<imglist name="skin.toolbar.zoomin" src="IMG:TOOLBAR_ZOOMIN" states="4"/>
 	<imglist name="skin.toolbar.rotate" src="IMG:TOOLBAR_ROTATE" states="4"/>
 	<imglist name="skin.toolbar.folder" src="IMG:TOOLBAR_FOLDER" states="4"/>
 	<imglist name="skin.toolbar.saveas" src="IMG:TOOLBAR_SAVEAS" states="4"/>
-	<imglist name="skin.toolbar.hide" src="IMG:TOOLBAR_HIDE" states="3"/>
-	<imglist name="skin.toolbar.show" src="IMG:TOOLBAR_SHOW" states="3"/>
+	<imglist name="skin.toolbar.toggle" src="IMG:TOOLBAR_TOGGLE" states="6"/>
 
 </skin>

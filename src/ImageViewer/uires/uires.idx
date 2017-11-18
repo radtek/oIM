@@ -24,8 +24,7 @@
     <!-- 地图 -->
     <file name="THUMB_BKGND" path="image\thumb_bkgnd.png" />
     <file name="THUMB_POS" path="image\thumb_pos.png" />
-    <file name="THUMB_SHOW" path="image\thumb_show.png"/>
-    <file name="THUMB_HIDE" path="image\thumb_hide.png"/>
+    <file name="THUMB_TOGGLE" path="image\thumb_toggle.png"/>
 
     <!-- 按钮 -->
     <file name="BTN_PREV" path="image\btn_prev.png" />
@@ -36,15 +35,13 @@
     <!-- 工具栏 -->
     <file name="TOOLBAR_BKGND" path="image\toolbar_bkgnd.png"/>
     <file name="TOOLBAR_1TO1" path="image\toolbar_1to1.png"/>
-    <file name="TOOLBAR_MAX" path="image\toolbar_max.png"/>
-    <file name="TOOLBAR_RESTORE" path="image\toolbar_restore.png"/>
+    <file name="TOOLBAR_FULLSCREEN" path="image\toolbar_fullscreen_toggle.png"/>
     <file name="TOOLBAR_ZOOMOUT" path="image\toolbar_zoomout.png"/>
     <file name="TOOLBAR_ZOOMIN" path="image\toolbar_zoomin.png"/>
     <file name="TOOLBAR_ROTATE" path="image\toolbar_rotate.png"/>
     <file name="TOOLBAR_FOLDER" path="image\toolbar_folder.png"/>
     <file name="TOOLBAR_SAVEAS" path="image\toolbar_saveas.png"/>
-    <file name="TOOLBAR_HIDE" path="image\toolbar_hide.png"/>
-    <file name="TOOLBAR_SHOW" path="image\toolbar_show.png"/>
+    <file name="TOOLBAR_TOGGLE" path="image\toolbar_toggle.png"/>
   </IMG>
 
   <ICON>
