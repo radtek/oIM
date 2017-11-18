@@ -11,4 +11,16 @@
   <tipPageN value="%d/%d" />
   <tipLast value="tipLast" />
   <tipInRecord value="tipInRecord" />
+  <btnThumbShow value="btnThumbShow"/>
+  <btnThumbHide value="btnThumbHide"/>
+  <btnToolbar1to1 value="btnToolbar1to1" />
+  <btnToolbarMax value="btnToolbarMax" />
+  <btnToolbarRestore value="btnToolbarRestore" />
+  <btnToolbarZoomout value="btnToolbarZoomout" />
+  <btnToolbarZoomin value="btnToolbarZoomin" />
+  <btnToolbarRotate value="btnToolbarRotate" />
+  <btnToolbarFolder value="btnToolbarFolder" />
+  <btnToolbarSaveas value="btnToolbarSaveas" />
+  <btnToolbarHide value="btnToolbarHide" />
+  <btnToolbarShow value="btnToolbarShow" />
 </string>

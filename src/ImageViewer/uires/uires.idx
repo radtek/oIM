@@ -22,8 +22,8 @@
     <file name="IMG_RATIO" path="image\ratio.png" />
 
     <!-- 地图 -->
-    <file name="THUMB_BKGND" path="image\thumb.png" />
-    <file name="THUMB_POS" path="image\pos.png" />
+    <file name="THUMB_BKGND" path="image\thumb_bkgnd.png" />
+    <file name="THUMB_POS" path="image\thumb_pos.png" />
     <file name="THUMB_SHOW" path="image\thumb_show.png"/>
     <file name="THUMB_HIDE" path="image\thumb_hide.png"/>
 
@@ -34,13 +34,15 @@
     <file name="BTN_RIGHT" path="image\btn_right.png" />
 
     <!-- 工具栏 -->
-    <file name="TOOLBAR_1TO1" path="image\1to1.png"/>
-    <file name="TOOLBAR_MAX" path="image\max.png"/>
-    <file name="TOOLBAR_RESTORE" path="image\restore.png"/>
-    <file name="TOOLBAR_ZOOMOUT" path="image\zoomout.png"/>
-    <file name="TOOLBAR_ZOOMIN" path="image\zoomin.png"/>
-    <file name="TOOLBAR_ROTATE" path="image\rotate.png"/>
-    <file name="TOOLBAR_SAVEAS" path="image\saveas.png"/>
+    <file name="TOOLBAR_BKGND" path="image\toolbar_bkgnd.png"/>
+    <file name="TOOLBAR_1TO1" path="image\toolbar_1to1.png"/>
+    <file name="TOOLBAR_MAX" path="image\toolbar_max.png"/>
+    <file name="TOOLBAR_RESTORE" path="image\toolbar_restore.png"/>
+    <file name="TOOLBAR_ZOOMOUT" path="image\toolbar_zoomout.png"/>
+    <file name="TOOLBAR_ZOOMIN" path="image\toolbar_zoomin.png"/>
+    <file name="TOOLBAR_ROTATE" path="image\toolbar_rotate.png"/>
+    <file name="TOOLBAR_FOLDER" path="image\toolbar_folder.png"/>
+    <file name="TOOLBAR_SAVEAS" path="image\toolbar_saveas.png"/>
     <file name="TOOLBAR_HIDE" path="image\toolbar_hide.png"/>
     <file name="TOOLBAR_SHOW" path="image\toolbar_show.png"/>
   </IMG>
