@@ -3,8 +3,9 @@
 #include <helper/SplitString.h>
 #include "../../ext/soui/controls.extend/FileHelper.h"
 
-#define TIMER_MOVE		1
-#define TIMER_GIF		2
+#define TIMER_MOVE			125
+#define TIMER_GIF			126
+#define TIMER_GIF_ELAPSE	(100)	// 0.1s
 
 namespace SOUI
 {
@@ -36,7 +37,7 @@ namespace SOUI
 		{	// 首次正常显示当前图片， 显示默认的全图
 			m_bSwitched = FALSE;
 			if ( m_pImgGif )
-				SetTimer(TIMER_GIF, m_pImgGif->GetFrameDelay() * 10);
+				SetTimer(TIMER_GIF, TIMER_GIF_ELAPSE);	// 100ms
 
 			SetRect(&rtImg, 0, 0, szImg.cx, szImg.cy);
 			m_ptCenter.SetPoint(szImg.cx/2, szImg.cy/2);
@@ -476,14 +477,15 @@ namespace SOUI
 		}
 		else if ( nIDEvent == TIMER_GIF )
 		{
-			KillTimer(TIMER_GIF);
-			if ( m_pImgGif )
+			if ( m_pImgGif == NULL )
 			{
-				m_pImgGif->ActiveNextFrame();
-				SetTimer(TIMER_GIF, m_pImgGif->GetFrameDelay());
-				m_pImgSel = m_pImgGif->GetFrameImage();
-				Invalidate();
+				KillTimer(TIMER_GIF);
+				return;
 			}
+
+			m_pImgGif->ActiveNextFrame();
+			m_pImgSel = m_pImgGif->GetFrameImage();
+			Invalidate();
 		}
 		else
 			return SetMsgHandled(FALSE);

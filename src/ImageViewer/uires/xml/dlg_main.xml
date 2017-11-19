@@ -9,14 +9,14 @@
       <text name="txt_ratio" class="cls_btn_ratio" pos="|-50dp,|-20dp,@100dp,@38dp" text="100%" />
 
       <!-- 缩略图 -->
-      <window name="thumb_view" skin="skin.thumb.bkgnd" pos="-224dp,-144dp,@224dp,@144dp" layeredWindow="0">
+      <window name="thumb_view" skin="skin.thumb.bkgnd" pos="-224dp,-144dp,@224dp,@144dp" >
         <img name="img_thumb" pos="0,0,-0,-0" />
         <img name="img_pos" pos="0,0,-0,-0" skin="skin.thumb.pos" />
       </window>
       <toggle name="thumb_toggle" class="cls_btn_thumb_toggle" pos="-16dp,-16dp,@16dp,@16dp" />
 
       <!-- 工具 栏 -->
-      <window name="toolbar_view" skin="skin.toolbar.bkgnd" pos="|0dp,-46dp,@-1,-0" offset="-0.5,0" layeredWindow="1">
+      <window name="toolbar_view" skin="skin.toolbar.bkgnd" pos="|0dp,-46dp,@-1,-0" offset="-0.5,0" >
         <imgbtn name="btn_toolbar.1to1" class="cls_btn_toolbar_1to1" offset="0,0.3" width="44dp" margin-x="5" />
         <toggle name="btn_toolbar.fullscreen" class="cls_tgl_toolbar_fullscreen" width="34dp" margin-x="5" />
         <imgbtn name="btn_toolbar.zoomin" class="cls_btn_toolbar_zoomin" width="40dp" margin-x="5" />
