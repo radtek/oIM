@@ -17,6 +17,8 @@ namespace SOUI
 #define RATIO_MAX		(2000)	// 20000%
 #define RATIOF_(F)		((F) / 100.f)
 
+#define ZOOM_DELTA		(0.035f)
+
 	class EventRatioChanged : public TplEventArgs<EventRatioChanged>
 	{
 		SOUI_CLASS_NAME(EventRatioChanged, L"on_ratio_changed")
@@ -66,7 +68,8 @@ namespace SOUI
 		BOOL	RealSize();
 		float	Zoom(float fDelta, BOOL bFixed = FALSE);
 		BOOL	OpenFolder(LPCTSTR pszPathImage = NULL);
-		BOOL	Saveas();
+		BOOL	Saveas(BOOL bOpenFolder = TRUE);
+		BOOL	Rotate(BOOL bRight = TRUE);
 
 	protected:
 		void OnPaint(IRenderTarget *pRT);

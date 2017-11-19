@@ -543,7 +543,7 @@ namespace SOUI
 		return TRUE;
 	}
 
-	BOOL SImageViewer::Saveas()
+	BOOL SImageViewer::Saveas(BOOL bOpenFolder)
 	{
 		if ( m_iSelected < 0 || m_iSelected >= (int)m_vectImage.size() )
 			return FALSE;
@@ -563,10 +563,17 @@ namespace SOUI
 
 		if ( CopyFile(szImage, dlgFile.GetPathName(), FALSE) )
 		{
-			OpenFolder(dlgFile.GetPathName());
+			if ( bOpenFolder )
+				OpenFolder(dlgFile.GetPathName());
 			return TRUE;
 		}
 
 		return FALSE;
 	}
+
+	BOOL SImageViewer::Rotate(BOOL bRight)
+	{
+		return TRUE;
+	}
+
 }
