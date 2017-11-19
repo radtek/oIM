@@ -4,12 +4,14 @@
 #include "../../ext/soui/controls.extend/FileHelper.h"
 
 #define TIMER_MOVE		1
+#define TIMER_GIF		2
 
 namespace SOUI
 {
 	SImageViewer::SImageViewer()
 		: m_pImgSel(NULL)
 		, m_pImgNext(NULL)
+		, m_pImgGif(NULL)
 		, m_iMoveWidth(0)
 		, m_bTimerMove(FALSE)
 		, m_iSelected(0)
@@ -33,6 +35,9 @@ namespace SOUI
 		if ( m_bSwitched )
 		{	// 首次正常显示当前图片， 显示默认的全图
 			m_bSwitched = FALSE;
+			if ( m_pImgGif )
+				SetTimer(TIMER_GIF, m_pImgGif->GetFrameDelay() * 10);
+
 			SetRect(&rtImg, 0, 0, szImg.cx, szImg.cy);
 			m_ptCenter.SetPoint(szImg.cx/2, szImg.cy/2);
 			return GetDefaultDest(rtWnd, szImg, &m_fRatio);
@@ -242,7 +247,7 @@ namespace SOUI
 			pRT->DrawBitmapEx(&m_rtImgDst, m_pImgSel, &m_rtImgSrc, EM_STRETCH);
 			SAFE_RELEASE_(m_pImgNext);	// 上/下一张图片，过渡动画时才需要
 
-			if ( !m_rtImgSrc.EqualRect(szSrcOld) || !m_rtImgDst.EqualRect(szDstOld) )
+			if ( !m_rtImgSrc.EqualRect(szSrcOld) || !m_rtImgDst.EqualRect(szDstOld) || m_pImgGif )
 			{	// 图片的显示区域变了，才通知
 				EventImagePosChanged evt(this, m_bImgMovable, m_rtImgSrc, m_fRatio, m_pImgSel);
 				FireEvent(evt);
@@ -286,7 +291,23 @@ namespace SOUI
 		// 更新加载的图片
 		SAFE_RELEASE_(m_pImgSel);
 		SAFE_RELEASE_(m_pImgNext);
-		LOADIMAGE_(m_vectImage[m_iSelected], m_pImgSel);
+		SAFE_RELEASE_(m_pImgGif);
+		SStringT szExt = PathFindExtension(m_vectImage[m_iSelected]);
+		if ( szExt.CompareNoCase(_T(".gif")) == 0 )
+		{
+			m_pImgGif = (SSkinAni*)SApplication::getSingleton().CreateSkinByName(SSkinAPNG::GetClassName());
+			if ( m_pImgGif && m_pImgGif->LoadFromFile(m_vectImage[m_iSelected]) > 1 )
+			{
+				m_pImgGif->AddRef();
+				m_pImgSel = m_pImgGif->GetFrameImage();
+			}
+			else
+				SAFE_RELEASE_(m_pImgGif);	// 不是大于一帧的GIF，当成普通图片
+		}
+		
+		if ( m_pImgSel == NULL )
+			LOADIMAGE_(m_vectImage[m_iSelected], m_pImgSel);
+
 		if ( pSize )
 			*pSize = m_pImgSel->Size();
 
@@ -420,39 +441,52 @@ namespace SOUI
 
 	void SImageViewer::OnTimer(char nIDEvent)
 	{
-		if ( nIDEvent != TIMER_MOVE )
-			return SetMsgHandled(FALSE);
-
-		if(m_iMoveWidth > 0)
+		if ( nIDEvent == TIMER_MOVE )
 		{
-			if(m_iMoveWidth - m_iTimesMove <= 0)
+			if(m_iMoveWidth > 0)
 			{
-				m_iMoveWidth = 0;
-				Invalidate();
-				KillTimer(TIMER_MOVE);
-				m_bTimerMove = FALSE;
+				if(m_iMoveWidth - m_iTimesMove <= 0)
+				{
+					m_iMoveWidth = 0;
+					Invalidate();
+					KillTimer(TIMER_MOVE);
+					m_bTimerMove = FALSE;
+				}
+				else
+				{
+					m_iMoveWidth-= m_iTimesMove;
+					Invalidate();
+				}
 			}
 			else
 			{
-				m_iMoveWidth-= m_iTimesMove;
+				if(m_iMoveWidth + m_iTimesMove >= 0)
+				{
+					m_iMoveWidth = 0;
+					Invalidate();
+					KillTimer(TIMER_MOVE);
+					m_bTimerMove = FALSE;
+				}
+				else
+				{
+					m_iMoveWidth+= m_iTimesMove;
+					Invalidate();
+				}
+			}
+		}
+		else if ( nIDEvent == TIMER_GIF )
+		{
+			KillTimer(TIMER_GIF);
+			if ( m_pImgGif )
+			{
+				m_pImgGif->ActiveNextFrame();
+				SetTimer(TIMER_GIF, m_pImgGif->GetFrameDelay());
+				m_pImgSel = m_pImgGif->GetFrameImage();
 				Invalidate();
 			}
 		}
 		else
-		{
-			if(m_iMoveWidth + m_iTimesMove >= 0)
-			{
-				m_iMoveWidth = 0;
-				Invalidate();
-				KillTimer(TIMER_MOVE);
-				m_bTimerMove = FALSE;
-			}
-			else
-			{
-				m_iMoveWidth+= m_iTimesMove;
-				Invalidate();
-			}
-		}
+			return SetMsgHandled(FALSE);
 	}
 
 	BOOL SImageViewer::InsertImage(const SStringT& szImage, int iTo)

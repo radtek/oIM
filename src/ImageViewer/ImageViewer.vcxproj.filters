@@ -65,6 +65,9 @@
     <ClCompile Include="C_CommandLine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\ext\soui\controls.extend\gif\SSkinAPNG.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ImageViewer.rc">
