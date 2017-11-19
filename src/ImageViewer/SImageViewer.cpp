@@ -3,8 +3,8 @@
 #include <helper/SplitString.h>
 #include "../../ext/soui/controls.extend/FileHelper.h"
 
-#define TIMER_MOVE			125
-#define TIMER_GIF			126
+#define TIMER_MOVE			121
+#define TIMER_GIF			123
 #define TIMER_GIF_ELAPSE	(100)	// 0.1s
 
 namespace SOUI
@@ -32,9 +32,9 @@ namespace SOUI
 
 	RECT SImageViewer::GetDest(const CRect& rtWnd, const SIZE& szImg, CRect& rtImg)
 	{
-		m_bImgMovable = FALSE;	// 默认不可以移动
 		if ( m_bSwitched )
 		{	// 首次正常显示当前图片， 显示默认的全图
+			m_bImgMovable = FALSE;	// 默认不可以移动
 			m_bSwitched = FALSE;
 			if ( m_pImgGif )
 				SetTimer(TIMER_GIF, TIMER_GIF_ELAPSE);	// 100ms
@@ -51,7 +51,7 @@ namespace SOUI
 
 		if ( rtWnd.Width() >= szReal.cx && rtWnd.Height() >= szReal.cy )
 		{	// 能显示缩放之后的全图
-			float fRatio = 0;	// dummy
+			m_bImgMovable = FALSE;	// 默认不可以移动
 			rtDst = GetDefaultDest(rtWnd, szReal);		// 用实际要显示的大小，来计算目标位置
 			rtImg.SetRect(0, 0, szImg.cx, szImg.cy);	
 			m_ptCenter.SetPoint(szImg.cx / 2, szImg.cy / 2);	// 复位中心点为图片中心
@@ -62,8 +62,8 @@ namespace SOUI
 			rtImg.SetRect(0, 0, szReal.cx, szReal.cy);
 			if ( szReal.cx >= rtDst.Width() )
 			{	// 图片宽度 >= 窗口宽度
-				int iOffsetX= (ptReal.x  - szReal.cx / 2);		// 与显示图片的水平中心位置的偏移量
-				int iDeltaX1= (szReal.cx - rtDst.Width()) / 2;
+				int iOffsetX = (ptReal.x  - szReal.cx / 2);		// 与显示图片的水平中心位置的偏移量
+				int iDeltaX1 = (szReal.cx - rtDst.Width()) / 2;
 				
 				// 以图片中心位置来计算位置
 				rtImg.left += iDeltaX1;
@@ -79,8 +79,8 @@ namespace SOUI
 					}
 					else
 					{	// 图片靠右边
-						rtImg.left += (szReal.cx - rtImg.right);
 						rtImg.right = szReal.cx;
+						rtImg.left  = rtImg.right - rtDst.Width();
 						bOutWnd = TRUE;
 					}
 				}
@@ -93,8 +93,8 @@ namespace SOUI
 					}
 					else
 					{	// 图片靠左边
-						rtImg.right-= rtImg.left;
 						rtImg.left	= 0;
+						rtImg.right = rtDst.Width();
 						bOutWnd = TRUE;
 					}
 				}
@@ -125,8 +125,8 @@ namespace SOUI
 					}
 					else
 					{	// 图片靠下边
-						rtImg.top	+= (szReal.cy - rtImg.bottom);
 						rtImg.bottom = szReal.cy;
+						rtImg.top	 = rtImg.bottom - rtDst.Height();
 						bOutWnd = TRUE;
 					}
 				}
@@ -139,8 +139,8 @@ namespace SOUI
 					}
 					else
 					{	// 图片靠上边
-						rtImg.bottom-= rtImg.top;
 						rtImg.top	 = 0;
+						rtImg.bottom = rtDst.Height();
 						bOutWnd = TRUE;
 					}
 				}
@@ -350,11 +350,11 @@ namespace SOUI
 		BOOL bLPress = (nFlags & MK_LBUTTON);
 		if ( m_bImgMovable && bLPress )
 		{
+			VerifyRange(GetClientRect(), pt);
 			m_ptCenter.x = m_ptCenterOld.x - (LONG)((pt.x - m_ptMoveStart.x) / m_fRatio);
 			m_ptCenter.y = m_ptCenterOld.y - (LONG)((pt.y - m_ptMoveStart.y) / m_fRatio);
 			Invalidate();
 		}
-
 	}
 
 	void SImageViewer::OnLButtonUp(UINT nFlags, CPoint pt)
@@ -363,12 +363,13 @@ namespace SOUI
 		if ( m_bImgMovable )
 		{
 			ReleaseCapture();
-			if (!(m_ptCenter.x == m_ptCenterOld.x && m_ptCenter.y == m_ptCenterOld.y))
-			{
-				m_ptCenter.x = m_ptCenterOld.x - (LONG)((pt.x - m_ptMoveStart.x) / m_fRatio);
-				m_ptCenter.y = m_ptCenterOld.y - (LONG)((pt.y - m_ptMoveStart.y) / m_fRatio);
-				Invalidate();
-			}
+			//if (!(m_ptCenter.x == m_ptCenterOld.x && m_ptCenter.y == m_ptCenterOld.y))
+			//{
+			//	VerifyRange(GetClientRect(), pt);
+			//	m_ptCenter.x = m_ptCenterOld.x - (LONG)((pt.x - m_ptMoveStart.x) / m_fRatio);
+			//	m_ptCenter.y = m_ptCenterOld.y - (LONG)((pt.y - m_ptMoveStart.y) / m_fRatio);
+			//	Invalidate();
+			//}
 		}
 	}
 		
@@ -525,6 +526,21 @@ namespace SOUI
 	size_t SImageViewer::GetCount()
 	{
 		return m_vectImage.size();
+	}
+
+	BOOL SImageViewer::VerifyRange(const RECT& rtRange, POINT& pt)
+	{
+		if ( pt.x < rtRange.left )
+			pt.x = rtRange.left;
+		else if ( pt.x > rtRange.right )
+			pt.x = rtRange.right;
+
+		if ( pt.y < rtRange.top )
+			pt.y = rtRange.top;
+		else if ( pt.y > rtRange.bottom )
+			pt.y = rtRange.bottom;
+			
+		return TRUE;
 	}
 
 	CPoint SImageViewer::Move(int i32Oper, LPPOINT ptCenter)

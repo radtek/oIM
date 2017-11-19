@@ -65,6 +65,7 @@ namespace SOUI
 		CRect	GetImgSrcPos()const { return m_rtImgSrc; }
 		BOOL	IsImgMovable() const { return m_bImgMovable; }
 		RECT	GetDefaultDest(const CRect& rtWnd, const SIZE& szImg, float* pfRatio = NULL);
+		BOOL	VerifyRange(const RECT& rtRange, POINT& pt);
 		CPoint	Move(int i32Oper, LPPOINT ptCenter = NULL);
 		BOOL	RealSize();
 		float	Zoom(float fDelta, BOOL bFixed = FALSE);
