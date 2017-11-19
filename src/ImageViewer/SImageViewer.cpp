@@ -41,6 +41,7 @@ namespace SOUI
 
 			SetRect(&rtImg, 0, 0, szImg.cx, szImg.cy);
 			m_ptCenter.SetPoint(szImg.cx/2, szImg.cy/2);
+			m_ptCenterOld = m_ptCenter;
 			return GetDefaultDest(rtWnd, szImg, &m_fRatio);
 		}
 
@@ -55,6 +56,7 @@ namespace SOUI
 			rtDst = GetDefaultDest(rtWnd, szReal);		// 用实际要显示的大小，来计算目标位置
 			rtImg.SetRect(0, 0, szImg.cx, szImg.cy);	
 			m_ptCenter.SetPoint(szImg.cx / 2, szImg.cy / 2);	// 复位中心点为图片中心
+			m_ptCenterOld = m_ptCenter;
 		}
 		else
 		{	// 不能显示全图
@@ -158,7 +160,7 @@ namespace SOUI
 			rtImg.right = (LONG)(rtImg.right / m_fRatio);
 			rtImg.bottom= (LONG)(rtImg.bottom / m_fRatio);
 
-			if ( bOutWnd )
+			if ( bOutWnd && m_ptCenter != m_ptCenterOld)
 			{	// 修正中心点
 				if ( rtImg.Width() % 2) 
 					rtImg.right--;	// 变成偶数
@@ -250,7 +252,7 @@ namespace SOUI
 
 			if ( !m_rtImgSrc.EqualRect(szSrcOld) || !m_rtImgDst.EqualRect(szDstOld) || m_pImgGif )
 			{	// 图片的显示区域变了，才通知
-				EventImagePosChanged evt(this, m_bImgMovable, m_rtImgSrc, m_fRatio, m_pImgSel);
+				EventImagePosChanged evt(this, m_bImgMovable, !!m_pImgGif, m_rtImgSrc, m_fRatio, m_pImgSel);
 				FireEvent(evt);
 			}
 		}
@@ -281,11 +283,12 @@ namespace SOUI
 			return TRUE;	// 正在显示过渡效果时，不再切换
 
 		m_rtImgSrc.SetRectEmpty();	// 清空
-		EventImagePosChanged evt(this, FALSE, m_rtImgSrc, NULL);
+		EventImagePosChanged evt(this, FALSE, FALSE, m_rtImgSrc, NULL);
 		FireEvent(evt);				// 隐藏地图
 
 		m_bSwitched = TRUE;
 		m_ptCenter.SetPoint(0, 0);	// Reset
+		m_ptCenterOld = m_ptCenter;
 		m_iMoveWidth = (m_iSelected - iSelect)*rcWnd.Width();
 		m_iSelected = iSelect;
 
@@ -363,13 +366,7 @@ namespace SOUI
 		if ( m_bImgMovable )
 		{
 			ReleaseCapture();
-			//if (!(m_ptCenter.x == m_ptCenterOld.x && m_ptCenter.y == m_ptCenterOld.y))
-			//{
-			//	VerifyRange(GetClientRect(), pt);
-			//	m_ptCenter.x = m_ptCenterOld.x - (LONG)((pt.x - m_ptMoveStart.x) / m_fRatio);
-			//	m_ptCenter.y = m_ptCenterOld.y - (LONG)((pt.y - m_ptMoveStart.y) / m_fRatio);
-			//	Invalidate();
-			//}
+			m_ptCenterOld= m_ptCenter;
 		}
 	}
 		
@@ -551,13 +548,15 @@ namespace SOUI
 			m_ptCenterOld = m_ptCenter;
 			return m_ptCenterOld;
 		case MOVE_POS_MOVING:
-		case MOVE_POS_STOP:
 			if ( ptCenter && (m_ptCenter.x != ptCenter->x || m_ptCenter.y != ptCenter->y) )
 			{
 				m_ptCenter.SetPoint(ptCenter->x, ptCenter->y);
 				Invalidate();
 			}
 			return m_ptCenter;
+		case MOVE_POS_STOP:
+			m_ptCenterOld= m_ptCenter;;
+			return m_ptCenterOld;
 		default:
 			SASSERT(FALSE);
 			break;
