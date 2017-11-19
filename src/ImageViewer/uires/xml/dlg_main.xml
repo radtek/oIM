@@ -2,7 +2,7 @@
   maxInset="5,3,10,10" margin="5,3,5,7" resizable="1" wndType="appMain" appWnd="1" minsize="600,400" translucent="1">
   <root skin="skin.sys.bkgnd" cache="1">
 
-    <imageViewer name="imageViewer" pos="5,3,-5,-6">
+    <imageViewer name="imageViewer" pos="5,3,-6,-6">
       <imgbtn name="btn_close" class="cls_sys_close" pos="-40dp,0dp,@40dp,@40dp" />
       <imgbtn name="btn_prev" class="cls_btn_prev" pos="0dp,|0dp,@40dp,@40dp" />
       <imgbtn name="btn_next" class="cls_btn_next" pos="-40dp,|0dp,@40dp,@40dp" />
@@ -21,7 +21,7 @@
         <toggle name="btn_toolbar.fullscreen" class="cls_tgl_toolbar_fullscreen" width="34dp" margin-x="5" />
         <imgbtn name="btn_toolbar.zoomin" class="cls_btn_toolbar_zoomin" width="40dp" margin-x="5" />
         <imgbtn name="btn_toolbar.zoomout" class="cls_btn_toolbar_zoomout" width="40dp" margin-x="5" />
-        <imgbtn name="btn_toolbar.rotate" class="cls_btn_toolbar_rotate" width="40dp" margin-x="5" />
+        <imgbtn name="btn_toolbar.rotate" class="cls_btn_toolbar_rotate" width="40dp" margin-x="5" visible="0" display="0" />
         <imgbtn name="btn_toolbar.folder" class="cls_btn_toolbar_folder" width="40dp" margin-x="5" />
         <imgbtn name="btn_toolbar.saveas" class="cls_btn_toolbar_saveas" width="40dp" margin-x="5" />
       </window>
