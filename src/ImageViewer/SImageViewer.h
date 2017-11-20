@@ -6,10 +6,6 @@ namespace SOUI
 {
 #define SAFE_RELEASE_(P) do { if ( P ) P->Release(); P = NULL; } while(0)
 
-#define MOVE_POS_START		1	// 开始移动
-#define MOVE_POS_MOVING		2	// 移动过程中
-#define MOVE_POS_STOP		3	// 移动完成
-
 #define EVT_RATIO_CHANGED	(EVT_EXTERNAL_BEGIN+120)
 #define EVT_IMGPOS_CHANGED	(EVT_EXTERNAL_BEGIN+121)
 
@@ -19,6 +15,13 @@ namespace SOUI
 #define RATIOF_(F)		((F) / 100.f)
 
 #define ZOOM_DELTA		(0.035f)
+typedef enum tagMoveType
+{
+	eMOVE_NONE = 0,	// 没有移动
+	eMOVE_START,	// 开始移动
+	eMOVE_MOVING,	// 移动过程中
+	eMOVE_STOP,		// 移动完成
+}E_MoveType, *PE_MoveType;
 
 	class EventRatioChanged : public TplEventArgs<EventRatioChanged>
 	{
@@ -67,8 +70,7 @@ namespace SOUI
 		CRect	GetImgSrcPos()const { return m_rtImgSrc; }
 		BOOL	IsImgMovable() const { return m_bImgMovable; }
 		RECT	GetDefaultDest(const CRect& rtWnd, const SIZE& szImg, float* pfRatio = NULL);
-		BOOL	VerifyRange(const RECT& rtRange, POINT& pt);
-		CPoint	Move(int i32Oper, LPPOINT ptCenter = NULL);
+		CPoint	Move(E_MoveType eType, LPPOINT ptCenter = NULL);
 		BOOL	RealSize();
 		float	Zoom(float fDelta, BOOL bFixed = FALSE);
 		BOOL	OpenFolder(LPCTSTR pszPathImage = NULL);
@@ -105,6 +107,7 @@ namespace SOUI
 		IBitmap*  m_pImgNext;		// 上/下一张图片，显示过滤动画时使用
 		SSkinAni* m_pImgGif;		// GIF
 
+		E_MoveType	m_eMove;		// 移动图片操作的类型
 		BOOL	m_bSwitched;		// 是否有切换图片
 		BOOL	m_bImgMovable;		// 图片是否可以移动（无法显全图时）
 		BOOL	m_bTimerMove;		// 翻页动画的Timer启用标识

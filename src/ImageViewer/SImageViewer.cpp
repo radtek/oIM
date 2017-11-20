@@ -21,6 +21,7 @@ namespace SOUI
 		, m_ptCenter(0)
 		, m_bSwitched(FALSE)
 		, m_bImgMovable(FALSE)
+		, m_eMove(eMOVE_NONE)
 	{
 
 	}
@@ -41,7 +42,6 @@ namespace SOUI
 
 			SetRect(&rtImg, 0, 0, szImg.cx, szImg.cy);
 			m_ptCenter.SetPoint(szImg.cx/2, szImg.cy/2);
-			m_ptCenterOld = m_ptCenter;
 			return GetDefaultDest(rtWnd, szImg, &m_fRatio);
 		}
 
@@ -56,7 +56,6 @@ namespace SOUI
 			rtDst = GetDefaultDest(rtWnd, szReal);		// 用实际要显示的大小，来计算目标位置
 			rtImg.SetRect(0, 0, szImg.cx, szImg.cy);	
 			m_ptCenter.SetPoint(szImg.cx / 2, szImg.cy / 2);	// 复位中心点为图片中心
-			m_ptCenterOld = m_ptCenter;
 		}
 		else
 		{	// 不能显示全图
@@ -160,8 +159,9 @@ namespace SOUI
 			rtImg.right = (LONG)(rtImg.right / m_fRatio);
 			rtImg.bottom= (LONG)(rtImg.bottom / m_fRatio);
 
-			if ( bOutWnd && m_ptCenter != m_ptCenterOld)
+			if ( bOutWnd && m_eMove == eMOVE_STOP )
 			{	// 修正中心点
+				m_eMove = eMOVE_NONE;
 				if ( rtImg.Width() % 2) 
 					rtImg.right--;	// 变成偶数
 
@@ -287,8 +287,8 @@ namespace SOUI
 		FireEvent(evt);				// 隐藏地图
 
 		m_bSwitched = TRUE;
+		m_eMove = eMOVE_NONE;
 		m_ptCenter.SetPoint(0, 0);	// Reset
-		m_ptCenterOld = m_ptCenter;
 		m_iMoveWidth = (m_iSelected - iSelect)*rcWnd.Width();
 		m_iSelected = iSelect;
 
@@ -342,7 +342,7 @@ namespace SOUI
 		if ( m_bImgMovable )
 		{
 			m_ptMoveStart= point;
-			m_ptCenterOld= m_ptCenter;
+			Move(eMOVE_START);
 			SetCapture();
 		}
 	}
@@ -353,10 +353,8 @@ namespace SOUI
 		BOOL bLPress = (nFlags & MK_LBUTTON);
 		if ( m_bImgMovable && bLPress )
 		{
-			VerifyRange(GetClientRect(), pt);
-			m_ptCenter.x = m_ptCenterOld.x - (LONG)((pt.x - m_ptMoveStart.x) / m_fRatio);
-			m_ptCenter.y = m_ptCenterOld.y - (LONG)((pt.y - m_ptMoveStart.y) / m_fRatio);
-			Invalidate();
+			CPoint ptCenter(m_ptCenterOld.x - (LONG)((pt.x - m_ptMoveStart.x) / m_fRatio), m_ptCenterOld.y - (LONG)((pt.y - m_ptMoveStart.y) / m_fRatio));
+			Move(eMOVE_MOVING, &ptCenter);
 		}
 	}
 
@@ -366,7 +364,7 @@ namespace SOUI
 		if ( m_bImgMovable )
 		{
 			ReleaseCapture();
-			m_ptCenterOld= m_ptCenter;
+			Move(eMOVE_STOP);
 		}
 	}
 		
@@ -525,37 +523,23 @@ namespace SOUI
 		return m_vectImage.size();
 	}
 
-	BOOL SImageViewer::VerifyRange(const RECT& rtRange, POINT& pt)
+	CPoint SImageViewer::Move(E_MoveType eType, LPPOINT ptCenter)
 	{
-		if ( pt.x < rtRange.left )
-			pt.x = rtRange.left;
-		else if ( pt.x > rtRange.right )
-			pt.x = rtRange.right;
-
-		if ( pt.y < rtRange.top )
-			pt.y = rtRange.top;
-		else if ( pt.y > rtRange.bottom )
-			pt.y = rtRange.bottom;
-			
-		return TRUE;
-	}
-
-	CPoint SImageViewer::Move(int i32Oper, LPPOINT ptCenter)
-	{
-		switch( i32Oper )
+		m_eMove = eType;
+		switch( eType )
 		{
-		case MOVE_POS_START:
+		case eMOVE_START:
 			m_ptCenterOld = m_ptCenter;
 			return m_ptCenterOld;
-		case MOVE_POS_MOVING:
+		case eMOVE_MOVING:
 			if ( ptCenter && (m_ptCenter.x != ptCenter->x || m_ptCenter.y != ptCenter->y) )
 			{
 				m_ptCenter.SetPoint(ptCenter->x, ptCenter->y);
 				Invalidate();
 			}
 			return m_ptCenter;
-		case MOVE_POS_STOP:
-			m_ptCenterOld= m_ptCenter;;
+		case eMOVE_STOP:
+			m_ptCenterOld= m_ptCenter;
 			return m_ptCenterOld;
 		default:
 			SASSERT(FALSE);
