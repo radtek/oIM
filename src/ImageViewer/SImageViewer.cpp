@@ -3,7 +3,7 @@
 #include <helper/SplitString.h>
 #include "../../ext/soui/controls.extend/FileHelper.h"
 
-#define TIMER_MOVE			121
+#define TIMER_MOIVE			121
 #define TIMER_GIF			123
 #define TIMER_GIF_ELAPSE	(100)	// 0.1s
 
@@ -250,7 +250,9 @@ namespace SOUI
 			pRT->DrawBitmapEx(&m_rtImgDst, m_pImgSel, &m_rtImgSrc, EM_STRETCH);
 			SAFE_RELEASE_(m_pImgNext);	// 上/下一张图片，过渡动画时才需要
 
-			if ( !m_rtImgSrc.EqualRect(szSrcOld) || !m_rtImgDst.EqualRect(szDstOld) || m_pImgGif )
+			if ( !m_rtImgSrc.EqualRect(szSrcOld) || // 图片源区域改变了
+				 !m_rtImgDst.EqualRect(szDstOld) || // 图片目标区域改变了（窗口大小变了）
+				  m_pImgGif )						// 是GIF动画，地图要刷新动画
 			{	// 图片的显示区域变了，才通知
 				EventImagePosChanged evt(this, m_bImgMovable, !!m_pImgGif, m_rtImgSrc, m_fRatio, m_pImgSel);
 				FireEvent(evt);
@@ -327,7 +329,7 @@ namespace SOUI
 			if(m_iTimesMove < 20)
 				m_iTimesMove = 20;
 
-			SetTimer(TIMER_MOVE, 30);
+			SetTimer(TIMER_MOIVE, 30);
 			m_bTimerMove = TRUE;
 			return TRUE;
 		}
@@ -370,7 +372,7 @@ namespace SOUI
 		
 	BOOL SImageViewer::RealSize()
 	{
-		m_fRatio = 1.0f;
+		m_fRatio = RATIO_100 / 100.f;
 		Invalidate();
 			
 		// 激发放大率更新事件
@@ -438,15 +440,15 @@ namespace SOUI
 
 	void SImageViewer::OnTimer(char nIDEvent)
 	{
-		if ( nIDEvent == TIMER_MOVE )
-		{
+		if ( nIDEvent == TIMER_MOIVE )
+		{	// 翻页动画
 			if(m_iMoveWidth > 0)
 			{
 				if(m_iMoveWidth - m_iTimesMove <= 0)
 				{
 					m_iMoveWidth = 0;
 					Invalidate();
-					KillTimer(TIMER_MOVE);
+					KillTimer(TIMER_MOIVE);
 					m_bTimerMove = FALSE;
 				}
 				else
@@ -461,7 +463,7 @@ namespace SOUI
 				{
 					m_iMoveWidth = 0;
 					Invalidate();
-					KillTimer(TIMER_MOVE);
+					KillTimer(TIMER_MOIVE);
 					m_bTimerMove = FALSE;
 				}
 				else
@@ -472,9 +474,9 @@ namespace SOUI
 			}
 		}
 		else if ( nIDEvent == TIMER_GIF )
-		{
+		{	// GIF动画，以固定帧率(0.1s)显示
 			if ( m_pImgGif == NULL )
-			{
+			{	// 没有显示GIF了，就停止
 				KillTimer(TIMER_GIF);
 				return;
 			}
