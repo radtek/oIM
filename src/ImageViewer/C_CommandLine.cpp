@@ -46,6 +46,7 @@ BOOL C_CommandLine::Usage()
 {
 	SStringT szUsage = GETSTRING(R.string.usages);
 	SStringT szHelp  = GETSTRING(R.string.usage_help);
+
 	SMessageBox(NULL, szUsage, szHelp, MB_OK | MB_ICONINFORMATION);
 
 	return FALSE;

@@ -8,27 +8,26 @@
     <message>
       <source>usages</source>
       <translation>
-        <![CDATA[
-          ImageViewer.exe [选项]
-          选项:
-          -ipath="path" 将替换images值中的"${ipath}" 和 ".\"，必须在参数"-images"的之前
-          -ifilter="filter" 图片过滤器，必须在"-ipath"之后，自动搜索"-ipath"位置中的图片，如：*.png|*.jpg
-          -images="image[|image][|...]" 指定图片文件的路径列表，以"|"分隔
-          当只有文件名时，会自动添加路径"${ipath}"
-          当前路径".\"也会被替换成"${ipath}"
-          -db="dbfile" 指定消息数据库（msg.db）的路径
-          -fid=fid 指定要显示的当前图片，没有指定或者指定无效时，默认显示第一张图片
-          当与参数"-db"结合使用时，表示当前的图片fid
-          当与参数"-images" 或者自动搜索时，表示当前图片从0开始的索引
-          -lang=[cn,en] 指定要使用的语言，默认跟随系统
-          -scale=[100,125,150,200] 指定放大倍数，默认根据系统DPI来设定
-          -help 显示本帮助信息
+          <![CDATA[用法：ImageViewer.exe [选项]
+选项:
+  -ipath="path"     将替换images值中的"${ipath}" 和 ".\"，必须在参数"-images"之前
+  -fid=<fid|index>  指定要显示的当前图片，没有指定或者指定无效时，默认显示第一张图片
+                    当与参数"-db"结合使用时，表示当前的图片fid，必须在参数"-db"之前
+                    当与参数"-images" 或者自动搜索时，表示当前图片从0开始的索引
+  -images="image"   指定图片文件的路径列表，以"|"分隔
+                    当只有文件名时，会自动添加路径"${ipath}"
+                    当前路径".\"也会被替换成"${ipath}"
+  -db="dbfile"      指定消息数据库（msg.db）的路径
+  -ifilter="filter" 图片过滤器，必须在"-ipath"之后，自动搜索"-ipath"位置中的图片，如："*.png|*.jpg"
+  -lang=[cn,en]     指定要使用的语言，默认跟随系统
+  -scale=n          指定放大倍数，默认根据系统DPI来设定,可选配置有：100,125,150,200
+  -help             显示本帮助信息
 
-          示例:
-          ImageViewer.exe -ipath="d:\a\b" -images="${ipath}a.png|b.png"
-          ImageViewer.exe -ipath="d:\a\b" -ifilter="*.jpg|*.png"
-          ImageViewer.exe -db="d:\msg.db"
-          ImageViewer.exe -db="d:\msg.db" -fid=234235235232423432432
+示例:
+  ImageViewer.exe -ipath="d:\a\b" -images="${ipath}a.png|b.png"
+  ImageViewer.exe -ipath="d:\a\b" -ifilter="*.jpg|*.png"
+  ImageViewer.exe -db="d:\msg.db"
+  ImageViewer.exe -db="d:\msg.db" -fid=234235235232423432432
           ]]>
       </translation>
     </message>
@@ -36,15 +35,15 @@
   </context>
   <context name="messagebox">
     <message>
-      <source>ok</source>
+      <source>Ok</source>
       <translation>确定</translation>
     </message>
     <message>
-      <source>cancel</source>
+      <source>Cancel</source>
       <translation>取消</translation>
     </message>
     <message>
-      <source>retry</source>
+      <source>Retry</source>
       <translation>重试</translation>
     </message>
     <message>
