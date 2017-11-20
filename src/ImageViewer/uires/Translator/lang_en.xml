@@ -10,15 +10,16 @@
       <translation>
         <![CDATA[Usage: ImageViewer.exe [options]
 options:
-  -ipath="path"     Replace the ${ipath} in images, MUST be at before of "-images"
+  -ipath="path"     Replace the ${ipath} in images, MUST before of "-images"
   -fid=<fid|index>  The current image, default is the first image
                     It is fid when use '-db', MUST before of "-db"
                     It is index based 0 when use '-images'
   -images="image"   The image file list, splited by '|';
                     Will add "${ipath}" when not any path item;
                     Will replaced ".\" with ${ipath}
+  -dbkey="key"      The key of database, default the same as eIM's。MUST before of "-db"
   -db="dbfile"      The msg.db database file path
-  -ifilter="filter" The filter with ipath auto search image, MUST be after of "-ipath', eg.: *.png|*.jpg
+  -ifilter="filter" The filter with ipath auto search image, MUST after of "-ipath', eg.: *.png|*.jpg
   -lang=[cn,en]     The language, default as system
   -scale=n          The scale, default by system DPI, option as: 100,125,150,200
   -help             Show this help

@@ -1,6 +1,7 @@
 #include "StdAfx.h"
 #include "C_CommandLine.h"
 #include "Shellapi.h"
+#include <Winerror.h>
 
 C_CommandLine& C_CommandLine::GetObject()
 {
@@ -11,6 +12,8 @@ C_CommandLine& C_CommandLine::GetObject()
 C_CommandLine::C_CommandLine(void)
 	: m_nScale(100)
 	, m_u64Fid(0)
+	, m_bFid(FALSE)
+	, m_szDbKey(_T("SXIT@0518$YFGZ#"))
 {
 	// 获取用户当前语言
 	LANGID lang = GetUserDefaultLangID(); //GetSystemDefaultLangID();
@@ -89,6 +92,106 @@ DWORD C_CommandLine::FindImages(const SStringT& szFindPath, const SStringT& szFi
 	qsort_s(vectImage.data(), vectImage.size(), sizeof(SStringT), CompareFunc,(void*)&vectImage);
 
 	return vectImage.size();
+}
+
+const char* const kGetMsgInfo = "SELECT msgid_,sid,timestamp FROM t_session_records WHERE msg LIKE '%%Fid=\"%llu\"%%' AND msg LIKE '%%<MsgImage %%';";
+const char* const kGetImgMsgs = "SELECT msgid_,msg FROM t_session_records WHERE sid=%lld AND timestamp>=%u AND timestamp<=%u AND msg LIKE '%%<MsgImage %%' ORDER BY timestamp DESC;";
+BOOL C_CommandLine::GetMsgInfo(I_SQLite3* pIDb, const QFID& fid, QSID& sid, DWORD& dwTimestamp)
+{
+	if ( pIDb == NULL || fid == 0 )
+		return FALSE;
+
+	char* pszSql = pIDb->VMPrintf(kGetMsgInfo, fid);
+	if ( I_SQLite3Table* pITbl = pIDb->GetTable(pszSql, true) )
+	{
+		AUTO_RELEASE_(pITbl);
+		QMID mid = 0;
+		if ( pITbl->Step() == SQLITE_ROW )
+		{
+			mid = pITbl->GetColInt64(0);
+			sid = pITbl->GetColInt64(1);
+			dwTimestamp = pITbl->GetColInt(2);
+
+			return TRUE;
+		}
+	}
+	
+	return FALSE;
+}
+
+BOOL C_CommandLine::ParseImgMsg(const char* const pszMsgUI, DWORD& dwNowIndex)
+{
+	if ( pszMsgUI == NULL )
+		return FALSE;
+
+	pugi::xml_document xmlDoc;
+	if(!xmlDoc.load_buffer(pszMsgUI, strlen(pszMsgUI), pugi::parse_default, pugi::encoding_utf8)) 
+		return FALSE;
+
+	for (pugi::xml_node node = xmlDoc.first_child().child((const pugi::char_t*)_T("Message")).first_child(); node; node = node.next_sibling())
+	{
+		if ( _tcsicmp((const TCHAR*)node.name(), _T("MsgImage")) != 0 )
+			continue;	// 不是图片
+
+		if ( m_bFid == FALSE )
+		{
+			QFID fid = _tcstoui64((const TCHAR*)node.attribute((const pugi::char_t*)_T("Fid")).as_string(), NULL, 0);
+			if ( fid == m_u64Fid )
+				m_bFid = TRUE;	// 已经定位到了指定的图片
+			else
+				dwNowIndex++;
+		}
+
+		SStringT szImage = (const TCHAR*)node.attribute((const pugi::char_t*)_T("FilePath")).as_string();
+		m_vectImage.push_back(szImage);
+	}
+
+	return TRUE;
+}
+
+#define DAY_OF_SECONDS		(24 * 60 * 60)	// 24h * 60min * 60s
+#define MONTH_OF_DAYS_(T,D)	((T) + DAY_OF_SECONDS * (D))
+DWORD C_CommandLine::LoadImages()
+{ // 24 * 60 * 60
+	if ( m_u64Fid == 0 )	// 没有FID，就无法确定会话，就无法搜索图片消息
+		return 0;	
+
+	I_SQLite3* pIDb = NULL;
+	C_PluginDll	dllSqlite3(ePLUGIN_TYPE_NORMAL, INAME_SQLITE_DB);
+	SStringA szDbFileA = S_CT2A(m_szDbFile);
+	SStringA szDbKeyA  = S_CT2A(m_szDbKey);
+
+	if ( dllSqlite3.Load(_T("SQLite3.dll")) && 
+		SUCCEEDED(dllSqlite3.eIMCreateInterface(INAME_SQLITE_DB, (void**)&pIDb)) )
+	{
+		AUTO_RELEASE_(pIDb);
+		if ( SQLITE_OK != pIDb->Open(szDbFileA) )
+			return 0;
+
+		if ( !szDbKeyA.IsEmpty() )
+			pIDb->Key(szDbKeyA, szDbKeyA.GetLength());
+
+		QSID	sid = 0;
+		DWORD	dwTime = 0;
+		if ( !GetMsgInfo(pIDb, m_u64Fid, sid, dwTime) )
+			return 0;
+
+		// 获取前一个月，后两个月的图片消息
+		char* pszSql = pIDb->VMPrintf(kGetImgMsgs, sid,	MONTH_OF_DAYS_(dwTime, -31), MONTH_OF_DAYS_(dwTime, 62) );
+		DWORD dwIndex = m_vectImage.size();	// 以当前已经有的个数为基础索引
+		if ( I_SQLite3Table* pITbl = pIDb->GetTable(pszSql, true) )
+		{
+			AUTO_RELEASE_(pITbl);
+			while(pITbl->Step() == SQLITE_ROW )
+			{
+				ParseImgMsg((const char*)pITbl->GetColText(1), dwIndex);
+			}
+
+			m_u64Fid = dwIndex;	// 更新FID为实际的图片索引
+		}
+	}
+
+	return m_vectImage.size();
 }
 
 SStringT C_CommandLine::GetParamValue(LPWSTR pszArg, LPWSTR pszNext, int& i32Index)
@@ -194,11 +297,17 @@ BOOL C_CommandLine::Parse(LPWSTR* pszArgs, int nArgs)
 			if ( m_szImgPath.IsEmpty() || !PathFileExists(m_szImgPath) )
 				return FALSE;
 		}
+		else if ( IsOption(pszArg, _T("dbkey")) )
+		{
+			m_szDbKey = GetParamValue(pszArg, pszNext, i32Index);
+		}
 		else if ( IsOption(pszArg, _T("db")) )
 		{
 			m_szDbFile = GetParamValue(pszArg, pszNext, i32Index);
 			if ( m_szDbFile.IsEmpty() || !PathFileExists(m_szDbFile) )
 				return FALSE;
+
+			LoadImages();
 		}
 		else if ( IsOption(pszArg, _T("fid")) )
 		{

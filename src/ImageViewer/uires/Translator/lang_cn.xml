@@ -17,6 +17,7 @@
   -images="image"   指定图片文件的路径列表，以"|"分隔
                     当只有文件名时，会自动添加路径"${ipath}"
                     当前路径".\"也会被替换成"${ipath}"
+  -dbkey="key"      数据库密钥，默认为eIM的密钥，必须在参数"-db"之前                    
   -db="dbfile"      指定消息数据库（msg.db）的路径
   -ifilter="filter" 图片过滤器，必须在"-ipath"之后，自动搜索"-ipath"位置中的图片，如："*.png|*.jpg"
   -lang=[cn,en]     指定要使用的语言，默认跟随系统
