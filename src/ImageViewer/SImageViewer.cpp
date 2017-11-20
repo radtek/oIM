@@ -355,7 +355,8 @@ namespace SOUI
 		BOOL bLPress = (nFlags & MK_LBUTTON);
 		if ( m_bImgMovable && bLPress )
 		{
-			CPoint ptCenter(m_ptCenterOld.x - (LONG)((pt.x - m_ptMoveStart.x) / m_fRatio), m_ptCenterOld.y - (LONG)((pt.y - m_ptMoveStart.y) / m_fRatio));
+			CPoint ptCenter(m_ptCenterOld.x - (LONG)((pt.x - m_ptMoveStart.x) / m_fRatio),
+							m_ptCenterOld.y - (LONG)((pt.y - m_ptMoveStart.y) / m_fRatio));
 			Move(eMOVE_MOVING, &ptCenter);
 		}
 	}
