@@ -637,7 +637,7 @@ namespace SOUI
 		return szTmpFile;
 	}
 
-	BOOL SImageViewer::RemoveTempImage()
+	inline BOOL SImageViewer::RemoveTempImage()
 	{
 		if ( PathFileExists(m_szTmpImg) )
 			DeleteFile(m_szTmpImg);	// 删除旧的临时文件
@@ -646,13 +646,30 @@ namespace SOUI
 		return TRUE;
 	}
 
+	inline SStringT SImageViewer::GetImageFormat(TCHAR* pszExt)
+	{
+		if ( _tcsicmp(pszExt, _T(".bmp")) == 0 )
+			return _T("image/bmp");
+		else if ( _tcsicmp(pszExt, _T(".jpg")) == 0 || _tcsicmp(pszExt, _T(".jpeg")) == 0 )
+			return _T("image/jpeg");
+		else if ( _tcsicmp(pszExt, _T(".gif")) == 0 )
+			return _T("image/gif");
+		else if ( _tcsicmp(pszExt, _T(".tif")) == 0 || _tcsicmp(pszExt, _T(".tiff")) == 0 )
+			return _T("image/tiff");
+		else //if ( _tcsicmp(pszExt, _T(".png")) == 0 )
+			return _T("image/png");	// Default
+	}
+
 	BOOL SImageViewer::Rotate(BOOL bRight)
 	{
+		if(m_bTimerMove)
+			return TRUE;		// 正在显示过渡效果时，不再黑色旋转
+
 		m_nAngle += bRight ? 90 : -90;
 		if ( m_nAngle < 0 )
 			m_nAngle += 360;	// 转换成正数
 
-		if ( m_nAngle >= 360 )	// 规范化到【0，360)
+		if ( m_nAngle >= 360 )	// 规范化到[0，360)
 			m_nAngle -= 360;
 
 		SStringT szImg = m_vectImage[m_iSelected];
@@ -668,9 +685,8 @@ namespace SOUI
 				img.RotateFlip(Rotate270FlipNone);
 
 			CLSID clsidEncoder;
-			SStringT szFormat;
-			szFormat.Format(_T("image/%s"), pszExt+1);
-			GetEncoderClsid(szFormat, &clsidEncoder);
+			if (GetEncoderClsid(GetImageFormat(pszExt), &clsidEncoder) < 0)
+				return FALSE;
 			
 			Reset();
 			m_szTmpImg = GetTempImgFile(pszExt);
@@ -689,7 +705,6 @@ namespace SOUI
 	{
 		UINT  num = 0;          // number of image encoders
 		UINT  size = 0;         // size of the image encoder array in bytes
-
 		ImageCodecInfo* pImageCodecInfo = NULL;
 
 		GetImageEncodersSize(&num, &size);
@@ -701,7 +716,6 @@ namespace SOUI
 			return -1;  // Failure
 
 		GetImageEncoders(num, size, pImageCodecInfo);
-
 		for(UINT j = 0; j < num; ++j)
 		{
 			if( wcscmp(pImageCodecInfo[j].MimeType, format) == 0 )

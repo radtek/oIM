@@ -110,7 +110,7 @@ options:
     </message>
     <message>
       <source>btnToolbarRotate</source>
-      <translation>Rotate to right</translation>
+      <translation>Rotate to right/Left(CTRL)</translation>
     </message>
     <message>
       <source>btnToolbarFolder</source>

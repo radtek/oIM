@@ -112,7 +112,7 @@
     </message>
     <message>
       <source>btnToolbarRotate</source>
-      <translation>向右旋转</translation>
+      <translation>向右/左(CTRL)旋转</translation>
     </message>
     <message>
       <source>btnToolbarFolder</source>

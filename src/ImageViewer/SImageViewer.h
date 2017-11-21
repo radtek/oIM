@@ -92,6 +92,7 @@ typedef enum tagMoveType
 		inline SStringT GetTempImgFile(TCHAR* pszExt);
 		inline BOOL		RemoveTempImage();
 		inline BOOL		Reset();
+		inline SStringT GetImageFormat(TCHAR* pszExt);
 
 	protected:
 		SOUI_MSG_MAP_BEGIN()	
