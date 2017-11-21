@@ -25,7 +25,7 @@
         <imgbtn name="btn_toolbar.folder" class="cls_btn_toolbar_folder" width="40dp" margin-x="5" />
         <imgbtn name="btn_toolbar.saveas" class="cls_btn_toolbar_saveas" width="40dp" margin-x="5" />
       </window>
-      <toggle name="toolbar_toggle" class="cls_btn_toolbar_toggle" pos="|0dp,-8dp,@-1,-0" offset="-0.5,0" layeredWindow="1" />
+      <toggle name="toolbar_toggle" class="cls_btn_toolbar_toggle" pos="|0dp,-8dp,@30dp,@8dp" offset="-0.5,0" layeredWindow="1" />
     </imageViewer>
   </root>
 </SOUI>
