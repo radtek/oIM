@@ -246,9 +246,11 @@ BOOL C_CommandLine::ParseCommandLine()
 {
 	BOOL bRet   = FALSE;
 	int nArgs = 0;;
-	if (LPWSTR* pszArgs = CommandLineToArgvW(GetCommandLine(), &nArgs))
+	TCHAR* pszCmdLine = GetCommandLine();
+	if (LPWSTR* pszArgs = CommandLineToArgvW(pszCmdLine, &nArgs))
 	{
-		if ( nArgs > 1 )
+		STRACE(_T("%s"), pszCmdLine);
+		if ( nArgs >= 1 )
 			bRet = Parse(pszArgs, nArgs);
 
 		LocalFree(pszArgs);
