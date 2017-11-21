@@ -94,6 +94,10 @@ DWORD C_CommandLine::FindImages(const SStringT& szFindPath, const SStringT& szFi
 	return vectImage.size();
 }
 
+const pugi::char_t* const kMessage = _T("Message");
+const pugi::char_t* const kMsgImage= _T("MsgImage");
+const pugi::char_t* const kFid     = _T("Fid");
+const pugi::char_t* const kFilePath= _T("FilePath");
 const char* const kGetMsgInfo = "SELECT msgid_,sid,timestamp FROM t_session_records WHERE msg LIKE '%%Fid=\"%llu\"%%' AND msg LIKE '%%<MsgImage %%';";
 const char* const kGetImgMsgs = "SELECT msgid_,msg FROM t_session_records WHERE sid=%lld AND timestamp>=%u AND timestamp<=%u AND msg LIKE '%%<MsgImage %%' ORDER BY timestamp DESC;";
 BOOL C_CommandLine::GetMsgInfo(I_SQLite3* pIDb, const QFID& fid, QSID& sid, DWORD& dwTimestamp)
@@ -128,21 +132,21 @@ BOOL C_CommandLine::ParseImgMsg(const char* const pszMsgUI, DWORD& dwNowIndex)
 	if(!xmlDoc.load_buffer(pszMsgUI, strlen(pszMsgUI), pugi::parse_default, pugi::encoding_utf8)) 
 		return FALSE;
 
-	for (pugi::xml_node node = xmlDoc.first_child().child((const pugi::char_t*)_T("Message")).first_child(); node; node = node.next_sibling())
+	for (pugi::xml_node node = xmlDoc.first_child().child(kMessage).first_child(); node; node = node.next_sibling())
 	{
-		if ( _tcsicmp((const TCHAR*)node.name(), _T("MsgImage")) != 0 )
+		if ( _tcsicmp((const TCHAR*)node.name(), kMsgImage) != 0 )
 			continue;	// 不是图片
 
 		if ( m_bFid == FALSE )
 		{
-			QFID fid = _tcstoui64((const TCHAR*)node.attribute((const pugi::char_t*)_T("Fid")).as_string(), NULL, 0);
+			QFID fid = _tcstoui64((const TCHAR*)node.attribute(kFid).as_string(), NULL, 0);
 			if ( fid == m_u64Fid )
 				m_bFid = TRUE;	// 已经定位到了指定的图片
 			else
 				dwNowIndex++;
 		}
 
-		SStringT szImage = (const TCHAR*)node.attribute((const pugi::char_t*)_T("FilePath")).as_string();
+		SStringT szImage = (const TCHAR*)node.attribute(kFilePath).as_string();
 		m_vectImage.push_back(szImage);
 	}
 
@@ -156,10 +160,12 @@ DWORD C_CommandLine::LoadImages()
 	if ( m_u64Fid == 0 )	// 没有FID，就无法确定会话，就无法搜索图片消息
 		return 0;	
 
-	I_SQLite3* pIDb = NULL;
+	QSID		sid = 0;
+	DWORD		dwTime = 0;
+	I_SQLite3*	pIDb = NULL;
 	C_PluginDll	dllSqlite3(ePLUGIN_TYPE_NORMAL, INAME_SQLITE_DB);
-	SStringA szDbFileA = S_CT2A(m_szDbFile);
-	SStringA szDbKeyA  = S_CT2A(m_szDbKey);
+	SStringA	szDbFileA = S_CT2A(m_szDbFile);
+	SStringA	szDbKeyA  = S_CT2A(m_szDbKey);
 
 	if ( dllSqlite3.Load(_T("SQLite3.dll")) && 
 		SUCCEEDED(dllSqlite3.eIMCreateInterface(INAME_SQLITE_DB, (void**)&pIDb)) )
@@ -171,10 +177,8 @@ DWORD C_CommandLine::LoadImages()
 		if ( !szDbKeyA.IsEmpty() )
 			pIDb->Key(szDbKeyA, szDbKeyA.GetLength());
 
-		QSID	sid = 0;
-		DWORD	dwTime = 0;
 		if ( !GetMsgInfo(pIDb, m_u64Fid, sid, dwTime) )
-			return 0;
+			return 0;	// 未查到会话
 
 		// 获取前一个月，后两个月的图片消息
 		char* pszSql = pIDb->VMPrintf(kGetImgMsgs, sid,	MONTH_OF_DAYS_(dwTime, -31), MONTH_OF_DAYS_(dwTime, 62) );

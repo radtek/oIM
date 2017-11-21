@@ -7,15 +7,15 @@ class C_CommandLine
 {
 private:
 	C_CommandLine(void);
-	DWORD FindImages(const SStringT& szFindPath, const SStringT& szFilter, VectImage& vectImage);
+	DWORD	 FindImages(const SStringT& szFindPath, const SStringT& szFilter, VectImage& vectImage);
 
-	BOOL  GetMsgInfo(I_SQLite3* pIDb, const QFID& fid, QSID& sid, DWORD& dwTimestamp);
-	BOOL  ParseImgMsg(const char* const pszMsgUI, DWORD& dwNowIndex);
-	DWORD LoadImages();
+	BOOL	 GetMsgInfo(I_SQLite3* pIDb, const QFID& fid, QSID& sid, DWORD& dwTimestamp);
+	BOOL	 ParseImgMsg(const char* const pszMsgUI, DWORD& dwNowIndex);
+	DWORD	 LoadImages();
 
 	SStringT GetParamValue(LPWSTR pszArg, LPWSTR pszNext, int& i32Index);
-	BOOL IsOption(LPWSTR pszArg, LPWSTR pszName);
-	BOOL Parse(LPWSTR* pszArgs, int nArgs);
+	BOOL	 IsOption(LPWSTR pszArg, LPWSTR pszName);
+	BOOL	 Parse(LPWSTR* pszArgs, int nArgs);
 
 	static int __cdecl CompareFunc(void *pvlocale, const void *item1, const void *item2);
 
