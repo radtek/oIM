@@ -276,13 +276,16 @@ namespace SOUI
 		}
 	}
 
-	BOOL  SImageViewer::Reset()
+	BOOL  SImageViewer::Reset(BOOL bNoAngle)
 	{
 		RemoveTempImage();
 
 		m_rtImgSrc.SetRectEmpty();	// Çå¿Õ
 		EventImagePosChanged evt(this, FALSE, FALSE, m_rtImgSrc, NULL);
 		FireEvent(evt);				// Òþ²ØµØÍ¼
+
+		if ( !bNoAngle )
+			m_nAngle = 0;
 
 		m_bSwitched = TRUE;
 		m_eMove = eMOVE_NONE;
@@ -688,7 +691,7 @@ namespace SOUI
 			if (GetEncoderClsid(GetImageFormat(pszExt), &clsidEncoder) < 0)
 				return FALSE;
 			
-			Reset();
+			Reset(TRUE);
 			m_szTmpImg = GetTempImgFile(pszExt);
 			if ( Ok == img.Save(m_szTmpImg, &clsidEncoder) )
 			{
