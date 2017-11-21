@@ -87,6 +87,11 @@ typedef enum tagMoveType
 		
 		BOOL DrawImage(IRenderTarget *pRT, IBitmap *pBmp, CRect& rcWnd, int i32Index);
 		RECT GetDest(const CRect& rtWnd, const SIZE& szImg, CRect& rtImg);
+		
+		inline int		GetEncoderClsid(const WCHAR* format, CLSID* pClsid);
+		inline SStringT GetTempImgFile(TCHAR* pszExt);
+		inline BOOL		RemoveTempImage();
+		inline BOOL		Reset();
 
 	protected:
 		SOUI_MSG_MAP_BEGIN()	
@@ -115,6 +120,8 @@ typedef enum tagMoveType
 		int		m_iTimesMove;		// 翻页动画，移动的次数
 		int		m_iSelected;		// 当前显示的图片索引
 		float	m_fRatio;			// 放大比率，1.0f 是原始图片大小
+		int		m_nAngle;			// 旋转角度[0,90,180,270]
+		SStringT m_szTmpImg;		// 旋转时使用的临时文件
 		CPoint	m_ptMoveStart;		// 鼠标按下时的坐标位置
 		CPoint	m_ptCenterOld;		// 鼠标按下时原来的中心位置
 		CPoint	m_ptCenter;			// 中心位置

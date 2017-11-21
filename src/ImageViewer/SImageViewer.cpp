@@ -7,6 +7,8 @@
 #define TIMER_GIF			123
 #define TIMER_GIF_ELAPSE	(100)	// 0.1s
 
+#define LOADIMAGE_(N, R) do {R=LOADIMAGE(_T("file"), N); if (R==NULL) R=LOADIMAGE(_T("IMG"), _T("IMG_ERROR")); }while(0)
+
 namespace SOUI
 {
 	SImageViewer::SImageViewer()
@@ -18,6 +20,7 @@ namespace SOUI
 		, m_iSelected(0)
 		, m_iTimesMove(0)
 		, m_fRatio(1.f)
+		, m_nAngle(0)
 		, m_ptCenter(0)
 		, m_bSwitched(FALSE)
 		, m_bImgMovable(FALSE)
@@ -273,16 +276,9 @@ namespace SOUI
 		}
 	}
 
-	BOOL  SImageViewer::Switch(int iSelect, BOOL bMoive, LPSIZE pSize)
+	BOOL  SImageViewer::Reset()
 	{
-#define LOADIMAGE_(N, R) do {R=LOADIMAGE(_T("file"), N); if (R==NULL) R=LOADIMAGE(_T("IMG"), _T("IMG_ERROR")); }while(0)
-
-		if (iSelect >= (int)m_vectImage.size() || iSelect < 0)
-			return FALSE;
-
-		CRect rcWnd = GetClientRect();
-		if(m_bTimerMove)
-			return TRUE;	// 正在显示过渡效果时，不再切换
+		RemoveTempImage();
 
 		m_rtImgSrc.SetRectEmpty();	// 清空
 		EventImagePosChanged evt(this, FALSE, FALSE, m_rtImgSrc, NULL);
@@ -291,13 +287,28 @@ namespace SOUI
 		m_bSwitched = TRUE;
 		m_eMove = eMOVE_NONE;
 		m_ptCenter.SetPoint(0, 0);	// Reset
+
+		SAFE_RELEASE_(m_pImgSel);
+		SAFE_RELEASE_(m_pImgNext);
+		SAFE_RELEASE_(m_pImgGif);
+
+		return TRUE;
+	}
+
+	BOOL  SImageViewer::Switch(int iSelect, BOOL bMoive, LPSIZE pSize)
+	{
+		if (iSelect >= (int)m_vectImage.size() || iSelect < 0)
+			return FALSE;
+
+		CRect rcWnd = GetClientRect();
+		if(m_bTimerMove)
+			return TRUE;	// 正在显示过渡效果时，不再切换
+
+		Reset();
 		m_iMoveWidth = (m_iSelected - iSelect)*rcWnd.Width();
 		m_iSelected = iSelect;
 
 		// 更新加载的图片
-		SAFE_RELEASE_(m_pImgSel);
-		SAFE_RELEASE_(m_pImgNext);
-		SAFE_RELEASE_(m_pImgGif);
 		SStringT szExt = PathFindExtension(m_vectImage[m_iSelected]);
 		if ( szExt.CompareNoCase(_T(".gif")) == 0 )
 		{
@@ -599,6 +610,9 @@ namespace SOUI
 		if ( IDOK != dlgFile.DoModal() )
 			return FALSE;
 
+		if ( !m_szTmpImg.IsEmpty() )
+			szImage = m_szTmpImg;
+
 		if ( CopyFile(szImage, dlgFile.GetPathName(), FALSE) )
 		{
 			if ( bOpenFolder )
@@ -609,9 +623,96 @@ namespace SOUI
 		return FALSE;
 	}
 
-	BOOL SImageViewer::Rotate(BOOL bRight)
+#include <Gdiplus.h>
+	using namespace Gdiplus;
+	inline SStringT SImageViewer::GetTempImgFile(TCHAR* pszExt)
 	{
+		TCHAR szTmpPath[MAX_PATH * 2] = { 0 };
+		TCHAR szTmpFile[MAX_PATH * 2] = { 0 };
+
+		GetTempPath(_countof(szTmpPath), szTmpPath);		// 不去检查失败
+		GetTempFileName(szTmpPath, _T("iv"), 0, szTmpFile);
+		_tcscat(szTmpFile, pszExt);
+
+		return szTmpFile;
+	}
+
+	BOOL SImageViewer::RemoveTempImage()
+	{
+		if ( PathFileExists(m_szTmpImg) )
+			DeleteFile(m_szTmpImg);	// 删除旧的临时文件
+
+		m_szTmpImg.Empty();
 		return TRUE;
 	}
 
+	BOOL SImageViewer::Rotate(BOOL bRight)
+	{
+		m_nAngle += bRight ? 90 : -90;
+		if ( m_nAngle < 0 )
+			m_nAngle += 360;	// 转换成正数
+
+		if ( m_nAngle >= 360 )	// 规范化到【0，360)
+			m_nAngle -= 360;
+
+		SStringT szImg = m_vectImage[m_iSelected];
+		if ( TCHAR* pszExt = PathFindExtension(szImg) )
+		{
+			Image img(szImg);
+
+			if ( m_nAngle == 90 )
+				img.RotateFlip(Rotate90FlipNone);
+			else if ( m_nAngle == 180 )
+				img.RotateFlip(Rotate180FlipNone);
+			else if ( m_nAngle == 270 )
+				img.RotateFlip(Rotate270FlipNone);
+
+			CLSID clsidEncoder;
+			SStringT szFormat;
+			szFormat.Format(_T("image/%s"), pszExt+1);
+			GetEncoderClsid(szFormat, &clsidEncoder);
+			
+			Reset();
+			m_szTmpImg = GetTempImgFile(pszExt);
+			if ( Ok == img.Save(m_szTmpImg, &clsidEncoder) )
+			{
+				LOADIMAGE_(m_szTmpImg, m_pImgSel);
+				Invalidate();
+				return TRUE;
+			}
+		}
+
+		return FALSE;
+	}
+
+	inline int SImageViewer::GetEncoderClsid(const WCHAR* format, CLSID* pClsid)
+	{
+		UINT  num = 0;          // number of image encoders
+		UINT  size = 0;         // size of the image encoder array in bytes
+
+		ImageCodecInfo* pImageCodecInfo = NULL;
+
+		GetImageEncodersSize(&num, &size);
+		if(size == 0)
+			return -1;  // Failure
+
+		pImageCodecInfo = (ImageCodecInfo*)(malloc(size));
+		if(pImageCodecInfo == NULL)
+			return -1;  // Failure
+
+		GetImageEncoders(num, size, pImageCodecInfo);
+
+		for(UINT j = 0; j < num; ++j)
+		{
+			if( wcscmp(pImageCodecInfo[j].MimeType, format) == 0 )
+			{
+				*pClsid = pImageCodecInfo[j].Clsid;
+				free(pImageCodecInfo);
+				return j;  // Success
+			}    
+		}
+
+		free(pImageCodecInfo);
+		return -1;  // Failure
+	}
 }

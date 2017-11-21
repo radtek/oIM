@@ -21,7 +21,7 @@
         <toggle name="btn_toolbar.fullscreen" class="cls_tgl_toolbar_fullscreen" width="34dp" margin-x="5" />
         <imgbtn name="btn_toolbar.zoomin" class="cls_btn_toolbar_zoomin" width="40dp" margin-x="5" />
         <imgbtn name="btn_toolbar.zoomout" class="cls_btn_toolbar_zoomout" width="40dp" margin-x="5" />
-        <imgbtn name="btn_toolbar.rotate" class="cls_btn_toolbar_rotate" width="40dp" margin-x="5" visible="0" display="0" />
+        <imgbtn name="btn_toolbar.rotate" class="cls_btn_toolbar_rotate" width="40dp" margin-x="5" />
         <imgbtn name="btn_toolbar.folder" class="cls_btn_toolbar_folder" width="40dp" margin-x="5" />
         <imgbtn name="btn_toolbar.saveas" class="cls_btn_toolbar_saveas" width="40dp" margin-x="5" />
       </window>
