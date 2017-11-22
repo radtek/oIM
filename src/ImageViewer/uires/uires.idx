@@ -35,7 +35,7 @@
     <!-- 工具栏 -->
     <file name="TOOLBAR_BKGND" path="image\toolbar_bkgnd.png"/>
     <file name="TOOLBAR_1TO1" path="image\toolbar_1to1.png"/>
-    <file name="TOOLBAR_FULLSCREEN" path="image\toolbar_fullscreen_toggle.png"/>
+    <file name="TOOLBAR_FULLSCREEN" path="image\toolbar_fullscreen.png"/>
     <file name="TOOLBAR_ZOOMOUT" path="image\toolbar_zoomout.png"/>
     <file name="TOOLBAR_ZOOMIN" path="image\toolbar_zoomin.png"/>
     <file name="TOOLBAR_ROTATE" path="image\toolbar_rotate.png"/>
