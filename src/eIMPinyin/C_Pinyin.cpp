@@ -1,5 +1,5 @@
 #include "StdAfx.h"
-#include "C_eIMPinyin.h"
+#include "C_Pinyin.h"
 #include "Public\Utils.h"
 
 //extern const char* GBK2Pinyin(int i32Char);
