@@ -3,6 +3,11 @@
 
 #define args C_CommandLine::GetObject()
 
+typedef UINT64 QFID;
+typedef UINT64 QSID;
+typedef UINT64 QMID;
+
+
 class C_CommandLine
 {
 private:
