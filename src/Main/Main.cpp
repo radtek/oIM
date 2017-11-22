@@ -5,8 +5,7 @@
 #include <objbase.h>
 #include <Shellapi.h>
 #include "Main.h"
-#include "eIMUICore\IeIMUICore.h"
-#include "Public\Debugs.h"
+#include "UICore\I_UICore.h"
 #include "Public\Plugin.h"
 
 
@@ -32,26 +31,26 @@ BOOL Run(HINSTANCE hInstance, DWORD dwFlag)
 	C_PluginDll dllCore(ePLUGIN_TYPE_NORMAL, INAME_EIMUI_CORE);
 	if ( !dllCore.Load(INAME_EIMUI_CORE_DLL) )
 	{
-		TRACE_(_T("Load [%s] failed, exit!"), INAME_EIMUI_CORE_DLL); 
+		STRACE(_T("Load [%s] failed, exit!"), INAME_EIMUI_CORE_DLL); 
 		return FALSE;
 	}
 
 	int i32Result = dllCore.eIMCreateInterface(INAME_EIMUI_CORE, (void**)&s_pIUICore);
 	if ( FAILED(i32Result) )
 	{
-		TRACE_(_T("Create [%s] interface failed, errcode=0x%08X, exit!"), INAME_EIMUI_CORE_DLL, i32Result); 
+		STRACE(_T("Create [%s] interface failed, errcode=0x%08X, exit!"), INAME_EIMUI_CORE_DLL, i32Result); 
 		return FALSE;
 	}
 
 	if ( !s_pIUICore->InitPlugin(NULL, NULL) )
 	{
-		TRACE_(_T("[%s] InitPlugin failed, exit!"), INAME_EIMUI_CORE); 
+		STRACE(_T("[%s] InitPlugin failed, exit!"), INAME_EIMUI_CORE); 
 		return FALSE;
 	}
 
-	TRACE_(_T("Before of call I_EIMCore::Run(0x%08x)"), hInstance); 
+	STRACE(_T("Before of call I_EIMCore::Run(0x%08x)"), hInstance); 
 	BOOL bRet = s_pIUICore->Run(dwFlag);
-	TRACE_(_T("After of call I_EIMCore::Run(0x%08x), Result:%s"), hInstance, bRet ? _T("True") : _T("False")); 
+	STRACE(_T("After of call I_EIMCore::Run(0x%08x), Result:%s"), hInstance, bRet ? _T("True") : _T("False")); 
 
 	s_pIUICore->FreePlugin();
 	SAFE_RELEASE_INTERFACE_(s_pIUICore);

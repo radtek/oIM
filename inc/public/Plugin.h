@@ -38,8 +38,7 @@
 #include <string>
 #include <utility>
 #include <algorithm>
-#include "Errors.h"
-#include "trace.h"
+#include "utils.h"
 
 #define INAME_EIMPLUGINMGR		_T("SXIT.EIMPluginMgr.PluginMgr")	// I_EIMPluginMgr interface name
 #define INAME_EIMEVENTMGR		_T("SXIT.EIMPluginMgr.EventMgr")	// I_EIMEventMgr interface name

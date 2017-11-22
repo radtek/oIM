@@ -16,9 +16,10 @@
 #define __IEIMUI_CORE_HEADER_2017_04_09_BY_YFGZ__
 
 #include "Public\Plugin.h"
+//#include "public\Typedefs.h"
 //#include "Public\XmlLang.h"
 //#include "eIMEngine\IeIMCmd.h"
-#include "eIMUICore\IeIMUIInviteWnd.h"
+//#include "eIMUICore\IeIMUIInviteWnd.h"
 
 #define INAME_EIMUI_CORE_DLL	_T("eIMUICore.dll")	
 #define INAME_EIMUI_CORE		_T("SXIT.EIMUI.CORE")	// I_EIMUISearch interface name
@@ -62,8 +63,8 @@ public:
 	virtual int		UIMessageBox(HWND hwndParent, LPCTSTR lpText, LPCTSTR lpCaption = NULL, UINT uType = MB_OK, LPCTSTR pszSkinFile = NULL) = 0;
 
 	// *** 邀请窗口 
-	virtual BOOL	ShowInviteWnd(PS_InviteInfo psInfo) = 0;
-	virtual BOOL	ShowInviteWndEx(PS_InviteInfoEx psInfoEx) = 0;
+//	virtual BOOL	ShowInviteWnd(PS_InviteInfo psInfo) = 0;
+///	virtual BOOL	ShowInviteWndEx(PS_InviteInfoEx psInfoEx) = 0;
 	//virtual BOOL	ShowScreenshot(LPCTSTR pszSaveFile) = 0;
 
 	// **** UIGetAttributeStrEx 【不是】线程安全的 ****
