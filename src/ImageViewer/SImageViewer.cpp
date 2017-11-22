@@ -430,11 +430,11 @@ namespace SOUI
 				m_fRatio = RATIOF_(RATIO_MAX);	// Max
 		}
 
-		Invalidate();
 
 		// 激发放大率更新事件
 		EventRatioChanged evt(this, m_fRatio);
 		FireEvent(evt);
+		Invalidate();
 
 		return m_fRatio;
 	}
@@ -696,6 +696,10 @@ namespace SOUI
 			if ( Ok == img.Save(m_szTmpImg, &clsidEncoder) )
 			{
 				LOADIMAGE_(m_szTmpImg, m_pImgSel);
+
+				// 激发放大率更新事件
+				EventRatioChanged evt(this, m_fRatio);
+				FireEvent(evt);
 				Invalidate();
 				return TRUE;
 			}
