@@ -61,8 +61,7 @@
 #define __IEIM_SQLITE_INTERFACE_HEADER_2014_06_24_YFGZ__
 
 #include "public\plugin.h"
-#include "Public\StrUtil.h"
-#include "sqllite\sqlite3.h"
+#include "sqllite\SQLite3.h"
 
 #define INAME_SQLITE_DB		_T("SXIT.SQLite3.Database")		// I_SQLite3 interface name
 #define INAME_SQLITE_TABLE	_T("SXIT.SQLite3.Table")		// I_SQLite3Table interface name
