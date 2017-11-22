@@ -48,12 +48,12 @@ C_CommandLine::~C_CommandLine(void)
 {
 }
 
-BOOL C_CommandLine::Usage()
+BOOL C_CommandLine::Usage(HWND hParent)
 {
 	SStringT szUsage = GETSTRING(R.string.usages);
 	SStringT szHelp  = GETSTRING(R.string.usage_help);
 
-	SMessageBox(NULL, szUsage, szHelp, MB_OK | MB_ICONINFORMATION);
+	SMessageBox(hParent, szUsage, szHelp, MB_OK | MB_ICONINFORMATION);
 
 	return FALSE;
 }
@@ -358,7 +358,7 @@ BOOL C_CommandLine::Parse(LPWSTR* pszArgs, int nArgs)
 			else if ( m_nScale > 300 )
 				m_nScale = 300;
 		}
-		else if ( IsOption(pszArg, _T("tarskbar")) )
+		else if ( IsOption(pszArg, _T("taskbar")) )
 		{
 			SStringT szValue = GetParamValue(pszArg, pszNext, i32Index);
 			m_bShowInTaskbar = _tcstol(szValue, NULL, 0);

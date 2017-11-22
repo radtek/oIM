@@ -28,7 +28,7 @@ public:
 	~C_CommandLine(void);
 	static C_CommandLine& GetObject();
 	BOOL IsTaskbar(){ return m_bShowInTaskbar; }
-	BOOL Usage();
+	BOOL Usage(HWND hParent);
 	BOOL ParseCommandLine();
 	const SStringT& GetLang() const { return m_szLang; }
 
