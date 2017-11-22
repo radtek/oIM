@@ -12,7 +12,8 @@ C_CommandLine& C_CommandLine::GetObject()
 C_CommandLine::C_CommandLine(void)
 	: m_nScale(100)
 	, m_u64Fid(0)
-	, m_bFid(FALSE)
+	, m_bFindedFid(FALSE)
+	, m_bShowInTaskbar(TRUE)
 	, m_szDbKey(_T("SXIT@0518$YFGZ#"))
 {
 	// 获取用户当前语言
@@ -137,11 +138,11 @@ BOOL C_CommandLine::ParseImgMsg(const char* const pszMsgUI, DWORD& dwNowIndex)
 		if ( _tcsicmp((const TCHAR*)node.name(), kMsgImage) != 0 )
 			continue;	// 不是图片
 
-		if ( m_bFid == FALSE )
+		if ( m_bFindedFid == FALSE )
 		{
 			QFID fid = _tcstoui64((const TCHAR*)node.attribute(kFid).as_string(), NULL, 0);
 			if ( fid == m_u64Fid )
-				m_bFid = TRUE;	// 已经定位到了指定的图片
+				m_bFindedFid = TRUE;	// 已经定位到了指定的图片
 			else
 				dwNowIndex++;
 		}
@@ -341,6 +342,11 @@ BOOL C_CommandLine::Parse(LPWSTR* pszArgs, int nArgs)
 				m_nScale = 100;
 			else if ( m_nScale > 300 )
 				m_nScale = 300;
+		}
+		else if ( IsOption(pszArg, _T("tarskbar")) )
+		{
+			SStringT szValue = GetParamValue(pszArg, pszNext, i32Index);
+			m_bShowInTaskbar = _tcstol(szValue, NULL, 0);
 		}
 		else if ( IsOption(pszArg, _T("h")) || IsOption(pszArg, _T("?")) )
 		{
