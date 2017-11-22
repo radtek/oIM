@@ -22,6 +22,8 @@ C_CommandLine::C_CommandLine(void)
 		m_szLang = GETSTRING(R.string.lang_cn);
 	else 
 		m_szLang = GETSTRING(R.string.lang_en);
+	
+	STRACE(_T("default lang:%s(%0x)"), m_szLang, lang);
 
 	// 根据当前系统DPI，设置默认值
 	HWND hWnd = ::GetDesktopWindow();
@@ -272,7 +274,10 @@ BOOL C_CommandLine::Parse(LPWSTR* pszArgs, int nArgs)
 			SStringT szImgPath = _T("${ipath}");	// 不能使用格式: $(ipath), 因为它会被VS替换成空的。
 			SStringT szValue = GetParamValue(pszArg, pszNext, i32Index);
 			if ( szValue.IsEmpty() )
+			{
+				STRACE(_T("'-images' is empty value"));
 				return FALSE;
+			}
 
 			for (LPWSTR pszToken = _tcstok((TCHAR*)(const TCHAR*)szValue, _T("|")); pszToken; pszToken = _tcstok(NULL, _T("|")) )
 			{
@@ -291,7 +296,10 @@ BOOL C_CommandLine::Parse(LPWSTR* pszArgs, int nArgs)
 		{
 			m_szImgFilter = GetParamValue(pszArg, pszNext, i32Index);
 			if ( m_szImgFilter.IsEmpty() || m_szImgPath.IsEmpty() )
+			{
+				STRACE(_T("'-ifilter' is empty value"));
 				return FALSE;
+			}
 
 			FindImages(m_szImgPath, m_szImgFilter, m_vectImage);
 		}
@@ -302,7 +310,10 @@ BOOL C_CommandLine::Parse(LPWSTR* pszArgs, int nArgs)
 			m_szImgPath.TrimRight(_T('/'));
 			m_szImgPath += _T("\\");
 			if ( m_szImgPath.IsEmpty() || !PathFileExists(m_szImgPath) )
+			{
+				STRACE(_T("'-ipath' is empty value"));
 				return FALSE;
+			}
 		}
 		else if ( IsOption(pszArg, _T("dbkey")) )
 		{
@@ -312,7 +323,10 @@ BOOL C_CommandLine::Parse(LPWSTR* pszArgs, int nArgs)
 		{
 			m_szDbFile = GetParamValue(pszArg, pszNext, i32Index);
 			if ( m_szDbFile.IsEmpty() || !PathFileExists(m_szDbFile) )
+			{
+				STRACE(_T("'-db' is empty value"));
 				return FALSE;
+			}
 
 			LoadImages();
 		}
@@ -320,7 +334,10 @@ BOOL C_CommandLine::Parse(LPWSTR* pszArgs, int nArgs)
 		{
 			SStringT szValue = GetParamValue(pszArg, pszNext, i32Index);
 			if ( szValue.IsEmpty() )
+			{
+				STRACE(_T("'-fid' is empty value"));
 				return FALSE;
+			}
 
 			m_u64Fid = _tcstoui64(szValue, NULL, 0);
 		}
@@ -331,8 +348,6 @@ BOOL C_CommandLine::Parse(LPWSTR* pszArgs, int nArgs)
 				m_szLang = GETSTRING(R.string.lang_cn);
 			else if ( szValue.CompareNoCase(_T("en")) == 0 )
 				m_szLang = GETSTRING(R.string.lang_en);
-			else 
-				return FALSE;
 		}
 		else if ( IsOption(pszArg, _T("scale")) )
 		{
