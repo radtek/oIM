@@ -1,6 +1,7 @@
 #include "StdAfx.h"
 #include "C_Pinyin.h"
-#include "Public\Utils.h"
+#include "string\strcpcvt.h"
+//#include "Public\Utils.h"
 
 //extern const char* GBK2Pinyin(int i32Char);
 extern const char* Uni2Pinyin(int i32Char);
@@ -30,12 +31,12 @@ C_eIMPinyin::~C_eIMPinyin(void)
 {
 }
 
-int	C_eIMPinyin::Vect2Str(vector<eIMStringA>& vectPinyin, eIMStringA& szPinyin)
+int	C_eIMPinyin::Vect2Str(vector<SOUI::SStringA>& vectPinyin, SOUI::SStringA& szPinyin)
 {
 	int i32count = 0;
-	for ( vector<eIMStringA>::iterator itor = vectPinyin.begin(); itor != vectPinyin.end(); itor++ )
+	for ( vector<SOUI::SStringA>::iterator itor = vectPinyin.begin(); itor != vectPinyin.end(); itor++ )
 	{
-		if ( szPinyin.npos == szPinyin.find( *itor ))
+		if ( szPinyin.Find(*itor ) >= 0)
 		{
 			szPinyin += *itor + ";";
 			i32count++;
@@ -44,12 +45,14 @@ int	C_eIMPinyin::Vect2Str(vector<eIMStringA>& vectPinyin, eIMStringA& szPinyin)
 	return i32count;
 }
 
-int C_eIMPinyin::GetUniPinyins( const WCHAR* pszText, eIMStringA& szPinyin, eIMStringA& szSearch )
+int C_eIMPinyin::GetUniPinyins( const WCHAR* pszText, SOUI::SStringA& szPinyin, SOUI::SStringA& szSearch )
 {
-	szPinyin.clear();
-	szSearch.clear();
+	szPinyin.Empty();
+	szSearch.Empty();
 
-	CHECK_NULL_RET_(pszText, 0);
+	if (pszText == 0)
+		return 0;
+
 	const int	 i32MPyMax = 96;	// Polyphone group max count(2^6)
 	const int	 i32PyMax  = 240;	// Eatch pinyin max char
 	int			 i32MPyCount = 0;	// Polyphone group count
@@ -119,10 +122,10 @@ int C_eIMPinyin::GetUniPinyins( const WCHAR* pszText, eIMStringA& szPinyin, eIMS
 					for ( int i32Index = 0; i32Index < i32MPyCount; i32Index++ )
 					{
 						i32To = (i32MPyIndex + 1) * i32MPyCount + i32Index;
-						ASSERT_(i32To < i32MPyMax);
+						SASSERT(i32To < i32MPyMax);
 						if ( i32To >= i32MPyMax )
 						{
-							TRACE_(_T("Exceed the max of Text:%s"), pszText);
+							STRACE(_T("Exceed the max of Text:%s"), pszText);
 							break;
 						}
 
@@ -142,7 +145,7 @@ int C_eIMPinyin::GetUniPinyins( const WCHAR* pszText, eIMStringA& szPinyin, eIMS
 					for ( int i32Index = 0; i32Index < i32MPyCount; i32Index++ )
 					{
 						i32To = i32MPyIndex * i32MPyCount + i32Index;
-						ASSERT_(i32To < i32MPyMax);
+						SASSERT(i32To < i32MPyMax);
 						if ( i32To >= i32MPyMax )
 							break;
 
@@ -196,11 +199,12 @@ int C_eIMPinyin::GetUniPinyins( const WCHAR* pszText, eIMStringA& szPinyin, eIMS
 	return i32MPyCount;
 }
 
-int C_eIMPinyin::GetUtf8Pinyins( const char* pszText, eIMStringA& szPinyin, eIMStringA& szSearch )
+int C_eIMPinyin::GetUtf8Pinyins( const char* pszText, SOUI::SStringA& szPinyin, SOUI::SStringA& szSearch )
 {
-	eIMStringW szWText;
+	std::wstring szWText;
 	//将多字节(UTF8)转化为宽字节
-	if( 0 == eIMUTF8toWByte( pszText, szWText ) )
+	szWText = SOUI::S_CA2T(pszText);
+	if( 0 == szWText.empty() )
 	{
 		return 0;	//转化失败
 	}
@@ -222,7 +226,7 @@ const char* C_eIMPinyin::GetPinyin( int i32Code, int i32Encoding, int* pi32Bytes
 	else if( 1 == i32Encoding )	//UTF8
 	{
 		char		chTmp[4];
-		eIMStringW	szWBytes;
+		SOUI::SStringW szWBytes;
 
 		if ( i32Code <= 0xFFFFFF && i32Code >= 0x00FFFF )
 		{
@@ -255,21 +259,21 @@ const char* C_eIMPinyin::GetPinyin( int i32Code, int i32Encoding, int* pi32Bytes
 			}
 		}
 		
-		eIMUTF8toWByte( chTmp, szWBytes );
+		szWBytes = SOUI::S_CA2W(chTmp);
 		int i32Rlt = szWBytes[0];
 		return Uni2Pinyin( i32Rlt );
 	}
 	else if ( 2 == i32Encoding )	//UTF8 Bytes stream
 	{
 		char		chTmp[4];
-		eIMStringW	szWBytes;
+		SOUI::SStringW	szWBytes;
 
 		chTmp[0] = i32Code & 0x000000FF;
 		chTmp[1] = ( i32Code & 0x0000FF00 ) >> 8;
 		chTmp[2] = ( i32Code & 0x00FF0000 ) >> 16;
 		chTmp[3] = ( i32Code & 0xFF000000 ) >> 24;		
 		
-		eIMUTF8toWByte( chTmp, szWBytes );
+		szWBytes = SOUI::S_CA2W(chTmp);
 		int i32Rlt = szWBytes[0];
 
 		if ( pi32Bytes )

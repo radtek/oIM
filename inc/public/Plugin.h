@@ -39,6 +39,7 @@
 #include <utility>
 #include <algorithm>
 #include "Errors.h"
+#include "trace.h"
 
 #define INAME_EIMPLUGINMGR		_T("SXIT.EIMPluginMgr.PluginMgr")	// I_EIMPluginMgr interface name
 #define INAME_EIMEVENTMGR		_T("SXIT.EIMPluginMgr.EventMgr")	// I_EIMEventMgr interface name
@@ -123,7 +124,7 @@ typedef int (__stdcall* PFN_eIMCreateInterface)(const TCHAR* pctszIID, void** pp
 #define IMPLEMENT_PLUGIN_SINGLETON_(clsname, clsid) \
 	HRESULT clsname::QueryInterface(const TCHAR* pctszIID, void** ppvIObject) \
 	{ \
-		if( _tcsnicmp(pctszIID, clsid, COUNT_OF_ARRAY_(clsid)) == 0) \
+		if( _tcsnicmp(pctszIID, clsid, _countof(clsid)) == 0) \
 		{ \
 			AddRef(); \
 			*ppvIObject = this; \

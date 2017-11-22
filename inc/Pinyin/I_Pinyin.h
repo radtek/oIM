@@ -34,8 +34,8 @@
 #ifndef __IEIMUI_CONVERT_2_PINYIN_HEADER_2013_12_0_YFGZ__
 #define __IEIMUI_CONVERT_2_PINYIN_HEADER_2013_12_0_YFGZ__
 
-#include "Public\StrUtil.h"
 #include "public\plugin.h"
+#include <string\tstring.h>
 
 #define INAME_EIMUI_PINYIN	_T("SXIT.Pinyin")	// I_EIMPinyin interface name
 
@@ -67,7 +67,7 @@ public:
 	//		>0	The count of combination of multi-pinyins 
 	//		=0	No convert to pinyins
 	//=============================================================================
-	virtual int GetUniPinyins( const WCHAR* pszText, eIMStringA& szPinyin, eIMStringA& szSearch ) = 0;
+	virtual int GetUniPinyins( const WCHAR* pszText, SOUI::SStringA& szPinyin, SOUI::SStringA& szSearch ) = 0;
 
 	//=============================================================================
 	//Function:     GetUtf8Pinyins
@@ -84,7 +84,7 @@ public:
 	//		>0	The count of combination of multi-pinyins
 	//		=0  No convert to pinyin
 	//=============================================================================
-	virtual int GetUtf8Pinyins( const char* pszText, eIMStringA& szPinyin, eIMStringA& szSearch ) = 0;
+	virtual int GetUtf8Pinyins( const char* pszText, SOUI::SStringA& szPinyin, SOUI::SStringA& szSearch ) = 0;
 
 	//=============================================================================
 	//Function:     GetPinyin
