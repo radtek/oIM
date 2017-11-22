@@ -48,6 +48,7 @@
     <None Include="uires\Translator\lang_jp.xml">
       <Filter>SoUI Resouece</Filter>
     </None>
+    <None Include="..\Main\Main.vcxproj" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ImageViewer.cpp">

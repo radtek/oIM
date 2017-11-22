@@ -4,7 +4,7 @@
 #include "stdafx.h"
 #include <objbase.h>
 #include <Shellapi.h>
-#include "eIMMain.h"
+#include "Main.h"
 #include "eIMUICore\IeIMUICore.h"
 #include "Public\Debugs.h"
 #include "Public\Plugin.h"
