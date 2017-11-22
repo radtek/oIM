@@ -1,18 +1,8 @@
 #include "sqllite\I_SQLite.h"
 #include "Public\Utils.h"
+#include "string\strcpcvt.h"
 
 extern "C" __declspec(dllexport) int __stdcall eIMCreateInterface(const TCHAR* pctszIID, void** ppvIObject);
-
-#if defined(DEBUG) || defined(_DEBUG) 
-# define TRACE_UTF8_(FMT, P, ...) \
-	{ \
-		eIMString szFile; \
-		::eIMUTF8ToTChar((const char*)(P), szFile); \
-		LogTrace(_T(TRACE_FMT)##FMT, __FUNCTION__, __LINE__, szFile.c_str(), ##__VA_ARGS__); \
-	}
-#else
-# define TRACE_UTF8_(FMT, P, ...)
-#endif
 
 #define ENCRYPT_PSW(out, len) \
 	{ \
@@ -172,11 +162,11 @@ public:
 		int i32Ret = ::sqlite3_open_v2(pszFile, &m_pDb, i32Flag, NULL);
 		if ( i32Ret != SQLITE_OK )
 		{
-			TRACE_UTF8_(_T("Open database [%s] failed"), pszFile);
+			STRACE(_T("Open database [%s] failed"), pszFile);
 			return i32Ret;
 		}
 
-		TRACE_UTF8_(_T("Open database [%s] succeeded"), pszFile);
+		STRACE(_T("Open database [%s] succeeded"), pszFile);
 		return SQLITE_OK;
 	}
 
@@ -234,7 +224,7 @@ public:
 			pszSql = VMPrintf("ATTACH DATABASE \"%s\" AS \"%s\"", pszFile, pszAsDb);
 
 		int i32Ret = SQL(pszSql);
-		TRACE_UTF8_(_T("%s, %s"), pszSql, i32Ret == SQLITE_OK ? _T("succeeded") : _T("failed"));
+		STRACE(_T("%s, %s"), pszSql, i32Ret == SQLITE_OK ? _T("succeeded") : _T("failed"));
 		Free(pszSql);
 		
 		return i32Ret;
@@ -258,7 +248,7 @@ public:
 
 		char* pszSql = VMPrintf("DETACH DATABASE \"%s\"", pszAsDb);
 		int i32Ret = SQL(pszSql);
-		TRACE_UTF8_(_T("%s, %s"), pszSql, i32Ret == SQLITE_OK ? _T("succeeded") : _T("failed"));
+		STRACE(_T("%s, %s"), pszSql, i32Ret == SQLITE_OK ? _T("succeeded") : _T("failed"));
 		Free(pszSql);
 
 		return i32Ret;
@@ -278,7 +268,7 @@ public:
 		if ( m_pDb == NULL )
 			return SQLITE_OK;
 
-		TRACE_UTF8_(_T("Close database [%s]"), GetFile());
+		STRACE(_T("Close database [%s]"), GetFile());
 		int i32Ret = ::sqlite3_close_v2( m_pDb );
 		if(SQLITE_OK == i32Ret )
 			m_pDb = NULL;
@@ -366,7 +356,7 @@ public:
 
 		if (i32Ret != SQLITE_OK)
 		{
-			TRACE_UTF8_(_T("Execute SQL[%s], result:%d"), pszSql, i32Ret);
+			STRACE(_T("Execute SQL[%s], result:%d"), pszSql, i32Ret);
 		}
 
 		if (bFree)
@@ -403,7 +393,7 @@ public:
 
 		if ( SQLITE_OK != (i32Ret = ::sqlite3_prepare_v2(m_pDb, pszSql, -1, &pVM, &pszTail)) )
 		{
-			TRACE_UTF8_(_T("Prepare SQL[%s] failed, result:%d"), pszSql, i32Ret);
+			STRACE(_T("Prepare SQL[%s] failed, result:%d"), pszSql, i32Ret);
 			if (bFree)	Free((void*)pszSql);
 			pTable->Release();
 			if (pi32Ret) *pi32Ret = i32Ret;
@@ -481,9 +471,7 @@ public:
 	//=============================================================================
 	virtual BOOL IsExistTable(const TCHAR* pszTableName)
 	{
-		eIMStringA szNameA;
-
-		::eIMTChar2UTF8(pszTableName, szNameA);
+		eIMStringA szNameA = SOUI::S_CT2A(pszTableName);
 		char* pszSql = VMPrintf("select count(*) from sqlite_master where type='table' and name='%q'", szNameA.c_str());
 		I_SQLite3Table* pTable = GetTable(pszSql);
 		Free(pszSql);
@@ -699,7 +687,7 @@ public:
 		case eTRANS_EXCLUSIVE:
 			return SQL("BEGIN EXCLUSIVE TRANSACTION;");
 		default:
-			ASSERT_(FALSE);
+			SASSERT(FALSE);
 			return SQL("BEGIN TRANSACTION;");
 		}
 	}
@@ -732,7 +720,7 @@ public:
 
 		if ( SQLITE_OK != (i32Ret = ::sqlite3_prepare_v2(m_pDb, pszSql, -1, &pVM, &pszTail)) )
 		{
-			TRACE_UTF8_(_T("Compile SQL[%s] failed, result:%d"), pszSql, i32Ret);
+			STRACE(_T("Compile SQL[%s] failed, result:%d"), pszSql, i32Ret);
 			if (bFree)	Free((void*)pszSql);
 			pStmt->Release();
 			if (pi32Ret) *pi32Ret = i32Ret;
@@ -1565,6 +1553,6 @@ extern "C" __declspec(dllexport) int __stdcall eIMCreateInterface(const TCHAR* p
 	if (*ppvIObject)
 		return EIMERR_NO_ERROR;
 
-	TRACE_(_T("Create interface[%s] failed"), pctszIID);
+	STRACE(_T("Create interface[%s] failed"), pctszIID);
 	return EIMERR_OUT_OF_MEMORY;
 }
