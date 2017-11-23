@@ -49,6 +49,9 @@
       <Filter>SoUI Resouece</Filter>
     </None>
     <None Include="..\Main\Main.vcxproj" />
+    <None Include="icon1.ico">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ImageViewer.cpp">

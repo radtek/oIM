@@ -176,6 +176,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <None Include="..\Main\Main.vcxproj" />
+    <None Include="icon1.ico" />
     <None Include="license.txt" />
     <None Include="readme.txt" />
     <None Include="res\soui_res.rc2" />
