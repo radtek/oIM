@@ -66,7 +66,7 @@ int __cdecl C_CommandLine::CompareFunc(void *pvlocale, const void *item1, const 
 	return pszItem1->CompareNoCase(*pszItem2);
 }
 
-DWORD C_CommandLine::FindImages(const SStringT& szFindPath, const SStringT& szFilter, VectImage& vectImage)
+inline DWORD C_CommandLine::FindImages(const SStringT& szFindPath, const SStringT& szFilter, VectImage& vectImage)
 {
 	WIN32_FIND_DATA ffd = { 0 };
 	BOOL	bMultiFilter= (szFilter.Find(_T('|')) > 0 || szFilter.Find(_T(';')) > 0);	// 有分隔符，就当成多个过滤器
@@ -103,7 +103,7 @@ const pugi::char_t* const kFid     = _T("Fid");
 const pugi::char_t* const kFilePath= _T("FilePath");
 const char* const kGetMsgInfo = "SELECT msgid_,sid,timestamp FROM t_session_records WHERE msg LIKE '%%Fid=\"%llu\"%%' AND msg LIKE '%%<MsgImage %%';";
 const char* const kGetImgMsgs = "SELECT msgid_,msg FROM t_session_records WHERE sid=%lld AND timestamp>=%u AND timestamp<=%u AND msg LIKE '%%<MsgImage %%' ORDER BY timestamp DESC;";
-BOOL C_CommandLine::GetMsgInfo(I_SQLite3* pIDb, const QFID& fid, QSID& sid, DWORD& dwTimestamp)
+inline BOOL C_CommandLine::GetMsgInfo(I_SQLite3* pIDb, const QFID& fid, QSID& sid, DWORD& dwTimestamp)
 {
 	if ( pIDb == NULL || fid == 0 )
 		return FALSE;
@@ -126,7 +126,7 @@ BOOL C_CommandLine::GetMsgInfo(I_SQLite3* pIDb, const QFID& fid, QSID& sid, DWOR
 	return FALSE;
 }
 
-BOOL C_CommandLine::ParseImgMsg(const char* const pszMsgUI, DWORD& dwNowIndex)
+inline BOOL C_CommandLine::ParseImgMsg(const char* const pszMsgUI, DWORD& dwNowIndex)
 {
 	if ( pszMsgUI == NULL )
 		return FALSE;
@@ -158,7 +158,7 @@ BOOL C_CommandLine::ParseImgMsg(const char* const pszMsgUI, DWORD& dwNowIndex)
 
 #define DAY_OF_SECONDS		(24 * 60 * 60)	// 24h * 60min * 60s
 #define MONTH_OF_DAYS_(T,D)	((T) + DAY_OF_SECONDS * (D))
-DWORD C_CommandLine::LoadImages()
+inline DWORD C_CommandLine::LoadImages()
 { // 24 * 60 * 60
 	if ( m_u64Fid == 0 )	// 没有FID，就无法确定会话，就无法搜索图片消息
 		return 0;	
@@ -201,7 +201,7 @@ DWORD C_CommandLine::LoadImages()
 	return m_vectImage.size();
 }
 
-SStringT C_CommandLine::GetParamValue(LPWSTR pszArg, LPWSTR pszNext, int& i32Index)
+inline SStringT C_CommandLine::GetParamValue(LPWSTR pszArg, LPWSTR pszNext, int& i32Index)
 {	// splited by ' ', '=',':' and not is a '"'
 	while(*pszArg)
 	{	// Find the value begin position
@@ -237,7 +237,7 @@ SStringT C_CommandLine::GetParamValue(LPWSTR pszArg, LPWSTR pszNext, int& i32Ind
 	return szRet;
 }
 
-BOOL C_CommandLine::IsOption(LPWSTR pszArg, LPWSTR pszName)
+inline BOOL C_CommandLine::IsOption(LPWSTR pszArg, LPWSTR pszName)
 {
 	if ( pszArg && pszName && (pszArg[0] == _T('-') || pszArg[0] == _T('/')) ) 
 		return (_tcsnicmp(&pszArg[1], pszName, _tcslen(pszName)) == 0);
@@ -262,7 +262,7 @@ BOOL C_CommandLine::ParseCommandLine()
 	return bRet;
 }
 
-BOOL C_CommandLine::Parse(LPWSTR* pszArgs, int nArgs)
+inline BOOL C_CommandLine::Parse(LPWSTR* pszArgs, int nArgs)
 {
 	int i32Index = 0;
 	for ( ; i32Index < nArgs; i32Index++ )

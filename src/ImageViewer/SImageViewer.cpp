@@ -34,7 +34,7 @@ namespace SOUI
 		RemoveAll();
 	}
 
-	RECT SImageViewer::GetDest(const CRect& rtWnd, const SIZE& szImg, CRect& rtImg)
+	inline RECT SImageViewer::GetDest(const CRect& rtWnd, const SIZE& szImg, CRect& rtImg)
 	{
 		if ( m_bSwitched )
 		{	// 首次正常显示当前图片， 显示默认的全图
@@ -230,7 +230,7 @@ namespace SOUI
 		return rtDst;
 	}
 
-	BOOL SImageViewer::DrawImage(IRenderTarget *pRT, IBitmap *pBmp, CRect& rtWnd, int i32Index)
+	inline BOOL SImageViewer::DrawImage(IRenderTarget *pRT, IBitmap *pBmp, CRect& rtWnd, int i32Index)
 	{
 		if ( !pBmp )
 			return FALSE;

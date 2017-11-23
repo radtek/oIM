@@ -85,8 +85,8 @@ typedef enum tagMoveType
 		BOOL OnMouseWheel(UINT nFlags, short zDelta, CPoint pt);
 		void OnTimer(char nIDEvent);
 		
-		BOOL DrawImage(IRenderTarget *pRT, IBitmap *pBmp, CRect& rcWnd, int i32Index);
-		RECT GetDest(const CRect& rtWnd, const SIZE& szImg, CRect& rtImg);
+		inline BOOL		DrawImage(IRenderTarget *pRT, IBitmap *pBmp, CRect& rcWnd, int i32Index);
+		inline RECT		GetDest(const CRect& rtWnd, const SIZE& szImg, CRect& rtImg);
 		
 		inline int		GetEncoderClsid(const WCHAR* format, CLSID* pClsid);
 		inline SStringT GetTempImgFile(TCHAR* pszExt);
