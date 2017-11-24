@@ -282,7 +282,7 @@ namespace SOUI
 		}
 	}
 
-	BOOL  SImageViewer::Reset(BOOL bNoAngle)
+	BOOL  SImageViewer::Reset(BOOL bNoAngle, BOOL bCloneSel)
 	{
 		RemoveTempImage();
 
@@ -295,10 +295,14 @@ namespace SOUI
 
 		m_bSwitched = TRUE;
 		m_eMove = eMOVE_NONE;
-		m_ptCenter.SetPoint(0, 0);	// Reset
+		m_ptCenter.SetPoint(0, 0);	// 复位中心点
+
+
+		SAFE_RELEASE_(m_pImgNext);
+		if ( bCloneSel && m_pImgSel )
+			m_pImgSel->Clone(&m_pImgNext);
 
 		SAFE_RELEASE_(m_pImgSel);
-		SAFE_RELEASE_(m_pImgNext);
 		SAFE_RELEASE_(m_pImgGif);
 
 		return TRUE;
@@ -313,10 +317,10 @@ namespace SOUI
 		if(m_bTimerMove)
 			return TRUE;	// 正在显示过渡效果时，不再切换
 
-		Reset();
+		Reset(FALSE, TRUE);
 		m_iMoveWidth = (m_iSelected - iSelect)*rcWnd.Width();
-		m_iSelected = iSelect;
-
+		m_iSelected  = iSelect;
+		
 		// 更新加载的图片
 		SStringT szExt = PathFindExtension(m_vectImage[m_iSelected]);
 		if ( szExt.CompareNoCase(_T(".gif")) == 0 )
@@ -337,13 +341,7 @@ namespace SOUI
 		if ( pSize )
 			*pSize = m_pImgSel->Size();
 
-		int i32Next = m_iMoveWidth > 0 ? m_iSelected + 1 : m_iSelected - 1;
-		if ( i32Next >= 0 && i32Next < (int)m_vectImage.size() )
-			LOADIMAGE_(m_vectImage[i32Next], m_pImgNext);
-		else
-			bMoive = FALSE;	// 没有了，禁止翻页动画
-
-		if ( bMoive )
+		if ( bMoive && m_pImgNext )
 		{
 			m_iTimesMove = (m_iMoveWidth > 0 ? m_iMoveWidth : -m_iMoveWidth) / 30;
 			if(m_iTimesMove < 20)
@@ -697,7 +695,7 @@ namespace SOUI
 			if (GetEncoderClsid(GetImageFormat(pszExt), &clsidEncoder) < 0)
 				return FALSE;
 			
-			Reset(TRUE);
+			Reset(TRUE, FALSE);
 			m_szTmpImg = GetTempImgFile(pszExt);
 			if ( Ok == img.Save(m_szTmpImg, &clsidEncoder) )
 			{

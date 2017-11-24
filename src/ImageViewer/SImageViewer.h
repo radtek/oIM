@@ -91,7 +91,7 @@ typedef enum tagMoveType
 		inline int		GetEncoderClsid(const WCHAR* format, CLSID* pClsid);
 		inline SStringT GetTempImgFile(TCHAR* pszExt);
 		inline BOOL		RemoveTempImage();
-		inline BOOL		Reset(BOOL bNoAngle = FALSE);
+		inline BOOL		Reset(BOOL bNoAngle, BOOL bCloneSel);
 		inline SStringT GetImageFormat(TCHAR* pszExt);
 
 	protected:
