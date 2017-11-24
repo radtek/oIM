@@ -38,7 +38,7 @@ typedef enum tagMoveType
 	{
 		SOUI_CLASS_NAME(EventRatioChanged, L"on_image_pos_changed")
 	public:
-		EventImagePosChanged(SObject *pSender, BOOL bShow, BOOL bGif, const CRect& rtImgPos, float fRatio, IBitmap* pImg = NULL)
+		EventImagePosChanged(SObject *pSender, BOOL bShow, BOOL bGif, const CRect& rtImgPos, float fRatio, BOOL bError, IBitmap* pImg = NULL)
 			: TplEventArgs<EventImagePosChanged>(pSender)
 			, m_pImg(pImg)
 			, m_bShow(bShow)
@@ -50,6 +50,7 @@ typedef enum tagMoveType
 		IBitmap* m_pImg;
 		BOOL	 m_bShow;
 		BOOL	 m_bGif;
+		BOOL	 m_bError;
 		float	 m_fRatio;
 	};
 
@@ -114,6 +115,7 @@ typedef enum tagMoveType
 		SSkinAni* m_pImgGif;		// GIF
 
 		E_MoveType	m_eMove;		// 移动图片操作的类型
+		BOOL	m_bError;			// 加载图片失败
 		BOOL	m_bSwitched;		// 是否有切换图片
 		BOOL	m_bImgMovable;		// 图片是否可以移动（无法显全图时）
 		BOOL	m_bTimerMove;		// 翻页动画的Timer启用标识

@@ -87,39 +87,39 @@ options:
     </message>
     <message>
       <source>btnToolbar1to1</source>
-      <translation>The actual size</translation>
+      <translation>The actual size(F5)</translation>
     </message>
     <message>
       <source>btnToolbarIs1to1</source>
-      <translation>The actual size is now displayed</translation>
+      <translation>The actual size is now displayed(F5)</translation>
     </message>
     <message>
       <source>btnToolbarFullscreen</source>
-      <translation>Full screen view</translation>
+      <translation>Full screen view(F6)</translation>
     </message>
     <message>
       <source>btnToolbarExitFullscreen</source>
-      <translation>Exit full screen</translation>
+      <translation>Exit full screen(F6)</translation>
     </message>
     <message>
       <source>btnToolbarZoomout</source>
-      <translation>Zoom out image</translation>
+      <translation>Zoom out image(F8)</translation>
     </message>
     <message>
       <source>btnToolbarZoomin</source>
-      <translation>Zoom in image</translation>
+      <translation>Zoom in image(F7)</translation>
     </message>
     <message>
       <source>btnToolbarRotate</source>
-      <translation>Rotate to right/Left(CTRL)</translation>
+      <translation>Rotate to right(F9)</translation>
     </message>
     <message>
       <source>btnToolbarFolder</source>
-      <translation>Open folder</translation>
+      <translation>Open folder(F11)</translation>
     </message>
     <message>
       <source>btnToolbarSaveas</source>
-      <translation>Save image</translation>
+      <translation>Save image(F12)</translation>
     </message>
     <message>
       <source>btnToolbarHide</source>

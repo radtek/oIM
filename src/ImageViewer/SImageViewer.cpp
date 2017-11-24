@@ -7,7 +7,7 @@
 #define TIMER_GIF			123
 #define TIMER_GIF_ELAPSE	(100)	// 0.1s
 
-#define LOADIMAGE_(N, R) do {R=LOADIMAGE(_T("file"), N); if (R==NULL) R=LOADIMAGE(_T("IMG"), _T("IMG_ERROR")); }while(0)
+#define LOADIMAGE_(N, R) do {R=LOADIMAGE(_T("file"), N); m_bError=FALSE; if (R==NULL) {R=LOADIMAGE(_T("IMG"), _T("IMG_ERROR")); m_bError=TRUE; }}while(0)
 
 namespace SOUI
 {
@@ -24,6 +24,7 @@ namespace SOUI
 		, m_ptCenter(0)
 		, m_bSwitched(FALSE)
 		, m_bImgMovable(FALSE)
+		, m_bError(FALSE)
 		, m_eMove(eMOVE_NONE)
 	{
 
@@ -263,7 +264,7 @@ namespace SOUI
 				 !m_rtImgDst.EqualRect(szDstOld) || // 图片目标区域改变了（窗口大小变了）
 				  m_pImgGif )						// 是GIF动画，地图要刷新动画
 			{	// 图片的显示区域变了，才通知
-				EventImagePosChanged evt(this, m_bImgMovable, !!m_pImgGif, m_rtImgSrc, m_fRatio, m_pImgSel);
+				EventImagePosChanged evt(this, m_bImgMovable, !!m_pImgGif, m_rtImgSrc, m_fRatio, m_bError, m_pImgSel);
 				FireEvent(evt);
 			}
 		}
@@ -287,7 +288,7 @@ namespace SOUI
 		RemoveTempImage();
 
 		m_rtImgSrc.SetRectEmpty();	// 清空
-		EventImagePosChanged evt(this, FALSE, FALSE, m_rtImgSrc, NULL);
+		EventImagePosChanged evt(this, FALSE, FALSE, m_rtImgSrc, FALSE, NULL);
 		FireEvent(evt);				// 隐藏地图
 
 		if ( !bNoAngle )
@@ -669,7 +670,7 @@ namespace SOUI
 
 	BOOL SImageViewer::Rotate(BOOL bRight)
 	{
-		if(m_bTimerMove)
+		if(m_bTimerMove || m_bError )
 			return TRUE;		// 正在显示过渡效果时，不再黑色旋转
 
 		m_nAngle += bRight ? 90 : -90;

@@ -89,39 +89,39 @@
     </message>
     <message>
       <source>btnToolbar1to1</source>
-      <translation>实际大小</translation>
+      <translation>实际大小(F5)</translation>
     </message>
     <message>
       <source>btnToolbarIs1to1</source>
-      <translation>当前已显示实际大小</translation>
+      <translation>当前已显示实际大小(F5)</translation>
     </message>
     <message>
       <source>btnToolbarFullscreen</source>
-      <translation>全屏查看</translation>
+      <translation>全屏查看(F6)</translation>
     </message>
     <message>
       <source>btnToolbarExitFullscreen</source>
-      <translation>退出全屏</translation>
+      <translation>退出全屏(F6)</translation>
     </message>
     <message>
       <source>btnToolbarZoomout</source>
-      <translation>缩小图片</translation>
+      <translation>缩小图片(F8)</translation>
     </message>
     <message>
       <source>btnToolbarZoomin</source>
-      <translation>放大图片</translation>
+      <translation>放大图片(F7)</translation>
     </message>
     <message>
       <source>btnToolbarRotate</source>
-      <translation>向右/左(CTRL)旋转</translation>
+      <translation>向右(F9)</translation>
     </message>
     <message>
       <source>btnToolbarFolder</source>
-      <translation>打开文件夹</translation>
+      <translation>打开文件夹(F11)</translation>
     </message>
     <message>
       <source>btnToolbarSaveas</source>
-      <translation>保存图片</translation>
+      <translation>保存图片(F12)</translation>
     </message>
     <message>
       <source>btnToolbarHide</source>
