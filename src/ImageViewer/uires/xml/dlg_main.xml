@@ -6,7 +6,6 @@
       <imgbtn name="btn_close" class="cls_sys_close" pos="-40dp,0dp,@40dp,@40dp" />
       <imgbtn name="btn_prev" class="cls_btn_prev" pos="0dp,|0dp,@40dp,@40dp" />
       <imgbtn name="btn_next" class="cls_btn_next" pos="-40dp,|0dp,@40dp,@40dp" />
-      <text name="txt_ratio" class="cls_btn_ratio" pos="|-50dp,|-20dp,@100dp,@38dp" text="100%" />
 
       <!-- 缩略图 -->
       <window name="thumb_view" skin="skin.thumb.bkgnd" pos="-224dp,-144dp,@224dp,@144dp" layeredWindow="1">
@@ -15,8 +14,9 @@
       </window>
       <toggle name="thumb_toggle" class="cls_btn_thumb_toggle" pos="-16dp,-16dp,@16dp,@16dp" layeredWindow="1" />
 
+
       <!-- 工具 栏 -->
-      <window name="toolbar_view" skin="skin.toolbar.bkgnd" pos="|0dp,-41dp,@-1,-0" offset="-0.5,0" layeredWindow="1">
+      <window name="toolbar_view" skin="skin.toolbar.bkgnd" id="100" pos="|0dp,-41dp,@-1,-0" offset="-0.5,0"  layeredWindow="1">
         <imgbtn name="btn_toolbar.1to1" class="cls_btn_toolbar_1to1" size="50dp,40dp" />
         <toggle name="btn_toolbar.fullscreen" class="cls_tgl_toolbar_fullscreen" size="50dp,40dp" />
         <imgbtn name="btn_toolbar.zoomin" class="cls_btn_toolbar_zoomin" size="50dp,40dp" />
@@ -26,6 +26,9 @@
         <imgbtn name="btn_toolbar.saveas" class="cls_btn_toolbar_saveas" size="50dp,40dp" />
       </window>
       <toggle name="toolbar_toggle" class="cls_btn_toolbar_toggle" pos="|0dp,-8dp,@30dp,@8dp" offset="-0.5,0" layeredWindow="1" />
+
+       <text name="txt_ratio" class="cls_btn_ratio" pos="|-50dp,sib.top@100:-40dp,@100dp,@38dp" text="100%" />
+     
     </imageViewer>
   </root>
 </SOUI>
