@@ -43,6 +43,7 @@ typedef enum tagMoveType
 			, m_pImg(pImg)
 			, m_bShow(bShow)
 			, m_bGif(bGif)
+			, m_bError(bError)
 			, m_fRatio(fRatio)
 			, m_rtImgPos(rtImgPos){}
 		enum {EventID=EVT_IMGPOS_CHANGED};

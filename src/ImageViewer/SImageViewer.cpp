@@ -319,6 +319,7 @@ namespace SOUI
 			return TRUE;	// 正在显示过渡效果时，不再切换
 
 		Reset(FALSE, TRUE);
+		m_bError = FALSE;
 		m_iMoveWidth = (m_iSelected - iSelect)*rcWnd.Width();
 		m_iSelected  = iSelect;
 		
