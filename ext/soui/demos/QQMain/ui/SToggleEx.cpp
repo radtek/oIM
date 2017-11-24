@@ -5,7 +5,8 @@ namespace SOUI
 {
 	void SToggleEx::OnLButtonUp(UINT nFlags,CPoint pt)
 	{
-		if(GetWindowRect().PtInRect(pt)) m_bToggled=!m_bToggled;
+		if(GetWindowRect().PtInRect(pt)) 
+			SetToggle(!GetToggle());
 		__super::OnLButtonUp(nFlags,pt);
 	}
 
