@@ -103,11 +103,11 @@ options:
     </message>
     <message>
       <source>btnToolbarZoomout</source>
-      <translation>Zoom out image(-)</translation>
+      <translation>Zoom out image(Num -)</translation>
     </message>
     <message>
       <source>btnToolbarZoomin</source>
-      <translation>Zoom in image(+)</translation>
+      <translation>Zoom in image(Num +)</translation>
     </message>
     <message>
       <source>btnToolbarRotate</source>
