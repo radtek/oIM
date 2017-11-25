@@ -105,23 +105,23 @@
     </message>
     <message>
       <source>btnToolbarZoomout</source>
-      <translation>缩小图片(F8)</translation>
+      <translation>缩小图片(-)</translation>
     </message>
     <message>
       <source>btnToolbarZoomin</source>
-      <translation>放大图片(F7)</translation>
+      <translation>放大图片(+)</translation>
     </message>
     <message>
       <source>btnToolbarRotate</source>
-      <translation>向右(F9)</translation>
+      <translation>向右(F8)</translation>
     </message>
     <message>
       <source>btnToolbarFolder</source>
-      <translation>打开文件夹(F11)</translation>
+      <translation>打开文件夹(F3)</translation>
     </message>
     <message>
       <source>btnToolbarSaveas</source>
-      <translation>保存图片(F12)</translation>
+      <translation>保存图片(F2)</translation>
     </message>
     <message>
       <source>btnToolbarHide</source>

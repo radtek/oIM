@@ -354,6 +354,7 @@ namespace SOUI
 			return TRUE;
 		}
 
+		Invalidate();
 		m_iMoveWidth = 0;
 		return TRUE;
 	}

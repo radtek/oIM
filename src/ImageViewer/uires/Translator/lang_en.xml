@@ -95,31 +95,31 @@ options:
     </message>
     <message>
       <source>btnToolbarFullscreen</source>
-      <translation>Full screen view(F6)</translation>
+      <translation>Full screen view(F11)</translation>
     </message>
     <message>
       <source>btnToolbarExitFullscreen</source>
-      <translation>Exit full screen(F6)</translation>
+      <translation>Exit full screen(F11)</translation>
     </message>
     <message>
       <source>btnToolbarZoomout</source>
-      <translation>Zoom out image(F8)</translation>
+      <translation>Zoom out image(-)</translation>
     </message>
     <message>
       <source>btnToolbarZoomin</source>
-      <translation>Zoom in image(F7)</translation>
+      <translation>Zoom in image(+)</translation>
     </message>
     <message>
       <source>btnToolbarRotate</source>
-      <translation>Rotate to right(F9)</translation>
+      <translation>Rotate to right(F8)</translation>
     </message>
     <message>
       <source>btnToolbarFolder</source>
-      <translation>Open folder(F11)</translation>
+      <translation>Open folder(F3)</translation>
     </message>
     <message>
       <source>btnToolbarSaveas</source>
-      <translation>Save image(F12)</translation>
+      <translation>Save image(F2)</translation>
     </message>
     <message>
       <source>btnToolbarHide</source>
