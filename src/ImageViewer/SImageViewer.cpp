@@ -448,7 +448,7 @@ namespace SOUI
 	BOOL SImageViewer::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
 	{
 		BOOL bRet	= __super::OnMouseWheel(nFlags, zDelta, pt);
-		BOOL bFixed = GetAsyncKeyState(VK_CONTROL);	// Ctrl + Wheel
+		BOOL bFixed = GetKeyState(VK_CONTROL)&0x8000;	// Ctrl + Wheel
 		float fDelta= (zDelta / WHEEL_DELTA) / 100.0f;
 
 		if ( bFixed )
@@ -675,23 +675,19 @@ namespace SOUI
 			return TRUE;		// 正在显示过渡效果时，不再黑色旋转
 
 		m_nAngle += bRight ? 90 : -90;
-		if ( m_nAngle < 0 )
-			m_nAngle += 360;	// 转换成正数
-
-		if ( m_nAngle >= 360 )	// 规范化到[0，360)
-			m_nAngle -= 360;
-
 		SStringT szImg = m_vectImage[m_iSelected];
 		if ( TCHAR* pszExt = PathFindExtension(szImg) )
 		{
 			Image img(szImg);
 
-			if ( m_nAngle == 90 )
+			 if ( m_nAngle == 90 || m_nAngle == -270 )
 				img.RotateFlip(Rotate90FlipNone);
-			else if ( m_nAngle == 180 )
+			else if ( m_nAngle == 180 || m_nAngle == -180 )
 				img.RotateFlip(Rotate180FlipNone);
-			else if ( m_nAngle == 270 )
+			else if ( m_nAngle == 270 || m_nAngle == -90 )
 				img.RotateFlip(Rotate270FlipNone);
+			else
+				m_nAngle = 0;
 
 			CLSID clsidEncoder;
 			if (GetEncoderClsid(GetImageFormat(pszExt), &clsidEncoder) < 0)
