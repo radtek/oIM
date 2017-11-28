@@ -24,18 +24,18 @@ typedef enum tagMoveType
 }E_MoveType, *PE_MoveType;
 
 	class EventRatioChanged : public TplEventArgs<EventRatioChanged>
-	{
+	{	// 放大率改变事件
 		SOUI_CLASS_NAME(EventRatioChanged, L"on_ratio_changed")
 	public:
 		EventRatioChanged(SObject *pSender, float fRatio)
 			: TplEventArgs<EventRatioChanged>(pSender)
 			, m_fRatio(fRatio){}
 		enum {EventID=EVT_RATIO_CHANGED};
-		float m_fRatio;
+		float m_fRatio;	// 当前的放大率
 	};
 
 	class EventImagePosChanged : public TplEventArgs<EventImagePosChanged>
-	{
+	{	// 图片显示位置改变事件
 		SOUI_CLASS_NAME(EventRatioChanged, L"on_image_pos_changed")
 	public:
 		EventImagePosChanged(SObject *pSender, BOOL bShow, BOOL bGif, const CRect& rtImgPos, float fRatio, BOOL bError, IBitmap* pImg = NULL)
@@ -47,12 +47,12 @@ typedef enum tagMoveType
 			, m_fRatio(fRatio)
 			, m_rtImgPos(rtImgPos){}
 		enum {EventID=EVT_IMGPOS_CHANGED};
-		CRect	 m_rtImgPos;
-		IBitmap* m_pImg;
-		BOOL	 m_bShow;
-		BOOL	 m_bGif;
-		BOOL	 m_bError;
-		float	 m_fRatio;
+		CRect	 m_rtImgPos;	// 显示的图片源位置(相对于原始图片)
+		IBitmap* m_pImg;		// 当前显示的图片接口对象
+		BOOL	 m_bShow;		// 是否显示地图
+		BOOL	 m_bGif;		// 是否是GIF
+		BOOL	 m_bError;		// 是否加载图片失败
+		float	 m_fRatio;		// 当前的放大率
 	};
 
 	class SImageViewer : public SWindow
@@ -61,23 +61,23 @@ typedef enum tagMoveType
 	public:
 		SImageViewer();
 		virtual ~SImageViewer();
-		BOOL	Switch(int iSelect, BOOL bMoive = TRUE, LPSIZE pSize = NULL);
-		BOOL	InitImages(VectImage& vectImg, int i32Sel = -1);
-		BOOL	InsertImage(const SStringT& szImage, int iTo = -1);
+		BOOL	Switch(int iSelect, BOOL bMoive = TRUE, LPSIZE pSize = NULL);	// 切换显示图片
+		BOOL	InitImages(VectImage& vectImg, int i32Sel = -1);	// 使用窗口初始化显示图片列表
+		BOOL	InsertImage(const SStringT& szImage, int iTo = -1);	// 插入图片
 
-		void	RemoveAll();
-		int		GetCurSel();
-		size_t	GetCount();
-		float   GetRatio()const { return m_fRatio; }
-		CRect	GetImgSrcPos()const { return m_rtImgSrc; }
-		BOOL	IsImgMovable() const { return m_bImgMovable; }
-		RECT	GetDefaultDest(const CRect& rtWnd, const SIZE& szImg, float* pfRatio = NULL);
-		CPoint	Move(E_MoveType eType, LPPOINT ptCenter = NULL);
-		BOOL	RealSize();
-		float	Zoom(float fDelta, BOOL bFixed = FALSE);
-		BOOL	OpenFolder(LPCTSTR pszPathImage = NULL);
-		BOOL	Saveas(BOOL bOpenFolder = TRUE);
-		BOOL	Rotate(BOOL bRight = TRUE);
+		void	RemoveAll();	// 清空图片
+		int		GetCurSel();	// 获取当前显示的图片索引
+		size_t	GetCount();		// 获取图片总数
+		float   GetRatio()const { return m_fRatio; }			// 获取图片放大率
+		CRect	GetImgSrcPos()const { return m_rtImgSrc; }		// 获取图片源显示位置
+		BOOL	IsImgMovable() const { return m_bImgMovable; }	// 是否图片可以移动
+		RECT	GetDefaultDest(const CRect& rtWnd, const SIZE& szImg, float* pfRatio = NULL);	// 获取默认显示位置
+		CPoint	Move(E_MoveType eType, LPPOINT ptCenter = NULL);// 移动图片
+		BOOL	RealSize();										// 显示实际大小
+		float	Zoom(float fDelta, BOOL bFixed = FALSE);		// 缩放
+		BOOL	OpenFolder(LPCTSTR pszPathImage = NULL);		// 打开文件夹
+		BOOL	Saveas(BOOL bOpenFolder = TRUE);				// 另存为
+		BOOL	Rotate(BOOL bRight = TRUE);						// 旋转
 
 	protected:
 		void OnPaint(IRenderTarget *pRT);
@@ -87,14 +87,15 @@ typedef enum tagMoveType
 		BOOL OnMouseWheel(UINT nFlags, short zDelta, CPoint pt);
 		void OnTimer(char nIDEvent);
 		
-		inline BOOL		DrawImage(IRenderTarget *pRT, IBitmap *pBmp, CRect& rcWnd, int i32Index);
-		inline RECT		GetDest(const CRect& rtWnd, const SIZE& szImg, CRect& rtImg);
+		inline BOOL		DrawImage(IRenderTarget *pRT, IBitmap *pBmp, CRect& rcWnd, int i32Index);	// 翻页时显示动画
+		inline RECT		GetDest(const CRect& rtWnd, const SIZE& szImg, CRect& rtImg);				// 根据当前的放大率，源位置，计算位置
 		
-		inline int		GetEncoderClsid(const WCHAR* format, CLSID* pClsid);
-		inline SStringT GetTempImgFile(TCHAR* pszExt);
-		inline BOOL		RemoveTempImage();
-		inline BOOL		Reset(BOOL bNoAngle, BOOL bCloneSel);
-		inline SStringT GetImageFormat(TCHAR* pszExt);
+		// 另存为相关API
+		inline int		GetEncoderClsid(const WCHAR* format, CLSID* pClsid);	// 获取图片Encoder的CLSID
+		inline SStringT GetTempImgFile(TCHAR* pszExt);							// 获取临时图片路径
+		inline BOOL		RemoveTempImage();										// 删除临时图片
+		inline BOOL		Reset(BOOL bNoAngle, BOOL bCloneSel);					// 复位图片
+		inline SStringT GetImageFormat(TCHAR* pszExt);							// 得到图片格式
 
 	protected:
 		SOUI_MSG_MAP_BEGIN()	
@@ -105,9 +106,6 @@ typedef enum tagMoveType
 			MSG_WM_MOUSEMOVE(OnMouseMove)
 			MSG_WM_TIMER_EX(OnTimer)
 		SOUI_MSG_MAP_END()
-
-		SOUI_ATTRS_BEGIN()
-		SOUI_ATTRS_END()
 
 	private:
 		VectImage m_vectImage;		// 图片列表（所有图片的全路径，不能全部加载，可能会造成内存不足）
