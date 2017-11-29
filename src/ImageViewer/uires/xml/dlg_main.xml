@@ -20,7 +20,7 @@
         <toggle name="btn_toolbar.fullscreen" class="cls_tgl_toolbar_fullscreen" size="50dp,40dp" />
         <imgbtn name="btn_toolbar.zoomin" class="cls_btn_toolbar_zoomin" size="50dp,40dp" />
         <imgbtn name="btn_toolbar.zoomout" class="cls_btn_toolbar_zoomout" size="50dp,40dp" />
-        <imgbtn name="btn_toolbar.rotate" class="cls_btn_toolbar_rotate" size="50dp,40dp" accel="F8" />
+        <imgbtn name="btn_toolbar.rotate" class="cls_btn_toolbar_rotate" size="50dp,40dp" accel="F9" />
         <imgbtn name="btn_toolbar.saveas" class="cls_btn_toolbar_saveas" size="50dp,40dp" accel="F2"/>
         <imgbtn name="btn_toolbar.folder" class="cls_btn_toolbar_folder" size="50dp,40dp" accel="F3"/>
       </window>

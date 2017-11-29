@@ -105,15 +105,15 @@
     </message>
     <message>
       <source>btnToolbarZoomout</source>
-      <translation>缩小图片(Num -)</translation>
+      <translation>缩小图片(-)</translation>
     </message>
     <message>
       <source>btnToolbarZoomin</source>
-      <translation>放大图片(Num +)</translation>
+      <translation>放大图片(+)</translation>
     </message>
     <message>
       <source>btnToolbarRotate</source>
-      <translation>向右(F8)</translation>
+      <translation>向右(F9)</translation>
     </message>
     <message>
       <source>btnToolbarFolder</source>
