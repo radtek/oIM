@@ -37,6 +37,7 @@ private:
 	BOOL		m_bShowInTaskbar;
 	BOOL		m_bFindedFid;			// 已经找到了指定FID的图片
 	int			m_nScale;		// 放大率：【100，125，150，200】
+	int			m_i32Speed;		// 切换动画的速度
 	UINT64		m_u64Fid;		// 当前图片，使用"-db"时，是QFID；否则是从0开始的索引
 	SStringT	m_szLang;		// 语言：【R.string.lang_cn, R.string.lang_en】
 	SStringT	m_szDbFile;		// 消息数据库(msg.db) 的路径

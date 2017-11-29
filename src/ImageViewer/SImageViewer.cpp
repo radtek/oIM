@@ -309,7 +309,7 @@ namespace SOUI
 		return TRUE;
 	}
 
-	BOOL  SImageViewer::Switch(int iSelect, BOOL bMoive, LPSIZE pSize)
+	BOOL  SImageViewer::Switch(int iSelect, int i32Speed , LPSIZE pSize)
 	{
 		if (iSelect >= (int)m_vectImage.size() || iSelect < 0)
 			return FALSE;
@@ -343,11 +343,11 @@ namespace SOUI
 		if ( pSize )
 			*pSize = m_pImgSel->Size();
 
-		if ( bMoive && m_pImgNext )
+		if ( i32Speed > 0 && m_pImgNext )
 		{
-			m_iTimesMove = (m_iMoveWidth > 0 ? m_iMoveWidth : -m_iMoveWidth) / 30;
-			if(m_iTimesMove < 20)
-				m_iTimesMove = 20;
+			m_iTimesMove = (m_iMoveWidth > 0 ? m_iMoveWidth : -m_iMoveWidth) / i32Speed;
+			if(m_iTimesMove < 10)
+				m_iTimesMove = 10;
 
 			SetTimer(TIMER_MOIVE, 30);
 			m_bTimerMove = TRUE;
@@ -525,7 +525,7 @@ namespace SOUI
 	{
 		m_vectImage.swap(vectImg);
 		if ( i32Sel >= 0 && i32Sel < (int)m_vectImage.size() )
-			return Switch(i32Sel, FALSE);
+			return Switch(i32Sel, 0);
 
 		return TRUE;
 	}

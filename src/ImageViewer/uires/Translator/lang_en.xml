@@ -22,7 +22,8 @@ options:
   -ifilter="filter" The filter with ipath auto search image, MUST after of "-ipath', eg.: *.png|*.jpg
   -lang=[cn,en]     The language, default as system
   -scale=n          The scale, default by system DPI, option as: 100,125,150,200
-  -taskbar=[0,1]   Whether to display in the taskbar，default is display(1)
+  -taskbar=[0,1]    Whether to display in the taskbar，default is display(1)
+  -speed=[0,n]      The speed of switch image moive, default is 30, the smaller the faster
   -help             Show this help
 
   Example:

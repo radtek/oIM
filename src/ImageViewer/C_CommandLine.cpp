@@ -12,6 +12,7 @@ C_CommandLine& C_CommandLine::GetObject()
 C_CommandLine::C_CommandLine(void)
 	: m_nScale(100)
 	, m_u64Fid(0)
+	, m_i32Speed(30)
 	, m_bFindedFid(FALSE)
 	, m_bShowInTaskbar(TRUE)
 	, m_szDbKey(_T("SXIT@0518$YFGZ#"))
@@ -362,6 +363,11 @@ inline BOOL C_CommandLine::Parse(LPWSTR* pszArgs, int nArgs)
 		{
 			SStringT szValue = GetParamValue(pszArg, pszNext, i32Index);
 			m_bShowInTaskbar = _tcstol(szValue, NULL, 0);
+		}
+		else if ( IsOption(pszArg, _T("speed")) )
+		{
+			SStringT szValue = GetParamValue(pszArg, pszNext, i32Index);
+			m_i32Speed = _tcstol(szValue, NULL, 0);
 		}
 		else if ( IsOption(pszArg, _T("h")) || IsOption(pszArg, _T("?")) )
 		{

@@ -61,7 +61,7 @@ typedef enum tagMoveType
 	public:
 		SImageViewer();
 		virtual ~SImageViewer();
-		BOOL	Switch(int iSelect, BOOL bMoive = TRUE, LPSIZE pSize = NULL);	// 切换显示图片
+		BOOL	Switch(int iSelect, int i32Speed = 0, LPSIZE pSize = NULL);	// 切换显示图片
 		BOOL	InitImages(VectImage& vectImg, int i32Sel = -1);	// 使用窗口初始化显示图片列表
 		BOOL	InsertImage(const SStringT& szImage, int iTo = -1);	// 插入图片
 
