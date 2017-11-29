@@ -1,0 +1,8 @@
+*.bsc
+*.user
+*.ilk
+*.sdf
+*.suo
+lib/
+obj/
+build/
