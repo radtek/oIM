@@ -11,6 +11,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Main", "..\src\Main\Main.vc
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Pinyin", "..\src\Pinyin\Pinyin.vcxproj", "{3696D68A-631E-40D4-9BDE-7BA0A60A0A51}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Logger", "..\src\Logger\Logger.vcxproj", "{05ECCF56-53AC-4692-BC8B-AA816FA4A54D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -51,6 +53,12 @@ Global
 		{3696D68A-631E-40D4-9BDE-7BA0A60A0A51}.Release|Win32.ActiveCfg = Release|Win32
 		{3696D68A-631E-40D4-9BDE-7BA0A60A0A51}.Release|Win32.Build.0 = Release|Win32
 		{3696D68A-631E-40D4-9BDE-7BA0A60A0A51}.Release|x64.ActiveCfg = Release|Win32
+		{05ECCF56-53AC-4692-BC8B-AA816FA4A54D}.Debug|Win32.ActiveCfg = Debug|Win32
+		{05ECCF56-53AC-4692-BC8B-AA816FA4A54D}.Debug|Win32.Build.0 = Debug|Win32
+		{05ECCF56-53AC-4692-BC8B-AA816FA4A54D}.Debug|x64.ActiveCfg = Debug|Win32
+		{05ECCF56-53AC-4692-BC8B-AA816FA4A54D}.Release|Win32.ActiveCfg = Release|Win32
+		{05ECCF56-53AC-4692-BC8B-AA816FA4A54D}.Release|Win32.Build.0 = Release|Win32
+		{05ECCF56-53AC-4692-BC8B-AA816FA4A54D}.Release|x64.ActiveCfg = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
