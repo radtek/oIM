@@ -5,13 +5,13 @@
 
 using namespace std;
 
-class C_eIMPinyin: public I_EIMPinyin
+class C_Pinyin: public I_Pinyin
 {
-	DECALRE_PLUGIN_(C_eIMPinyin)
+	DECALRE_PLUGIN_(C_Pinyin)
 
 public:
-	C_eIMPinyin(void);
-	~C_eIMPinyin(void);
+	C_Pinyin(void);
+	~C_Pinyin(void);
 
 private:
 	int		m_i32Flag;	// 1 for fast combination

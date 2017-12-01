@@ -1,0 +1,4 @@
+LIBRARY   Logger
+
+EXPORTS
+	CreateInterface

@@ -5,14 +5,14 @@
 
 //extern const char* GBK2Pinyin(int i32Char);
 extern const char* Uni2Pinyin(int i32Char);
-int eIMPinyinCreateInterface(const TCHAR* pctszIID, void** ppvIObject)
+int PinyinCreateInterface(const TCHAR* pctszIID, void** ppvIObject)
 {
 	if( pctszIID == NULL || ppvIObject == NULL )
 		return E_POINTER;
 
-	if( _tcsnicmp(pctszIID, INAME_EIMUI_PINYIN, _tcslen(INAME_EIMUI_PINYIN)) == 0 )
+	if( _tcsnicmp(pctszIID, INAME_UI_PINYIN, _tcslen(INAME_UI_PINYIN)) == 0 )
 	{
-		static C_eIMPinyin obj;
+		static C_Pinyin obj;
 		*ppvIObject = &obj;
 
 		return EIMERR_NO_ERROR;
@@ -21,17 +21,17 @@ int eIMPinyinCreateInterface(const TCHAR* pctszIID, void** ppvIObject)
 	return EIMERR_NOT_IMPL;
 }
 
-IMPLEMENT_PLUGIN_SINGLETON_(C_eIMPinyin, INAME_EIMUI_PINYIN);
-C_eIMPinyin::C_eIMPinyin(void)
+IMPLEMENT_PLUGIN_SINGLETON_(C_Pinyin, INAME_UI_PINYIN);
+C_Pinyin::C_Pinyin(void)
 	: m_i32Flag( 0 )
 {
 }
 
-C_eIMPinyin::~C_eIMPinyin(void)
+C_Pinyin::~C_Pinyin(void)
 {
 }
 
-int	C_eIMPinyin::Vect2Str(vector<SOUI::SStringA>& vectPinyin, SOUI::SStringA& szPinyin)
+int	C_Pinyin::Vect2Str(vector<SOUI::SStringA>& vectPinyin, SOUI::SStringA& szPinyin)
 {
 	int i32count = 0;
 	for ( vector<SOUI::SStringA>::iterator itor = vectPinyin.begin(); itor != vectPinyin.end(); itor++ )
@@ -45,7 +45,7 @@ int	C_eIMPinyin::Vect2Str(vector<SOUI::SStringA>& vectPinyin, SOUI::SStringA& sz
 	return i32count;
 }
 
-int C_eIMPinyin::GetUniPinyins( const WCHAR* pszText, SOUI::SStringA& szPinyin, SOUI::SStringA& szSearch )
+int C_Pinyin::GetUniPinyins( const WCHAR* pszText, SOUI::SStringA& szPinyin, SOUI::SStringA& szSearch )
 {
 	szPinyin.Empty();
 	szSearch.Empty();
@@ -199,7 +199,7 @@ int C_eIMPinyin::GetUniPinyins( const WCHAR* pszText, SOUI::SStringA& szPinyin, 
 	return i32MPyCount;
 }
 
-int C_eIMPinyin::GetUtf8Pinyins( const char* pszText, SOUI::SStringA& szPinyin, SOUI::SStringA& szSearch )
+int C_Pinyin::GetUtf8Pinyins( const char* pszText, SOUI::SStringA& szPinyin, SOUI::SStringA& szSearch )
 {
 	std::wstring szWText;
 	//将多字节(UTF8)转化为宽字节
@@ -213,7 +213,7 @@ int C_eIMPinyin::GetUtf8Pinyins( const char* pszText, SOUI::SStringA& szPinyin, 
 	return GetUniPinyins( (WCHAR*)szWText.c_str(), szPinyin, szSearch );
 }
 
-const char* C_eIMPinyin::GetPinyin( int i32Code, int i32Encoding, int* pi32Bytes  )
+const char* C_Pinyin::GetPinyin( int i32Code, int i32Encoding, int* pi32Bytes  )
 {
 	if ( 0 == i32Encoding )	//Unicode(UTF16)
 	{
@@ -292,13 +292,13 @@ const char* C_eIMPinyin::GetPinyin( int i32Code, int i32Encoding, int* pi32Bytes
 	return "";
 }
 
-BOOL C_eIMPinyin::SetFlag(int i32Flag)
+BOOL C_Pinyin::SetFlag(int i32Flag)
 {
 	m_i32Flag = i32Flag & 1;	// 0: All combination; 1: fast
 	return TRUE;
 }
 
-int  C_eIMPinyin::GetFlag() const
+int  C_Pinyin::GetFlag() const
 {
 	return m_i32Flag;
 }

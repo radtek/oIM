@@ -9,7 +9,7 @@
 #include "Public\Plugin.h"
 
 
-static I_EIMUICore* s_pIUICore = NULL;
+static I_UICore* s_pIUICore = NULL;
 
 #pragma comment(linker, "/EXPORT:eIMCreateInterface=_eIMCreateInterface@8")
 extern "C" int __stdcall eIMCreateInterface(const TCHAR* pctszIID, void** ppvIObject)
@@ -17,7 +17,7 @@ extern "C" int __stdcall eIMCreateInterface(const TCHAR* pctszIID, void** ppvIOb
 	CHECK_NULL_RET_(pctszIID, EIMERR_INVALID_POINTER);
 	CHECK_NULL_RET_(ppvIObject, EIMERR_INVALID_POINTER);
 
-	if( _tcsnicmp(pctszIID, INAME_EIMUI_CORE, _tcslen(INAME_EIMUI_CORE)) == 0 )
+	if( _tcsnicmp(pctszIID, INAME_UI_CORE, _tcslen(INAME_UI_CORE)) == 0 )
 	{
 		*ppvIObject = s_pIUICore;
 		return EIMERR_NO_ERROR;
@@ -28,23 +28,23 @@ extern "C" int __stdcall eIMCreateInterface(const TCHAR* pctszIID, void** ppvIOb
 
 BOOL Run(HINSTANCE hInstance, DWORD dwFlag)
 {
-	C_PluginDll dllCore(ePLUGIN_TYPE_NORMAL, INAME_EIMUI_CORE);
-	if ( !dllCore.Load(INAME_EIMUI_CORE_DLL) )
+	C_PluginDll dllCore(ePLUGIN_TYPE_NORMAL, INAME_UI_CORE);
+	if ( !dllCore.Load(INAME_UI_CORE_DLL) )
 	{
-		STRACE(_T("Load [%s] failed, exit!"), INAME_EIMUI_CORE_DLL); 
+		STRACE(_T("Load [%s] failed, exit!"), INAME_UI_CORE_DLL); 
 		return FALSE;
 	}
 
-	int i32Result = dllCore.eIMCreateInterface(INAME_EIMUI_CORE, (void**)&s_pIUICore);
+	int i32Result = dllCore.CreateInterface(INAME_UI_CORE, (void**)&s_pIUICore);
 	if ( FAILED(i32Result) )
 	{
-		STRACE(_T("Create [%s] interface failed, errcode=0x%08X, exit!"), INAME_EIMUI_CORE_DLL, i32Result); 
+		STRACE(_T("Create [%s] interface failed, errcode=0x%08X, exit!"), INAME_UI_CORE_DLL, i32Result); 
 		return FALSE;
 	}
 
 	if ( !s_pIUICore->InitPlugin(NULL, NULL) )
 	{
-		STRACE(_T("[%s] InitPlugin failed, exit!"), INAME_EIMUI_CORE); 
+		STRACE(_T("[%s] InitPlugin failed, exit!"), INAME_UI_CORE); 
 		return FALSE;
 	}
 

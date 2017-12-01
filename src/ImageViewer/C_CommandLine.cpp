@@ -172,7 +172,7 @@ inline DWORD C_CommandLine::LoadImages()
 	SStringA	szDbKeyA  = S_CT2A(m_szDbKey);
 
 	if ( dllSqlite3.Load(_T("SQLite3.dll")) && 
-		SUCCEEDED(dllSqlite3.eIMCreateInterface(INAME_SQLITE_DB, (void**)&pIDb)) )
+		SUCCEEDED(dllSqlite3.CreateInterface(INAME_SQLITE_DB, (void**)&pIDb)) )
 	{
 		AUTO_RELEASE_(pIDb);
 		if ( SQLITE_OK != pIDb->Open(szDbFileA) )
