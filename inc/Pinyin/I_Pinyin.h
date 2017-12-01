@@ -37,19 +37,19 @@
 #include "public\plugin.h"
 #include <string\tstring.h>
 
-#define INAME_EIMUI_PINYIN	_T("SXIT.Pinyin")	// I_EIMPinyin interface name
+#define INAME_UI_PINYIN	_T("SXIT.Pinyin")	// I_Pinyin interface name
 
 #ifdef USE_PINYIN_LIB
 #  if defined(_DEBUG) || defined(DEBUG)
-#    pragma comment(lib, "eIMPinyind.lib")
+#    pragma comment(lib, "Pinyind.lib")
 #  else
-#    pragma comment(lib, "eIMPinyin.lib")
+#    pragma comment(lib, "Pinyin.lib")
 #  endif
 #endif
 
-extern int eIMPinyinCreateInterface(const TCHAR* pctszIID, void** ppvIObject);
+extern int PinyinCreateInterface(const TCHAR* pctszIID, void** ppvIObject);
 
-class __declspec(novtable) I_EIMPinyin: public I_EIMUnknown
+class __declspec(novtable) I_Pinyin: public I_Unknown
 {
 public:
 	//=============================================================================

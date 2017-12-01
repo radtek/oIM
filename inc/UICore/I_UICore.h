@@ -21,8 +21,8 @@
 //#include "eIMEngine\IeIMCmd.h"
 //#include "eIMUICore\IeIMUIInviteWnd.h"
 
-#define INAME_EIMUI_CORE_DLL	_T("eIMUICore.dll")	
-#define INAME_EIMUI_CORE		_T("SXIT.EIMUI.CORE")	// I_EIMUISearch interface name
+#define INAME_UI_CORE_DLL	_T("UICore.dll")	
+#define INAME_UI_CORE		_T("SXIT.EIMUI.CORE")	// I_UISearch interface name
 
 const TCHAR* const kLogoTplLarge = _T("Common/Logo@large.png");
 const TCHAR* const kLogoTplMedium= _T("Common/Logo@medium.png");
@@ -37,7 +37,7 @@ typedef enum tagTypeId
 #define RUN_FLAG_DISABLE_LOOP	(0x00000001)	// 禁用消息循环（嵌入时使用，由宿主程序提供消息循环）
 #define RUN_FLAG_DISABLE_LOGIN	(0x00000002)	// 禁用自动显示登录窗口（嵌入时，可以由宿主程序提供或显示）
 #define RUN_FLAG_MULTI_INSTANCE	(0x00000004)	// 允许打开多个实例
-class __declspec(novtable) I_EIMUICore: public I_EIMPlugin
+class __declspec(novtable) I_UICore: public I_Plugin
 {
 public:
 	virtual BOOL Run(DWORD dwFlag = 0) = 0;
@@ -52,8 +52,8 @@ public:
 
 	// *** 事件
 	virtual void	SendEvent(DWORD dwEventId, void* pvParam) = 0;
-	virtual BOOL	RegisterEvent(DWORD dwEventID, I_EIMPlugin* pPlugin, E_EIMEventType eType) = 0;
-	virtual BOOL	UnregisterEvent(DWORD dwEventID, I_EIMPlugin* pPlugin) = 0;
+	virtual BOOL	RegisterEvent(DWORD dwEventID, I_Plugin* pPlugin, E_EventType eType) = 0;
+	virtual BOOL	UnregisterEvent(DWORD dwEventID, I_Plugin* pPlugin) = 0;
 	
 	// *** 窗口
 	virtual void	UICenterWindow(HWND hwnd) = 0;
@@ -84,7 +84,7 @@ public:
 	virtual BOOL	UIGetMsgSummary(LPCTSTR pszXmlMsg, LPTSTR pszMsgSummary, int i32Size, BOOL bPrefixName=FALSE) = 0;
 
 	// UIGetLogger 请都【不需要】添加引用计数，也不需要释放，统一由主模块负责生命周期。
-	virtual I_EIMLogger* UIGetLogger(BOOL bAddRef=FALSE) = 0;
+	virtual I_Logger* UIGetLogger(BOOL bAddRef=FALSE) = 0;
 
 	// *** 引擎
 	virtual int		AddCmd(const void* pvData, DWORD dwCmdId, DWORD dwThreadId =1) = 0;

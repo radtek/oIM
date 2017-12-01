@@ -2,16 +2,16 @@
 // Copyright (C) SXIT Corporation all rights reserved.
 //
 // Description: Plugin interface defined and helper class to use the plugin.
-//   In eIM projects the DLL is implemented as NORMAL(ePLUGIN_TYPE_NORMAL) 
-//   function library that inherit from I_EIMUnknown, or PLUGIN(ePLUGIN_TYPE_PLUGIN)
-//   library that inherit from I_EIMPlugin that can be fire or response event.
-//   It can not be registered when only fire the event by SEND(eIMET_SEND), 
-//   but RECEIVE(eIMET_RECEIVE/eIMET_RECEIVE_SEND) event must be registered 
+//   In oIM projects the DLL is implemented as NORMAL(PLUGIN_TYPE_NORMAL) 
+//   function library that inherit from I_Unknown, or PLUGIN(PLUGIN_TYPE_PLUGIN)
+//   library that inherit from I_Plugin that can be fire or response event.
+//   It can not be registered when only fire the event by SEND(ET_SEND), 
+//   but RECEIVE(ET_RECEIVE/ET_RECEIVE_SEND) event must be registered 
 //   to response the event.
 //
-// Each DLL in eIM projects MUST be implemented the standard API of eIMCreateInterface
+// Each DLL in oIM projects MUST be implemented the standard API of eIMCreateInterface
 // 
-// DECALRE_PLUGIN_			Used to simplify the declare of base interface function of I_EIMUnknown
+// DECALRE_PLUGIN_			Used to simplify the declare of base interface function of I_Unknown
 // IMPLEMENT_NON_PLUGIN_	Used to simplify the implemented the interface function 
 //
 // C_PluginDll				Helper to use the DLL
@@ -26,8 +26,8 @@
 //    
 /////////////////////////////////////////////////////////////////////////////
 
-#ifndef __EIM_PLUGIN_API_2013_10_23_BY_YFGZ__
-#define __EIM_PLUGIN_API_2013_10_23_BY_YFGZ__
+#ifndef __PLUGIN_API_2013_10_23_BY_YFGZ__
+#define __PLUGIN_API_2013_10_23_BY_YFGZ__
 
 #include <windows.h>
 #include <tchar.h>
@@ -40,18 +40,18 @@
 #include <algorithm>
 #include "utils.h"
 
-#define INAME_EIMPLUGINMGR		_T("SXIT.EIMPluginMgr.PluginMgr")	// I_EIMPluginMgr interface name
-#define INAME_EIMEVENTMGR		_T("SXIT.EIMPluginMgr.EventMgr")	// I_EIMEventMgr interface name
+#define INAME_PLUGINMGR		_T("SXIT.PluginMgr.PluginMgr")	// I_PluginMgr interface name
+#define INAME_EVENTMGR		_T("SXIT.PluginMgr.EventMgr")	// I_EventMgr interface name
 
 #pragma pack( push, 8 )
 ///////////////////////////////////////////////////////////////////////////////
 #define TOKEN_SIZE					( 32 + 1 )	// Token size, include NULL
 
-#define EIM_PLUGIN_DESC_SIZE		( 64 )		// Plugin description size
-#define EIM_PLUGIN_NAME_SIZE		( 64 )		// Plugin name size
-#define EIM_PLUGIN_IID_SIZE			( 64 )		// Plugin IID size
-#define EIM_PLUGIN_FILE_SIZE		( MAX_PATH )// Plugin's DLL file path size
-#define EIM_PLUGIN_CONFIG_SIZE		( MAX_PATH )// Plugin's configuration file path size
+#define PLUGIN_DESC_SIZE		( 64 )		// Plugin description size
+#define PLUGIN_NAME_SIZE		( 64 )		// Plugin name size
+#define PLUGIN_IID_SIZE			( 64 )		// Plugin IID size
+#define PLUGIN_FILE_SIZE		( MAX_PATH )// Plugin's DLL file path size
+#define PLUGIN_CONFIG_SIZE		( MAX_PATH )// Plugin's configuration file path size
 
 
 template<class I>
@@ -66,10 +66,10 @@ public:
 };
 
 // define a Help Macro to auto release interface
-#define AUTO_RELEASE_(ptrUnk) C_AutoRelease<I_EIMUnknown> __auto_rel_##ptrUnk(ptrUnk)
+#define AUTO_RELEASE_(ptrUnk) C_AutoRelease<I_Unknown> __auto_rel_##ptrUnk(ptrUnk)
 
 // define the standard API function pointer type
-typedef int (__stdcall* PFN_eIMCreateInterface)(const TCHAR* pctszIID, void** ppvIObject);
+typedef int (__stdcall* PFN_CreateInterface)(const TCHAR* pctszIID, void** ppvIObject);
 
 // Help Macro function for Non-Plugin or no sub-interface to be create
 #define IMPLEMENT_NON_PLUGIN_(clsname) \
@@ -106,7 +106,6 @@ typedef int (__stdcall* PFN_eIMCreateInterface)(const TCHAR* pctszIID, void** pp
 	{ \
 		if ( ref == 0 ) \
 		{ \
-			ASSERT_(FALSE);\
 			return 0; \
 		} \
 		LONG i32Ref = InterlockedDecrement(&ref); \
@@ -149,7 +148,7 @@ typedef int (__stdcall* PFN_eIMCreateInterface)(const TCHAR* pctszIID, void** pp
 	virtual ULONG	Release(void);	
 
 ///////////////////////////////////////////////////////////////////////////////
-class __declspec(novtable) I_EIMUnknown
+class __declspec(novtable) I_Unknown
 {
 public:
 	//=============================================================================
@@ -192,8 +191,8 @@ public:
 	//=============================================================================
 	virtual ULONG	Release(void) = 0;	
 };
-typedef I_EIMUnknown*		PI_EIMUnknown;
-typedef const I_EIMUnknown*	PI_EIMUnknown_;
+typedef I_Unknown*		PI_Unknown;
+typedef const I_Unknown*	PI_Unknown_;
 
 ///////////////////////////////////////////////////////////////////////////////
 #ifndef GUID_DEFINED
@@ -207,21 +206,21 @@ typedef const I_EIMUnknown*	PI_EIMUnknown_;
 #endif
 
 // Tool plugin event type
-typedef enum tagEIMEventType
+typedef enum tagEventType
 {
-	eIMET_RECEIVE 		= 1,				// Only Receive event
-	eIMET_SEND			= 2, 				// Only Send event
-	eIMET_RECEIVE_SEND	= 4,				// Send and Receive event
-}E_EIMEventType, *PE_EIMEventType;
-typedef tagEIMEventType*		PE_EIMEventType;
-typedef const tagEIMEventType*	PE_EIMEventType_;
+	ET_RECEIVE 		= 1,				// Only Receive event
+	ET_SEND			= 2, 				// Only Send event
+	ET_RECEIVE_SEND	= 4,				// Send and Receive event
+}E_EventType, *PE_EventType;
+typedef tagEventType*		PE_EventType;
+typedef const tagEventType*	PE_EventType_;
 
-class I_EIMPluginMgr;
-class I_EIMEventMgr;
-class I_EIMPlugin;
+class I_PluginMgr;
+class I_EventMgr;
+class I_Plugin;
 
 // eIM plugin event manager interface
-class I_EIMEventMgr: public I_EIMUnknown
+class I_EventMgr: public I_Unknown
 {
 public:
 	//=============================================================================
@@ -238,9 +237,9 @@ public:
 	//		FALSE
 	//=============================================================================
 	virtual BOOL RegisterEvent(
-		DWORD			dwEventID,
-		I_EIMPlugin*	pPlugin,
-		E_EIMEventType	eType
+		DWORD		dwEventID,
+		I_Plugin*	pPlugin,
+		E_EventType	eType
 		) = 0;
 
 	//=============================================================================
@@ -256,8 +255,8 @@ public:
 	//		FALSE
 	//=============================================================================
 	virtual BOOL UnregisterEvent(
-		DWORD			dwEventID,
-		I_EIMPlugin*	pPlugin
+		DWORD		dwEventID,
+		I_Plugin*	pPlugin
 		) = 0;
 
 	//=============================================================================
@@ -278,8 +277,8 @@ public:
 
 //	virtual void PeekQueneMessage(BOOL bPeekQuene=TRUE) = 0;
 };
-typedef I_EIMEventMgr*			PI_EIMEventMgr;
-typedef const I_EIMEventMgr*	PI_EIMEventMgr_;
+typedef I_EventMgr*			PI_EventMgr;
+typedef const I_EventMgr*	PI_EventMgr_;
 
 
 typedef enum tagPluginClass		// Define the plugin Class
@@ -293,8 +292,8 @@ typedef enum tagPluginClass		// Define the plugin Class
 	ePLUGIN_CLASS_ALL			 = ( ePLUGIN_CLASS_APPMAN | ePLUGIN_CLASS_MAIN | ePLUGIN_CLASS_SESSION | ePLUGIN_CLASS_SETTING | ePLUGIN_CLASS_SESSION_APPMAN ),		// All plugin class
 }E_PluginClass, *PE_PluginClass;
 
-typedef std::vector< I_EIMPlugin* >				VectPlugins;	// for Enum Plugins
-typedef std::vector< I_EIMPlugin* >::iterator	VectPluginsIt;	// for Enum Plugins
+typedef std::vector< I_Plugin* >			VectPlugins;	// for Enum Plugins
+typedef std::vector< I_Plugin* >::iterator	VectPluginsIt;	// for Enum Plugins
 
 // C_PluginDll is a helper class for register PLUGIN library and operator the standard API
 typedef enum tagPluginType		// Define the plugin type
@@ -307,23 +306,23 @@ typedef const tagPluginType* PE_PluginType_;
 
 typedef struct tagPluginDllInfo
 {
-	DWORD						dwSize;									// Size of this struct
-	E_PluginType				ePluginType;							// Type of plugin
-	E_PluginClass				ePluginClass;							// Class of plugin
-	HMODULE						hmodPluginDll;							// Handle of plugin
-	PFN_eIMCreateInterface		pfnEIMCreateInterface;					// API 
-	int							i32Icon;								// Icon
-	TCHAR						szPluginIID[EIM_PLUGIN_IID_SIZE];		// IID
-	TCHAR						szPluginDesc[EIM_PLUGIN_DESC_SIZE];		// Description
-	TCHAR						szPluginName[EIM_PLUGIN_NAME_SIZE];		// Name
-	TCHAR						szPluginDll[EIM_PLUGIN_FILE_SIZE];		// Plugin DLL file 
-	TCHAR						szPluginConfig[EIM_PLUGIN_CONFIG_SIZE];	// Plugin configuration file 
+	DWORD				dwSize;					// Size of this struct
+	E_PluginType		ePluginType;			// Type of plugin
+	E_PluginClass		ePluginClass;			// Class of plugin
+	HMODULE				hmodPluginDll;			// Handle of plugin
+	PFN_CreateInterface	pfnCreateInterface;		// API 
+	int		i32Icon;							// Icon
+	TCHAR	szPluginIID[PLUGIN_IID_SIZE];		// IID
+	TCHAR	szPluginDesc[PLUGIN_DESC_SIZE];		// Description
+	TCHAR	szPluginName[PLUGIN_NAME_SIZE];		// Name
+	TCHAR	szPluginDll[PLUGIN_FILE_SIZE];		// Plugin DLL file 
+	TCHAR	szPluginConfig[PLUGIN_CONFIG_SIZE];	// Plugin configuration file 
 }S_PluginDllInfo, *PS_PluginDllInfo;
 typedef const tagPluginDllInfo* PS_PluginDllInfo_;
 
-class I_EIMLogger;
-// eIM plugin manager interface
-class I_EIMPluginMgr: public I_EIMUnknown
+class I_Logger;
+// Plugin manager interface
+class I_PluginMgr: public I_Unknown
 {
 public:
 	//=============================================================================
@@ -363,8 +362,8 @@ public:
 	//    The parrent HWND          
 	//=============================================================================
 	virtual HWND GetParrentWnd(
-		I_EIMPlugin*	pPlugin,			
-		bool			bCreateTemplateDlg	
+		I_Plugin*	pPlugin,			
+		bool		bCreateTemplateDlg	
 		) = 0;	
 
 	//=============================================================================
@@ -398,11 +397,11 @@ public:
 		MSG* pMsg
 		) = 0;	
 };
-typedef I_EIMPluginMgr*			PI_EIMPluginMgr;
-typedef const I_EIMPluginMgr*	PI_EIMPluginMgr_;
+typedef I_PluginMgr*			PI_PluginMgr;
+typedef const I_PluginMgr*	PI_PluginMgr_;
 
 // Tool plugin interface
-class I_EIMPlugin: public I_EIMUnknown
+class I_Plugin: public I_Unknown
 {
 public:
 	//=============================================================================
@@ -418,9 +417,9 @@ public:
 	//		FALSE	- Failed 
 	//=============================================================================
 	virtual BOOL InitPlugin(
-//Del 	I_EIMPluginMgr*		pPluginMgr,	//Single line deleted by lwq on 2013/11/26 9:03:54
-		I_EIMEventMgr*		pEventMgr,
-		LPCTSTR				lpszConfigFile
+//Del 	I_PluginMgr*pPluginMgr,	//Single line deleted by lwq on 2013/11/26 9:03:54
+		I_EventMgr*	pEventMgr,
+		LPCTSTR		lpszConfigFile
 		) = 0;
 		
 	//=============================================================================
@@ -460,8 +459,8 @@ public:
 	//=============================================================================
 	virtual void FreePlugin() = 0;		// Free plugin
 };
-typedef I_EIMPlugin*		PI_EIMPlugin;
-typedef const I_EIMPlugin*	PI_EIMPlugin_;
+typedef I_Plugin*		PI_Plugin;
+typedef const I_Plugin*	PI_Plugin_;
 
 
 class C_PluginDll
@@ -488,7 +487,7 @@ public:
 		memset( &m_sPluginDllInfo, 0, sizeof(m_sPluginDllInfo));
 		m_sPluginDllInfo.ePluginType = ePluginType;
 		if( pszDescription )
-			_tcsncpy(m_sPluginDllInfo.szPluginDesc, pszDescription, EIM_PLUGIN_DESC_SIZE);
+			_tcsncpy(m_sPluginDllInfo.szPluginDesc, pszDescription, PLUGIN_DESC_SIZE);
 	}
 
 	~C_PluginDll()
@@ -537,12 +536,12 @@ public:
 			}
 		}
 
-		if ( m_sPluginDllInfo.pfnEIMCreateInterface == NULL )
+		if ( m_sPluginDllInfo.pfnCreateInterface == NULL )
 		{
-			m_sPluginDllInfo.pfnEIMCreateInterface = (PFN_eIMCreateInterface)GetProcAddress(m_sPluginDllInfo.hmodPluginDll, "eIMCreateInterface");
-			if ( !m_sPluginDllInfo.pfnEIMCreateInterface )
+			m_sPluginDllInfo.pfnCreateInterface = (PFN_CreateInterface)GetProcAddress(m_sPluginDllInfo.hmodPluginDll, "CreateInterface");
+			if ( !m_sPluginDllInfo.pfnCreateInterface )
 			{
-				STRACE( _T("Query eIMCreateInterface API failed of [%s]!"), lpszPluginDll );
+				STRACE( _T("Query CreateInterface API failed of [%s]!"), lpszPluginDll );
 				return FALSE;
 			}
 		}
@@ -567,7 +566,7 @@ public:
 		}
 
 		m_sPluginDllInfo.hmodPluginDll			= NULL;
-		m_sPluginDllInfo.pfnEIMCreateInterface	= NULL;
+		m_sPluginDllInfo.pfnCreateInterface	= NULL;
 	}
 	//=============================================================================
 	//Function:     eIMCreateInterface
@@ -583,16 +582,16 @@ public:
  	//	E_POINTER		Pointer error
  	//	E_OUTOFMEMORY	No memory 
 	//=============================================================================
-	int eIMCreateInterface( const TCHAR* pctszIID, void** ppvIObject )
+	int CreateInterface( const TCHAR* pctszIID, void** ppvIObject )
 	{
 		if ( ppvIObject == NULL )
 			return EIMERR_INVALID_POINTER;
 
 		*ppvIObject = NULL;
 		int i32Ret = EIMERR_NO_ERROR;
-		if( m_sPluginDllInfo.pfnEIMCreateInterface )
+		if( m_sPluginDllInfo.pfnCreateInterface )
 		{
-			i32Ret = m_sPluginDllInfo.pfnEIMCreateInterface(pctszIID, ppvIObject);
+			i32Ret = m_sPluginDllInfo.pfnCreateInterface(pctszIID, ppvIObject);
 			STRACE(_T("Create interface [%s] from [%s] %s"), pctszIID, m_sPluginDllInfo.szPluginDll, SUCCEEDED(i32Ret) ? _T("succeed") : _T("failed"));
 			return i32Ret;
 		}
@@ -747,5 +746,5 @@ public:
 
 #pragma pack( pop )
 
-#endif	// __EIM_PLUGIN_API_2013_10_23_BY_YFGZ__
+#endif	// __PLUGIN_API_2013_10_23_BY_YFGZ__
 

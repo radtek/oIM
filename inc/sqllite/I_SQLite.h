@@ -80,7 +80,7 @@ typedef enum tagTransType
 	eTRANS_EXCLUSIVE,
 }E_TransType, *PE_TransType;
 
-class __declspec(novtable) I_SQLite3: public I_EIMUnknown
+class __declspec(novtable) I_SQLite3: public I_Unknown
 {
 public:
 	//=============================================================================
@@ -465,7 +465,7 @@ public:
 };
 
 // Ths function of GetCol*'s index base with 0 of I_SQLite3Table
-class __declspec(novtable) I_SQLite3Table: public I_EIMUnknown
+class __declspec(novtable) I_SQLite3Table: public I_Unknown
 {
 public:
 	//=============================================================================
@@ -707,7 +707,7 @@ public:
 };
 
 // Ths function of Bind's index base with 1 of I_SQLite3Table
-class __declspec(novtable) I_SQLite3Stmt: public I_EIMUnknown
+class __declspec(novtable) I_SQLite3Stmt: public I_Unknown
 {
 public:
 	//=============================================================================

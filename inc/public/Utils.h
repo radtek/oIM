@@ -32,8 +32,8 @@
 #include <tchar.h>
 #include <time.h>
 #include "TypeDefs.h"
-#include "Plugin.h"
 #include "Errors.h"
+#include "Plugin.h"
 #include "trace.h"
 
 
