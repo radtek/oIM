@@ -2,7 +2,7 @@
 #include "Public\Utils.h"
 #include "string\strcpcvt.h"
 
-extern "C" __declspec(dllexport) int __stdcall eIMCreateInterface(const TCHAR* pctszIID, void** ppvIObject);
+extern "C" __declspec(dllexport) int __stdcall CreateInterface(const TCHAR* pctszIID, void** ppvIObject);
 
 #define ENCRYPT_PSW(out, len) \
 	{ \
@@ -53,7 +53,7 @@ public:
 			return EIMERR_NO_ERROR;
 		}
 		else	// Query a new sub interface
-			return eIMCreateInterface(ptszIID, ppvIObject);
+			return CreateInterface(ptszIID, ppvIObject);
 	}
 
 	virtual ULONG AddRef(void)
@@ -384,7 +384,7 @@ public:
 		I_SQLite3Table* pTable = NULL;
 
 		if ( pszSql == NULL || m_pDb == NULL ||
-			 FAILED(eIMCreateInterface(INAME_SQLITE_TABLE, (void**)&pTable)) )
+			 FAILED(CreateInterface(INAME_SQLITE_TABLE, (void**)&pTable)) )
 		{
 			if (bFree)	Free((void*)pszSql);
 			if (pi32Ret) *pi32Ret = SQLITE_ERROR;
@@ -711,7 +711,7 @@ public:
 		I_SQLite3Stmt* pStmt = NULL;
 		
 		if ( pszSql == NULL || m_pDb == NULL ||
-			 FAILED(eIMCreateInterface(INAME_SQLITE_STMT, (void**)&pStmt)) )
+			 FAILED(CreateInterface(INAME_SQLITE_STMT, (void**)&pStmt)) )
 		{
 			if (bFree)	Free((void*)pszSql);
 			if (pi32Ret) *pi32Ret = SQLITE_ERROR;
@@ -1530,7 +1530,7 @@ public:
 };
 
 ///////////////////////////////////////////////////////////////////////////////
-extern "C" __declspec(dllexport) int __stdcall eIMCreateInterface(const TCHAR* pctszIID, void** ppvIObject)
+extern "C" __declspec(dllexport) int __stdcall CreateInterface(const TCHAR* pctszIID, void** ppvIObject)
 {
 	CHECK_NULL_RET_(pctszIID, EIMERR_INVALID_POINTER);
 	CHECK_NULL_RET_(ppvIObject, EIMERR_INVALID_POINTER);

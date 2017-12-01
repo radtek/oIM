@@ -211,4 +211,4 @@ EXPORTS
 	sqlite3_win32_write_debug
 	sqlite3_key
 	sqlite3_rekey
-	eIMCreateInterface
+	CreateInterface
