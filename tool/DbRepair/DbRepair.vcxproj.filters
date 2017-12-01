@@ -42,10 +42,10 @@
     <None Include="uires\image\soui.ico">
       <Filter>SoUI Resouece</Filter>
     </None>
-    <None Include="uires\Translator\lang_cn.xml">
+    <None Include="uires\lang\lang_cn.xml">
       <Filter>SoUI Resouece</Filter>
     </None>
-    <None Include="uires\Translator\lang_jp.xml">
+    <None Include="uires\lang\lang_en.xml">
       <Filter>SoUI Resouece</Filter>
     </None>
   </ItemGroup>
@@ -59,12 +59,6 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\eIMEngine\Des.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\eIMLogger\eIMLogger.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\ext\sqlite3\C_SQLite3Api.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -72,6 +66,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\ext\sqlite3\sqlite3.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Logger\Logger.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\inc\des\Des.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -90,16 +90,16 @@
     <ClInclude Include="stdafx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\eIMEngine\Des.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\eIMLogger\eIMLogger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\ext\sqlite3\crypt.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\ext\sqlite3\sqlite3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Logger\Logger.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\des\Des.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
