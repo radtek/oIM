@@ -29,7 +29,7 @@ namespace SOUI
     * 
     * Describe
     */
-    class SSkinMutiFrameImg : public SSkinAni
+    class SOUI_EXP SSkinMutiFrameImg : public SSkinAni
     {
         SOUI_CLASS_NAME(SSkinMutiFrameImg, L"imgMutiFrame")
     public:

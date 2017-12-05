@@ -4,7 +4,7 @@ namespace SOUI
 {
     #define EVT_CHATEDIT_KEYRETURN (EVT_EXTERNAL_BEGIN+500)
     
-    class EventChatEditKeyReturn : public TplEventArgs<EventChatEditKeyReturn>
+    class SOUI_EXP EventChatEditKeyReturn : public TplEventArgs<EventChatEditKeyReturn>
     {
         SOUI_CLASS_NAME(EventChatEditKeyReturn,L"on_chatedit_key_return")
     public:
@@ -13,7 +13,7 @@ namespace SOUI
         bool bCancel;
     };
     
-    class SChatEdit : public SRichEdit
+    class SOUI_EXP SChatEdit : public SRichEdit
     {
     SOUI_CLASS_NAME(SChatEdit,L"chatedit")
     public:

@@ -6,8 +6,9 @@ namespace SOUI
     #define IC_LAST     (IPropertyItem *)1
 
     class SPropertyGrid;
-    struct IPropertyItem : public IObjRef
-                         , public SObject
+    struct SOUI_EXP IPropertyItem 
+		: public IObjRef
+        , public SObject
     {
         enum PROPITEMTYPE{
             GPI_PARENT,
@@ -50,7 +51,7 @@ namespace SOUI
         virtual void OnChildValueChanged(IPropertyItem *pChild)=0;
     };
 
-    struct IPropInplaceWnd{
+    struct SOUI_EXP IPropInplaceWnd{
         virtual IPropertyItem * GetOwner() =0;
         virtual void UpdateData() =0;
     };

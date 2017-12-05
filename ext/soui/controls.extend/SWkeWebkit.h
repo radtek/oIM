@@ -3,7 +3,7 @@
 
 namespace SOUI
 {   
-    class SWkeLoader
+    class SOUI_EXP SWkeLoader
     {
     public:
         typedef void (*FunWkeInit)();
@@ -30,7 +30,7 @@ namespace SOUI
     };
 
     const char TM_TICKER = 1;
-    class SWkeWebkit : public SWindow, protected wkeBufHandler , protected IIdleHandler
+    class SOUI_EXP SWkeWebkit : public SWindow, protected wkeBufHandler , protected IIdleHandler
     {
         SOUI_CLASS_NAME(SWkeWebkit, L"wkeWebkit")
     public:

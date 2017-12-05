@@ -32,7 +32,7 @@ public:
 	BOOL bCancel;
 };
 //Ò»¸ö
-class SLoopButton :
+class SOUI_EXP SLoopButton :
 	public SImageButton
 {
 	SOUI_CLASS_NAME(SLoopButton, L"loopbtn")

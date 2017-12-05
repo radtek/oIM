@@ -2,7 +2,7 @@
 
 namespace SOUI
 {
-    class SFreeMoveWindow : public SWindow
+    class SOUI_EXP SFreeMoveWindow : public SWindow
     {
     SOUI_CLASS_NAME(SFreeMoveWindow,L"freeMoveWindow")
     public:

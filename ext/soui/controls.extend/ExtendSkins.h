@@ -5,7 +5,7 @@
 namespace SOUI
 {
  
-class SColorMask : public SSkinObjBase
+class SOUI_EXP SColorMask : public SSkinObjBase
 {
     #define STATE_COUNT 4
     SOUI_CLASS_NAME(SColorMask, L"colormask")

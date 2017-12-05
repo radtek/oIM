@@ -6,7 +6,7 @@ namespace SOUI{
 1 2 3 4 //for thumb
 1 2 3 4 //for rail
 */
-class SSkinNewScrollbar : public SSkinScrollbar
+class SOUI_EXP SSkinNewScrollbar : public SSkinScrollbar
 {
     SOUI_CLASS_NAME(SSkinNewScrollbar, L"newScrollbar")
 

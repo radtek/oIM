@@ -13,7 +13,7 @@ namespace SOUI
 	
 	class SEditIP;
 	
-	class SIPAddressCtrl :
+	class SOUI_EXP SIPAddressCtrl :
 		public SWindow
 	{
 		SOUI_CLASS_NAME(SIPAddressCtrl,L"ipctrl")

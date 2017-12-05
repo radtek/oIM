@@ -3,7 +3,7 @@
 namespace SOUI
 {
     template<class T>
-    class TplPropEmbedWnd : public T
+    class SOUI_EXP TplPropEmbedWnd : public T
     {
     public:
         template<class P1>

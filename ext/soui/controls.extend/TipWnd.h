@@ -2,7 +2,7 @@
 
 namespace SOUI
 {
-	class CTipWnd : public SHostWnd
+	class SOUI_EXP CTipWnd : public SHostWnd
 	{
 	public:
 		CTipWnd(const SStringT & strLayout);

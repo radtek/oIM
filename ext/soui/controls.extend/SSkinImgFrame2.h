@@ -6,7 +6,7 @@ namespace SOUI
     /*usage
     <imgframe2 src="imgx:png_test{0,0,100,100}" xxx/>
     */
-    class SSkinImgFrame2 : public SSkinImgFrame
+    class SOUI_EXP SSkinImgFrame2 : public SSkinImgFrame
     {
     SOUI_CLASS_NAME(SSkinImgFrame2,L"imgframe2")
     public:

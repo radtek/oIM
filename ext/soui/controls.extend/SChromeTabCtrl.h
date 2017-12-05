@@ -10,7 +10,7 @@ namespace SOUI
 #define EVT_CHROMETAB_NEW           (EVT_CHROMETAB_BEGIN + 0)
 #define EVT_CHROMETAB_CLOSE         (EVT_CHROMETAB_BEGIN + 1)
 #define EVT_CHROMETAB_SELCHANGED    (EVT_CHROMETAB_BEGIN + 2)
-    class EventChromeTabNew : public TplEventArgs<EventChromeTabNew>
+    class SOUI_EXP EventChromeTabNew : public TplEventArgs<EventChromeTabNew>
     {
         SOUI_CLASS_NAME(EventChromeTabNew,L"on_chrometab_new")
     public:
@@ -24,7 +24,7 @@ namespace SOUI
         int       iNewTab;
     };
 
-    class EventChromeTabClose : public TplEventArgs<EventChromeTabClose>
+    class SOUI_EXP EventChromeTabClose : public TplEventArgs<EventChromeTabClose>
     {
         SOUI_CLASS_NAME(EventChromeTabClose,L"on_chrometab_close")
     public:
@@ -39,7 +39,7 @@ namespace SOUI
         int       iCloseTab;
     };
 
-    class EventChromeTabSelChanged : public TplEventArgs<EventChromeTabSelChanged>
+    class SOUI_EXP EventChromeTabSelChanged : public TplEventArgs<EventChromeTabSelChanged>
     {
         SOUI_CLASS_NAME(EventChromeTabSelChanged,L"on_chrometab_sel_changed")
     public:
@@ -53,7 +53,7 @@ namespace SOUI
         int         iNewSel;
     };
 
-    class SChromeTabCtrl : public SWindow, public ITimelineHandler
+    class SOUI_EXP SChromeTabCtrl : public SWindow, public ITimelineHandler
     {
         SOUI_CLASS_NAME(SChromeTabCtrl,L"chromeTabCtrl")
         friend class SChromeTab;

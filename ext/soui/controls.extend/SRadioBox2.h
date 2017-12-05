@@ -4,7 +4,7 @@
 
 namespace SOUI
 {
-    class SRadioBox2 : public SRadioBox
+    class SOUI_EXP SRadioBox2 : public SRadioBox
     {
     SOUI_CLASS_NAME(SRadioBox2,L"radio2")
     public:

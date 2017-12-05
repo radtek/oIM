@@ -8,7 +8,7 @@ namespace SOUI
 {
     #define EVT_PG_VALUECHANGED (EVT_EXTERNAL_BEGIN+100)
 
-    class EventPropGridValueChanged : public TplEventArgs<EventPropGridValueChanged>
+    class SOUI_EXP EventPropGridValueChanged : public TplEventArgs<EventPropGridValueChanged>
     {
         SOUI_CLASS_NAME(EventPropGridValueChanged,L"on_propgrid_value_changed")
     public:
@@ -18,7 +18,7 @@ namespace SOUI
         IPropertyItem * pItem;
     };
 
-    class SPropertyGroup : public SPropertyItemBase
+    class SOUI_EXP SPropertyGroup : public SPropertyItemBase
     {
         SOUI_CLASS_NAME(SPropertyGroup,L"propgroup")
     public:
@@ -44,7 +44,7 @@ namespace SOUI
         return static_cast<T*>(T::CreatePropItem(pOwner));
     }
     
-    class SPropItemMap : public SMap<SStringW,FunCreatePropItem>
+    class SOUI_EXP SPropItemMap : public SMap<SStringW,FunCreatePropItem>
     {
     public:
         static void RegPropItem(const SStringW & strName, FunCreatePropItem funCreate);
@@ -58,7 +58,7 @@ namespace SOUI
     #define IG_FIRST (SPropertyGroup*)0
     #define IG_LAST  (SPropertyGroup*)1
     
-    class SPropertyGrid : public SListBox
+    class SOUI_EXP SPropertyGrid : public SListBox
     {
         SOUI_CLASS_NAME(SPropertyGrid, L"propgrid")
     public:

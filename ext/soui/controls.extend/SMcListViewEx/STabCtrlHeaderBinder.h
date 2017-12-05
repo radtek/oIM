@@ -1,7 +1,7 @@
 #pragma once
 namespace SOUI
 {
-	class STabCtrlHeaderBinder
+	class SOUI_EXP STabCtrlHeaderBinder
 	{
 	public:
 		STabCtrlHeaderBinder(STabCtrl *phost);
