@@ -460,6 +460,15 @@ soui工具：
             <attrib name="accel" default="" type="accel" comment="加速键"/>
             <attrib name="animate" default="0" type="bool" comment="动画标志" />
         </button>
+        <buttonex class="SButtonEx" base="SButton" comment="按钮扩展">
+            <attrib name="pushOffset" type="point" default="2,2" comment="下压状态整体偏移" />
+            <abbrib name="icon" type="skin" comment="图标SKIN" />
+            <abbrib name="iconIndex" type="int" comment="图标在Skin中的索引, -1代表m_pIcon是一个独占的皮肤" />
+            <attrib name="drawMode" type="[freeDraw、vertIconText、vertTextIcon、horzIconText、horzTextIcon]" default="HORZ_ICON_TEXT" />
+            <attrib name="sepSize" type="int" comment="FREE_DRAW时无效" />
+            <attrib name="iconPos" type="point" comment="图标显示位置,FREE_DRAW时有效" />
+            <attrib name="textPos" type="point" comment="文本显示位置,FREE_DRAW时有效"/>
+        </buttonex>
         <calendar class="SCalendar" base="SWindow" comment="日历">
             <attrib name="titleHeight" default="TITLE_HEIGHT(20)" type="layoutsize" comment="标题高度" />
             <attrib name="footerHeight" default="FOOTER_HEIGHT(20)" type="layoutsize" comment="底部高度" />
