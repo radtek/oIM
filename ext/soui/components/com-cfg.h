@@ -131,7 +131,7 @@ public:
             return SOUI::IMGDECODOR_STB::SCreateInstance(ppObj);
         else if(m_strImgDecoder == _T("imgdecoder-png"))
             return SOUI::IMGDECODOR_PNG::SCreateInstance(ppObj);
-        else if(m_strImgDecoder == _T("imgdecoder-gdip"))
+        else if(m_strImgDecoder == COM_IMGDECODER)
             return SOUI::IMGDECODOR_GDIP::SCreateInstance(ppObj);
         else
         {
