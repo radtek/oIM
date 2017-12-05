@@ -111,17 +111,12 @@ namespace SOUI
 
     int SImgX_WIC::_DoDecode( IWICBitmapDecoder * pDecoder )
     {
-        SASSERT(m_uImgCount == 0);
-        
-        IWICImagingFactory*    factory    = SImgDecoderFactory_WIC::s_wicImgFactory;
-        CAutoRefPtr<IWICFormatConverter> converter;
-        if(FAILED(factory->CreateFormatConverter(&converter))) 
-            return 0;
+		SASSERT(m_uImgCount == 0);
+		IWICImagingFactory* factory = SImgDecoderFactory_WIC::s_wicImgFactory;
+		if(FAILED(pDecoder->GetFrameCount(&m_uImgCount)))  
+			return 0;
 
-        if(FAILED(pDecoder->GetFrameCount(&m_uImgCount)))  
-            return 0;
-
-        m_pImgArray = new SImgFrame_WIC[m_uImgCount];
+		m_pImgArray = new SImgFrame_WIC[m_uImgCount];
         for(UINT i = 0; i< m_uImgCount ;i++)
         {
             CAutoRefPtr<IWICBitmapFrameDecode> frame;
@@ -140,15 +135,19 @@ namespace SOUI
 //                     }
 //                     PropVariantClear(&propValue);
 //                 }
-                converter->Initialize(frame,
-                    m_bPremultiplied?GUID_WICPixelFormat32bppPBGRA:GUID_WICPixelFormat32bppBGRA,
-                    WICBitmapDitherTypeNone,NULL,
-                    0.f,WICBitmapPaletteTypeCustom);
-                CAutoRefPtr<IWICBitmapSource> bmp;
-                converter->QueryInterface(IID_PPV_ARGS(&bmp));
-                m_pImgArray[i].SetWICBitmapSource(bmp);
-            }
-        }
+				CAutoRefPtr<IWICFormatConverter> converter;
+				if(FAILED(factory->CreateFormatConverter(&converter))) 
+					return 0;  
+
+				converter->Initialize(frame,
+					m_bPremultiplied?GUID_WICPixelFormat32bppPBGRA:GUID_WICPixelFormat32bppBGRA,
+					WICBitmapDitherTypeNone,NULL,
+					0.f,WICBitmapPaletteTypeCustom);
+				CAutoRefPtr<IWICBitmapSource> bmp;
+				converter->QueryInterface(IID_PPV_ARGS(&bmp));
+				m_pImgArray[i].SetWICBitmapSource(bmp);
+			}
+		}
         return m_uImgCount;
     }
 
