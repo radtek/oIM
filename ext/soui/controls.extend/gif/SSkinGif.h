@@ -28,7 +28,7 @@ namespace SOUI
     * 
     * Describe
     */
-    class SOUI_EXP SSkinGif : public SSkinAni
+    class SSkinGif : public SSkinAni
     {
         SOUI_CLASS_NAME(SSkinGif, L"gif")
     public:
