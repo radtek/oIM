@@ -1,0 +1,4 @@
+LIBRARY   UICore
+
+EXPORTS
+	CreateInterface
