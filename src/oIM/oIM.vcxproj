@@ -106,7 +106,7 @@
     <ResourceCompile Include="oIM.rc" />
   </ItemGroup>
   <ItemGroup>
-    <Manifest Include="Main.exe.manifest" />
+    <Manifest Include="oIM.exe.manifest" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

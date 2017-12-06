@@ -4,7 +4,7 @@
 #include "stdafx.h"
 #include <objbase.h>
 #include <Shellapi.h>
-#include "Main.h"
+#include "oIM.h"
 #include "UICore\I_UICore.h"
 #include "Public\Plugin.h"
 
