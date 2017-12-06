@@ -1,6 +1,3 @@
-// This is a part of the SXIT Technology source files.
-// Copyright (C) SXIT Corporation all rights reserved.
-//
 // Description: Plugin interface defined and helper class to use the plugin.
 //   In oIM projects the DLL is implemented as NORMAL(PLUGIN_TYPE_NORMAL) 
 //   function library that inherit from I_Unknown, or PLUGIN(PLUGIN_TYPE_PLUGIN)
@@ -9,7 +6,7 @@
 //   but RECEIVE(ET_RECEIVE/ET_RECEIVE_SEND) event must be registered 
 //   to response the event.
 //
-// Each DLL in oIM projects MUST be implemented the standard API of eIMCreateInterface
+// Each DLL in oIM projects MUST be implemented the standard API of CreateInterface
 // 
 // DECALRE_PLUGIN_			Used to simplify the declare of base interface function of I_Unknown
 // IMPLEMENT_NON_PLUGIN_	Used to simplify the implemented the interface function 
@@ -87,16 +84,16 @@ typedef int (__stdcall* PFN_CreateInterface)(const TCHAR* pctszIID, void** ppvIO
 	HRESULT clsname::QueryInterface(const TCHAR* pctszIID, void** ppvIObject) \
 	{ \
 		if (pctszIID == NULL || ppvIObject == NULL ) \
-			return EIMERR_INVALID_POINTER; \
+			return ERR_INVALID_POINTER; \
 		\
 		if( _tcsnicmp(pctszIID, clsid, _tcslen(clsid)) == 0 ) \
 		{ \
 			AddRef(); \
 			*ppvIObject = this; \
-			return EIMERR_NO_ERROR; \
+			return ERR_NO_ERROR; \
 		} \
 		\
-		return EIMERR_NOT_IMPL; \
+		return ERR_NOT_IMPL; \
 	} \
 	ULONG clsname::AddRef(void) \
 	{ \
@@ -126,10 +123,10 @@ typedef int (__stdcall* PFN_CreateInterface)(const TCHAR* pctszIID, void** ppvIO
 		{ \
 			AddRef(); \
 			*ppvIObject = this; \
-			return EIMERR_NO_ERROR; \
+			return ERR_NO_ERROR; \
 		} \
 		\
-		return EIMERR_NOT_IMPL; \
+		return ERR_NOT_IMPL; \
 	} \
 	ULONG clsname::AddRef(void) \
 	{ \
@@ -158,7 +155,6 @@ public:
 	//Parameter:
 	//	pctszIID		- The interface name string to be query, is GUID string of COM,
 	//					  or function name string, format as: "Company.Module[.Function]"
-	//					  eg.: "SXIT.RUDP.P2P"; "SXIT.EIMLogger"
 	//	ppvIObject		- A pointer to the interface pointer identified by pctszIID. If the 
 	//					  object does not support this interface, ppv is set to NULL. 
 	//
@@ -219,7 +215,7 @@ class I_PluginMgr;
 class I_EventMgr;
 class I_Plugin;
 
-// eIM plugin event manager interface
+// oIM plugin event manager interface
 class I_EventMgr: public I_Unknown
 {
 public:
@@ -299,8 +295,8 @@ typedef std::vector< I_Plugin* >::iterator	VectPluginsIt;	// for Enum Plugins
 typedef enum tagPluginType		// Define the plugin type
 {
 	ePLUGIN_TYPE_NONE	= 0x0000,		// Unknown type
-	ePLUGIN_TYPE_NORMAL	= 0x0001,		// Nomral function DLL, implementation interface I_EIMUnknown, eg.: ClientAgent, RUDP, Logger
-	ePLUGIN_TYPE_PLUGIN	= 0x0002,		// Plugin DLL, implementation interface I_EIMPlugin
+	ePLUGIN_TYPE_NORMAL	= 0x0001,		// Nomral function DLL, implementation interface I_Unknown, eg.: ClientAgent, RUDP, Logger
+	ePLUGIN_TYPE_PLUGIN	= 0x0002,		// Plugin DLL, implementation interface I_Plugin
 }E_PluginType, *PE_PluginType;
 typedef const tagPluginType* PE_PluginType_;
 
@@ -569,7 +565,7 @@ public:
 		m_sPluginDllInfo.pfnCreateInterface	= NULL;
 	}
 	//=============================================================================
-	//Function:     eIMCreateInterface
+	//Function:     CreateInterface
 	//Description:	Create the specified interface.
 	//
 	//Parameter:
@@ -585,10 +581,10 @@ public:
 	int CreateInterface( const TCHAR* pctszIID, void** ppvIObject )
 	{
 		if ( ppvIObject == NULL )
-			return EIMERR_INVALID_POINTER;
+			return ERR_INVALID_POINTER;
 
 		*ppvIObject = NULL;
-		int i32Ret = EIMERR_NO_ERROR;
+		int i32Ret = ERR_NO_ERROR;
 		if( m_sPluginDllInfo.pfnCreateInterface )
 		{
 			i32Ret = m_sPluginDllInfo.pfnCreateInterface(pctszIID, ppvIObject);
@@ -596,7 +592,7 @@ public:
 			return i32Ret;
 		}
 
-		STRACE(_T("Create interface [%s] failed that eIMCreateInterface is invalid"), pctszIID);
+		STRACE(_T("Create interface [%s] failed that CreateInterface is invalid"), pctszIID);
 		return ERROR_DLL_INIT_FAILED;
 	}
 };
@@ -734,7 +730,7 @@ public:
 	HRESULT DllGetClassObject(REFCLSID rclsid, REFIID riid, LPVOID* ppv)
 	{
 		if ( ppv == NULL )
-			return EIMERR_INVALID_POINTER;
+			return ERR_INVALID_POINTER;
 
 		*ppv = NULL;
 		if( m_pfnDllGetClassObject )

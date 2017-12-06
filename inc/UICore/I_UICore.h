@@ -1,10 +1,7 @@
-// This is a part of the SXIT Technology source files.
-// Copyright (C) SXIT Corporation all rights reserved.
-//
-// Description: I_EIMUISearch is the Search ui interface
+// Description: I_UICore is the Search ui interface
 // 
 // Auth: hdw
-// Date:  2014/7/18
+// Date:  2017/12/16
 // 
 // History: 
 //   
@@ -12,26 +9,22 @@
 //    
 /////////////////////////////////////////////////////////////////////////////
 
-#ifndef __IEIMUI_CORE_HEADER_2017_04_09_BY_YFGZ__
-#define __IEIMUI_CORE_HEADER_2017_04_09_BY_YFGZ__
+#ifndef __I_UICORE_HEADER_2017_04_09_BY_YFGZ__
+#define __I_UICORE_HEADER_2017_04_09_BY_YFGZ__
 
 #include "Public\Plugin.h"
-//#include "public\Typedefs.h"
-//#include "Public\XmlLang.h"
-//#include "eIMEngine\IeIMCmd.h"
-//#include "eIMUICore\IeIMUIInviteWnd.h"
 
-#define INAME_UI_CORE_DLL	_T("UICore.dll")	
-#define INAME_UI_CORE		_T("SXIT.EIMUI.CORE")	// I_UISearch interface name
+#define INAME_UICORE_DLL	_T("UICore.dll")	
+#define INAME_UICORE		_T("SXIT.UI.CORE")	// I_UISearch interface name
 
-const TCHAR* const kLogoTplLarge = _T("Common/Logo@large.png");
-const TCHAR* const kLogoTplMedium= _T("Common/Logo@medium.png");
-const TCHAR* const kLogoTplSmall = _T("Common/Logo@small.png");
+//const TCHAR* const kLogoTplLarge = _T("Common/Logo@large.png");
+//const TCHAR* const kLogoTplMedium= _T("Common/Logo@medium.png");
+//const TCHAR* const kLogoTplSmall = _T("Common/Logo@small.png");
 
 typedef enum tagTypeId
 {
 	eTYPE_ROBOT,			// 是机器人	(pISubScribeMgr->IsRobot(qeid))
-	eYTPE_VIRGROUP,			// 虚拟组 (pISubScribeMgr->IsVirGroupMain(qeid))
+	eTYPE_VIRGROUP,			// 虚拟组 (pISubScribeMgr->IsVirGroupMain(qeid))
 }E_TypeId, *PE_TypeId;
 
 #define RUN_FLAG_DISABLE_LOOP	(0x00000001)	// 禁用消息循环（嵌入时使用，由宿主程序提供消息循环）
@@ -102,4 +95,4 @@ public:
 };
 
 
-#endif // __IEIMUI_CORE_HEADER_2017_04_09_BY_YFGZ__
+#endif // __I_UICORE_HEADER_2017_04_09_BY_YFGZ__

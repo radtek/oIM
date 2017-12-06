@@ -1,7 +1,4 @@
-// This is a part of the SXIT Technology source files.
-// Copyright (C) SXIT Corporation all rights reserved.
-//
-// Description: I_EIMPinyin is the convert pinyin, support
+// Description: I_Pinyin is the convert pinyin, support
 //  to Unicode(UTF16) and UTF8(GBK) encoding chinese
 //
 // Ôø³¤ö¦: Ôø(zeng/ceng)  ³¤(chang/zhang) ö¦(liang/jing)
@@ -31,13 +28,13 @@
 //    
 /////////////////////////////////////////////////////////////////////////////
 
-#ifndef __IEIMUI_CONVERT_2_PINYIN_HEADER_2013_12_0_YFGZ__
-#define __IEIMUI_CONVERT_2_PINYIN_HEADER_2013_12_0_YFGZ__
+#ifndef __IOIMUI_CONVERT_2_PINYIN_HEADER_2013_12_0_YFGZ__
+#define __IOIMUI_CONVERT_2_PINYIN_HEADER_2013_12_0_YFGZ__
 
 #include "public\plugin.h"
 #include <string\tstring.h>
 
-#define INAME_UI_PINYIN	_T("SXIT.Pinyin")	// I_Pinyin interface name
+#define INAME_PINYIN	_T("SXIT.Pinyin")	// I_Pinyin interface name
 
 #ifdef USE_PINYIN_LIB
 #  if defined(_DEBUG) || defined(DEBUG)
@@ -124,4 +121,4 @@ public:
 
 };
 
-#endif // __IEIMUI_CONVERT_2_PINYIN_HEADER_2013_12_0_YFGZ__
+#endif // __IOIMUI_CONVERT_2_PINYIN_HEADER_2013_12_0_YFGZ__
