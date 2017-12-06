@@ -1,6 +1,6 @@
 //{{NO_DEPENDENCIES}}
 // Microsoft Visual C++ generated include file.
-// Used by eIMLogger.rc
+// Used by Logger.rc
 
 // Next default values for new objects
 // 

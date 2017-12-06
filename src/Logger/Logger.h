@@ -11,7 +11,7 @@ private:
 	typedef enum tagDateTimeFmt
 	{
 		eDTFULL = 0,	// Format:YYYY-MM-DD HH:MM:SS
-		eDTFULL_MS,		// Format:YYYY-MM-DD HH:MC_EIMLoggerM:SS.ddd
+		eDTFULL_MS,		// Format:YYYY-MM-DD HH:MM:SS.ddd
 		eDTDATE,		// Format:YYYY-MM-DD
 		eDTDAY,			// Format:DD
 		eDTTIME,		// Format:HH:MM:SS
@@ -87,7 +87,7 @@ public:
 	~C_Logger(void);
 
 public:
-	DECALRE_PLUGIN_(C_EIMLogger)
+	DECALRE_PLUGIN_(C_Logger)
 
 	virtual bool Init(	// Initial log object
 		const TCHAR*lpszLogFile = NULL,					// Log file, default is: {AppPath}/logs/{AppName}-YYYYMMDD.log

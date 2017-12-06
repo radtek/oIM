@@ -127,12 +127,12 @@ extern "C" __declspec(dllexport) int __stdcall CreateInterface(const TCHAR* pcts
 	{
 		*ppvIObject = new C_Logger;
 		if( *ppvIObject == NULL )
-			return EIMERR_OUT_OF_MEMORY;
+			return ERR_OUT_OF_MEMORY;
 
-		return EIMERR_NO_ERROR;
+		return ERR_NO_ERROR;
 	}
 
-	return EIMERR_NOT_IMPL;
+	return ERR_NOT_IMPL;
 }
 #endif
 
@@ -380,18 +380,18 @@ void C_Logger::_LogV(
 	char* pszMsg   = T2A(szMsgBuf);
 	i32MsgSize	   = strlen(pszMsg);
 	sLogMsg.dwSize = sizeof(S_LogMsg) + i32MsgSize;				// Message structure size in byte
-	PS_LogMsg psEIMLogMsg  = (PS_LogMsg)malloc(sLogMsg.dwSize);	// Malloc buffer
-	if(psEIMLogMsg)
+	PS_LogMsg psLogMsg  = (PS_LogMsg)malloc(sLogMsg.dwSize);	// Malloc buffer
+	if(psLogMsg)
 	{
-		memcpy(psEIMLogMsg, &sLogMsg, sizeof(S_LogMsg));			// Copy from temporary information
-		memcpy(psEIMLogMsg->szMsg, pszMsg, i32MsgSize + 1);			// Copy message content
+		memcpy(psLogMsg, &sLogMsg, sizeof(S_LogMsg));			// Copy from temporary information
+		memcpy(psLogMsg->szMsg, pszMsg, i32MsgSize + 1);			// Copy message content
 	
 		if ( m_pfnLog )
-			m_pfnLog(psEIMLogMsg, m_pvUserData);
+			m_pfnLog(psLogMsg, m_pvUserData);
 		
 		{
 			C_AutoLock Lock(m_csMsgQuene);
-			m_lstLogMsg.push_back(psEIMLogMsg);						// Message enqueue
+			m_lstLogMsg.push_back(psLogMsg);						// Message enqueue
 		}
 
 
@@ -650,7 +650,7 @@ unsigned C_Logger::_DoLog()
 
 //Del 				//============ Begin === 2013/11/27 15:52:37 deleted by lwq ======
 //Del 				//Reason: Move to _LogV for immediate display
-//Del 				if(m_dwLogFlag & EIMLOG_FLAG_OUT_DEBUGVIEW)
+//Del 				if(m_dwLogFlag & LOG_FLAG_OUT_DEBUGVIEW)
 //Del 					OutputDebugStringA(psECLogMsg->szMsg);
 //Del 				//============ End ===== 2013/11/27 15:52:37 deleted by lwq ======
 

@@ -6,7 +6,7 @@
       <dpiAware>false</dpiAware>
     </asmv3:windowsSettings>
   </asmv3:application>
-  <assemblyIdentity type="win32" name="SXIT.eIMMain" version="1.0.0.0"  processorArchitecture="x86"/>
+  <assemblyIdentity type="win32" name="SXIT.Main" version="1.0.0.0"  processorArchitecture="x86"/>
   <file name = "SummaryCtrl.dll">
     <comClass clsid="{E13FFF8E-4F08-4A60-8A0B-6E9B19B5D3EE}" threadingModel = "Apartment" />
   </file>

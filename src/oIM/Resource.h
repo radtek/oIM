@@ -1,6 +1,6 @@
 //{{NO_DEPENDENCIES}}
 // Microsoft Visual C++ generated include file.
-// Used by eIMMain.rc
+// Used by Main.rc
 //
 
 #define IDS_APP_TITLE			103

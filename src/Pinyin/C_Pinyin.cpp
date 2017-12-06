@@ -10,18 +10,18 @@ int PinyinCreateInterface(const TCHAR* pctszIID, void** ppvIObject)
 	if( pctszIID == NULL || ppvIObject == NULL )
 		return E_POINTER;
 
-	if( _tcsnicmp(pctszIID, INAME_UI_PINYIN, _tcslen(INAME_UI_PINYIN)) == 0 )
+	if( _tcsnicmp(pctszIID, INAME_PINYIN, _tcslen(INAME_PINYIN)) == 0 )
 	{
 		static C_Pinyin obj;
 		*ppvIObject = &obj;
 
-		return EIMERR_NO_ERROR;
+		return ERR_NO_ERROR;
 	}
 
-	return EIMERR_NOT_IMPL;
+	return ERR_NOT_IMPL;
 }
 
-IMPLEMENT_PLUGIN_SINGLETON_(C_Pinyin, INAME_UI_PINYIN);
+IMPLEMENT_PLUGIN_SINGLETON_(C_Pinyin, INAME_PINYIN);
 C_Pinyin::C_Pinyin(void)
 	: m_i32Flag( 0 )
 {
