@@ -349,7 +349,7 @@ namespace SOUI
 			if(m_iTimesMove < 10)
 				m_iTimesMove = 10;
 
-			SetTimer(TIMER_MOIVE, 30);
+			SetTimer(TIMER_MOIVE, 15);
 			m_bTimerMove = TRUE;
 			return TRUE;
 		}
