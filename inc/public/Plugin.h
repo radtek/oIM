@@ -536,9 +536,13 @@ public:
 		{
 			m_sPluginDllInfo.pfnCreateInterface = (PFN_CreateInterface)GetProcAddress(m_sPluginDllInfo.hmodPluginDll, "CreateInterface");
 			if ( !m_sPluginDllInfo.pfnCreateInterface )
-			{
-				STRACE( _T("Query CreateInterface API failed of [%s]!"), lpszPluginDll );
-				return FALSE;
+			{	// ¼æÈÝ¾É°æ±¾API
+				m_sPluginDllInfo.pfnCreateInterface = (PFN_CreateInterface)GetProcAddress(m_sPluginDllInfo.hmodPluginDll, "eIMCreateInterface");
+				if ( !m_sPluginDllInfo.pfnCreateInterface )
+				{
+					STRACE( _T("Query CreateInterface API failed of [%s]!"), lpszPluginDll );
+					return FALSE;
+				}
 			}
 		}
 
