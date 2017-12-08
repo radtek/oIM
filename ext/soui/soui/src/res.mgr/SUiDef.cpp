@@ -187,7 +187,7 @@ namespace SOUI{
 
 	//////////////////////////////////////////////////////////////////////////
 
-	template<> SUiDef * SSingleton<SUiDef>::ms_Singleton = NULL;
+//	template<> SUiDef * SSingleton<SUiDef>::ms_Singleton = NULL;
 
 	#define HASFONT 2
 	int CALLBACK DefFontsEnumProc(  CONST LOGFONT *lplf,     // logical-font data

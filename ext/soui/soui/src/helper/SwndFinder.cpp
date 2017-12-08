@@ -3,7 +3,7 @@
 
 namespace SOUI
 {
-    SWindowFinder * SSingleton<SWindowFinder>::ms_Singleton = NULL;
+//    SWindowFinder * SSingleton<SWindowFinder>::ms_Singleton = NULL;
     
     SWindow * SWindowFinder::FindChildByName(SWindow *pParent,SStringW strName,int nDeep)
     {

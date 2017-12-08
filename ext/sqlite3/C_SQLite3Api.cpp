@@ -50,7 +50,7 @@ public:
 		{	// Query myself
 			AddRef();
 			*ppvIObject = this;
-			return EIMERR_NO_ERROR;
+			return ERR_NO_ERROR;
 		}
 		else	// Query a new sub interface
 			return CreateInterface(ptszIID, ppvIObject);
@@ -787,10 +787,10 @@ public:
 		{	// Query myself
 			AddRef();
 			*ppvIObject = this;
-			return EIMERR_NO_ERROR;
+			return ERR_NO_ERROR;
 		}
 		
-		return EIMERR_NOT_IMPL;
+		return ERR_NOT_IMPL;
 	}
 
 	virtual ULONG AddRef(void)
@@ -1144,10 +1144,10 @@ public:
 		{	// Query myself
 			AddRef();
 			*ppvIObject = this;
-			return EIMERR_NO_ERROR;
+			return ERR_NO_ERROR;
 		}
 		
-		return EIMERR_NOT_IMPL;
+		return ERR_NOT_IMPL;
 	}
 
 	virtual ULONG AddRef(void)
@@ -1532,8 +1532,8 @@ public:
 ///////////////////////////////////////////////////////////////////////////////
 extern "C" __declspec(dllexport) int __stdcall CreateInterface(const TCHAR* pctszIID, void** ppvIObject)
 {
-	CHECK_NULL_RET_(pctszIID, EIMERR_INVALID_POINTER);
-	CHECK_NULL_RET_(ppvIObject, EIMERR_INVALID_POINTER);
+	CHECK_NULL_RET_(pctszIID, ERR_INVALID_POINTER);
+	CHECK_NULL_RET_(ppvIObject, ERR_INVALID_POINTER);
 
 	if ( _tcsnicmp(pctszIID, INAME_SQLITE_DB, _tcslen(INAME_SQLITE_DB)) == 0 )
 	{
@@ -1548,11 +1548,11 @@ extern "C" __declspec(dllexport) int __stdcall CreateInterface(const TCHAR* pcts
 		*ppvIObject = new C_SQLite3Stmt;
 	}
 	else
-		return EIMERR_NOT_IMPL;
+		return ERR_NOT_IMPL;
 
 	if (*ppvIObject)
-		return EIMERR_NO_ERROR;
+		return ERR_NO_ERROR;
 
 	STRACE(_T("Create interface[%s] failed"), pctszIID);
-	return EIMERR_OUT_OF_MEMORY;
+	return ERR_OUT_OF_MEMORY;
 }

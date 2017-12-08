@@ -469,6 +469,7 @@
       <TargetMachine>MachineX86</TargetMachine>
       <ProgramDatabaseFile>..\..\..\build\Symbols\$(Platform)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
       <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
+      <ModuleDefinitionFile>$(ProjectName).def</ModuleDefinitionFile>
     </Link>
     <Midl>
       <DefaultCharType>Unsigned</DefaultCharType>
@@ -489,7 +490,7 @@
       <ForcedIncludeFiles>include\souistd.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>_WINDOWS;WIN32;_CRT_SECURE_NO_WARNINGS;QT_NO_DYNAMIC_CAST;__UIENGINE__;SK_IGNORE_ETC1_SUPPORT;SOUI_EXPORTS;UTILITIES_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>__UIENGINE__;_WINDOWS;WIN32;_CRT_SECURE_NO_WARNINGS;STRICT;QT_NO_DYNAMIC_CAST;SK_IGNORE_ETC1_SUPPORT;SOUI_EXPORTS;UTILITIES_EXPORTS;RESPROVIDERZIP_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessToFile>false</PreprocessToFile>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
@@ -509,6 +510,7 @@
       <TargetMachine>MachineX86</TargetMachine>
       <ProgramDatabaseFile>..\..\..\build\Symbols\$(Platform)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
       <ImportLibrary>$(OutDir)$(TargetName).lib</ImportLibrary>
+      <ModuleDefinitionFile>$(ProjectName).def</ModuleDefinitionFile>
     </Link>
     <Midl>
       <DefaultCharType>Unsigned</DefaultCharType>

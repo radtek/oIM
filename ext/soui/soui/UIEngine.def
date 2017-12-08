@@ -1,0 +1,13 @@
+LIBRARY   UIEngine
+
+EXPORTS
+	SCreateInstanceImgGDIP	= ?SCreateInstance@IMGDECODOR_GDIP@SOUI@@YAHPAPAUIObjRef@@@Z
+	SCreateInstanceImgPNG	= ?SCreateInstance@IMGDECODOR_PNG@SOUI@@YAHPAPAUIObjRef@@@Z
+	SCreateInstanceImgSTB	= ?SCreateInstance@IMGDECODOR_STB@SOUI@@YAHPAPAUIObjRef@@@Z
+	SCreateInstanceImgWIC	= ?SCreateInstance@IMGDECODOR_WIC@SOUI@@YAHPAPAUIObjRef@@@Z
+	SCreateInstanceLog4Z	= ?SCreateInstance@LOG4Z@SOUI@@YAHPAPAUIObjRef@@@Z
+	SCreateInstanceGDI		= ?SCreateInstance@RENDER_GDI@SOUI@@YAHPAPAUIObjRef@@@Z
+	SCreateInstanceSkia		= ?SCreateInstance@RENDER_SKIA@SOUI@@YAHPAPAUIObjRef@@@Z
+	SCreateInstanceZip		= ?SCreateInstance@RESPROVIDER_ZIP@SOUI@@YAHPAPAUIObjRef@@@Z
+	SCreateInstanceLua		= ?SCreateInstance@SCRIPT_LUA@SOUI@@YAHPAPAUIObjRef@@@Z
+	SCreateInstanceTrans	= ?SCreateInstance@TRANSLATOR@SOUI@@YAHPAPAUIObjRef@@@Z

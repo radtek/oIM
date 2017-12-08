@@ -5,26 +5,62 @@
 #include <com-def.h>
 #include <string/tstring.h>
 
-#define COM_IMGDECODER  _T("imgdecoder-gdip")
+#define COM_IMGDECODER_GDIP		_T("imgdecoder-gdip")
+#define COM_IMGDECODER_STB		_T("imgdecoder-stb")
+#define COM_IMGDECODER_PNG		_T("imgdecoder-png")
+#define COM_IMGDECODER_WIC		_T("imgdecoder-wic")
 
-#ifdef _DEBUG
-#define COM_RENDER_GDI  _T("render-gdid.dll")
-#define COM_RENDER_SKIA _T("render-skiad.dll")
-#define COM_SCRIPT_LUA _T("scriptmodule-luad.dll")
-#define COM_TRANSLATOR _T("translatord.dll")
-#define COM_ZIPRESPROVIDER _T("resprovider-zipd.dll")
-#define COM_LOG4Z   _T("log4zd.dll")
-#define COM_7ZIPRESPROVIDER _T("resprovider-7zipd.dll")
+#ifdef __UIENGINE__
+# define UIENGINE_DLL			_T("UIEngine.dll")
+# define COM_RENDER_GDI			UIENGINE_DLL
+# define COM_RENDER_SKIA		UIENGINE_DLL
+# define COM_SCRIPT_LUA			UIENGINE_DLL
+# define COM_TRANSLATOR			UIENGINE_DLL
+# define COM_ZIPRESPROVIDER		UIENGINE_DLL
+# define COM_LOG4Z				UIENGINE_DLL
+# define COM_7ZIPRESPROVIDER	UIENGINE_DLL
+
+# define SCreateInstanceImgGDIP	"SCreateInstanceImgGDIP"
+# define SCreateInstanceImgPNG	"SCreateInstanceImgPNG"
+# define SCreateInstanceImgSTB	"SCreateInstanceImgSTB"
+# define SCreateInstanceImgWIC	"SCreateInstanceImgWIC"
+# define SCreateInstanceLog4Z	"SCreateInstanceLog4Z"
+# define SCreateInstanceGDI		"SCreateInstanceGDI"
+# define SCreateInstanceSkia	"SCreateInstanceSkia"
+# define SCreateInstanceZip		"SCreateInstanceZip"
+# define SCreateInstance7Zip	"SCreateInstance7Zip"
+# define SCreateInstanceLua		"SCreateInstanceLua"
+# define SCreateInstanceTrans	"SCreateInstanceTrans"
 #else
-#define COM_RENDER_GDI  _T("render-gdi.dll")
-#define COM_RENDER_SKIA _T("render-skia.dll")
-#define COM_SCRIPT_LUA _T("scriptmodule-lua.dll")
-#define COM_TRANSLATOR _T("translator.dll")
-#define COM_ZIPRESPROVIDER _T("resprovider-zip.dll")
-#define COM_LOG4Z   _T("log4z.dll")
-#define COM_7ZIPRESPROVIDER _T("resprovider-7zip.dll")
-#endif	// _DEBUG
+# define SCreateInstanceImgGDIP	"SCreateInstance"
+# define SCreateInstanceImgPNG	"SCreateInstanceG"
+# define SCreateInstanceImgSTB	"SCreateInstance"
+# define SCreateInstanceImgWIC	"SCreateInstance"
+# define SCreateInstanceLog4Z	"SCreateInstance"
+# define SCreateInstanceGDI		"SCreateInstance"
+# define SCreateInstanceSkia	"SCreateInstance"
+# define SCreateInstanceZip		"SCreateInstance"
+# define SCreateInstanceLua		"SCreateInstance"
+# define SCreateInstanceTrans	"SCreateInstance"
 
+# ifdef _DEBUG
+#  define COM_RENDER_GDI		_T("render-gdid.dll")
+#  define COM_RENDER_SKIA		_T("render-skiad.dll")
+#  define COM_SCRIPT_LUA		_T("scriptmodule-luad.dll")
+#  define COM_TRANSLATOR		_T("translatord.dll")
+#  define COM_ZIPRESPROVIDER	_T("resprovider-zipd.dll")
+#  define COM_LOG4Z				_T("log4zd.dll")
+#  define COM_7ZIPRESPROVIDER	_T("resprovider-7zipd.dll")
+# else
+#  define COM_RENDER_GDI		_T("render-gdi.dll")
+#  define COM_RENDER_SKIA		_T("render-skia.dll")
+#  define COM_SCRIPT_LUA		_T("scriptmodule-lua.dll")
+#  define COM_TRANSLATOR		_T("translator.dll")
+#  define COM_ZIPRESPROVIDER	_T("resprovider-zip.dll")
+#  define COM_LOG4Z				_T("log4z.dll")
+#  define COM_7ZIPRESPROVIDER	_T("resprovider-7zip.dll")
+# endif	// _DEBUG
+#endif
 
 #ifdef LIB_SOUI_COM
 #pragma message("LIB_SOUI_COM")
@@ -120,18 +156,18 @@ public:
     SComMgr(LPCTSTR pszImgDecoder = NULL)
     {
         if(pszImgDecoder) m_strImgDecoder = pszImgDecoder;
-        else m_strImgDecoder = COM_IMGDECODER;
+        else m_strImgDecoder = COM_IMGDECODER_GDIP;
     }
 
     BOOL CreateImgDecoder(IObjRef ** ppObj)
     {
-        if(m_strImgDecoder == _T("imgdecoder-wic"))
+        if(m_strImgDecoder == COM_IMGDECODER_WIC)
             return SOUI::IMGDECODOR_WIC::SCreateInstance(ppObj);
-        else if(m_strImgDecoder == _T("imgdecoder-stb"))
+        else if(m_strImgDecoder == COM_IMGDECODER_STB)
             return SOUI::IMGDECODOR_STB::SCreateInstance(ppObj);
-        else if(m_strImgDecoder == _T("imgdecoder-png"))
+        else if(m_strImgDecoder == COM_IMGDECODER_PNG)
             return SOUI::IMGDECODOR_PNG::SCreateInstance(ppObj);
-        else if(m_strImgDecoder == COM_IMGDECODER)
+        else if(m_strImgDecoder == COM_IMGDECODER_GDIP)
             return SOUI::IMGDECODOR_GDIP::SCreateInstance(ppObj);
         else
         {
@@ -188,50 +224,61 @@ public:
     SComMgr(LPCTSTR pszImgDecoder = NULL)
     {
         if(pszImgDecoder) m_strImgDecoder = pszImgDecoder;
-        else m_strImgDecoder = COM_IMGDECODER;
+        else m_strImgDecoder = COM_IMGDECODER_GDIP;
     }
 
-    BOOL CreateImgDecoder(IObjRef ** ppObj)
-    {
-#ifdef _DEBUG
-        SOUI::SStringT strImgDecoder = m_strImgDecoder+_T("d.dll");
+	BOOL CreateImgDecoder(IObjRef ** ppObj)
+	{
+#ifdef __UIENGINE__
+		if ( m_strImgDecoder == COM_IMGDECODER_WIC )
+			return imgDecLoader.CreateInstance(UIENGINE_DLL, ppObj, SCreateInstanceImgWIC);
+		else if (m_strImgDecoder == COM_IMGDECODER_STB )
+			return imgDecLoader.CreateInstance(UIENGINE_DLL, ppObj, SCreateInstanceImgSTB);
+		else if (m_strImgDecoder == COM_IMGDECODER_PNG )
+			return imgDecLoader.CreateInstance(UIENGINE_DLL, ppObj, SCreateInstanceImgPNG);
+		else
+			return imgDecLoader.CreateInstance(UIENGINE_DLL, ppObj, SCreateInstanceImgGDIP);
 #else
-        SOUI::SStringT strImgDecoder = m_strImgDecoder+_T(".dll");
+# ifdef _DEBUG
+		SOUI::SStringT strImgDecoder = m_strImgDecoder+_T("d.dll");
+# else
+		SOUI::SStringT strImgDecoder = m_strImgDecoder+_T(".dll");
+# endif
+		return imgDecLoader.CreateInstance(strImgDecoder,ppObj);
 #endif
-        return imgDecLoader.CreateInstance(strImgDecoder,ppObj);
-    }
+	}
     
     BOOL CreateRender_GDI(IObjRef **ppObj)
     {
-        return renderLoader.CreateInstance(COM_RENDER_GDI,ppObj);
+        return renderLoader.CreateInstance(COM_RENDER_GDI, ppObj, SCreateInstanceGDI);
     }
 
     BOOL CreateRender_Skia(IObjRef **ppObj)
     {
-        return renderLoader.CreateInstance(COM_RENDER_SKIA,ppObj);
+        return renderLoader.CreateInstance(COM_RENDER_SKIA, ppObj, SCreateInstanceSkia);
     }
     BOOL CreateScrpit_Lua(IObjRef **ppObj)
     {
-        return scriptLoader.CreateInstance(COM_SCRIPT_LUA,ppObj);
+        return scriptLoader.CreateInstance(COM_SCRIPT_LUA, ppObj, SCreateInstanceLua);
     }
 
     BOOL CreateTranslator(IObjRef **ppObj)
     {
-        return transLoader.CreateInstance(COM_TRANSLATOR,ppObj);
+        return transLoader.CreateInstance(COM_TRANSLATOR, ppObj, SCreateInstanceTrans);
     }
     BOOL CreateResProvider_ZIP(IObjRef **ppObj)
     {
-        return zipResLoader.CreateInstance(COM_ZIPRESPROVIDER,ppObj);
+        return zipResLoader.CreateInstance(COM_ZIPRESPROVIDER, ppObj, SCreateInstanceZip);
     }
 
 	BOOL CreateResProvider_7ZIP(IObjRef **ppObj)
 	{
-		return zip7ResLoader.CreateInstance(COM_7ZIPRESPROVIDER, ppObj);
+		return zip7ResLoader.CreateInstance(COM_7ZIPRESPROVIDER, ppObj, SCreateInstance7Zip);
 	}
 	
     BOOL CreateLog4z(IObjRef **ppObj)
     {
-        return log4zLoader.CreateInstance(COM_LOG4Z,ppObj);
+        return log4zLoader.CreateInstance(COM_LOG4Z, ppObj, SCreateInstanceLog4Z);
     }
 protected:
     //SComLoader实现从DLL的指定函数创建符号SOUI要求的类COM组件。

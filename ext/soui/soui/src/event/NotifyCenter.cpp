@@ -3,7 +3,7 @@
 
 namespace SOUI{
 
-template<> SNotifyCenter * SSingleton<SNotifyCenter>::ms_Singleton = 0;
+//template<> SNotifyCenter * SSingleton<SNotifyCenter>::ms_Singleton = 0;
 
 //////////////////////////////////////////////////////////////////////////
 class SNotifyReceiver:public CSimpleWnd
