@@ -24,4 +24,6 @@ stdafx.h.cpp
 ext/soui/bin
 lib/
 obj/
-build/
+build/Symbols
+build/Log
+build/Publish
