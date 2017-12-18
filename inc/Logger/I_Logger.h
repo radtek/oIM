@@ -60,7 +60,9 @@
 #ifndef __ILOGGER_HEADER_2017_06_30_YFGZ__
 #define __ILOGGER_HEADER_2017_06_30_YFGZ__
 
-#include "public\plugin.h"
+#include <Windows.h>
+#include <list>
+#include "unknown\obj-ref-i.h"
 
 #define INAME_LOGGER			_T("SXIT.Logger")			// Logger interface name
 
@@ -115,7 +117,7 @@ typedef const struct tagLogMsg* PS_LogMsg_;
 
 typedef void (__stdcall* PFN_Log)(PS_LogMsg_ psMsg, void* pvUserData);
 
-class __declspec(novtable) I_Logger: public I_Unknown
+class __declspec(novtable) I_Logger: public IObjRef
 {
 public:
 	//=============================================================================

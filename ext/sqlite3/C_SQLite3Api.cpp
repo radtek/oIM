@@ -44,23 +44,27 @@ public:
 	{
 	}
 
-	virtual long AddRef(void)
-	{
-		return ++m_lRef;
-	}
+	long AddRef(void) 
+	{ 
+		return (ULONG)InterlockedIncrement(&m_lRef); 
+	} 
 
-	virtual long Release(void)
-	{
-		if ( m_lRef == 0 )
-			return 0;
+	long Release( void ) 
+	{ 
+		if ( m_lRef == 0 ) 
+		{ 
+			SASSERT(FALSE);
+			return 0; 
+		} 
 
-		if ( --m_lRef == 0)
-		{
-			OnFinalRelease();
-			return 0;
-		}
+		LONG i32Ref = InterlockedDecrement(&m_lRef); 
+		if ( i32Ref == 0 ) 
+		{ 
+			OnFinalRelease(); 
+			return 0; 
+		} 
 
-		return m_lRef;
+		return i32Ref; 
 	}
 
 	void OnFinalRelease()
@@ -773,23 +777,27 @@ public:
 	{
 	}
 
-	virtual long AddRef(void)
-	{
-		return ++m_lRef;
-	}
+	long AddRef(void) 
+	{ 
+		return (ULONG)InterlockedIncrement(&m_lRef); 
+	} 
 
-	virtual long Release(void)
-	{
-		if ( m_lRef == 0 )
-			return 0;
+	long Release( void ) 
+	{ 
+		if ( m_lRef == 0 ) 
+		{ 
+			SASSERT(FALSE);
+			return 0; 
+		} 
 
-		if ( --m_lRef == 0)
-		{
-			OnFinalRelease();
-			return 0;
-		}
+		LONG i32Ref = InterlockedDecrement(&m_lRef); 
+		if ( i32Ref == 0 ) 
+		{ 
+			OnFinalRelease(); 
+			return 0; 
+		} 
 
-		return m_lRef;
+		return i32Ref; 
 	}
 
 	void OnFinalRelease()
@@ -1123,25 +1131,29 @@ public:
 	{
 	}
 
-	virtual long AddRef(void)
-	{
-		return ++m_lRef;
+	long AddRef(void) 
+	{ 
+		return (ULONG)InterlockedIncrement(&m_lRef); 
+	} 
+
+	long Release( void ) 
+	{ 
+		if ( m_lRef == 0 ) 
+		{ 
+			SASSERT(FALSE);
+			return 0; 
+		} 
+
+		LONG i32Ref = InterlockedDecrement(&m_lRef); 
+		if ( i32Ref == 0 ) 
+		{ 
+			OnFinalRelease(); 
+			return 0; 
+		} 
+
+		return i32Ref; 
 	}
 
-	virtual long Release(void)
-	{
-		if ( m_lRef == 0 )
-			return 0;
-
-		if ( --m_lRef == 0)
-		{
-			OnFinalRelease();
-			return 0;
-		}
-
-		return m_lRef;
-	}
-	
 	void OnFinalRelease()
 	{
 		Finalize();

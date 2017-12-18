@@ -7,7 +7,7 @@
 class C_Logger: public I_Logger
 {
 private:
-	ULONG		m_ulRef;		// Reference count of Cmd
+	long m_lRef;		// Reference count of Cmd
 	typedef enum tagDateTimeFmt
 	{
 		eDTFULL = 0,	// Format:YYYY-MM-DD HH:MM:SS
@@ -87,7 +87,9 @@ public:
 	~C_Logger(void);
 
 public:
-	DECALRE_PLUGIN_(C_Logger)
+	virtual long AddRef(void); 
+	virtual long Release(void);
+	virtual	void OnFinalRelease();
 
 	virtual bool Init(	// Initial log object
 		const TCHAR*lpszLogFile = NULL,					// Log file, default is: {AppPath}/logs/{AppName}-YYYYMMDD.log

@@ -137,7 +137,33 @@ extern "C" __declspec(dllexport) int __stdcall CreateInterface(const TCHAR* pcts
 #endif
 
 /////////////////////////////////////////////////////////////////////
-IMPLEMENT_PLUGIN_REF_(C_Logger, INAME_LOGGER, m_ulRef);
+long C_Logger::AddRef(void) 
+{ 
+	return (ULONG)InterlockedIncrement(&m_lRef); 
+} 
+long C_Logger::Release( void ) 
+{ 
+	if ( m_lRef == 0 ) 
+	{ 
+		SASSERT(FALSE);
+		return 0; 
+	} 
+
+	LONG i32Ref = InterlockedDecrement(&m_lRef); 
+	if ( i32Ref == 0 ) 
+	{ 
+		OnFinalRelease(); 
+		return 0; 
+	} 
+
+	return i32Ref; 
+}
+
+void C_Logger::OnFinalRelease()
+{
+	delete this;
+}
+
 C_Logger::C_Logger(void)
 	: m_eLogLevel(LOG_LEVEL_DEFAULT)
 	, m_dwLogFlag(LOG_FLAG_NOINIT)
@@ -147,7 +173,7 @@ C_Logger::C_Logger(void)
 	, m_hLogEvent(NULL)
 	, m_hLogThread(NULL)
 	, m_hExitEvent(NULL)
-	, m_ulRef(1)
+	, m_lRef(1)
 	, m_pfnLog(NULL)
 	, m_pvUserData(NULL)
 {
