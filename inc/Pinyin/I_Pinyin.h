@@ -31,8 +31,11 @@
 #ifndef __IOIMUI_CONVERT_2_PINYIN_HEADER_2013_12_0_YFGZ__
 #define __IOIMUI_CONVERT_2_PINYIN_HEADER_2013_12_0_YFGZ__
 
-#include "public\plugin.h"
+#include <Windows.h>
+#include <tchar.h>
+#include "unknown\obj-ref-i.h"
 #include <string\tstring.h>
+#include "trace.h"
 
 #define INAME_PINYIN	_T("SXIT.Pinyin")	// I_Pinyin interface name
 
@@ -46,7 +49,7 @@
 
 extern int PinyinCreateInterface(const TCHAR* pctszIID, void** ppvIObject);
 
-class __declspec(novtable) I_Pinyin: public I_Unknown
+class __declspec(novtable) I_Pinyin: public IObjRef
 {
 public:
 	//=============================================================================

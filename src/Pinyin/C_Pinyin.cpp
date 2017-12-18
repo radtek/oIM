@@ -21,7 +21,19 @@ int PinyinCreateInterface(const TCHAR* pctszIID, void** ppvIObject)
 	return ERR_NOT_IMPL;
 }
 
-IMPLEMENT_PLUGIN_SINGLETON_(C_Pinyin, INAME_PINYIN);
+long C_Pinyin::AddRef(void) 
+{ 
+	return 1; 
+} 
+long C_Pinyin::Release( void ) 
+{ 
+	return 1; 
+}
+
+void C_Pinyin::OnFinalRelease()
+{
+}
+
 C_Pinyin::C_Pinyin(void)
 	: m_i32Flag( 0 )
 {
