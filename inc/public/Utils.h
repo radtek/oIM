@@ -60,7 +60,7 @@
 #define SAFE_RELEASE_PLUGIN_(P) 	do{ if(P){(P)->FreePlugin(); (P)->Release(); (P)=NULL;}}while(0)
 
 // Release interface, based I_EIMUnknown 
-#define SAFE_RELEASE_INTERFACE_(P) 	do{ if(P){(P)->Release(); (P)=NULL;}}while(0)
+#define SAFE_RELEASE_INTERFACE_(P) 	do{ if(P){/*(P)->Release();*/ (P)=NULL;}}while(0)
 
 // Safe send event(PEventMgr, Event, Param) 
 #define SAFE_SEND_EVENT_(PEMGR, E, P) do {if (PEMGR) (PEMGR)->SendEvent((E), (P)); }while(0)
