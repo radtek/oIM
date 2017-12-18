@@ -33,7 +33,6 @@
 #include <time.h>
 #include "TypeDefs.h"
 #include "Errors.h"
-#include "Plugin.h"
 #include "trace.h"
 
 

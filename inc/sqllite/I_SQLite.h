@@ -57,10 +57,11 @@
 //	}
 /////////////////////////////////////////////////////////////////////////////
 
-#ifndef __IEIM_SQLITE_INTERFACE_HEADER_2014_06_24_YFGZ__
-#define __IEIM_SQLITE_INTERFACE_HEADER_2014_06_24_YFGZ__
+#ifndef __IEIM_SQLITE_INTERFACE_HEADER_2017_12_18_YFGZ__
+#define __IEIM_SQLITE_INTERFACE_HEADER_2017_12_18_YFGZ__
 
-#include "public\plugin.h"
+#include <Windows.h>
+#include "unknown\obj-ref-i.h"
 #include "sqllite\SQLite3.h"
 
 #define INAME_SQLITE_DB		_T("SXIT.SQLite3.Database")		// I_SQLite3 interface name
@@ -80,7 +81,7 @@ typedef enum tagTransType
 	eTRANS_EXCLUSIVE,
 }E_TransType, *PE_TransType;
 
-class __declspec(novtable) I_SQLite3: public I_Unknown
+class __declspec(novtable) I_SQLite3: public IObjRef
 {
 public:
 	//=============================================================================
@@ -465,7 +466,7 @@ public:
 };
 
 // Ths function of GetCol*'s index base with 0 of I_SQLite3Table
-class __declspec(novtable) I_SQLite3Table: public I_Unknown
+class __declspec(novtable) I_SQLite3Table: public IObjRef
 {
 public:
 	//=============================================================================
@@ -707,7 +708,7 @@ public:
 };
 
 // Ths function of Bind's index base with 1 of I_SQLite3Table
-class __declspec(novtable) I_SQLite3Stmt: public I_Unknown
+class __declspec(novtable) I_SQLite3Stmt: public IObjRef
 {
 public:
 	//=============================================================================
@@ -983,4 +984,4 @@ public:
 
 };
 
-#endif // __IEIM_SQLITE_INTERFACE_HEADER_2014_06_24_YFGZ__
+#endif // __IEIM_SQLITE_INTERFACE_HEADER_2017_12_18_YFGZ__

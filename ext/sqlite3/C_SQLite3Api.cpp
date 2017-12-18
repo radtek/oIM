@@ -34,48 +34,40 @@ extern "C" __declspec(dllexport) int __stdcall CreateInterface(const TCHAR* pcts
 class C_SQLite3: public I_SQLite3
 {
 private:   
-	ULONG	 m_ulRef;
+	long	 m_lRef;
 	sqlite3* m_pDb;
 
 public:
 	C_SQLite3()
 		: m_pDb( NULL )
-		, m_ulRef( 1 )
+		, m_lRef( 1 )
 	{
 	}
 
-	virtual HRESULT QueryInterface(	const TCHAR* ptszIID, void** ppvIObject)
+	virtual long AddRef(void)
 	{
-		if ( _tcsnicmp(ptszIID, INAME_SQLITE_DB, _tcslen(INAME_SQLITE_DB)) == 0 )
-		{	// Query myself
-			AddRef();
-			*ppvIObject = this;
-			return ERR_NO_ERROR;
-		}
-		else	// Query a new sub interface
-			return CreateInterface(ptszIID, ppvIObject);
+		return ++m_lRef;
 	}
 
-	virtual ULONG AddRef(void)
+	virtual long Release(void)
 	{
-		return ++m_ulRef;
-	}
-
-	virtual ULONG Release(void)
-	{
-		if ( m_ulRef == 0 )
+		if ( m_lRef == 0 )
 			return 0;
 
-		if ( --m_ulRef == 0)
+		if ( --m_lRef == 0)
 		{
-			Close();
-			delete this;
+			OnFinalRelease();
 			return 0;
 		}
 
-		return m_ulRef;
+		return m_lRef;
 	}
 
+	void OnFinalRelease()
+	{
+		Close();
+		delete this;
+	}
 public:
 	//=============================================================================
 	//Function:     Initialize
@@ -769,48 +761,41 @@ public:
 class C_SQLite3Table: public I_SQLite3Table
 {
 private:
-	ULONG		  m_ulRef;
+	long		  m_lRef;
 	sqlite3*	  m_pDb;
 	sqlite3_stmt* m_pVM;
 
 public:
 	C_SQLite3Table()
-		: m_ulRef( 1 )
+		: m_lRef( 1 )
 		, m_pDb( NULL )
 		, m_pVM( NULL )
 	{
 	}
 
-	virtual HRESULT QueryInterface(	const TCHAR* ptszIID,	void** ppvIObject)
+	virtual long AddRef(void)
 	{
-		if ( _tcsnicmp(ptszIID, INAME_SQLITE_TABLE, _tcslen(INAME_SQLITE_TABLE)) == 0 )
-		{	// Query myself
-			AddRef();
-			*ppvIObject = this;
-			return ERR_NO_ERROR;
-		}
-		
-		return ERR_NOT_IMPL;
+		return ++m_lRef;
 	}
 
-	virtual ULONG AddRef(void)
+	virtual long Release(void)
 	{
-		return ++m_ulRef;
-	}
-
-	virtual ULONG Release(void)
-	{
-		if ( m_ulRef == 0 )
+		if ( m_lRef == 0 )
 			return 0;
 
-		if ( --m_ulRef == 0)
+		if ( --m_lRef == 0)
 		{
-			Finalize();
-			delete this;
+			OnFinalRelease();
 			return 0;
 		}
 
-		return m_ulRef;
+		return m_lRef;
+	}
+
+	void OnFinalRelease()
+	{
+		Finalize();
+		delete this;
 	}
 
 public:
@@ -1125,51 +1110,43 @@ public:
 class C_SQLite3Stmt: public I_SQLite3Stmt
 {
 private:
-	ULONG	 m_ulRef;
+	long	 m_lRef;
 	sqlite3* m_pDb;
 	sqlite3_stmt* m_pVM;
 
 
 public:
 	C_SQLite3Stmt()
-		: m_ulRef( 1 )
+		: m_lRef( 1 )
 		, m_pDb( NULL )
 		, m_pVM( NULL )
 	{
 	}
 
-	virtual HRESULT QueryInterface(	const TCHAR* ptszIID,	void** ppvIObject)
+	virtual long AddRef(void)
 	{
-		if ( _tcsnicmp(ptszIID, INAME_SQLITE_STMT, _tcslen(INAME_SQLITE_STMT)) == 0 )
-		{	// Query myself
-			AddRef();
-			*ppvIObject = this;
-			return ERR_NO_ERROR;
-		}
-		
-		return ERR_NOT_IMPL;
+		return ++m_lRef;
 	}
 
-	virtual ULONG AddRef(void)
+	virtual long Release(void)
 	{
-		return ++m_ulRef;
-	}
-
-	virtual ULONG Release(void)
-	{
-		if ( m_ulRef == 0 )
+		if ( m_lRef == 0 )
 			return 0;
 
-		if ( --m_ulRef == 0)
+		if ( --m_lRef == 0)
 		{
-			Finalize();
-			delete this;
+			OnFinalRelease();
 			return 0;
 		}
 
-		return m_ulRef;
+		return m_lRef;
 	}
-
+	
+	void OnFinalRelease()
+	{
+		Finalize();
+		delete this;
+	}
 public:
 	//=============================================================================
 	//Function:     SetDbHandle

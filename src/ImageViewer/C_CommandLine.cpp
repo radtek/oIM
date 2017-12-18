@@ -2,6 +2,7 @@
 #include "C_CommandLine.h"
 #include "Shellapi.h"
 #include <Winerror.h>
+#include <com-loader.hpp>
 
 C_CommandLine& C_CommandLine::GetObject()
 {
@@ -112,16 +113,17 @@ inline BOOL C_CommandLine::GetMsgInfo(I_SQLite3* pIDb, const QFID& fid, QSID& si
 	char* pszSql = pIDb->VMPrintf(kGetMsgInfo, fid);
 	if ( I_SQLite3Table* pITbl = pIDb->GetTable(pszSql, true) )
 	{
-		AUTO_RELEASE_(pITbl);
 		QMID mid = 0;
 		if ( pITbl->Step() == SQLITE_ROW )
 		{
 			mid = pITbl->GetColInt64(0);
 			sid = pITbl->GetColInt64(1);
 			dwTimestamp = pITbl->GetColInt(2);
+			pITbl->Release();
 
 			return TRUE;
 		}
+		pITbl->Release();
 	}
 	
 	return FALSE;
@@ -166,15 +168,13 @@ inline DWORD C_CommandLine::LoadImages()
 
 	QSID		sid = 0;
 	DWORD		dwTime = 0;
-	I_SQLite3*	pIDb = NULL;
-	C_PluginDll	dllSqlite3(ePLUGIN_TYPE_NORMAL, INAME_SQLITE_DB);
+	SComLoader	dllSqlite3;			// 需要注意作用域，它需要定义在接口的前面，不然会先释放造成接口无效。
+	CAutoRefPtr<I_SQLite3> pIDb;
 	SStringA	szDbFileA = S_CT2A(m_szDbFile);
 	SStringA	szDbKeyA  = S_CT2A(m_szDbKey);
 
-	if ( dllSqlite3.Load(_T("SQLite3.dll")) && 
-		SUCCEEDED(dllSqlite3.CreateInterface(INAME_SQLITE_DB, (void**)&pIDb)) )
+	if ( dllSqlite3.CreateInstance(_T("SQLite3.dll"), (IObjRef**)&pIDb, INAME_SQLITE_DB) )
 	{
-		AUTO_RELEASE_(pIDb);
 		if ( SQLITE_OK != pIDb->Open(szDbFileA) )
 			return 0;
 
@@ -189,13 +189,13 @@ inline DWORD C_CommandLine::LoadImages()
 		DWORD dwIndex = m_vectImage.size();	// 以当前已经有的个数为基础索引
 		if ( I_SQLite3Table* pITbl = pIDb->GetTable(pszSql, true) )
 		{
-			AUTO_RELEASE_(pITbl);
 			while(pITbl->Step() == SQLITE_ROW )
 			{
 				ParseImgMsg((const char*)pITbl->GetColText(1), dwIndex);
 			}
 
 			m_u64Fid = dwIndex;	// 更新FID为实际的图片索引
+			pITbl->Release();
 		}
 	}
 
