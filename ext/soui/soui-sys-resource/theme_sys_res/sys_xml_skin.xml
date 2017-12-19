@@ -19,11 +19,12 @@
   <imglist name="_skin.sys.focusradio" scale="150" src="PNG:SYS_FOCUS_RADIO_150"/>
   <imglist name="_skin.sys.focusradio" scale="200" src="PNG:SYS_FOCUS_RADIO_200"/>
 
-  <scrollbar name="_skin.sys.scrollbar" src="PNG:SYS_SCROLLBAR" margin="3" hasgripper="0"/>
-  <!-- <scrollbar name="_skin.sys.scrollbar" scale="100" src="PNG:SYS_SCROLLBAR_100" margin="3" hasgripper="0"/>
+  <scrollbar name="_skin.sys.scrollbar" scale="100" src="PNG:SYS_SCROLLBAR_100" margin="3" hasgripper="0"/>
   <scrollbar name="_skin.sys.scrollbar" scale="125" src="PNG:SYS_SCROLLBAR_125" margin="3" hasgripper="0"/>
   <scrollbar name="_skin.sys.scrollbar" scale="150" src="PNG:SYS_SCROLLBAR_150" margin="3" hasgripper="0"/>
-  <scrollbar name="_skin.sys.scrollbar" scale="200" src="PNG:SYS_SCROLLBAR_200" margin="3" hasgripper="0"/> -->
+  <scrollbar name="_skin.sys.scrollbar" scale="200" src="PNG:SYS_SCROLLBAR_200" margin="3" hasgripper="0"/>
+  <scrollbar name="_skin.sys.scrollbar" scale="250" src="PNG:SYS_SCROLLBAR_250" margin="3" hasgripper="0"/>
+  <scrollbar name="_skin.sys.scrollbar" scale="300" src="PNG:SYS_SCROLLBAR_300" margin="3" hasgripper="0"/>
 
   <imglist name="_skin.sys.dropbtn" scale="100" src="PNG:SYS_DROPBTN_100" states="3"/>
   <imglist name="_skin.sys.dropbtn" scale="125" src="PNG:SYS_DROPBTN_125" states="3"/>
