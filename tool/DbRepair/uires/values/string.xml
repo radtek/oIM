@@ -2,6 +2,10 @@
 <string>
 	<ver value="2.0"/>
 	<!-- 系统窗口默认控件 -->
+  	<lang_cn value="lang_cn" />
+  	<lang_en value="lang_en" />
+  	<usage_help value="usage_help" />
+  	<usages value="usages" />
 	<sysClose value="sysClose" />
 	<sysMax value="sysMax" />
 	<sysMin value="sysMin" />

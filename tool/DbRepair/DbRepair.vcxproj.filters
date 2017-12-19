@@ -74,6 +74,9 @@
     <ClCompile Include="..\..\inc\des\Des.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="C_CommandLine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="DbRepair.rc">
@@ -100,6 +103,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\inc\des\Des.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C_CommandLine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,6 +1,5 @@
 #include "StdAfx.h"
 #include "C_CommandLine.h"
-#include "Shellapi.h"
 #include <Winerror.h>
 #include <com-loader.hpp>
 
@@ -262,30 +261,19 @@ inline BOOL C_CommandLine::Parse(LPWSTR* pszArgs, int nArgs)
 		}
 		else if ( IsOption(pszArg, _T("lang")) )
 		{
-			SStringT szValue = GetParamValue(pszArg, pszNext, i32Index);
-			if ( szValue.CompareNoCase(_T("cn")) == 0 )
-				m_szLang = GETSTRING(R.string.lang_cn);
-			else if ( szValue.CompareNoCase(_T("en")) == 0 )
-				m_szLang = GETSTRING(R.string.lang_en);
+			SetLang(GetParamValue(pszArg, pszNext, i32Index));
 		}
 		else if ( IsOption(pszArg, _T("scale")) )
 		{
-			SStringT szValue = GetParamValue(pszArg, pszNext, i32Index);
-			m_nScale = _tcstol(szValue, NULL, 0);
-			if ( m_nScale < 100 )
-				m_nScale = 100;
-			else if ( m_nScale > 300 )
-				m_nScale = 300;
+			SetScale(GetParamValueInt(pszArg, pszNext, i32Index));
 		}
 		else if ( IsOption(pszArg, _T("taskbar")) )
 		{
-			SStringT szValue = GetParamValue(pszArg, pszNext, i32Index);
-			m_bShowInTaskbar = _tcstol(szValue, NULL, 0);
+			m_bShowInTaskbar = GetParamValueInt(pszArg, pszNext, i32Index);
 		}
 		else if ( IsOption(pszArg, _T("speed")) )
 		{
-			SStringT szValue = GetParamValue(pszArg, pszNext, i32Index);
-			m_i32Speed = _tcstol(szValue, NULL, 0);
+			m_i32Speed = GetParamValueInt(pszArg, pszNext, i32Index);
 		}
 		else if ( IsOption(pszArg, _T("h")) || IsOption(pszArg, _T("?")) )
 		{

@@ -1,4 +1,5 @@
 #pragma once
+#include <Shellapi.h>
 
 class C_CommandLineBase
 {
@@ -11,9 +12,9 @@ public:
 		// 获取用户当前语言
 		LANGID lang = GetUserDefaultLangID(); //GetSystemDefaultLangID();
 		if ( LOBYTE(lang) == LANG_CHINESE )
-			m_szLang = GETSTRING(R.string.lang_cn);
+			SetLang(_T("cn"));
 		else 
-			m_szLang = GETSTRING(R.string.lang_en);
+			SetLang(_T("en"));
 
 		STRACE(_T("default lang:%s(%0x)"), m_szLang, lang);
 
@@ -22,18 +23,47 @@ public:
 		HDC hdc   = ::GetWindowDC(hWnd);
 		int nDpiX = ::GetDeviceCaps(hdc, LOGPIXELSX); // 启用高DPI功能
 		:: ReleaseDC(hWnd, hdc);
-		if ( nDpiX >= 288 )			// *3
+		SetScale(nDpiX);
+	}
+
+	BOOL SetLang(const SStringT& szLang)
+	{
+		if ( szLang.CompareNoCase(_T("cn")) == 0 )
+		{
+			m_szLang = GETSTRING(R.string.lang_cn);
+			return TRUE;
+		}
+		else if ( szLang.CompareNoCase(_T("en")) == 0 )
+		{
+			m_szLang = GETSTRING(R.string.lang_en);
+			return TRUE;
+		}
+
+		return FALSE;
+	}
+
+	int SetScale(int nScale)
+	{
+		if ( nScale >= 288 )		// *3
 			m_nScale = 300;
-		else if ( nDpiX >= 240 )	// *2.5
+		else if ( nScale >= 240 )	// *2.5
 			m_nScale = 250;
-		else if ( nDpiX >= 192 )	// *2
+		else if ( nScale >= 192 )	// *2
 			m_nScale = 200;
-		else if ( nDpiX >= 144 )	// *1.5
+		else if ( nScale >= 144 )	// *1.5
 			m_nScale = 150;
-		else if (nDpiX >= 120 )		// *1.25
+		else if (nScale >= 120 )	// *1.25
 			m_nScale = 125;
 		else						// *1
 			m_nScale = 100;
+
+		return m_nScale;
+	}
+
+	inline int GetParamValueInt(LPWSTR pszArg, LPWSTR pszNext, int& i32Index)
+	{
+		SStringT szValue = GetParamValue(pszArg, pszNext, i32Index);
+		return _tcstol(szValue, NULL, 0);
 	}
 
 	inline SStringT GetParamValue(LPWSTR pszArg, LPWSTR pszNext, int& i32Index)
@@ -105,7 +135,23 @@ public:
 		return FALSE;
 	}
 
-	virtual BOOL ParseCommandLine() = 0;
+	virtual BOOL Parse(LPWSTR* pszArgs, int nArgs) = 0;
+	virtual BOOL ParseCommandLine()
+	{
+		BOOL bRet   = FALSE;
+		int nArgs = 0;;
+		TCHAR* pszCmdLine = GetCommandLine();
+		if (LPWSTR* pszArgs = CommandLineToArgvW(pszCmdLine, &nArgs))
+		{
+			STRACE(_T("%s"), pszCmdLine);
+			if ( nArgs >= 1 )
+				bRet = Parse(pszArgs, nArgs);
+
+			LocalFree(pszArgs);
+		}
+
+		return bRet;
+	}
 
 protected:
 	BOOL		m_bShowInTaskbar;	// 是否显示在任务栏
