@@ -25,7 +25,6 @@ public:
 	friend class CMainDlg;
 	~C_CommandLine(void);
 	static C_CommandLine& GetObject();
-	BOOL ParseCommandLine();
 
 private:
 	BOOL		m_bFindedFid;	// 已经找到了指定FID的图片

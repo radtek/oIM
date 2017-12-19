@@ -1,6 +1,11 @@
 #pragma once
 #include <Shellapi.h>
 
+// 定义所支持的语言标识============================
+const TCHAR* const kLang   = _T("lang_");	// 语言前缀
+const TCHAR* const kLangCn = _T("cn");		// 简体中文
+const TCHAR* const kLangTn = _T("tn");		// 繁体中文
+const TCHAR* const kLangEn = _T("en");		// 英文
 class C_CommandLineBase
 {
 public:
@@ -10,13 +15,15 @@ public:
 		, m_szDbKey(_T("SXIT@0518$YFGZ#"))
 	{
 		// 获取用户当前语言
-		LANGID lang = GetUserDefaultLangID(); //GetSystemDefaultLangID();
+		LANGID lang = GetUserDefaultLangID(); 
+		if ( lang == LANG_CHINESE_TRADITIONAL )
+			SetLang(kLangTn);
 		if ( LOBYTE(lang) == LANG_CHINESE )
-			SetLang(_T("cn"));
+			SetLang(kLangCn);
 		else 
-			SetLang(_T("en"));
+			SetLang(kLangEn);	// 默认配配置为英文
 
-		STRACE(_T("default lang:%s(%0x)"), m_szLang, lang);
+		STRACE(_T("lang:%s(%0x)"), m_szLang, lang);
 
 		// 根据当前系统DPI，设置默认值
 		HWND hWnd = ::GetDesktopWindow();
@@ -28,18 +35,10 @@ public:
 
 	BOOL SetLang(const SStringT& szLang)
 	{
-		if ( szLang.CompareNoCase(_T("cn")) == 0 )
-		{
-			m_szLang = GETSTRING(R.string.lang_cn);
-			return TRUE;
-		}
-		else if ( szLang.CompareNoCase(_T("en")) == 0 )
-		{
-			m_szLang = GETSTRING(R.string.lang_en);
-			return TRUE;
-		}
+		m_szLang = kLang;
+		m_szLang+= szLang;
 
-		return FALSE;
+		return TRUE;
 	}
 
 	int SetScale(int nScale)

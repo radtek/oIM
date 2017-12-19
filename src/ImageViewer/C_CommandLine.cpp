@@ -163,23 +163,6 @@ inline DWORD C_CommandLine::LoadImages()
 	return m_vectImage.size();
 }
 
-BOOL C_CommandLine::ParseCommandLine()
-{
-	BOOL bRet   = FALSE;
-	int nArgs = 0;;
-	TCHAR* pszCmdLine = GetCommandLine();
-	if (LPWSTR* pszArgs = CommandLineToArgvW(pszCmdLine, &nArgs))
-	{
-		STRACE(_T("%s"), pszCmdLine);
-		if ( nArgs >= 1 )
-			bRet = Parse(pszArgs, nArgs);
-
-		LocalFree(pszArgs);
-	}
-
-	return bRet;
-}
-
 inline BOOL C_CommandLine::Parse(LPWSTR* pszArgs, int nArgs)
 {
 	int i32Index = 0;
