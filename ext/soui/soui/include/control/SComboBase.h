@@ -80,9 +80,16 @@ namespace SOUI
 
     class SOUI_EXP SDropDownWnd_ComboBox : public SDropDownWnd
     {
-    public:
-        SDropDownWnd_ComboBox(ISDropDownOwner* pOwner):SDropDownWnd(pOwner){}
+	private:
+		int m_nScale;
 
+    public:
+        SDropDownWnd_ComboBox(ISDropDownOwner* pOwner, int nScale)
+			: SDropDownWnd(pOwner)
+			, m_nScale(nScale)
+		{}
+
+		virtual int GetScale() const { return m_nScale; }
         virtual BOOL PreTranslateMessage(MSG* pMsg);
     };
 

@@ -312,7 +312,7 @@ namespace SOUI
 
         if(!m_pDropDownWnd)
         {
-            m_pDropDownWnd = new SDropDownWnd_ComboBox(this);
+            m_pDropDownWnd = new SDropDownWnd_ComboBox(this, GetScale());
             CRect rcPopup;
             BOOL bDown=CalcPopupRect(GetListBoxHeight(),rcPopup);
             m_pDropDownWnd->Create(rcPopup,0);
