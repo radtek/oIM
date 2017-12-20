@@ -13,6 +13,10 @@
   inset="5,15,5,5"
   >
   <root skin="_skin.sys.wnd.bkgnd" cache="1">
+  	<class name="cls_combobox" height="24" dropDown="1" dropHeight="150" dotted="0" animateTime="200" drawFocusRect="0" colorText="#000000ff" colorBkgnd="#FFFFFFFF" margin-x="0"/>
+    <class name="cls_liststyle" iconSkin="" itemHeight="22" colorBkgnd="#ffffffff" colorText="#000000" colorSelText="#FFFFFF" colorItemBkgnd="#FFFFFFFF" colorItemSelBkgnd="rgb(51,153,255)" inset="6,0,0,0" />
+    <class name="cls_editstyle" inset="5,3,5,0" colorText="#000000" align="left" colorBkgnd="#FFFFFF" />
+
     <caption pos="0,0,-0,@-1" font="adding:2" layout="hbox" gravity="center" padding="5,0,5,0">
       <icon size="-1,-1" src="ICON_LOGO:16"/>
       <text size="-1,-1" extend_left="5">@string/title</text>
@@ -72,6 +76,30 @@
         <page title="page3">
           <img pos="5,5" skin="shape_test" id="2000"/>
           <edit pos="|0,|0,@200dp,@30dp" offset="-0.5,-0.5" font="size:18dp">编辑窗口</edit>
+          <combobox name="cmb_sql" class="cls_combobox" dropDown="0" pos="0,-24,-34,-0">
+						<liststyle class="cls_liststyle" />
+						<editstyle class="cls_editstyle" wantReturn="0" />
+						<items>
+							<item text="PRAGMA integrity_check"/>
+							<item text="PRAGMA user_version" />
+							<item text="SELECT * FROM sqlite_master" />
+							<item text="SELECT name,sql FROM sqlite_master WHERE type='table'" />
+														<item text="PRAGMA user_version" />
+
+							<item text="PRAGMA user_version" />
+							<item text="PRAGMA user_version" />
+							<item text="PRAGMA user_version" />
+							<item text="PRAGMA user_version" />
+							<item text="PRAGMA user_version" />
+							<item text="PRAGMA user_version" />
+							<item text="PRAGMA user_version" />
+							<item text="PRAGMA user_version" />
+
+							<item text="SELECT count(*) AS depts FROM t_dept" />
+							<item text="SELECT count(*) AS emps FROM t_emp" />
+							<item text="SELECT sid_, type, title, remark, flag, cid, ctime, utime, off_msg, new_msg, sutime, virgroupid, (SELECT toptime FROM t_session_top WHERE t_session_top.sid_=t_session.sid_) AS toptime FROM t_session WHERE (flag&89) ORDER BY toptime DESC,utime DESC" />
+						</items>
+					</combobox>
         </page>
         <page title="page4"  >
 			<window size="-1,-1" colorBkgnd="#07479f">

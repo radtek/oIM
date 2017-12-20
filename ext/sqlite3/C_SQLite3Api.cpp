@@ -158,11 +158,11 @@ public:
 		int i32Ret = ::sqlite3_open_v2(pszFile, &m_pDb, i32Flag, NULL);
 		if ( i32Ret != SQLITE_OK )
 		{
-			STRACE(_T("Open database [%s] failed"), pszFile);
+			STRACE(_T("Open database [%S] failed"), pszFile);
 			return i32Ret;
 		}
 
-		STRACE(_T("Open database [%s] succeeded"), pszFile);
+		STRACE(_T("Open database [%S] succeeded"), pszFile);
 		return SQLITE_OK;
 	}
 
