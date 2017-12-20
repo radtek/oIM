@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
-<SOUI name="mainWindow" trCtx="dlg_main" title="@string/mainTitle" bigIcon="ICON_LOGO:32" smallIcon="ICON_LOGO:16" width="920dp" height="400dp"
-	maxInset="5dp,3dp,10dp,10dp" margin="5dp,3dp,5dp,7dp" resizable="1" wndType="appMain" appWnd="1" minsize="600dp,400dp" translucent="1">
+<SOUI name="mainWindow" trCtx="dlg_main" title="@string/mainTitle" bigIcon="ICON_LOGO:32" smallIcon="ICON_LOGO:16" width="920" height="400"
+	maxInset="5,3,10,10" margin="5,3,5,7" resizable="1" wndType="appMain" appWnd="1" minsize="600,400" translucent="1">
 	<root skin="_skin.shadow" cache="1">
-		<window pos="5dp,3dp,-5dp,-7dp" skin="_skin.bg">
+		<window pos="5,3,-5,-7" skin="_skin.bg">
 			<caption class="cls_sys_caption">
 				<icon class="cls_sys_logo" />
 				<text class="cls_sys_title">@string/mainTitle</text>
