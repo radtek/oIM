@@ -19,6 +19,9 @@
 					<combobox name="cmb_db" class="cls_combobox" pos="[2dp,0dp,-4dp,24dp">
 						<liststyle class="cls_liststyle" />
 						<editstyle class="cls_editstyle" />
+						<dropdownStyle>
+							<root colorBkgnd="#ffffff" />
+						</dropdownStyle>
 					</combobox>
 				</window>
 				<richedit name="rdt_Log" pos="{0,[2dp,-0,]0" readonly="1" class="cls_richedit" />
@@ -26,6 +29,9 @@
 					<combobox name="cmb_sql" class="cls_combobox" dropDown="0" pos="0,-24dp,-34dp,-0">
 						<liststyle class="cls_liststyle" />
 						<editstyle class="cls_editstyle" wantReturn="0" />
+						<dropdownStyle>
+							<root colorBkgnd="#ffffff" />
+						</dropdownStyle>
 						<items>
 							<item text="PRAGMA integrity_check"/>
 							<item text="PRAGMA user_version" />

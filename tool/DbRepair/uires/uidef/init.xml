@@ -9,7 +9,7 @@
     <class name="cls_sys_caption" id="10" pos="0,0,-0,30dp" font="adding:1" trCtx="sysWin"/>
     <class name="cls_sys_logo" id="11" src="ICON_LOGO" pos="8dp,8dp,24dp,24dp" />
     <class name="cls_sys_title" id="1" pos="30dp,9dp" />
-    <class name="cls_sys_close" id="2" pos="-32dp,0" skin="_skin.sys.btn.close"  tip="@string/sysClose"  animate="1"/>
+    <class name="cls_sys_close" id="2" pos="-32dp,0" skin="_skin.sys.btn.close" tip="@string/sysClose" animate="1"/>
     <class name="cls_sys_max" id="14" pos="sib.left@2:-32dp,0" skin="_skin.sys.btn.maximize" tip="@string/sysMax" animate="1" />
     <class name="cls_sys_restore" id="15" pos="sib.left@2:-32dp,0" skin="_skin.sys.btn.restore" tip="@string/sysRestore" show="0" animate="1" />
     <class name="cls_sys_min" id="16" pos="sib.left@2:-64dp,0" skin="_skin.sys.btn.minimize" tip="@string/sysMin" animate="1"/>
