@@ -36,7 +36,7 @@ namespace SOUI
 
     int SComboView::GetListBoxHeight()
     {
-        int nDropHeight=m_nDropHeight;
+		int nDropHeight=m_nDropHeight.toPixelSize(GetScale());
         if(GetCount()) 
         {
             IListViewItemLocator * pItemLocator = m_pListBox->GetItemLocator();

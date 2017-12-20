@@ -70,12 +70,12 @@ namespace SOUI
         :m_pSkinBtn(GETBUILTINSKIN(SKIN_SYS_DROPBTN))
         ,m_pEdit(NULL)
         ,m_bDropdown(TRUE)
-        ,m_nDropHeight(200)
         ,m_dwBtnState(WndState_Normal)
         ,m_nAnimTime(200)
         ,m_pDropDownWnd(NULL)
         ,m_iInitSel(-1)
     {
+		m_nDropHeight.setSize(200, SLayoutSize::px);
         m_bFocusable=TRUE;
         m_style.SetAttribute(L"align",L"left",TRUE);
         m_style.SetAttribute(L"valign",L"middle",TRUE);
