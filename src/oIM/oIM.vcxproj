@@ -103,6 +103,10 @@
     <ResourceCompile>
       <AdditionalIncludeDirectories>$(SOUIPATH)\soui-sys-resource;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -174,34 +178,13 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <None Include="license.txt" />
-    <None Include="readme.txt" />
-    <None Include="res\soui_res.rc2" />
-    <None Include="uires\image\soui.ico" />
-    <None Include="uires\image\traymenu_icons.png" />
-    <None Include="uires\Translator\lang_cn.xml" />
-    <None Include="uires\Translator\lang_jp.xml" />
-    <None Include="uires\uidef\init.xml" />
-    <CustomBuild Include="uires\uires.idx">
+
+    <CustomBuild Include="..\..\Resource\$(Company)\uires\uires.idx">
       <FileType>Document</FileType>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(SOUIPATH)\tools\uiresbuilder.exe" -i "%(FullPath)" -p uires -r .\res\soui_res.rc2 -h .\res\resource.h idtable</Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Building SoUI Resource</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\res\soui_res.rc2;%(Outputs)</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(SOUIPATH)\tools\uiresbuilder.exe" -i "%(FullPath)" -p uires -r .\res\soui_res.rc2 -h .\res\resource.h idtable</Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Building SoUI Resource</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\res\soui_res.rc2;%(Outputs)</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">"$(SOUIPATH)\tools\uiresbuilder.exe" -i "%(FullPath)" -p uires -r .\res\soui_res.rc2 -h .\res\resource.h idtable</Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building SoUI Resource</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\res\soui_res.rc2;%(Outputs)</Outputs>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(SOUIPATH)\tools\uiresbuilder.exe" -i "%(FullPath)" -p uires -r .\res\soui_res.rc2 -h .\res\resource.h idtable</Command>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building SoUI Resource</Message>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\res\soui_res.rc2;%(Outputs)</Outputs>
+      <Command >"$(SOUIPATH)\tools\uiresbuilder.exe" -i "%(FullPath)" -p %(RootDir)%(Directory) -h ..\..\Resource\resource.h idtable</Command>
+      <Message >Building SoUI Resource</Message>
+      <Outputs >.\res\soui_res.rc2;%(Outputs)</Outputs>
     </CustomBuild>
-    <None Include="uires\values\color.xml" />
-    <None Include="uires\values\skin.xml" />
-    <None Include="uires\values\string.xml" />
-    <None Include="uires\xml\dlg_main.xml" />
-    <None Include="uires\xml\menu_tray.xml" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MainDlg.cpp" />

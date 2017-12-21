@@ -16,6 +16,7 @@
     <Filter Include="SoUI Resouece">
       <UniqueIdentifier>{e75932b9-1d4c-4c57-9c8a-c51efb6909b9}</UniqueIdentifier>
       <Extensions>idx;xml;png;gif;jpg;ico;lua;bmp</Extensions>
+      <ParseFiles>false</ParseFiles>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -89,7 +90,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="uires\uires.idx">
+    <CustomBuild Include="..\..\Resource\$(Company)\uires\uires.idx">
       <Filter>SoUI Resouece</Filter>
     </CustomBuild>
   </ItemGroup>
