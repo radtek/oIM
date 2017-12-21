@@ -30,8 +30,8 @@
   <imglist name="_skin.sys.dropbtn" scale="125" src="PNG:SYS_DROPBTN_125" states="3"/>
   <imglist name="_skin.sys.dropbtn" scale="150" src="PNG:SYS_DROPBTN_150" states="3"/>
   <imglist name="_skin.sys.dropbtn" scale="200" src="PNG:SYS_DROPBTN_200" states="3"/>
-  <imglist name="_skin.sys.dropbtn" scale="200" src="PNG:SYS_DROPBTN_250" states="3"/>
-  <imglist name="_skin.sys.dropbtn" scale="200" src="PNG:SYS_DROPBTN_300" states="3"/>
+  <imglist name="_skin.sys.dropbtn" scale="250" src="PNG:SYS_DROPBTN_250" states="3"/>
+  <imglist name="_skin.sys.dropbtn" scale="300" src="PNG:SYS_DROPBTN_300" states="3"/>
 
   <imglist name="_skin.sys.tree.toggle" scale="100" src="PNG:SYS_TREE_TOGGLE_100" states="6"/>
   <imglist name="_skin.sys.tree.toggle" scale="125" src="PNG:SYS_TREE_TOGGLE_125" states="6"/>
