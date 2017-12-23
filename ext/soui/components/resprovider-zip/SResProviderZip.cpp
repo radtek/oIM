@@ -196,7 +196,7 @@ namespace SOUI{
         {
             *ppObj = new SResProviderZip;
             return TRUE;
-        }
-    }
+		}
+	}
 
 }//namespace SOUI

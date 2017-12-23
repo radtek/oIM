@@ -85,7 +85,7 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>..\..\inc;$(SOUIPATH)\config;$(SOUIPATH)\components;$(SOUIPATH)\SOUI\include;$(SOUIPATH)\utilities\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\inc;$(SOUIPATH)\config;$(SOUIPATH)\components;$(SOUIPATH)\SOUI\include;$(SOUIPATH)\utilities\include;$(SOUIPATH)\third-part\7z;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WINDOWS;STRICT;_DEBUG;__UIENGINE__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <BrowseInformation>true</BrowseInformation>
@@ -178,12 +178,11 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-
     <CustomBuild Include="..\..\Resource\$(Company)\uires\uires.idx">
       <FileType>Document</FileType>
-      <Command >"$(SOUIPATH)\tools\uiresbuilder.exe" -i "%(FullPath)" -p %(RootDir)%(Directory) -h ..\..\Resource\resource.h idtable</Command>
-      <Message >Building SoUI Resource</Message>
-      <Outputs >.\res\soui_res.rc2;%(Outputs)</Outputs>
+      <Command>"$(SOUIPATH)\tools\uiresbuilder.exe" -i "%(FullPath)" -p %(RootDir)%(Directory) -h ..\..\Resource\resource.h idtable</Command>
+      <Message>Building SoUI Resource</Message>
+      <Outputs>.\res\soui_res.rc2;%(Outputs)</Outputs>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>

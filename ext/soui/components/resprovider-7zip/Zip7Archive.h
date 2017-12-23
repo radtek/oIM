@@ -25,18 +25,18 @@ typedef struct ZIP_FIND_DATA
 	int			nIndex;
 } ZIP_FIND_DATA, *LPZIP_FIND_DATA;
 
-class CZipFile;
-class CZipArchive;
+class CZip7File;
+class CZip7Archive;
 
 //	ZIP file wrapper from zip archive
-class CZipFile
+class CZip7File
 {
-	friend CZipArchive;
+	friend CZip7Archive;
 protected:
 	DWORD	m_dwPos;
 public:
-	CZipFile(DWORD dwSize=0);
-	~CZipFile();
+	CZip7File(DWORD dwSize=0);
+	~CZip7File();
 	BOOL Read(void* pBuffer, DWORD dwSize, LPDWORD pdwRead = NULL);
 	BOOL Close();
 	BOOL IsOpen() const ;
@@ -53,14 +53,14 @@ protected:
 };
 
 //	ZIP Archive class, load files from a zip archive
-class CZipArchive
+class CZip7Archive
 {
 protected: 
-	CZipFile		m_fileRes;	
+	CZip7File		m_fileRes;	
 	char			m_szPassword[64];
 public:
-	CZipArchive();
-	~CZipArchive();
+	CZip7Archive();
+	~CZip7Archive();
 
 	BOOL Open(LPCTSTR pszFileName, LPCSTR pszPassword);
 	BOOL Open(HMODULE hModule, LPCTSTR pszName, LPCTSTR pszPassword, LPCTSTR pszType = _T("ZIP"));
@@ -70,7 +70,7 @@ public:
 	
 	BOOL SetPassword(LPCSTR pstrPassword);
 	 
-	BOOL GetFile(LPCTSTR pszFileName, CZipFile& file); 
+	BOOL GetFile(LPCTSTR pszFileName, CZip7File& file); 
 	DWORD GetFileSize(LPCTSTR pszFileName);
 	 
 protected:

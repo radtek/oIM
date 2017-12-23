@@ -876,6 +876,18 @@
     <ClInclude Include="..\controls.extend\SRatingBar.h">
       <Filter>controls.extend</Filter>
     </ClInclude>
+    <ClInclude Include="..\components\resprovider-7zip\SResProvider7Zip.h">
+      <Filter>components\resprovider-7zip</Filter>
+    </ClInclude>
+    <ClInclude Include="..\components\resprovider-7zip\stdafx.h">
+      <Filter>components\resprovider-7zip</Filter>
+    </ClInclude>
+    <ClInclude Include="..\components\resprovider-7zip\Zip7Archive.h">
+      <Filter>components\resprovider-7zip</Filter>
+    </ClInclude>
+    <ClInclude Include="..\components\resprovider-7zip\zip7resprovider-param.h">
+      <Filter>components\resprovider-7zip</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\utilities\src\pugixml\pugixml.cpp">
@@ -1318,6 +1330,24 @@
     </ClCompile>
     <ClCompile Include="..\controls.extend\SScrollText.cpp">
       <Filter>controls.extend</Filter>
+    </ClCompile>
+    <ClCompile Include="..\components\resprovider-zip\ZipUtil.cpp">
+      <Filter>components\resprovider-zip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\components\resprovider-7zip\cursoricon.cpp">
+      <Filter>components\resprovider-7zip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\components\resprovider-7zip\SResProvider7Zip.cpp">
+      <Filter>components\resprovider-7zip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\components\resprovider-7zip\stdafx.h.cpp">
+      <Filter>components\resprovider-7zip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\components\resprovider-7zip\Zip7Archive.cpp">
+      <Filter>components\resprovider-7zip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\components\resprovider-7zip\Zip7Util.cpp">
+      <Filter>components\resprovider-7zip</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

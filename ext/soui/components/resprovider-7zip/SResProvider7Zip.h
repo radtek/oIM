@@ -6,7 +6,6 @@
 #include <string/strcpcvt.h>
 #include <souicoll.h>
 #define _COLL_NS SOUI
-#define SOUI_EXP
 #include <helper/SResID.h>
 #include <interface/render-i.h>
 
@@ -40,7 +39,7 @@ protected:
 	
 	SMap<SResID,SStringT> m_mapFiles;
     CAutoRefPtr<IRenderFactory> m_renderFactory;
-	CZipArchive m_zipFile;
+	CZip7Archive m_zipFile;
 };
 
 namespace RESPROVIDER_7ZIP

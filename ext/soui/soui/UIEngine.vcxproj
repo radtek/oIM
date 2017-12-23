@@ -24,6 +24,10 @@
     <ClInclude Include="..\components\render-skia\Render-Skia2-i.h" />
     <ClInclude Include="..\components\render-skia\Render-Skia2.h" />
     <ClInclude Include="..\components\render-skia\skia2rop2.h" />
+    <ClInclude Include="..\components\resprovider-7zip\SResProvider7Zip.h" />
+    <ClInclude Include="..\components\resprovider-7zip\stdafx.h" />
+    <ClInclude Include="..\components\resprovider-7zip\Zip7Archive.h" />
+    <ClInclude Include="..\components\resprovider-7zip\zip7resprovider-param.h" />
     <ClInclude Include="..\components\resprovider-zip\SResProviderZip.h" />
     <ClInclude Include="..\components\resprovider-zip\ZipArchive.h" />
     <ClInclude Include="..\components\resprovider-zip\zipresprovider-param.h" />
@@ -251,9 +255,15 @@
     <ClCompile Include="..\components\render-skia\render-skia.cpp" />
     <ClCompile Include="..\components\render-skia\Render-Skia2.cpp" />
     <ClCompile Include="..\components\render-skia\skia2rop2.cpp" />
+    <ClCompile Include="..\components\resprovider-7zip\cursoricon.cpp" />
+    <ClCompile Include="..\components\resprovider-7zip\SResProvider7Zip.cpp" />
+    <ClCompile Include="..\components\resprovider-7zip\stdafx.h.cpp" />
+    <ClCompile Include="..\components\resprovider-7zip\Zip7Archive.cpp" />
+    <ClCompile Include="..\components\resprovider-7zip\Zip7Util.cpp" />
     <ClCompile Include="..\components\resprovider-zip\cursoricon.cpp" />
     <ClCompile Include="..\components\resprovider-zip\SResProviderZip.cpp" />
     <ClCompile Include="..\components\resprovider-zip\zipArchive.cpp" />
+    <ClCompile Include="..\components\resprovider-zip\ZipUtil.cpp" />
     <ClCompile Include="..\components\ScriptModule-LUA\lua_tinker\lua_tinker.cpp" />
     <ClCompile Include="..\components\ScriptModule-LUA\src\exports\exp_soui.cpp" />
     <ClCompile Include="..\components\ScriptModule-LUA\src\ScriptModule-Lua.cpp" />
@@ -435,7 +445,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>.;..\config;include;..\utilities\include;..\tools\mkspecs\win32-msvc2010;..\components;..\third-part\png;..\third-part\zlib;..\third-part\skia;..\third-part\skia\include;..\third-part\skia\include\config;..\third-part\skia\include\core;..\third-part\lua-52\src;..\third-part\wke\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;..\config;include;..\utilities\include;..\tools\mkspecs\win32-msvc2010;..\components;..\third-part\png;..\third-part\7z;..\third-part\zlib;..\third-part\skia;..\third-part\skia\include;..\third-part\skia\include\config;..\third-part\skia\include\core;..\third-part\lua-52\src;..\third-part\wke\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>-w34100 -w34189 -w44996 %(AdditionalOptions)</AdditionalOptions>
       <BrowseInformation>false</BrowseInformation>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -454,7 +464,7 @@
       <PrecompiledHeaderFile>include\souistd.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>Usp10.lib;Opengl32.lib;lua-52.lib;png.lib;smiley.lib;skia.lib;soui.lib;utilities.lib;zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Usp10.lib;Opengl32.lib;lua-52.lib;png.lib;smiley.lib;skia.lib;soui.lib;utilities.lib;zlib.lib;7z.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>..\..\..\lib\$(Platform);$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <DataExecutionPrevention>true</DataExecutionPrevention>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -482,7 +492,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>.;..\config;include;..\utilities\include;..\tools\mkspecs\win32-msvc2010;..\components;..\third-part\png;..\third-part\zlib;..\third-part\skia;..\third-part\skia\include;..\third-part\skia\include\config;..\third-part\skia\include\core;..\third-part\lua-52\src;..\third-part\wke\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;..\config;include;..\utilities\include;..\tools\mkspecs\win32-msvc2010;..\components;..\third-part\7z;..\third-part\png;..\third-part\zlib;..\third-part\skia;..\third-part\skia\include;..\third-part\skia\include\config;..\third-part\skia\include\core;..\third-part\lua-52\src;..\third-part\wke\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>-w34100 -w34189 -w44996 %(AdditionalOptions)</AdditionalOptions>
       <BrowseInformation>false</BrowseInformation>
       <DisableSpecificWarnings>4100;4101;4102;4189;4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
@@ -498,7 +508,7 @@
       <PrecompiledHeaderFile>include\souistd.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>Usp10.lib;Opengl32.lib;lua-52d.lib;pngd.lib;skiad.lib;smileyd.lib;souid.lib;utilitiesd.lib;zlibd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Usp10.lib;Opengl32.lib;lua-52d.lib;pngd.lib;skiad.lib;smileyd.lib;souid.lib;utilitiesd.lib;zlibd.lib;7zd.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>..\..\..\lib\$(Platform);$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <DataExecutionPrevention>true</DataExecutionPrevention>
       <GenerateDebugInformation>true</GenerateDebugInformation>

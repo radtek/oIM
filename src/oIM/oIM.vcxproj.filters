@@ -20,43 +20,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="license.txt" />
-    <None Include="readme.txt" />
-    <None Include="res\soui_res.rc2">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="uires\uidef\init.xml">
-      <Filter>SoUI Resouece</Filter>
-    </None>
-    <None Include="uires\values\color.xml">
-      <Filter>SoUI Resouece</Filter>
-    </None>
-    <None Include="uires\values\skin.xml">
-      <Filter>SoUI Resouece</Filter>
-    </None>
-    <None Include="uires\values\string.xml">
-      <Filter>SoUI Resouece</Filter>
-    </None>
-    <None Include="uires\xml\dlg_main.xml">
-      <Filter>SoUI Resouece</Filter>
-    </None>
-    <None Include="uires\image\soui.ico">
-      <Filter>SoUI Resouece</Filter>
-    </None>
-    <None Include="uires\Translator\lang_cn.xml">
-      <Filter>SoUI Resouece</Filter>
-    </None>
-    <None Include="uires\Translator\lang_jp.xml">
-      <Filter>SoUI Resouece</Filter>
-    </None>
-    <None Include="uires\xml\menu_tray.xml">
-      <Filter>SoUI Resouece</Filter>
-    </None>
-    <None Include="uires\image\traymenu_icons.png">
-      <Filter>SoUI Resouece</Filter>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="oIM.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

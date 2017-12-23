@@ -71,23 +71,23 @@ static std::string WString2String(const std::wstring &wstr)
 }
 
 
-    CZipFile::CZipFile(DWORD dwSize/*=0*/)
+    CZip7File::CZip7File(DWORD dwSize/*=0*/)
 		: m_dwPos(0)
 	{
 
 	}
 
-	CZipFile::~CZipFile()
+	CZip7File::~CZip7File()
 	{
 		Close();
 	}
 
-	BlobBuffer &CZipFile::getBlob()
+	BlobBuffer &CZip7File::getBlob()
 	{
 		return m_blob;
 	}
 
-	BOOL CZipFile::Read(void* pBuffer, DWORD dwSize, LPDWORD pdwRead/* = NULL*/)
+	BOOL CZip7File::Read(void* pBuffer, DWORD dwSize, LPDWORD pdwRead/* = NULL*/)
 	{
 		_ASSERTE(IsOpen());
 
@@ -107,33 +107,33 @@ static std::string WString2String(const std::wstring &wstr)
 
 		return TRUE;
 	}
-	BOOL CZipFile::Close()
+	BOOL CZip7File::Close()
 	{
 		m_blob.ClearContent();
 		m_dwPos = 0;
 
 		return TRUE;
 	}
-	BOOL CZipFile::IsOpen() const 
+	BOOL CZip7File::IsOpen() const 
 	{
 		return (m_blob.GetBlobLength() > 0);
 	}
-	BYTE* CZipFile::GetData() 
+	BYTE* CZip7File::GetData() 
 	{
 		_ASSERTE(IsOpen());
 		return m_blob.GetBlobRealPtr();
 	}
-	DWORD CZipFile::GetSize() const
+	DWORD CZip7File::GetSize() const
 	{
 		_ASSERTE(IsOpen());
 		return m_blob.GetBlobLength();
 	}
-	DWORD CZipFile::GetPosition() const
+	DWORD CZip7File::GetPosition() const
 	{
 		_ASSERTE(IsOpen());
 		return m_dwPos;
 	}
-	DWORD CZipFile::Seek(DWORD dwOffset, UINT nFrom)	//	return old pos
+	DWORD CZip7File::Seek(DWORD dwOffset, UINT nFrom)	//	return old pos
 	{
 		_ASSERTE(IsOpen());
 		DWORD dwPos = m_dwPos;
@@ -156,7 +156,7 @@ static std::string WString2String(const std::wstring &wstr)
 		return dwPos;
 	} 
 
-	BOOL CZipFile::Attach(LPBYTE pData, DWORD dwSize)
+	BOOL CZip7File::Attach(LPBYTE pData, DWORD dwSize)
 	{
 		_ASSERTE(pData);
 		_ASSERTE(!::IsBadReadPtr(pData,dwSize));
@@ -165,7 +165,7 @@ static std::string WString2String(const std::wstring &wstr)
 		return TRUE;
 	}
 
-	void CZipFile::Detach()
+	void CZip7File::Detach()
 	{ 
 		m_blob.ClearContent();
 		m_dwPos = 0;
@@ -173,34 +173,34 @@ static std::string WString2String(const std::wstring &wstr)
 
 
 	//////////////////////////////////////////////////////////////////////////
-	//CZipArchive
+	//CZip7Archive
 	//////////////////////////////////////////////////////////////////////////
 	
-	CZipArchive::CZipArchive()
+	CZip7Archive::CZip7Archive()
 	{
 	}
-	CZipArchive::~CZipArchive()
+	CZip7Archive::~CZip7Archive()
 	{
 		Close();
 	}
 
-	BOOL CZipArchive::OpenZip()
+	BOOL CZip7Archive::OpenZip()
 	{ 
 		m_szPassword[0] = '\0';
 
 		return TRUE;
 	}
-	void CZipArchive::Close()
+	void CZip7Archive::Close()
 	{
 		CloseFile();
 		 
 	}
-	BOOL CZipArchive::IsOpen() const
+	BOOL CZip7Archive::IsOpen() const
 	{
 		return TRUE;
 	} 
 
-	BOOL CZipArchive::SetPassword(LPCSTR pstrPassword)
+	BOOL CZip7Archive::SetPassword(LPCSTR pstrPassword)
 	{
         if(!pstrPassword) return FALSE;
 
@@ -213,7 +213,7 @@ static std::string WString2String(const std::wstring &wstr)
 
 	// ZIP File API
 
-	BOOL CZipArchive::GetFile(LPCTSTR pszFileName, CZipFile& file)
+	BOOL CZip7Archive::GetFile(LPCTSTR pszFileName, CZip7File& file)
 	{
 		std::string fileName = WString2String(pszFileName);
 		if (m_fileStreams.GetFile(fileName.c_str(),file.getBlob()))
@@ -222,7 +222,7 @@ static std::string WString2String(const std::wstring &wstr)
 		return FALSE;
 	}
 	 
-	BOOL CZipArchive::Open(LPCTSTR pszFileName,LPCSTR pszPassword)
+	BOOL CZip7Archive::Open(LPCTSTR pszFileName,LPCSTR pszPassword)
 	{
 		std::wstring s_pwd = StdStringtoWideString(pszPassword);
 		SevenZip::SevenZipPassword pwd(true, s_pwd);
@@ -233,7 +233,7 @@ static std::string WString2String(const std::wstring &wstr)
 		return (S_OK == decompress.ExtractArchive(m_fileStreams, NULL, &pwd));
 	}
 
-	BOOL CZipArchive::Open(HMODULE hModule, LPCTSTR pszName, LPCTSTR pszPassword, LPCTSTR pszType)
+	BOOL CZip7Archive::Open(HMODULE hModule, LPCTSTR pszName, LPCTSTR pszPassword, LPCTSTR pszType)
 	{
 		HRSRC hResInfo = ::FindResource(hModule, pszName, pszType);
 		if (hResInfo == NULL)
@@ -263,11 +263,11 @@ static std::string WString2String(const std::wstring &wstr)
 		return bOK;
 	}
 
-	void CZipArchive::CloseFile()
+	void CZip7Archive::CloseFile()
 	{ 
 	}
 
-	DWORD CZipArchive::ReadFile(void* pBuffer, DWORD dwBytes)
+	DWORD CZip7Archive::ReadFile(void* pBuffer, DWORD dwBytes)
 	{
 		DWORD dwRead = 0;
 		 
@@ -275,7 +275,7 @@ static std::string WString2String(const std::wstring &wstr)
 		return dwRead;
 	}
  
-	DWORD CZipArchive::GetFileSize( LPCTSTR pszFileName )
+	DWORD CZip7Archive::GetFileSize( LPCTSTR pszFileName )
 	{
 		std::string fileName = WString2String(pszFileName);
 		return m_fileStreams.GetFileSize(fileName.c_str());
