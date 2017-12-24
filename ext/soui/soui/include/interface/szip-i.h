@@ -7,7 +7,7 @@
 
 namespace SOUI{
 #define INAME_ZIP	_T("ZIP.ZIP")
-#define INAME_ZIP7	_T("ZIP.7ZIP")
+#define INAME_7ZIP	_T("ZIP.7ZIP")
 
     struct IZip : IObjRef{
 		virtual BOOL Open(LPCTSTR pszFileName, LPCSTR pszPassword) = 0;

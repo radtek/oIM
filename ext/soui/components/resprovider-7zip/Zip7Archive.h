@@ -1,5 +1,5 @@
-#ifndef __ZIPARCHIVE_H__
-#define __ZIPARCHIVE_H__
+#ifndef __ZIP7ARCHIVE_H__
+#define __ZIP7ARCHIVE_H__
 
 #pragma once
 
@@ -14,16 +14,16 @@
 
 #include "SevenZip/FileStream.h"
 
-typedef struct ZIP_FIND_DATA
-{
-	TCHAR		szFileName[MAX_PATH];
-	TCHAR		szComment[64];
-	DWORD		nFileSizeCompressed;
-	DWORD		nFileSizeUncompressed;
-	FILETIME	ftCreationDate;
-	DWORD		dwFileAttributes;
-	int			nIndex;
-} ZIP_FIND_DATA, *LPZIP_FIND_DATA;
+//typedef struct ZIP_FIND_DATA
+//{
+//	TCHAR		szFileName[MAX_PATH];
+//	TCHAR		szComment[64];
+//	DWORD		nFileSizeCompressed;
+//	DWORD		nFileSizeUncompressed;
+//	FILETIME	ftCreationDate;
+//	DWORD		dwFileAttributes;
+//	int			nIndex;
+//} ZIP_FIND_DATA, *LPZIP_FIND_DATA;
 
 class CZip7File;
 class CZip7Archive;

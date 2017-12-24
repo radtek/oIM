@@ -1,8 +1,6 @@
-#include "stdafx.h"
-#pragma warning(disable:4251)
-
+#include <souistd.h>
 #include <interface\szip-i.h>
-#include "Zip7Archive.h"
+#include <resprovider-7zip\Zip7Archive.h>
 
 namespace SOUI{
 

@@ -241,6 +241,7 @@
     <ClInclude Include="src\activex\SAxContainer.h" />
     <ClInclude Include="src\activex\SAxUtil.h" />
     <ClInclude Include="src\updatelayeredwindow\SUpdateLayeredWindow.h" />
+    <ClInclude Include="UIEngine\UIEngine.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\components\imgdecoder-gdip\imgdecoder-gdip.cpp" />
@@ -259,11 +260,9 @@
     <ClCompile Include="..\components\resprovider-7zip\SResProvider7Zip.cpp" />
     <ClCompile Include="..\components\resprovider-7zip\stdafx.h.cpp" />
     <ClCompile Include="..\components\resprovider-7zip\Zip7Archive.cpp" />
-    <ClCompile Include="..\components\resprovider-7zip\Zip7Util.cpp" />
     <ClCompile Include="..\components\resprovider-zip\cursoricon.cpp" />
     <ClCompile Include="..\components\resprovider-zip\SResProviderZip.cpp" />
     <ClCompile Include="..\components\resprovider-zip\zipArchive.cpp" />
-    <ClCompile Include="..\components\resprovider-zip\ZipUtil.cpp" />
     <ClCompile Include="..\components\ScriptModule-LUA\lua_tinker\lua_tinker.cpp" />
     <ClCompile Include="..\components\ScriptModule-LUA\src\exports\exp_soui.cpp" />
     <ClCompile Include="..\components\ScriptModule-LUA\src\ScriptModule-Lua.cpp" />
@@ -396,6 +395,7 @@
     <ClCompile Include="src\res.mgr\SUiDef.cpp" />
     <ClCompile Include="src\SApp.cpp" />
     <ClCompile Include="src\updatelayeredwindow\SUpdateLayeredWindow.cpp" />
+    <ClCompile Include="UIEngine\UIEngine.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="UIEngine.rc" />
@@ -492,7 +492,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>.;..\config;include;..\utilities\include;..\tools\mkspecs\win32-msvc2010;..\components;..\third-part\7z;..\third-part\png;..\third-part\zlib;..\third-part\skia;..\third-part\skia\include;..\third-part\skia\include\config;..\third-part\skia\include\core;..\third-part\lua-52\src;..\third-part\wke\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\;..\..\..\inc;$(SOUIPATH)\soui;$(SOUIPATH)\config;$(SOUIPATH)\soui\include;$(SOUIPATH)\utilities\include;$(SOUIPATH)\tools\mkspecs\win32-msvc2010;$(SOUIPATH)\components;$(SOUIPATH)\third-part\7z;$(SOUIPATH)\third-part\png;$(SOUIPATH)\third-part\zlib;$(SOUIPATH)\third-part\skia;$(SOUIPATH)\third-part\skia\include;$(SOUIPATH)\third-part\skia\include\config;$(SOUIPATH)\third-part\skia\include\core;$(SOUIPATH)\third-part\lua-52\src;$(SOUIPATH)\third-part\wke\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>-w34100 -w34189 -w44996 %(AdditionalOptions)</AdditionalOptions>
       <BrowseInformation>false</BrowseInformation>
       <DisableSpecificWarnings>4100;4101;4102;4189;4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>

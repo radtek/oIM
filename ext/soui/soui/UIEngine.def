@@ -11,3 +11,4 @@ EXPORTS
 	SCreateInstanceZip		= ?SCreateInstance@RESPROVIDER_ZIP@SOUI@@YAHPAPAUIObjRef@@@Z
 	SCreateInstanceLua		= ?SCreateInstance@SCRIPT_LUA@SOUI@@YAHPAPAUIObjRef@@@Z
 	SCreateInstanceTrans	= ?SCreateInstance@TRANSLATOR@SOUI@@YAHPAPAUIObjRef@@@Z
+	CreateInterface			= ?CreateInterface@SOUI@@YGHPB_WPAPAX@Z

@@ -1,8 +1,6 @@
-#include "stdafx.h"
-#pragma warning(disable:4251)
-
+#include <souistd.h>
 #include <interface\szip-i.h>
-#include "ZipArchive.h"
+#include <resprovider-zip\ZipArchive.h>
 
 namespace SOUI{
 
@@ -77,13 +75,6 @@ namespace SOUI{
 		long m_lRef;
 	};
 	
-	namespace ZIP_UTILITIE
-	{
-         SOUI_COM_C BOOL SOUI_COM_API SCreateInstance( IObjRef ** ppObj )
-		{
-			*ppObj = new SZip;
-			return TRUE;
-		}
-    }
+
 
 }//namespace SOUI
