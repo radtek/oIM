@@ -53,7 +53,7 @@
 #include "Errors.h"
 #include "PathUtils.h"
 #include "StrUtil.h"
-#include "resprovider-zip\zipresprovider-param.h"
+#include "UIEngine\UIEngine.h"
 
 #define CHECK_PARAMETER_RET_(RET) \
 	do{ \
@@ -102,55 +102,26 @@ inline bool C_XmlConfiger::_Open(const TCHAR* pszFile, pugi::xml_document& doc, 
 		ret = doc.load_file(pszFile);
 		if ( ret.isOK() )
 			return true;
-
-		STRACE( _T("Open \'%s\' failed, err:%u, desc:%S"), pszFile, ret.status, ret.description());
-		return false;
 	}
 	else
 	{
-		SComMgr com;
-		CAutoRefPtr<IResProvider>   pResProvider;
-		ZIPRES_PARAM param;
-		
-		param.ZipFile(GETRENDERFACTORY, pszFile, pszPsw);
-		if (com.CreateResProvider_ZIP((IObjRef**)&pResProvider) &&
-			pResProvider->Init((WPARAM)&param,0) )
+		SUIEngine uie;
+		CAutoRefPtr<IZip> pIZip;
+
+		if ( uie.Create7Zip((IObjRef**)&pIZip) && pIZip->Open(pszFile, pszPsw) )
 		{
-			size_t size = pResProvider->GetRawBufferSize(NULL, PathFindFileName(pszFile));
-			BYTE*  pu8Buf = new BYTE[size];
-			pResProvider->GetRawBuffer(NULL, PathFindFileName(pszFile), pu8Buf, size);
-			ret = doc.load_buffer_inplace(pu8Buf, size);
-			if ( !ret.isOK() )
+			DWORD dwFileSize = 0;
+			if ( BYTE* pu8Buf = pIZip->GetFile(PathFindFileName(pszFile), &dwFileSize) )
 			{
-				STRACE( _T("Open \'%s\' failed, err:%u, desc:%S"), pszFile, ret.status, ret.description());
-				return false;
+				ret = doc.load_buffer_inplace(pu8Buf, dwFileSize);
+				if ( ret.isOK() )
+					return true;
 			}
 		}
-
-		//CZipFile zf;
-		//CZipArchive zipFile;
-
-		//if ( !zipFile.Open(pszFile, pszPsw) )
-		//{
-		//	STRACE( _T("Open \'%s\' by zip failed"), pszFile);
-		//	return false;
-		//}
-		//
-		//if ( !zipFile.GetFile(PathFindFileName(pszFile), zf) )
-		//{
-		//	STRACE( _T("Get file \'%s\' from zip failed"), PathFindFileName(pszFile));
-		//	return false;
-		//}
-			
-		//ret = doc.load_buffer_inplace(zf.GetData(), zf.GetSize());
-		//if ( !ret.isOK() )
-		//{
-		//	STRACE( _T("Open \'%s\' failed, err:%u, desc:%S"), pszFile, ret.status, ret.description());
-		//	return false;
-		//}
 	}
 
-	return true;
+	STRACE( _T("Open \'%s\' failed, err:%u, desc:%S"), pszFile, ret.status, ret.description());
+	return false;
 }
 
 //=============================================================================
@@ -329,7 +300,7 @@ inline bool C_XmlConfiger::IsRedirect()
 	return m_bRedirect; 
 }
 
-inline pugi::xml_node C_XmlConfiger::GetNode(pugi::xml_node node, LPCTSTR lpszPath, bool bCreate)
+inline pugi::xml_node C_XmlConfiger::GetNode(pugi::xml_node node, LPCTSTR lpszPath, int i32Level, bool bCreate)
 {
 	if ( lpszPath == NULL )
 		return pugi::xml_node();
@@ -356,6 +327,26 @@ inline pugi::xml_node C_XmlConfiger::GetNode(pugi::xml_node node, LPCTSTR lpszPa
 		szNodeName[i] = *lpszPath;
 	}
 
+	if ( i32Level == 0 )
+	{
+		if ( bCreate && node.empty() )
+		{
+			if ( node == m_XmlCfg.document_element() )
+			{
+				node = m_XmlCfg.append_child(szNodeName);
+			}
+			else
+			{
+				node = m_XmlCfgRedi.append_child(szNodeName);
+			}
+		}
+
+		if ( *lpszPath == _T('\0') )
+			return node;
+
+		return GetNode(node, lpszPath, i32Level + 1, bCreate);
+	}
+
 	int  iFind = 0;
 	bool bNoName = (szNodeName[0] == _T('\0'));
 	pugi::xml_node child = (bNoName ? node.first_child() : node.child(szNodeName));
@@ -370,14 +361,13 @@ inline pugi::xml_node C_XmlConfiger::GetNode(pugi::xml_node node, LPCTSTR lpszPa
 			child = child.next_sibling(szNodeName);
 	}
 
-	SASSERT(nIndex >= 0 && nIndex == iFind);	// 有索引时，需要找到了第 i 个element
 	if ( child.empty() && bCreate )
-		child.set_name(szNodeName);
+		child = node.append_child(szNodeName);
 
 	if ( *lpszPath == _T('\0') )
 		return child;
 
-	return GetNode(child, lpszPath, bCreate);
+	return GetNode(child, lpszPath, i32Level+1, bCreate);
 
 }
 
@@ -401,10 +391,10 @@ inline LPCTSTR C_XmlConfiger::GetAttributeStr( LPCTSTR lpszPath, LPCTSTR lpszAtt
 	CHECK_PARAMETER_RET_( 0 );
 	pugi::xml_node node;
 	if ( m_bRedirect & bEnableRedirect )
-		node = GetNode(m_XmlCfgRedi.document_element(), lpszPath, false);
+		node = GetNode(m_XmlCfgRedi.document_element(), lpszPath, 0, false);
 
 	if ( node.empty() )
-		node = GetNode(m_XmlCfg.document_element(), lpszPath, false);
+		node = GetNode(m_XmlCfg.document_element(), lpszPath, 0, false);
 
 	if ( node.empty() )
 		return pszDefault;
@@ -428,7 +418,7 @@ inline LPCTSTR C_XmlConfiger::GetAttributeStr( LPCTSTR lpszPath, LPCTSTR lpszAtt
 inline bool C_XmlConfiger::SetAttributeStr( LPCTSTR lpszPath, LPCTSTR lpszAttrName, LPCTSTR lpszValue )
 {
 	CHECK_PARAMETER_RET_( NULL );
-	pugi::xml_node node = GetNode( m_bRedirect ? m_XmlCfgRedi.document_element() : m_XmlCfg.document_element(), lpszPath, true );
+	pugi::xml_node node = GetNode( m_bRedirect ? m_XmlCfgRedi.document_element() : m_XmlCfg.document_element(), lpszPath, 0, true );
 	if ( node.empty() )
 		return false;
 	
@@ -455,10 +445,10 @@ inline int C_XmlConfiger::GetAttributeInt( LPCTSTR lpszPath, LPCTSTR lpszAttrNam
 	CHECK_PARAMETER_RET_( 0 );
 	pugi::xml_node node;
 	if ( m_bRedirect & bEnableRedirect )
-		node = GetNode(m_XmlCfgRedi.document_element(), lpszPath, false);
+		node = GetNode(m_XmlCfgRedi.document_element(), lpszPath, 0, false);
 
 	if ( node.empty() )
-		node = GetNode(m_XmlCfg.document_element(), lpszPath, false);
+		node = GetNode(m_XmlCfg.document_element(), lpszPath, 0, false);
 
 	if ( node.empty() )
 		return i32Default;
@@ -482,7 +472,7 @@ inline int C_XmlConfiger::GetAttributeInt( LPCTSTR lpszPath, LPCTSTR lpszAttrNam
 inline bool C_XmlConfiger::SetAttributeInt( LPCTSTR lpszPath, LPCTSTR lpszAttrName, int i32Value )
 {
 	CHECK_PARAMETER_RET_( NULL );
-	pugi::xml_node node = GetNode( m_bRedirect ? m_XmlCfgRedi.document_element() : m_XmlCfg.document_element(), lpszPath, true );
+	pugi::xml_node node = GetNode( m_bRedirect ? m_XmlCfgRedi.document_element() : m_XmlCfg.document_element(), lpszPath, 0, true );
 	if ( node.empty() )
 		return false;
 	
@@ -522,7 +512,7 @@ inline pugi::xml_node C_XmlConfiger::GetRoot()
 //=============================================================================
 inline bool C_XmlConfiger::Remove( LPCTSTR lpszPath )
 {
-	pugi::xml_node node = GetNode( m_bRedirect ? m_XmlCfgRedi.document_element() : m_XmlCfg.document_element(), lpszPath, false );
+	pugi::xml_node node = GetNode( m_bRedirect ? m_XmlCfgRedi.document_element() : m_XmlCfg.document_element(), lpszPath, 0, false );
 	if ( node.empty() )
 		return false;
 
@@ -533,7 +523,7 @@ inline bool C_XmlConfiger::Remove( LPCTSTR lpszPath )
 
 inline LPCTSTR C_XmlConfiger::GetText( LPCTSTR lpszPath, bool bEnableRedirect )
 {
-	pugi::xml_node node = GetNode( m_bRedirect && bEnableRedirect ? m_XmlCfgRedi.document_element() : m_XmlCfg.document_element(), lpszPath, false );
+	pugi::xml_node node = GetNode( m_bRedirect && bEnableRedirect ? m_XmlCfgRedi.document_element() : m_XmlCfg.document_element(), lpszPath, 0, false );
 	if ( node.empty() )
 		return _T("");
     
@@ -542,7 +532,7 @@ inline LPCTSTR C_XmlConfiger::GetText( LPCTSTR lpszPath, bool bEnableRedirect )
 
 inline bool C_XmlConfiger::SetText( LPCTSTR lpszPath, LPCTSTR lpszText )
 {
-	pugi::xml_node node = GetNode( m_bRedirect ? m_XmlCfgRedi.document_element() : m_XmlCfg.document_element(), lpszPath, true );
+	pugi::xml_node node = GetNode( m_bRedirect ? m_XmlCfgRedi.document_element() : m_XmlCfg.document_element(), lpszPath, 0, true );
 	if ( node.empty() )
 		return false;
 

@@ -59,7 +59,7 @@ public:
 	C_XmlConfiger(void);
 	virtual ~C_XmlConfiger(void);
 	pugi::xml_node GetRoot();
-	pugi::xml_node GetNode(pugi::xml_node node, LPCTSTR lpszPath, bool bCreate);
+	pugi::xml_node GetNode(pugi::xml_node node, LPCTSTR lpszPath, int i32Level, bool bCreate);
 
 public:
 	//=============================================================================
@@ -164,7 +164,7 @@ public:
 	//		>=0     The value's data size
     //      <0      Is the real need buffer size of absolute value, you need relocate the buffer and recall it.
 	//=============================================================================
-	virtual LPCTSTR GetAttributeStr( LPCTSTR lpszPath, LPCTSTR lpszAttrName, LPCTSTR pszDefault, bool bEnableRedirect = true );
+	virtual LPCTSTR GetAttributeStr( LPCTSTR lpszPath, LPCTSTR lpszAttrName, LPCTSTR pszDefault = _T(""), bool bEnableRedirect = true );
 
 	//=============================================================================
 	//Function:     SetAttributeStr
