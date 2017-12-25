@@ -24,7 +24,7 @@ namespace SOUI{
 
     //////////////////////////////////////////////////////////////////////////
     //  CUiAnimation
-    template<> CUiAnimation* SSingleton<CUiAnimation>::ms_Singleton = NULL;
+//    template<> CUiAnimation* SSingleton<CUiAnimation>::ms_Singleton = NULL;
     
 
     CUiAnimation::CUiAnimation(IUIAnimationTimer *pUiAniTimer)
