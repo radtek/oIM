@@ -2,6 +2,7 @@
 #include "C_CommandLine.h"
 #include <Winerror.h>
 #include <com-loader.hpp>
+extern "C" __declspec(dllexport) int __stdcall CreateInterface(const TCHAR* pctszIID, void** ppvIObject);
 
 C_CommandLine& C_CommandLine::GetObject()
 {
@@ -13,6 +14,7 @@ C_CommandLine::C_CommandLine(void)
 	: C_CommandLineBase()
 	, m_u64Fid(0)
 	, m_i32Speed(20)
+	, m_i32Days(30)
 	, m_bFindedFid(FALSE)
 {
 }
@@ -134,7 +136,7 @@ inline DWORD C_CommandLine::LoadImages()
 	SStringA	szDbFileA = S_CT2A(m_szDbFile);
 	SStringA	szDbKeyA  = S_CT2A(m_szDbKey);
 
-	if ( dllSqlite3.CreateInstance(_T("SQLite3.dll"), (IObjRef**)&pIDb, INAME_SQLITE_DB) )
+	if ( SUCCEEDED(CreateInterface(INAME_SQLITE_DB, (void**)&pIDb)) )
 	{
 		if ( SQLITE_OK != pIDb->Open(szDbFileA) )
 			return 0;
@@ -146,7 +148,7 @@ inline DWORD C_CommandLine::LoadImages()
 			return 0;	// 未查到会话
 
 		// 获取前一个月，后两个月的图片消息
-		char* pszSql = pIDb->VMPrintf(kGetImgMsgs, sid,	MONTH_OF_DAYS_(dwTime, -31), MONTH_OF_DAYS_(dwTime, 62) );
+		char* pszSql = pIDb->VMPrintf(kGetImgMsgs, sid,	MONTH_OF_DAYS_(dwTime, -m_i32Days/2), MONTH_OF_DAYS_(dwTime, m_i32Days/2) );
 		DWORD dwIndex = m_vectImage.size();	// 以当前已经有的个数为基础索引
 		if ( I_SQLite3Table* pITbl = pIDb->GetTable(pszSql, true) )
 		{
@@ -230,6 +232,10 @@ inline BOOL C_CommandLine::Parse(LPWSTR* pszArgs, int nArgs)
 			}
 
 			LoadImages();
+		}
+		else if ( IsOption(pszArg, _T("days")) )
+		{
+			m_i32Days= GetParamValueInt(pszArg, pszNext, i32Index);
 		}
 		else if ( IsOption(pszArg, _T("fid")) )
 		{

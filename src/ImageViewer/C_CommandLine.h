@@ -27,6 +27,7 @@ public:
 	static C_CommandLine& GetObject();
 
 private:
+	int			m_i32Days;		// 图片消息最大天数
 	BOOL		m_bFindedFid;	// 已经找到了指定FID的图片
 	int			m_i32Speed;		// 切换动画的速度
 	UINT64		m_u64Fid;		// 当前图片，使用"-db"时，是QFID；否则是从0开始的索引

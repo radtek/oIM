@@ -17,7 +17,8 @@ options:
   -images="image"   The image file list, splited by '|';
                     Will add "${ipath}" when not any path item;
                     Will replaced ".\" with ${ipath}
-  -dbkey="key"      The key of database, default the same as eIM's。MUST before of "-db"
+  -days=[n]         The days of messages, default is 30. MUST before of "-db"
+  -dbkey="key"      The key of database, default the same as eIM's. MUST before of "-db"
   -db="dbfile"      The msg.db database file path
   -ifilter="filter" The filter with ipath auto search image, MUST after of "-ipath', eg.: *.png|*.jpg
   -lang=[cn,en]     The language, default as system
