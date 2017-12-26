@@ -236,6 +236,8 @@ inline BOOL C_CommandLine::Parse(LPWSTR* pszArgs, int nArgs)
 		else if ( IsOption(pszArg, _T("days")) )
 		{
 			m_i32Days= GetParamValueInt(pszArg, pszNext, i32Index);
+			if ( m_i32Days < 1 )
+				m_i32Days = 1;
 		}
 		else if ( IsOption(pszArg, _T("fid")) )
 		{
