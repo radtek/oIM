@@ -8,6 +8,7 @@
 *.exp
 *.log
 *.aps
+Resource/resource.h
 Logger.dll
 soui-sys-resource*.dll
 sqlite3.dll
