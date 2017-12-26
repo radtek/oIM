@@ -264,7 +264,7 @@ public:
 		if ( m_pDb == NULL )
 			return SQLITE_OK;
 
-		STRACE(_T("Close database [%s]"), GetFile());
+		STRACE(_T("Close database [%S]"), GetFile());
 		int i32Ret = ::sqlite3_close_v2( m_pDb );
 		if(SQLITE_OK == i32Ret )
 			m_pDb = NULL;
