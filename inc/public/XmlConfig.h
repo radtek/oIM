@@ -35,8 +35,8 @@
 #ifndef __EIM_XMLCONFIGER_API_2017_12_22_BY_YFGZ__
 #define __EIM_XMLCONFIGER_API_2017_12_22_BY_YFGZ__
 
-#include "pugixml\pugixml.hpp"
-
+#include <pugixml\pugixml.hpp>
+#include <string\tstring.h>
 #define TYPE_ELEMENT_NAME_SIZE	( 64 )	// XML configuration file element name MAX size
 
 class C_XmlConfig

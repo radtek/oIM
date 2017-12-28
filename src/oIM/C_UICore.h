@@ -1,11 +1,10 @@
 #pragma once
-
+#include "stdafx.h"
 #include "public\Utils.h"
-#include "public\XmlConfig.h"
 #include "UICore\I_UICore.h"
 #include "MainDlg.h"
 
-class CDummyWindow;
+class C_XmlConfig;
 class C_UICore 
 	: public I_UICore
 {
@@ -24,7 +23,7 @@ public:
 	virtual void OnFinalRelease(){}
 
 	// I_EIMUICore ///////////////////////////////////////////////////////////////////////////
-	virtual BOOL Run(DWORD dwFlag = 0);
+	virtual int Run(DWORD dwFlag = 0);
 
 	// HelpApi ///////////////////////////////////////////////////////////////////////////
 	LPCTSTR	GetFontFamily(int i32Index);
@@ -81,7 +80,7 @@ private:
 	HANDLE			m_hLoginMutex;	// 唯一登录互斥变量
 	HANDLE			m_hCompanyMutex;// 唯一公司互斥变量
 //	CDummyWindow*	m_pwndDummy;	// 顶级哑元窗口
-	CMainDlg		m_dlgMain;		// 主窗口
+	CMainDlg*		m_pdlgMain;		// 主窗口
 	BOOL			m_bInited;
 
 

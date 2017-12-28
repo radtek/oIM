@@ -51,7 +51,7 @@
 class __declspec(novtable) I_UICore: public IObjRef
 {
 public:
-	virtual BOOL Run(DWORD dwFlag = 0) = 0;
+	virtual int Run(DWORD dwFlag = 0) = 0;
 
 	// *** HelpApi ///////////////////////////////////////////////////////////////////////////
 	virtual LPCTSTR GetFontFamily(int i32Index) = 0;
