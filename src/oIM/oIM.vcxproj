@@ -60,9 +60,9 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <CustomBuild Include="..\..\Resource\$(Company)\uires\uires.idx">
+    <CustomBuild Include="..\Resource\$(Company)\uires\uires.idx">
       <FileType>Document</FileType>
-      <Command>"$(SOUIPATH)\tools\uiresbuilder.exe" -i "%(FullPath)" -p %(RootDir)%(Directory) -h ..\..\Resource\resource.h idtable</Command>
+      <Command>"$(SOUIPATH)\tools\uiresbuilder.exe" -i "%(FullPath)" -p %(RootDir)%(Directory) -h ..\Resource\resource.h idtable</Command>
       <Message>Building SoUI Resource</Message>
       <Outputs>.\res\soui_res.rc2;%(Outputs)</Outputs>
     </CustomBuild>

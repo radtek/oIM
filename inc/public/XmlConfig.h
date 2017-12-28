@@ -2,11 +2,11 @@
 // Copyright (C) SXIT Corporation all rights reserved.
 //
 // Description: 
-// C_XmlConfiger is a XML file read/write(redirect) configurator
+// C_XmlConfig is a XML file read/write(redirect) configurator
 // For compatible with VISTA and later OS, write can be redirect if configured
 //////////////////////////////////////////////////////////////////////////////
 // eg.:
-//    C_XmlConfiger XmlConfiger;
+//    C_XmlConfig XmlConfiger;
 //    
 //    eIMString szConfig = _T("$(Exe)\\App.config");
 //    eIMString szConfigRedi = _T("$(eIMData)\\App.config");
@@ -35,13 +35,11 @@
 #ifndef __EIM_XMLCONFIGER_API_2017_12_22_BY_YFGZ__
 #define __EIM_XMLCONFIGER_API_2017_12_22_BY_YFGZ__
 
-#include "StrUtil.h"
 #include "pugixml\pugixml.hpp"
 
 #define TYPE_ELEMENT_NAME_SIZE	( 64 )	// XML configuration file element name MAX size
-#define XML_VALUE_SIZE_MAX		(4096)  // Config value max value default, you need check the return value of GetAttributeStr when greater than it.
 
-class C_XmlConfiger 
+class C_XmlConfig
 {
 private:
 	bool			m_bModify;			// Modify flag
@@ -56,8 +54,8 @@ protected:
 	bool _Open( const TCHAR* pszFile, pugi::xml_document& doc, const char* pszPsw);
 
 public:
-	C_XmlConfiger(void);
-	virtual ~C_XmlConfiger(void);
+	C_XmlConfig(void);
+	virtual ~C_XmlConfig(void);
 	pugi::xml_node GetRoot();
 	pugi::xml_node GetNode(pugi::xml_node node, LPCTSTR lpszPath, int i32Level, bool bCreate);
 
@@ -222,12 +220,12 @@ public:
 	//		FALSE		- Failed
 	//=============================================================================
 	virtual bool Remove( LPCTSTR lpszPath );
-
-	virtual LPCTSTR GetText( LPCTSTR lpszPath, bool bEnableRedirect = true );
+	
+	virtual LPCTSTR GetText( LPCTSTR lpszPath, LPTSTR pszDefault, bool bEnableRedirect = true );
 	virtual bool SetText( LPCTSTR lpszPath, LPCTSTR lpszText );
 
 };
 
-#include "XmlConfiger.inl"
+#include "XmlConfig.inl"
 
 #endif  // __EIM_XMLCONFIGER_API_2017_12_22_BY_YFGZ__

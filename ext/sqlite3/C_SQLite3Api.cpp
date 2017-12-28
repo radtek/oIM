@@ -467,8 +467,8 @@ public:
 	//=============================================================================
 	virtual BOOL IsExistTable(const TCHAR* pszTableName)
 	{
-		eIMStringA szNameA = SOUI::S_CT2A(pszTableName);
-		char* pszSql = VMPrintf("select count(*) from sqlite_master where type='table' and name='%q'", szNameA.c_str());
+		SOUI::SStringA szNameA = SOUI::S_CT2A(pszTableName);
+		char* pszSql = VMPrintf("select count(*) from sqlite_master where type='table' and name='%q'", szNameA);
 		I_SQLite3Table* pTable = GetTable(pszSql);
 		Free(pszSql);
 

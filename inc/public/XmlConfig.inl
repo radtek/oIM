@@ -1,11 +1,8 @@
-// This is a part of the SXIT Technology source files.
-// Copyright (C) SXIT Corporation all rights reserved.
-//
 // NOTICE:
 //	Please DON'T modify this class, if you have any requirement to implement, PLEASE
 //  inherit it and implement it.
 //
-// Description: C_XmlConfiger is a helper class to read and write standard XML
+// Description: C_XmlConfig is a helper class to read and write standard XML
 //   configuration file. it only support ELEMENT and it ATTRIBUTE to be operated.
 //   so your configuration file only can be organize by element with attribute(s), 
 //   the others type can not be operated, but no error occur, such as TEXT, COMMENT
@@ -28,31 +25,27 @@
 //	   "eIMApp\\IMServer\\Set[0]	- Get of first 'Set' sub-element of IMServer
 //
 //  Example:
-//	  C_XmlConfiger xmlConfiger;
-//    if ( xmlConfiger.Open(_T("C:\\App.config"), _T("D:\\App.config")) )
+//	  C_XmlConfig xmlCfg;
+//    if ( xmlCfg.Open(_T("C:\\App.config"), _T("D:\\App.config")) )
 //    {
-//	  	xmlConfiger.GetAttributeStr(_T("\\"), _T("Version"))
-//	  	xmlConfiger.GetAttributeStr(_T("eIMProtocol\\Group[0]\\[0]"), _T("Name"));
+//	  	xmlCfg.GetAttributeStr(_T("\\"), _T("Version"))
+//	  	xmlCfg.GetAttributeStr(_T("eIMProtocol\\Group[0]\\[0]"), _T("Name"));
 //	  
 //	  	// Set sub-index always lead with element name
-//	  	xmlConfiger.SetAttributeStr(_T("eIMProtocol\\Group[0]\\Field[1]"), _T("Name"), _T("Type"));
+//	  	xmlCfg.SetAttributeStr(_T("eIMProtocol\\Group[0]\\Field[1]"), _T("Name"), _T("Type"));
 //	  
-//	  	xmlConfiger.Close();
+//	  	xmlCfg.Close();
 //    }
 //
 // Auth: lwq
-// Date: 2013/12/19 14:46:22
+// Date: 2017/12/28
 // 
 // History: 
-//    2013/12/19 lwq 
+//    2017/12/28 lwq 
 //    
 //    
 /////////////////////////////////////////////////////////////////////////////
-#include "XmlConfiger.h"
-//#include "Debugs.h"
 #include "Errors.h"
-#include "PathUtils.h"
-#include "StrUtil.h"
 #include "UIEngine\UIEngine.h"
 
 #define CHECK_PARAMETER_RET_(RET) \
@@ -64,7 +57,7 @@
 		} \
 	}while(0)
 
-inline C_XmlConfiger::C_XmlConfiger(void)
+inline C_XmlConfig::C_XmlConfig(void)
 	: m_bOpen( FALSE )
 	, m_bModify( FALSE )
 	, m_bRedirect( FALSE )
@@ -72,12 +65,12 @@ inline C_XmlConfiger::C_XmlConfiger(void)
 
 }
 
-inline C_XmlConfiger::~C_XmlConfiger(void)
+inline C_XmlConfig::~C_XmlConfig(void)
 {
  	Close();	
 }
 
-inline bool C_XmlConfiger::_Open(const TCHAR* pszFile, pugi::xml_document& doc, const char* pszPsw)
+inline bool C_XmlConfig::_Open(const TCHAR* pszFile, pugi::xml_document& doc, const char* pszPsw)
 {
 	if ( pszFile == NULL )
 		return false;
@@ -141,7 +134,7 @@ inline bool C_XmlConfiger::_Open(const TCHAR* pszFile, pugi::xml_document& doc, 
 //  EIMERR_FILE_NOT_EXIST	File not exist
 //  EIMERR_OPEN_FILE_FAILED	Open failed
 //=============================================================================
-inline int C_XmlConfiger::Open(LPCTSTR lpszFile, LPCTSTR lpszRediFile, bool bCreate, const char* pszPsw)
+inline int C_XmlConfig::Open(LPCTSTR lpszFile, LPCTSTR lpszRediFile, bool bCreate, const char* pszPsw)
 {
  	Close();		// Close it at first
 	
@@ -151,7 +144,7 @@ inline int C_XmlConfiger::Open(LPCTSTR lpszFile, LPCTSTR lpszRediFile, bool bCre
 		return ERR_INVALID_PARAM;	// Invalid file
 	}
 
-	if ( bCreate == false && !eIMPathFileExists(lpszFile) )
+	if ( bCreate == false && !PathFileExists(lpszFile) )
 	{
 		STRACE( _T("Config file \'%s\' not exist"), lpszFile ); 
 		return ERR_FILE_NOT_EXIST;	// File not exist
@@ -171,7 +164,7 @@ inline int C_XmlConfiger::Open(LPCTSTR lpszFile, LPCTSTR lpszRediFile, bool bCre
 		return ERR_NO_ERROR;	// No redirect config, return 
 
 	m_szSaveFile = lpszRediFile;
-	if ( eIMPathFileExists(lpszRediFile) )
+	if ( PathFileExists(lpszRediFile) )
 	{
 		if ( _Open(lpszRediFile, m_XmlCfgRedi, NULL) )
 		{
@@ -194,7 +187,7 @@ inline int C_XmlConfiger::Open(LPCTSTR lpszFile, LPCTSTR lpszRediFile, bool bCre
 //       true	- Saved
 //		 false	- Save failed
 //=============================================================================
-inline bool C_XmlConfiger::Save(LPCTSTR lpszFile)
+inline bool C_XmlConfig::Save(LPCTSTR lpszFile)
 {
 	if( !IsOpen() )
 		return false;
@@ -228,7 +221,7 @@ inline bool C_XmlConfiger::Save(LPCTSTR lpszFile)
 //       true	- Closed
 //		 false	- Close failed
 //=============================================================================
-inline bool C_XmlConfiger::Close()
+inline bool C_XmlConfig::Close()
 {
 	Save();
 
@@ -250,7 +243,7 @@ inline bool C_XmlConfiger::Close()
 //      true: Original is modified
 //		false: Original is not modified
 //=============================================================================
-inline bool C_XmlConfiger::SetModify(bool bModified)
+inline bool C_XmlConfig::SetModify(bool bModified)
 {
 	bool bOld = m_bModify; 
 	m_bModify = bModified; 
@@ -267,7 +260,7 @@ inline bool C_XmlConfiger::SetModify(bool bModified)
 //		true	- Opened
 //		false	- Not open
 //=============================================================================
-inline bool C_XmlConfiger::IsOpen()
+inline bool C_XmlConfig::IsOpen()
 { 
 	return m_bOpen;
 }
@@ -281,7 +274,7 @@ inline bool C_XmlConfiger::IsOpen()
 //		true	- Modified
 //		false	- Not modify
 //=============================================================================
-inline bool C_XmlConfiger::IsModify()
+inline bool C_XmlConfig::IsModify()
 {
 	return m_bModify; 
 }
@@ -295,12 +288,12 @@ inline bool C_XmlConfiger::IsModify()
 //		true	- Redirected
 //		false	- Not Redirect
 //=============================================================================
-inline bool C_XmlConfiger::IsRedirect()
+inline bool C_XmlConfig::IsRedirect()
 {
 	return m_bRedirect; 
 }
 
-inline pugi::xml_node C_XmlConfiger::GetNode(pugi::xml_node node, LPCTSTR lpszPath, int i32Level, bool bCreate)
+inline pugi::xml_node C_XmlConfig::GetNode(pugi::xml_node node, LPCTSTR lpszPath, int i32Level, bool bCreate)
 {
 	if ( lpszPath == NULL )
 		return pugi::xml_node();
@@ -386,7 +379,7 @@ inline pugi::xml_node C_XmlConfiger::GetNode(pugi::xml_node node, LPCTSTR lpszPa
 //		>=0     The value's data size
 //      <0      Is the real need buffer size of absolute value, you need relocate the buffer and recall it.
 //=============================================================================
-inline LPCTSTR C_XmlConfiger::GetAttributeStr( LPCTSTR lpszPath, LPCTSTR lpszAttrName, LPCTSTR pszDefault, bool bEnableRedirect )
+inline LPCTSTR C_XmlConfig::GetAttributeStr( LPCTSTR lpszPath, LPCTSTR lpszAttrName, LPCTSTR pszDefault, bool bEnableRedirect )
 {
 	CHECK_PARAMETER_RET_( 0 );
 	pugi::xml_node node;
@@ -415,7 +408,7 @@ inline LPCTSTR C_XmlConfiger::GetAttributeStr( LPCTSTR lpszPath, LPCTSTR lpszAtt
 //		true		- Succeeded
 //		false		- Falied
 //=============================================================================
-inline bool C_XmlConfiger::SetAttributeStr( LPCTSTR lpszPath, LPCTSTR lpszAttrName, LPCTSTR lpszValue )
+inline bool C_XmlConfig::SetAttributeStr( LPCTSTR lpszPath, LPCTSTR lpszAttrName, LPCTSTR lpszValue )
 {
 	CHECK_PARAMETER_RET_( NULL );
 	pugi::xml_node node = GetNode( m_bRedirect ? m_XmlCfgRedi.document_element() : m_XmlCfg.document_element(), lpszPath, 0, true );
@@ -440,7 +433,7 @@ inline bool C_XmlConfiger::SetAttributeStr( LPCTSTR lpszPath, LPCTSTR lpszAttrNa
 //Return:
 //		Attribute value                
 //=============================================================================
-inline int C_XmlConfiger::GetAttributeInt( LPCTSTR lpszPath, LPCTSTR lpszAttrName, int i32Default, bool bEnableRedirect )
+inline int C_XmlConfig::GetAttributeInt( LPCTSTR lpszPath, LPCTSTR lpszAttrName, int i32Default, bool bEnableRedirect )
 {
 	CHECK_PARAMETER_RET_( 0 );
 	pugi::xml_node node;
@@ -469,7 +462,7 @@ inline int C_XmlConfiger::GetAttributeInt( LPCTSTR lpszPath, LPCTSTR lpszAttrNam
 //		true		- Succeeded
 //		false		- Falied
 //=============================================================================
-inline bool C_XmlConfiger::SetAttributeInt( LPCTSTR lpszPath, LPCTSTR lpszAttrName, int i32Value )
+inline bool C_XmlConfig::SetAttributeInt( LPCTSTR lpszPath, LPCTSTR lpszAttrName, int i32Value )
 {
 	CHECK_PARAMETER_RET_( NULL );
 	pugi::xml_node node = GetNode( m_bRedirect ? m_XmlCfgRedi.document_element() : m_XmlCfg.document_element(), lpszPath, 0, true );
@@ -492,7 +485,7 @@ inline bool C_XmlConfiger::SetAttributeInt( LPCTSTR lpszPath, LPCTSTR lpszAttrNa
 //		m_XmlConfiger			- Configuration file
 //		m_XmlConfigerRedi		- Configuration redirect file
 //=============================================================================
-inline pugi::xml_node C_XmlConfiger::GetRoot()
+inline pugi::xml_node C_XmlConfig::GetRoot()
 {
 	if ( m_bRedirect )
 		return m_XmlCfgRedi.document_element();
@@ -510,7 +503,7 @@ inline pugi::xml_node C_XmlConfiger::GetRoot()
 //		true		- Succeeded
 //		false		- Failed
 //=============================================================================
-inline bool C_XmlConfiger::Remove( LPCTSTR lpszPath )
+inline bool C_XmlConfig::Remove( LPCTSTR lpszPath )
 {
 	pugi::xml_node node = GetNode( m_bRedirect ? m_XmlCfgRedi.document_element() : m_XmlCfg.document_element(), lpszPath, 0, false );
 	if ( node.empty() )
@@ -521,16 +514,16 @@ inline bool C_XmlConfiger::Remove( LPCTSTR lpszPath )
 	return parent.remove_child(node);
 }
 
-inline LPCTSTR C_XmlConfiger::GetText( LPCTSTR lpszPath, bool bEnableRedirect )
+inline LPCTSTR C_XmlConfig::GetText( LPCTSTR lpszPath, LPTSTR pszDefault, bool bEnableRedirect )
 {
 	pugi::xml_node node = GetNode( m_bRedirect && bEnableRedirect ? m_XmlCfgRedi.document_element() : m_XmlCfg.document_element(), lpszPath, 0, false );
 	if ( node.empty() )
-		return _T("");
+		return pszDefault;
     
 	return node.text().as_string();
 }
 
-inline bool C_XmlConfiger::SetText( LPCTSTR lpszPath, LPCTSTR lpszText )
+inline bool C_XmlConfig::SetText( LPCTSTR lpszPath, LPCTSTR lpszText )
 {
 	pugi::xml_node node = GetNode( m_bRedirect ? m_XmlCfgRedi.document_element() : m_XmlCfg.document_element(), lpszPath, 0, true );
 	if ( node.empty() )
