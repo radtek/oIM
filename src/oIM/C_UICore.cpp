@@ -86,7 +86,7 @@ int C_UICore::Run(DWORD dwFlag)
 		int nType = UIGetAttributeInt(PATH_SKIN, SKIN_ATTR_TYPE, SKIN_TYPE_ZIP);
 		SStringT szSkin = GetPath(UIGetAttributeStr(PATH_SKIN, SKIN_ATTR_PATH));
 		if ( nType == SKIN_TYPE_FILE )
-		{
+		{	// 从文件加载资源
 			CreateResProvider(RES_FILE, (IObjRef**)&pResProvider);
 			if (!pResProvider->Init((LPARAM)(LPCTSTR)szSkin, 0))
 			{
@@ -95,7 +95,7 @@ int C_UICore::Run(DWORD dwFlag)
 			}
 		}
 		else if ( nType == SKIN_TYPE_RES )
-		{
+		{	// 从PE加载资源
 			CreateResProvider(RES_PE, (IObjRef**)&pResProvider);
 			if (!pResProvider->Init((WPARAM)m_hInstance, 0))
 			{
@@ -138,7 +138,7 @@ int C_UICore::Run(DWORD dwFlag)
             {
                 CAutoRefPtr<ITranslator> langCN;
                 trans->CreateTranslator(&langCN);
-                langCN->Load(&xmlLang.child(L"language"),1);//1=LD_XML
+                langCN->Load(&xmlLang.child(L"language"), 1);
                 trans->InstallTranslator(langCN);
             }
         }

@@ -110,5 +110,5 @@
   <button name="_skin.sys.btn.normal" colorBorder="#7D9EBC" colorUp="#FEFEFE" colorDown="#C6E2FD" colorUpHover="#FEFEFE" colorDownHover="#DBEDFE" colorUpPush="#C6E2FD" colorDownPush="#FEFEFE"/>
   <imgframe name="_skin.sys.border" src="PNG:SYS_BORDER" states="2" margin-x="2" margin-y="2"/>
   <imglist name="_skin.sys.icons" src="PNG:SYS_ICONS" states="12"/>
-  <imgframe name="_skin.sys.wnd.bkgnd" src="PNG:SYS_WND_BKGND" left="5" right="5" top="40" bottom="40"/>
+  <imgframe name="_skin.sys.wnd.bkgnd" src="PNG:SYS_WND_BKGND" margin="5,40,5,40" />
 </skin>

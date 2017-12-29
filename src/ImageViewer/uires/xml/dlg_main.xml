@@ -1,19 +1,15 @@
-﻿<SOUI name="mainWindow" trCtx="dlg_main" title="@string/title" bigIcon="ICON_LOGO:32" smallIcon="ICON_LOGO:16" width="600" height="400" sendWheel2Hover="1"
-  maxInset="5,3,10,10" margin="5,3,5,7" resizable="1" wndType="appMain" appWnd="0" minsize="600,400" translucent="1">
+﻿<SOUI name="mainWindow" trCtx="dlg_main" title="@string/title" bigIcon="ICON_LOGO:32" smallIcon="ICON_LOGO:16" width="600" height="400" sendWheel2Hover="1" maxInset="5,3,10,10" margin="5,3,5,7" resizable="1" wndType="appMain" appWnd="0" minsize="600,400" translucent="1">
   <root skin="skin.sys.bkgnd" cache="1">
-
     <imageViewer name="imageViewer" pos="5,3,-6,-7">
       <imgbtn name="btn_close" class="cls_sys_close" pos="-40dp,0dp,@40dp,@40dp" />
       <imgbtn name="btn_prev" class="cls_btn_prev" pos="0dp,|0dp,@40dp,@40dp" accel="pageup"/>
       <imgbtn name="btn_next" class="cls_btn_next" pos="-40dp,|0dp,@40dp,@40dp" accel="pagedown"/>
-
       <!-- 缩略图 -->
       <window name="thumb_view" skin="skin.thumb.bkgnd" pos="-224dp,-144dp,@224dp,@144dp" layeredWindow="1">
         <img name="img_thumb" pos="0,0,-0,-0" />
         <img name="img_pos" pos="0,0,-0,-0" skin="skin.thumb.pos" />
       </window>
       <toggle name="thumb_toggle" class="cls_btn_thumb_toggle" pos="-16dp,-16dp,@16dp,@16dp" layeredWindow="1" />
-
       <!-- 工具 栏 -->
       <window name="toolbar_view" skin="skin.toolbar.bkgnd" id="100" pos="|0dp,-41dp,@-1,-0" offset="-0.5,0" layeredWindow="1">
         <imgbtn name="btn_toolbar.1to1" class="cls_btn_toolbar_1to1" size="50dp,40dp" accel="F5"/>

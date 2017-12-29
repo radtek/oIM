@@ -1,17 +1,30 @@
-﻿<SOUI name="mainWindow" title="@string/title" bigIcon="ICON_LOGO:32" smallIcon="ICON_LOGO:16" width="600" height="400" margin="20,5,5,5" resizable="1" wndType="appMain" toolWindow="1" translucent="1" trCtx="dlg_main">
-  <root skin="_skin.sys.wnd.bkgnd" cache="1">
-    <caption pos="0,0,-0,30" show="1" font="adding:0">
-      <icon pos="10,8" src="ICON_LOGO:16"/>
-      <text pos="29,9">@string/title</text>
-      <imgbtn name="btn_close" skin="_skin.sys.btn.close" pos="-45,0" tip="close" animate="1"/>
-      <imgbtn name="btn_max" skin="_skin.sys.btn.maximize" pos="-83,0" animate="1" />
-      <imgbtn name="btn_restore" skin="_skin.sys.btn.restore" pos="-83,0" show="0" animate="1" />
-      <imgbtn name="btn_min" skin="_skin.sys.btn.minimize" pos="-121,0" animate="1" />
-    </caption>
-    <window pos="5,[2,-5,-5">
-      <text pos="|0,|0" offset="-0.5,-0.5">这是一个由SOUI向导生成的APP框架</text>
-      <button pos="|0,[" inset="4,4,4,4" name="cn" offset="-1.1,0" text="lang_cn"/>
-      <button pos="|0,[" inset="4,4,4,4" name="en" offset="-1.1,0" text="lang_en"/>
+﻿<SOUI name="mainWindow" trCtx="dlg_main" title="@string/title" bigIcon="ICON_LOGO:32" smallIcon="ICON_LOGO:16" width="600" height="400" sendWheel2Hover="1" maxInset="5,3,10,10" margin="5,3,5,7" resizable="1" wndType="appMain" appWnd="0" minsize="600,400" translucent="1">
+  <root skin="skin.sys.bkgnd" cache="1">
+    <window name="skin.theme" skin="_skin.sys.wnd.bkgnd" pos="5,3,-6,-7">
+      <window pos="0,[0,-0,-0">
+        <!-- 左边主工具栏 -->
+        <caption name="mainbar_caption" pos="0,0,@60,-0" colorBkgnd="@color/theme">
+          <img name="btn_head" skin="skin.headimg" pos="10dp,10dp,@40dp,@40dp" margin-x="0" />
+          <img name="btn_mainbar_session" skin="skin.mainbar.session" pos="0dp,[0dp,@60dp,@50dp" margin-x="0" />
+          <img name="btn_mainbar_contact" skin="skin.mainbar.contact" pos="0dp,[0dp,@60dp,@50dp" margin-x="0" />
+          <img name="btn_mainbar_webapp" skin="skin.mainbar.webapp" pos="0dp,[0dp,@60dp,@50dp" margin-x="0" />
+        </caption>
+        <!-- 右边客户区 -->
+        <window pos="[0,0,-0,-0">
+          <!-- 标题栏 -->
+          <caption class="cls_sys_caption" height="25">
+            <imgbtn name="btn_close" class="cls_sys_close"/>
+            <imgbtn name="btn_max" class="cls_sys_max" />
+            <imgbtn name="btn_restore" class="cls_sys_restore" />
+            <imgbtn name="btn_min" class="cls_sys_min" />
+          </caption>
+          <window pos="0,[0,-0,-0" _colorBkgnd="rgba(11,22,33,128)">
+            <text pos="|0,|0" offset="-0.5,-0.5">这是一个由SOUI向导生成的APP框架</text>
+            <button pos="|0,[" inset="4,4,4,4" name="cn" offset="-1.1,0" text="lang_cn"/>
+            <button pos="|0,[" inset="4,4,4,4" name="en" offset="-1.1,0" text="lang_en"/>
+          </window>
+        </window>
+      </window>
     </window>
   </root>
 </SOUI>

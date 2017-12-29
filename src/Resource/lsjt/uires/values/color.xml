@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
 <color>
+  <theme value="#2c2a2b"/>
   <red value="rgb(255,0,0)"/>
   <green value="rgb(0,255,0)"/>
   <blue value="rgb(0,0,255)"/>
