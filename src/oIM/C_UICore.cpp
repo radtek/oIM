@@ -88,7 +88,7 @@ int C_UICore::Run(DWORD dwFlag)
 		if ( nType == SKIN_TYPE_FILE )
 		{
 			CreateResProvider(RES_FILE, (IObjRef**)&pResProvider);
-			if (!pResProvider->Init((LPARAM)&szSkin, 0))
+			if (!pResProvider->Init((LPARAM)(LPCTSTR)szSkin, 0))
 			{
 				SASSERT_FMT(0, _T("Initial file resource failed!"));
 				return 1;
@@ -104,7 +104,7 @@ int C_UICore::Run(DWORD dwFlag)
 			}
 		} 
 		else if ( nType == SKIN_TYPE_ZIP )
-		{
+		{	// ZIP 压缩包，【不能】有 uires 这级父目录，也就是进入到 uires 中，选中全部文件再zip
 			bLoaded=pComMgr->CreateResProvider_7ZIP((IObjRef**)&pResProvider);
 			SASSERT_FMT(bLoaded, _T("load interface [%s] failed!"), _T(SCreateInstance7Zip));
 
