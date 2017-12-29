@@ -50,9 +50,16 @@
 #define APP_ATTR_DISK_SPACE_PROMPT			_T("DiskSpacePrompt")
 # define APP_ATTR_DISK_SPACE_PROMPT_DEFAULT	( 1024 )		// 1GB
 
-
 #define APP_ATTR_UI_LOG_LEVEL				_T("UILogLevel")
 #define APP_ATTR_UI_LOG_FLAG				_T("UILogFlag")
+
+// Skin
+#define SKIN_EL								_T("Skin")
+#define SKIN_ATTR_TYPE						_T("Type")
+# define SKIN_TYPE_FILE						( 0 )	// 从文件中加载资源
+# define SKIN_TYPE_RES						( 1 )	// 从EXE资源中加载资源
+# define SKIN_TYPE_ZIP						( 2 )	// 从ZIP中加载资源
+#define SKIN_ATTR_PATH						_T("Path")
 
 // Optional Funcion
 #define FUNC_EL								_T("Function") 
@@ -104,34 +111,35 @@
 // _FMT: 是格式字符串，%d,
 // _(N):   的N只能是常量数值，不能给变量。
 // App.config
-#define PATH_APP						APP_ROOT_EL  _T("\\") APP_EL				// eIMApp\App
-#define PATH_SPECIALID					APP_ROOT_EL  _T("\\") SPECIALID_EL			// eIMApp\SpecialId
-#define PATH_FUNC						APP_ROOT_EL  _T("\\") FUNC_EL				// eIMApp\Function
-#define PATH_FUNC_ITEM_(N)				APP_ROOT_EL  _T("\\") FUNC_EL _T("\\")##N	// eIMApp\Function
-#define PATH_ENGINE						APP_ROOT_EL	 _T("\\") ENGINE_EL				// eIMApp\Engine
-#define PATH_SETTING					APP_ROOT_EL  _T("\\") SETTING_EL			// eIMApp\Setting
-#define PATH_FONT_ITEM_(N)              APP_ROOT_EL	 _T("\\") FONTS_EL _T("\\")##N	// eIMApp\App\Fonts\Font[d]
-#define PATH_SETTING_MY					PATH_SETTING _T("\\") SETTING_MY_EL			// eIMApp\Setting\My
-#define PATH_SETTING_BASIC				PATH_SETTING _T("\\") SETTING_BASIC_EL		// eIMApp\Setting\Basic
-#define PATH_SETTING_TRANSFER			PATH_SETTING _T("\\") SETTING_TRANSFER_EL	// eIMApp\Setting\Transfer
+#define PATH_APP						APP_ROOT_EL  _T("\\") APP_EL				// oIM\App
+#define PATH_SKIN						APP_ROOT_EL  _T("\\") SKIN_EL				// oIM\Skin
+#define PATH_SPECIALID					APP_ROOT_EL  _T("\\") SPECIALID_EL			// oIM\SpecialId
+#define PATH_FUNC						APP_ROOT_EL  _T("\\") FUNC_EL				// oIM\Function
+#define PATH_FUNC_ITEM_(N)				APP_ROOT_EL  _T("\\") FUNC_EL _T("\\")##N	// oIM\Function
+#define PATH_ENGINE						APP_ROOT_EL	 _T("\\") ENGINE_EL				// oIM\Engine
+#define PATH_SETTING					APP_ROOT_EL  _T("\\") SETTING_EL			// oIM\Setting
+#define PATH_FONT_ITEM_(N)              APP_ROOT_EL	 _T("\\") FONTS_EL _T("\\")##N	// oIM\App\Fonts\Font[d]
+#define PATH_SETTING_MY					PATH_SETTING _T("\\") SETTING_MY_EL			// oIM\Setting\My
+#define PATH_SETTING_BASIC				PATH_SETTING _T("\\") SETTING_BASIC_EL		// oIM\Setting\Basic
+#define PATH_SETTING_TRANSFER			PATH_SETTING _T("\\") SETTING_TRANSFER_EL	// oIM\Setting\Transfer
 #define PATH_SETTING_RANKIDLEVEL		PATH_SETTING _T("\\") RANKID_LEVEL 
 
-#define PATH_SETTING_HOTKEY				PATH_SETTING _T("\\") SETTING_HOTKEY_EL		// eIMApp\Setting\Hotkey
-#define PATH_SETTING_HOTKEY_ITEM_(N)	PATH_SETTING_HOTKEY _T("\\")##N				// eIMApp\Setting\Hotkey\SendMsg
+#define PATH_SETTING_HOTKEY				PATH_SETTING _T("\\") SETTING_HOTKEY_EL		// oIM\Setting\Hotkey
+#define PATH_SETTING_HOTKEY_ITEM_(N)	PATH_SETTING_HOTKEY _T("\\")##N				// oIM\Setting\Hotkey\SendMsg
 
-#define PATH_SETTING_RESP				PATH_SETTING _T("\\") SETTING_RESPONSE_EL									// eIMApp\Setting\Response
-#define PATH_SETTING_RESP_ITEM_FMT		PATH_SETTING_RESP _T("\\") SETTING_RESP_ITEM_EL	_T("[%d]")					// eIMApp\Setting\Response\Item[d]
+#define PATH_SETTING_RESP				PATH_SETTING _T("\\") SETTING_RESPONSE_EL									// oIM\Setting\Response
+#define PATH_SETTING_RESP_ITEM_FMT		PATH_SETTING_RESP _T("\\") SETTING_RESP_ITEM_EL	_T("[%d]")					// oIM\Setting\Response\Item[d]
 
-#define PATH_SETTING_SERVER				PATH_SETTING _T("\\") SETTING_SERVER_EL										// eIMApp\Setting\Server
-#define PATH_SETTING_SERVER_IM_(N)		PATH_SETTING_SERVER _T("\\") SETTING_IM_EL _T("[") _T(#N) _T("]")			// eIMApp\Setting\Server\IM[n]
-#define PATH_SETTING_SERVER_P2P_(N)		PATH_SETTING_SERVER _T("\\") SETTING_P2P_EL _T("[") _T(#N) _T("]")			// eIMApp\Setting\Server\P2P[n]
-#define PATH_SETTING_SERVER_RDP_(N)		PATH_SETTING_SERVER _T("\\") SETTING_RDP_EL _T("[") _T(#N) _T("]")			// eIMApp\Setting\Server\RDP[n]
-#define PATH_SETTING_SERVER_FILE_(N)	PATH_SETTING_SERVER _T("\\") SETTING_FILE_EL _T("[") _T(#N) _T("]")			// eIMApp\Setting\Server\File[n]
-#define PATH_SETTING_SERVER_IMAGE_(N)	PATH_SETTING_SERVER _T("\\") SETTING_IMAGE_EL _T("[") _T(#N) _T("]")		// eIMApp\Setting\Server\Image[n]
-#define PATH_SETTING_SERVER_HEAD_(N)	PATH_SETTING_SERVER _T("\\") SETTING_HEAD_EL _T("[") _T(#N) _T("]")			// eIMApp\Setting\Server\Head[n]
+#define PATH_SETTING_SERVER				PATH_SETTING _T("\\") SETTING_SERVER_EL										// oIM\Setting\Server
+#define PATH_SETTING_SERVER_IM_(N)		PATH_SETTING_SERVER _T("\\") SETTING_IM_EL _T("[") _T(#N) _T("]")			// oIM\Setting\Server\IM[n]
+#define PATH_SETTING_SERVER_P2P_(N)		PATH_SETTING_SERVER _T("\\") SETTING_P2P_EL _T("[") _T(#N) _T("]")			// oIM\Setting\Server\P2P[n]
+#define PATH_SETTING_SERVER_RDP_(N)		PATH_SETTING_SERVER _T("\\") SETTING_RDP_EL _T("[") _T(#N) _T("]")			// oIM\Setting\Server\RDP[n]
+#define PATH_SETTING_SERVER_FILE_(N)	PATH_SETTING_SERVER _T("\\") SETTING_FILE_EL _T("[") _T(#N) _T("]")			// oIM\Setting\Server\File[n]
+#define PATH_SETTING_SERVER_IMAGE_(N)	PATH_SETTING_SERVER _T("\\") SETTING_IMAGE_EL _T("[") _T(#N) _T("]")		// oIM\Setting\Server\Image[n]
+#define PATH_SETTING_SERVER_HEAD_(N)	PATH_SETTING_SERVER _T("\\") SETTING_HEAD_EL _T("[") _T(#N) _T("]")			// oIM\Setting\Server\Head[n]
 
-#define PATH_SETTING_SERVER_FILE_BT(N)	 PATH_SETTING_SERVER _T("\\") SETTING_FILE_EL_BT _T("[") _T(#N) _T("]")		// eIMApp\Setting\Server\File_BT[n]
-#define PATH_SETTING_SERVER_IMAGE_BT_(N) PATH_SETTING_SERVER _T("\\") SETTING_IMAGE_EL_BT _T("[") _T(#N) _T("]")	// eIMApp\Setting\Server\Image_BT[n]
+#define PATH_SETTING_SERVER_FILE_BT(N)	 PATH_SETTING_SERVER _T("\\") SETTING_FILE_EL_BT _T("[") _T(#N) _T("]")		// oIM\Setting\Server\File_BT[n]
+#define PATH_SETTING_SERVER_IMAGE_BT_(N) PATH_SETTING_SERVER _T("\\") SETTING_IMAGE_EL_BT _T("[") _T(#N) _T("]")	// oIM\Setting\Server\Image_BT[n]
 
 // Font.config
 #define PATH_FONT_ITEM_FMT				FONT_ROOT_EL _T("\\") FONT_ITEM_EL _T("[%d]")								// eIMFont\Item[d]

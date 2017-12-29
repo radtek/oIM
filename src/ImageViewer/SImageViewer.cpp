@@ -1,4 +1,4 @@
-#include "StdAfx.h"
+ï»¿#include "StdAfx.h"
 #include "SImageViewer.h"
 #include <helper/SplitString.h>
 #include "../../ext/soui/controls.extend/FileHelper.h"
@@ -38,8 +38,8 @@ namespace SOUI
 	inline RECT SImageViewer::GetDest(const CRect& rtWnd, const SIZE& szImg, CRect& rtImg)
 	{
 		if ( m_bSwitched )
-		{	// Ê×´ÎÕı³£ÏÔÊ¾µ±Ç°Í¼Æ¬£¬ ÏÔÊ¾Ä¬ÈÏµÄÈ«Í¼
-			m_bImgMovable = FALSE;	// Ä¬ÈÏ²»¿ÉÒÔÒÆ¶¯
+		{	// é¦–æ¬¡æ­£å¸¸æ˜¾ç¤ºå½“å‰å›¾ç‰‡ï¼Œ æ˜¾ç¤ºé»˜è®¤çš„å…¨å›¾
+			m_bImgMovable = FALSE;	// é»˜è®¤ä¸å¯ä»¥ç§»åŠ¨
 			m_bSwitched = FALSE;
 			if ( m_pImgGif )
 				SetTimer(TIMER_GIF, TIMER_GIF_ELAPSE);	// 100ms
@@ -48,62 +48,62 @@ namespace SOUI
 			m_ptCenter.SetPoint(szImg.cx/2, szImg.cy/2);
 			RECT rtDst = GetDefaultDest(rtWnd, szImg, &m_fRatio);
 		
-			// ¼¤·¢·Å´óÂÊ¸üĞÂÊÂ¼ş
+			// æ¿€å‘æ”¾å¤§ç‡æ›´æ–°äº‹ä»¶
 			EventRatioChanged evt(this, m_fRatio);
 			FireEvent(evt);
 
 			return rtDst;
 		}
 
-		BOOL bOutWnd = FALSE;	// ÊÇ·ñÓĞ³¬³örtWnd
-		SIZE szReal  = {(LONG)(szImg.cx * m_fRatio), (LONG)(szImg.cy * m_fRatio)};			// µÃµ½Êµ¼ÊÒªÏÔÊ¾µÄ´óĞ¡
-		POINT ptReal = {(LONG)(m_ptCenter.x * m_fRatio), (LONG)(m_ptCenter.y * m_fRatio)};	// µÃµ½ÖĞĞÄÎ»ÖÃµÄÊµ¼ÊÒªÏÔÊ¾µÄÎ»ÖÃ
+		BOOL bOutWnd = FALSE;	// æ˜¯å¦æœ‰è¶…å‡ºrtWnd
+		SIZE szReal  = {(LONG)(szImg.cx * m_fRatio), (LONG)(szImg.cy * m_fRatio)};			// å¾—åˆ°å®é™…è¦æ˜¾ç¤ºçš„å¤§å°
+		POINT ptReal = {(LONG)(m_ptCenter.x * m_fRatio), (LONG)(m_ptCenter.y * m_fRatio)};	// å¾—åˆ°ä¸­å¿ƒä½ç½®çš„å®é™…è¦æ˜¾ç¤ºçš„ä½ç½®
 		CRect rtDst  = rtWnd;
 
 		if ( rtWnd.Width() >= szReal.cx && rtWnd.Height() >= szReal.cy )
-		{	// ÄÜÏÔÊ¾Ëõ·ÅÖ®ºóµÄÈ«Í¼
-			m_bImgMovable = FALSE;	// Ä¬ÈÏ²»¿ÉÒÔÒÆ¶¯
-			rtDst = GetDefaultDest(rtWnd, szReal);		// ÓÃÊµ¼ÊÒªÏÔÊ¾µÄ´óĞ¡£¬À´¼ÆËãÄ¿±êÎ»ÖÃ
+		{	// èƒ½æ˜¾ç¤ºç¼©æ”¾ä¹‹åçš„å…¨å›¾
+			m_bImgMovable = FALSE;	// é»˜è®¤ä¸å¯ä»¥ç§»åŠ¨
+			rtDst = GetDefaultDest(rtWnd, szReal);		// ç”¨å®é™…è¦æ˜¾ç¤ºçš„å¤§å°ï¼Œæ¥è®¡ç®—ç›®æ ‡ä½ç½®
 			rtImg.SetRect(0, 0, szImg.cx, szImg.cy);	
-			m_ptCenter.SetPoint(szImg.cx / 2, szImg.cy / 2);	// ¸´Î»ÖĞĞÄµãÎªÍ¼Æ¬ÖĞĞÄ
+			m_ptCenter.SetPoint(szImg.cx / 2, szImg.cy / 2);	// å¤ä½ä¸­å¿ƒç‚¹ä¸ºå›¾ç‰‡ä¸­å¿ƒ
 		}
 		else
-		{	// ²»ÄÜÏÔÊ¾È«Í¼
-			m_bImgMovable = TRUE;	// ¿ÉÒÔÒÆ¶¯
+		{	// ä¸èƒ½æ˜¾ç¤ºå…¨å›¾
+			m_bImgMovable = TRUE;	// å¯ä»¥ç§»åŠ¨
 			rtImg.SetRect(0, 0, szReal.cx, szReal.cy);
 			if ( szReal.cx >= rtDst.Width() )
-			{	// Í¼Æ¬¿í¶È >= ´°¿Ú¿í¶È
-				int iOffsetX = (ptReal.x  - szReal.cx / 2);		// ÓëÏÔÊ¾Í¼Æ¬µÄË®Æ½ÖĞĞÄÎ»ÖÃµÄÆ«ÒÆÁ¿
+			{	// å›¾ç‰‡å®½åº¦ >= çª—å£å®½åº¦
+				int iOffsetX = (ptReal.x  - szReal.cx / 2);		// ä¸æ˜¾ç¤ºå›¾ç‰‡çš„æ°´å¹³ä¸­å¿ƒä½ç½®çš„åç§»é‡
 				int iDeltaX1 = (szReal.cx - rtDst.Width()) / 2;
 				
-				// ÒÔÍ¼Æ¬ÖĞĞÄÎ»ÖÃÀ´¼ÆËãÎ»ÖÃ
+				// ä»¥å›¾ç‰‡ä¸­å¿ƒä½ç½®æ¥è®¡ç®—ä½ç½®
 				rtImg.left += iDeltaX1;
 				rtImg.right-= iDeltaX1;	
 
-				// ¼ÆËãXÆ«ÒÆ
+				// è®¡ç®—Xåç§»
 				if ( iOffsetX >= 0 )
-				{	// ÖĞĞÄµãÏòÓÒÆ«ÒÆ
+				{	// ä¸­å¿ƒç‚¹å‘å³åç§»
 					if ( rtImg.right + iOffsetX <= szReal.cx )
-					{	// ÏòÓÒÆ«ÒÆºó£¬ÈÔÈ»ÔÚÍ¼Æ¬´óĞ¡Ö®ÄÚ
+					{	// å‘å³åç§»åï¼Œä»ç„¶åœ¨å›¾ç‰‡å¤§å°ä¹‹å†…
 						rtImg.left += iOffsetX;
 						rtImg.right+= iOffsetX;
 					}
 					else
-					{	// Í¼Æ¬¿¿ÓÒ±ß
+					{	// å›¾ç‰‡é å³è¾¹
 						rtImg.right = szReal.cx;
 						rtImg.left  = rtImg.right - rtDst.Width();
 						bOutWnd = TRUE;
 					}
 				}
 				else
-				{	// ÖĞĞÄµãÏò×óÆ«ÒÆ
+				{	// ä¸­å¿ƒç‚¹å‘å·¦åç§»
 					if ( rtImg.left + iOffsetX >= 0 )
-					{	// Ïò×óÆ«ÒÆºó£¬ÈÔÈ»ÔÚÍ¼Æ¬´óĞ¡Ö®ÄÚ
+					{	// å‘å·¦åç§»åï¼Œä»ç„¶åœ¨å›¾ç‰‡å¤§å°ä¹‹å†…
 						rtImg.left += iOffsetX;
 						rtImg.right+= iOffsetX;
 					}
 					else
-					{	// Í¼Æ¬¿¿×ó±ß
+					{	// å›¾ç‰‡é å·¦è¾¹
 						rtImg.left	= 0;
 						rtImg.right = rtDst.Width();
 						bOutWnd = TRUE;
@@ -111,45 +111,45 @@ namespace SOUI
 				}
 			}
 			else
-			{	// Í¼Æ¬¿í¶È < ´°¿Ú¿í¶È
+			{	// å›¾ç‰‡å®½åº¦ < çª—å£å®½åº¦
 				int iDeltaX2= (rtDst.Width() - szReal.cx ) / 2;
 				rtDst.left += iDeltaX2;
 				rtDst.right-= iDeltaX2;
 			}
 
 			if ( szReal.cy >= rtDst.Height() )
-			{	// Í¼Æ¬¸ß¶È >= ´°¿Ú¸ß¶È
-				int iOffsetY = (ptReal.y  - szReal.cy / 2);		// ÓëÏÔÊ¾Í¼Æ¬µÄ´¹Ö±ÖĞĞÄÎ»ÖÃµÄÆ«ÒÆÁ¿
+			{	// å›¾ç‰‡é«˜åº¦ >= çª—å£é«˜åº¦
+				int iOffsetY = (ptReal.y  - szReal.cy / 2);		// ä¸æ˜¾ç¤ºå›¾ç‰‡çš„å‚ç›´ä¸­å¿ƒä½ç½®çš„åç§»é‡
 				int iDeltaY1 = (szReal.cy - rtDst.Height()) / 2;
 
-				// ÒÔÍ¼Æ¬ÖĞĞÄÎ»ÖÃÀ´¼ÆËãÎ»ÖÃ
+				// ä»¥å›¾ç‰‡ä¸­å¿ƒä½ç½®æ¥è®¡ç®—ä½ç½®
 				rtImg.top   += iDeltaY1;	
 				rtImg.bottom-= iDeltaY1;
 
-				// ¼ÆËãYÆ«ÒÆ
+				// è®¡ç®—Yåç§»
 				if ( iOffsetY >= 0 )
-				{	// ÖĞĞÄµãÏòÏÂÆ«ÒÆ
+				{	// ä¸­å¿ƒç‚¹å‘ä¸‹åç§»
 					if ( rtImg.bottom + iOffsetY <= szReal.cy )
-					{	// ÏòÓÒÆ«ÒÆºó£¬ÈÔÈ»ÔÚÍ¼Æ¬´óĞ¡Ö®ÄÚ
+					{	// å‘å³åç§»åï¼Œä»ç„¶åœ¨å›¾ç‰‡å¤§å°ä¹‹å†…
 						rtImg.top	+= iOffsetY;
 						rtImg.bottom+= iOffsetY;
 					}
 					else
-					{	// Í¼Æ¬¿¿ÏÂ±ß
+					{	// å›¾ç‰‡é ä¸‹è¾¹
 						rtImg.bottom = szReal.cy;
 						rtImg.top	 = rtImg.bottom - rtDst.Height();
 						bOutWnd = TRUE;
 					}
 				}
 				else
-				{	// ÖĞĞÄµãÏòÉÏÆ«ÒÆ
+				{	// ä¸­å¿ƒç‚¹å‘ä¸Šåç§»
 					if ( rtImg.top + iOffsetY >= 0 )
-					{	// ÏòÉÏÆ«ÒÆºó£¬ÈÔÈ»ÔÚÍ¼Æ¬´óĞ¡Ö®ÄÚ
+					{	// å‘ä¸Šåç§»åï¼Œä»ç„¶åœ¨å›¾ç‰‡å¤§å°ä¹‹å†…
 						rtImg.top	+= iOffsetY;
 						rtImg.bottom+= iOffsetY;
 					}
 					else
-					{	// Í¼Æ¬¿¿ÉÏ±ß
+					{	// å›¾ç‰‡é ä¸Šè¾¹
 						rtImg.top	 = 0;
 						rtImg.bottom = rtDst.Height();
 						bOutWnd = TRUE;
@@ -157,26 +157,26 @@ namespace SOUI
 				}
 			}
 			else
-			{	// Í¼Æ¬¸ß¶È < ´°¿Ú¸ß¶È
+			{	// å›¾ç‰‡é«˜åº¦ < çª—å£é«˜åº¦
 				int iDeltaY2 = (rtDst.Height() - szReal.cy) / 2;
 				rtDst.top   += iDeltaY2;
 				rtDst.bottom-= iDeltaY2;
 			}
 
-			// ÔÙ»»Ëã¼ÓÔ­Í¼µÄ×ø±ê
+			// å†æ¢ç®—åŠ åŸå›¾çš„åæ ‡
 			rtImg.left  = (LONG)(rtImg.left / m_fRatio);
 			rtImg.top   = (LONG)(rtImg.top / m_fRatio);
 			rtImg.right = (LONG)(rtImg.right / m_fRatio);
 			rtImg.bottom= (LONG)(rtImg.bottom / m_fRatio);
 
 			if ( bOutWnd && m_eMove == eMOVE_STOP )
-			{	// ĞŞÕıÖĞĞÄµã
+			{	// ä¿®æ­£ä¸­å¿ƒç‚¹
 				m_eMove = eMOVE_NONE;
 				if ( rtImg.Width() % 2) 
-					rtImg.right--;	// ±ä³ÉÅ¼Êı
+					rtImg.right--;	// å˜æˆå¶æ•°
 
 				if ( rtImg.Height() % 2)
-					rtImg.bottom--;	// ±ä³ÉÅ¼Êı
+					rtImg.bottom--;	// å˜æˆå¶æ•°
 
 				m_ptCenter.x = rtImg.left + rtImg.Width() / 2;
 				m_ptCenter.y = rtImg.top  + rtImg.Height() / 2;
@@ -187,11 +187,11 @@ namespace SOUI
 	}
 
 	RECT SImageViewer::GetDefaultDest(const CRect& rtWnd, const SIZE& szImg, float* pfRatio)
-	{	// ¼ÆËãÄ¬ÈÏµÄÄ¿±êÎ»ÖÃ
+	{	// è®¡ç®—é»˜è®¤çš„ç›®æ ‡ä½ç½®
 		RECT rtDst = { 0 };
 
 		if ( rtWnd.Width() >= szImg.cx && rtWnd.Height() >= szImg.cy )
-		{	// ´°¿ÚÄÜÏÔÊ¾È«Í¼
+		{	// çª—å£èƒ½æ˜¾ç¤ºå…¨å›¾
 			if ( pfRatio )
 				*pfRatio = 1.f;
 
@@ -205,7 +205,7 @@ namespace SOUI
 			float fRatioX = (float)rtWnd.Width() / szImg.cx;
 			float fRatioY = (float)rtWnd.Height() / szImg.cy;
 			if ( fRatioX < fRatioY )
-			{	// ´°¿Ú¿í¶È²»ÄÜÏÔÊ¾È«Í¼, ¾ÍÒÔ¿í¶È½øĞĞËõ·Å
+			{	// çª—å£å®½åº¦ä¸èƒ½æ˜¾ç¤ºå…¨å›¾, å°±ä»¥å®½åº¦è¿›è¡Œç¼©æ”¾
 				if ( pfRatio )
 					*pfRatio = fRatioX;
 
@@ -216,7 +216,7 @@ namespace SOUI
 				rtDst.bottom= rtDst.top + lHeight;
 			}
 			else
-			{	// ´°¿Ú¸ß¶È²»ÄÜÏÔÊ¾È«Í¼, ¾ÍÒÔ¸ß¶È½øĞĞËõ·Å
+			{	// çª—å£é«˜åº¦ä¸èƒ½æ˜¾ç¤ºå…¨å›¾, å°±ä»¥é«˜åº¦è¿›è¡Œç¼©æ”¾
 				if ( pfRatio )
 					*pfRatio = fRatioY;
 
@@ -253,17 +253,17 @@ namespace SOUI
 
 		CRect rtWnd = GetClientRect();
 		if ( m_iMoveWidth == 0 )
-		{	// ÏÔÊ¾µ±Ç°Í¼Æ¬
+		{	// æ˜¾ç¤ºå½“å‰å›¾ç‰‡
 			CRect szSrcOld = m_rtImgSrc;
 			CRect szDstOld = m_rtImgDst;
 			m_rtImgDst = GetDest(rtWnd, m_pImgSel->Size(), m_rtImgSrc);
 			pRT->DrawBitmapEx(&m_rtImgDst, m_pImgSel, &m_rtImgSrc, EM_STRETCH);
-			SAFE_RELEASE_(m_pImgNext);	// ÉÏ/ÏÂÒ»ÕÅÍ¼Æ¬£¬¹ı¶É¶¯»­Ê±²ÅĞèÒª
+			SAFE_RELEASE_(m_pImgNext);	// ä¸Š/ä¸‹ä¸€å¼ å›¾ç‰‡ï¼Œè¿‡æ¸¡åŠ¨ç”»æ—¶æ‰éœ€è¦
 
-			if ( !m_rtImgSrc.EqualRect(szSrcOld) || // Í¼Æ¬Ô´ÇøÓò¸Ä±äÁË
-				 !m_rtImgDst.EqualRect(szDstOld) || // Í¼Æ¬Ä¿±êÇøÓò¸Ä±äÁË£¨´°¿Ú´óĞ¡±äÁË£©
-				  m_pImgGif )						// ÊÇGIF¶¯»­£¬µØÍ¼ÒªË¢ĞÂ¶¯»­
-			{	// Í¼Æ¬µÄÏÔÊ¾ÇøÓò±äÁË£¬²ÅÍ¨Öª
+			if ( !m_rtImgSrc.EqualRect(szSrcOld) || // å›¾ç‰‡æºåŒºåŸŸæ”¹å˜äº†
+				 !m_rtImgDst.EqualRect(szDstOld) || // å›¾ç‰‡ç›®æ ‡åŒºåŸŸæ”¹å˜äº†ï¼ˆçª—å£å¤§å°å˜äº†ï¼‰
+				  m_pImgGif )						// æ˜¯GIFåŠ¨ç”»ï¼Œåœ°å›¾è¦åˆ·æ–°åŠ¨ç”»
+			{	// å›¾ç‰‡çš„æ˜¾ç¤ºåŒºåŸŸå˜äº†ï¼Œæ‰é€šçŸ¥
 				EventImagePosChanged evt(this, m_bImgMovable, !!m_pImgGif, m_rtImgSrc, m_fRatio, m_bError, m_pImgSel);
 				FireEvent(evt);
 			}
@@ -271,12 +271,12 @@ namespace SOUI
 		else
 		{	
 			if ( m_iMoveWidth > 0 )
-			{	// ÉÏÒ»Ö¡
+			{	// ä¸Šä¸€å¸§
 				DrawImage(pRT, m_pImgNext, rtWnd, m_iSelected - 1);
 				DrawImage(pRT, m_pImgSel,  rtWnd, m_iSelected);
 			}
 			else
-			{	// ÏÂÒ»Ö¡
+			{	// ä¸‹ä¸€å¸§
 				DrawImage(pRT, m_pImgSel,  rtWnd, m_iSelected);
 				DrawImage(pRT, m_pImgNext, rtWnd, m_iSelected + 1);
 			}
@@ -287,16 +287,16 @@ namespace SOUI
 	{
 		RemoveTempImage();
 
-		m_rtImgSrc.SetRectEmpty();	// Çå¿Õ
+		m_rtImgSrc.SetRectEmpty();	// æ¸…ç©º
 		EventImagePosChanged evt(this, FALSE, FALSE, m_rtImgSrc, FALSE, NULL);
-		FireEvent(evt);				// Òş²ØµØÍ¼
+		FireEvent(evt);				// éšè—åœ°å›¾
 
 		if ( !bNoAngle )
 			m_nAngle = 0;
 
 		m_bSwitched = TRUE;
 		m_eMove = eMOVE_NONE;
-		m_ptCenter.SetPoint(0, 0);	// ¸´Î»ÖĞĞÄµã
+		m_ptCenter.SetPoint(0, 0);	// å¤ä½ä¸­å¿ƒç‚¹
 
 
 		SAFE_RELEASE_(m_pImgNext);
@@ -316,14 +316,14 @@ namespace SOUI
 
 		CRect rcWnd = GetClientRect();
 		if(m_bTimerMove)
-			return TRUE;	// ÕıÔÚÏÔÊ¾¹ı¶ÉĞ§¹ûÊ±£¬²»ÔÙÇĞ»»
+			return TRUE;	// æ­£åœ¨æ˜¾ç¤ºè¿‡æ¸¡æ•ˆæœæ—¶ï¼Œä¸å†åˆ‡æ¢
 
 		Reset(FALSE, TRUE);
 		m_bError = FALSE;
 		m_iMoveWidth = (m_iSelected - iSelect)*rcWnd.Width();
 		m_iSelected  = iSelect;
 		
-		// ¸üĞÂ¼ÓÔØµÄÍ¼Æ¬
+		// æ›´æ–°åŠ è½½çš„å›¾ç‰‡
 		SStringT szExt = PathFindExtension(m_vectImage[m_iSelected]);
 		if ( szExt.CompareNoCase(_T(".gif")) == 0 )
 		{
@@ -334,7 +334,7 @@ namespace SOUI
 				m_pImgSel = m_pImgGif->GetFrameImage();
 			}
 			else
-				SAFE_RELEASE_(m_pImgGif);	// ²»ÊÇ´óÓÚÒ»Ö¡µÄGIF£¬µ±³ÉÆÕÍ¨Í¼Æ¬
+				SAFE_RELEASE_(m_pImgGif);	// ä¸æ˜¯å¤§äºä¸€å¸§çš„GIFï¼Œå½“æˆæ™®é€šå›¾ç‰‡
 		}
 		
 		if ( m_pImgSel == NULL )
@@ -397,7 +397,7 @@ namespace SOUI
 		m_fRatio = RATIO_100 / 100.f;
 		Invalidate();
 			
-		// ¼¤·¢·Å´óÂÊ¸üĞÂÊÂ¼ş
+		// æ¿€å‘æ”¾å¤§ç‡æ›´æ–°äº‹ä»¶
 		EventRatioChanged evt(this, m_fRatio);
 		FireEvent(evt);
 		return TRUE;
@@ -407,7 +407,7 @@ namespace SOUI
 	{
 		if ( bFixed )
 		{	
-			m_fRatio += fDelta;	// ¹Ì¶¨µÄDelta
+			m_fRatio += fDelta;	// å›ºå®šçš„Delta
 		}
 		else
 		{
@@ -437,7 +437,7 @@ namespace SOUI
 				m_fRatio = RATIOF_(RATIO_MAX);	// Max
 		}
 
-		// ¼¤·¢·Å´óÂÊ¸üĞÂÊÂ¼ş
+		// æ¿€å‘æ”¾å¤§ç‡æ›´æ–°äº‹ä»¶
 		EventRatioChanged evt(this, m_fRatio);
 		FireEvent(evt);
 
@@ -453,7 +453,7 @@ namespace SOUI
 		float fDelta= (zDelta / WHEEL_DELTA) / 100.0f;
 
 		if ( bFixed )
-			Zoom(fDelta * 10.0f, TRUE);	// ¹Ì¶¨µÄDelta
+			Zoom(fDelta * 10.0f, TRUE);	// å›ºå®šçš„Delta
 		else
 			Zoom(fDelta);
 
@@ -463,7 +463,7 @@ namespace SOUI
 	void SImageViewer::OnTimer(char nIDEvent)
 	{
 		if ( nIDEvent == TIMER_MOIVE )
-		{	// ·­Ò³¶¯»­
+		{	// ç¿»é¡µåŠ¨ç”»
 			if(m_iMoveWidth > 0)
 			{
 				if(m_iMoveWidth - m_iTimesMove <= 0)
@@ -496,9 +496,9 @@ namespace SOUI
 			}
 		}
 		else if ( nIDEvent == TIMER_GIF )
-		{	// GIF¶¯»­£¬ÒÔ¹Ì¶¨Ö¡ÂÊ(0.1s)ÏÔÊ¾
+		{	// GIFåŠ¨ç”»ï¼Œä»¥å›ºå®šå¸§ç‡(0.1s)æ˜¾ç¤º
 			if ( m_pImgGif == NULL )
-			{	// Ã»ÓĞÏÔÊ¾GIFÁË£¬¾ÍÍ£Ö¹
+			{	// æ²¡æœ‰æ˜¾ç¤ºGIFäº†ï¼Œå°±åœæ­¢
 				KillTimer(TIMER_GIF);
 				return;
 			}
@@ -640,7 +640,7 @@ namespace SOUI
 		TCHAR szTmpPath[MAX_PATH * 2] = { 0 };
 		TCHAR szTmpFile[MAX_PATH * 2] = { 0 };
 
-		GetTempPath(_countof(szTmpPath), szTmpPath);		// ²»È¥¼ì²éÊ§°Ü
+		GetTempPath(_countof(szTmpPath), szTmpPath);		// ä¸å»æ£€æŸ¥å¤±è´¥
 		GetTempFileName(szTmpPath, _T("iv"), 0, szTmpFile);
 		_tcscat(szTmpFile, pszExt);
 
@@ -650,7 +650,7 @@ namespace SOUI
 	inline BOOL SImageViewer::RemoveTempImage()
 	{
 		if ( PathFileExists(m_szTmpImg) )
-			DeleteFile(m_szTmpImg);	// É¾³ı¾ÉµÄÁÙÊ±ÎÄ¼ş
+			DeleteFile(m_szTmpImg);	// åˆ é™¤æ—§çš„ä¸´æ—¶æ–‡ä»¶
 
 		m_szTmpImg.Empty();
 		return TRUE;
@@ -673,7 +673,7 @@ namespace SOUI
 	BOOL SImageViewer::Rotate(BOOL bRight)
 	{
 		if(m_bTimerMove || m_bError )
-			return TRUE;		// ÕıÔÚÏÔÊ¾¹ı¶ÉĞ§¹ûÊ±£¬²»ÔÙºÚÉ«Ğı×ª
+			return TRUE;		// æ­£åœ¨æ˜¾ç¤ºè¿‡æ¸¡æ•ˆæœæ—¶ï¼Œä¸å†é»‘è‰²æ—‹è½¬
 
 		m_nAngle += bRight ? 90 : -90;
 		SStringT szImg = m_vectImage[m_iSelected];

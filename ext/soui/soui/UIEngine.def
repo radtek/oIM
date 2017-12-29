@@ -9,6 +9,7 @@ EXPORTS
 	SCreateInstanceGDI		= ?SCreateInstance@RENDER_GDI@SOUI@@YAHPAPAUIObjRef@@@Z
 	SCreateInstanceSkia		= ?SCreateInstance@RENDER_SKIA@SOUI@@YAHPAPAUIObjRef@@@Z
 	SCreateInstanceZip		= ?SCreateInstance@RESPROVIDER_ZIP@SOUI@@YAHPAPAUIObjRef@@@Z
+	SCreateInstance7Zip		= ?SCreateInstance@RESPROVIDER_7ZIP@SOUI@@YAHPAPAUIObjRef@@@Z
 	SCreateInstanceLua		= ?SCreateInstance@SCRIPT_LUA@SOUI@@YAHPAPAUIObjRef@@@Z
 	SCreateInstanceTrans	= ?SCreateInstance@TRANSLATOR@SOUI@@YAHPAPAUIObjRef@@@Z
 	CreateInterface			= ?CreateInterface@SOUI@@YGHPB_WPAPAX@Z

@@ -5,6 +5,7 @@
 #include <sys/stat.h>
 #include "C_UICore.h"
 #include "UICore\AppConfig.h"
+#include <resprovider-zip\zipresprovider-param.h>
 
 #pragma comment(lib, "shlwapi.lib")
 #pragma comment(lib, "shell32.lib")
@@ -38,42 +39,39 @@ C_UICore::C_UICore(void)
 	SStringT szRCfgFile = GetPath(PATH_TOKEN_APPDATA_FILE_(APP_CONFIG_FILE));
 
 	m_AppCfg.Open(szCfgFile, szRCfgFile);
+	HRESULT hRes = OleInitialize(NULL);
+	SASSERT(SUCCEEDED(hRes));
 }
 
 C_UICore::~C_UICore(void)
 {
+	OleUninitialize();
 	SAFE_CLOSE_HANDLE_(m_hCompanyMutex);
 
 }
 
 int C_UICore::Run(DWORD dwFlag)
 {
-	if (!(RUN_FLAG_DISABLE_LOGIN & dwFlag))
-	{	// 没有禁用自动显示登录窗口时
-		if ( !ShowLoginWnd(dwFlag) )
-			return FALSE;
-	}
-
-   HRESULT hRes = OleInitialize(NULL);
-    SASSERT(SUCCEEDED(hRes));
+	//if (!(RUN_FLAG_DISABLE_LOGIN & dwFlag))
+	//{	// 没有禁用自动显示登录窗口时
+	//	if ( !ShowLoginWnd(dwFlag) )
+	//		return FALSE;
+	//}
 
     int nRet = 0;
     SComMgr *pComMgr = new SComMgr;
 
     //将程序的运行路径修改到项目所在目录所在的目录
-    TCHAR szCurrentDir[MAX_PATH] = { 0 };
-    GetModuleFileName(NULL, szCurrentDir, sizeof(szCurrentDir));
-    LPTSTR lpInsertPos = _tcsrchr(szCurrentDir, _T('\\'));
-    _tcscpy(lpInsertPos + 1, _T("..\\oIM"));
-    SetCurrentDirectory(szCurrentDir);
+	SStringT szAppPath = GetPath(PATH_TOKEN_APP);
+    SetCurrentDirectory(szAppPath);
     {
         BOOL bLoaded=FALSE;
-        CAutoRefPtr<SOUI::IImgDecoderFactory> pImgDecoderFactory;
-        CAutoRefPtr<SOUI::IRenderFactory> pRenderFactory;
+        CAutoRefPtr<IImgDecoderFactory> pImgDecoderFactory;
+        CAutoRefPtr<IRenderFactory> pRenderFactory;
         bLoaded = pComMgr->CreateRender_Skia((IObjRef**)&pRenderFactory);
-        SASSERT_FMT(bLoaded,_T("load interface [render] failed!"));
+        SASSERT_FMT(bLoaded, _T("load interface [render] failed!"));
         bLoaded=pComMgr->CreateImgDecoder((IObjRef**)&pImgDecoderFactory);
-        SASSERT_FMT(bLoaded,_T("load interface [%s] failed!"),_T("imgdecoder"));
+        SASSERT_FMT(bLoaded, _T("load interface [%s] failed!"),_T("imgdecoder"));
 
         pRenderFactory->SetImgDecoderFactory(pImgDecoderFactory);
 		SApplication *theApp = new SApplication(pRenderFactory, m_hInstance);
@@ -85,17 +83,39 @@ int C_UICore::Run(DWORD dwFlag)
         }
 
         CAutoRefPtr<IResProvider>   pResProvider;
-#if (RES_TYPE == 0)
-        CreateResProvider(RES_FILE, (IObjRef**)&pResProvider);
-        if (!pResProvider->Init((LPARAM)_T("D:\\oIM\\Resource\\lsjt\\uires"), 0))
-        {
-            SASSERT(0);
-            return 1;
-        }
-#else 
-        CreateResProvider(RES_PE, (IObjRef**)&pResProvider);
-        pResProvider->Init((WPARAM)hInstance, 0);
-#endif
+		int nType = UIGetAttributeInt(PATH_SKIN, SKIN_ATTR_TYPE, SKIN_TYPE_ZIP);
+		SStringT szSkin = GetPath(UIGetAttributeStr(PATH_SKIN, SKIN_ATTR_PATH));
+		if ( nType == SKIN_TYPE_FILE )
+		{
+			CreateResProvider(RES_FILE, (IObjRef**)&pResProvider);
+			if (!pResProvider->Init((LPARAM)&szSkin, 0))
+			{
+				SASSERT_FMT(0, _T("Initial file resource failed!"));
+				return 1;
+			}
+		}
+		else if ( nType == SKIN_TYPE_RES )
+		{
+			CreateResProvider(RES_PE, (IObjRef**)&pResProvider);
+			if (!pResProvider->Init((WPARAM)m_hInstance, 0))
+			{
+				SASSERT_FMT(0, _T("Initial from resource failed!"));
+				return 1;
+			}
+		} 
+		else if ( nType == SKIN_TYPE_ZIP )
+		{
+			bLoaded=pComMgr->CreateResProvider_7ZIP((IObjRef**)&pResProvider);
+			SASSERT_FMT(bLoaded, _T("load interface [%s] failed!"), _T(SCreateInstance7Zip));
+
+			ZIPRES_PARAM param;
+			param.ZipFile(pRenderFactory, szSkin, "123456");
+			if (!pResProvider->Init((WPARAM)&param,0))
+			{
+				SASSERT_FMT(0, _T("Initial zip resource failed!"));
+				return 1;
+			}
+		}
 
 		theApp->InitXmlNamedID(namedXmlID,ARRAYSIZE(namedXmlID),TRUE);
         theApp->AddResProvider(pResProvider);
@@ -111,8 +131,10 @@ int C_UICore::Run(DWORD dwFlag)
         if(trans)
         {//加载语言翻译包
             theApp->SetTranslator(trans);
+			SStringT szLang = UIGetAttributeStr(PATH_APP, APP_ATTR_LANGUAGE, _T("en"));
+			szLang = _T("lang_") + szLang;	// To: lang_en, lang_cn
             pugi::xml_document xmlLang;
-            if(theApp->LoadXmlDocment(xmlLang,_T("lang_cn"),_T("translator")))
+            if(theApp->LoadXmlDocment(xmlLang, szLang,_T("translator")))
             {
                 CAutoRefPtr<ITranslator> langCN;
                 trans->CreateTranslator(&langCN);
@@ -134,7 +156,6 @@ int C_UICore::Run(DWORD dwFlag)
     }
     
     delete pComMgr;  
-    OleUninitialize();
     return nRet;
 }
 

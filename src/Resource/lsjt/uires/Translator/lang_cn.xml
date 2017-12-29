@@ -22,29 +22,5 @@
       <source>close</source>
       <translation>关闭窗口</translation>
     </message>
-    <message>
-      <source>lang_cn</source>
-      <translation>简体中文</translation>
-    </message>
-    <message>
-      <source>lang_jp</source>
-      <translation>日本语</translation>
-    </message>
-    <message>
-      <source>这是一个由SOUI向导生成的APP框架</source>
-      <translation>这是一个由SOUI向导生成的APP框架</translation>
-    </message>
-    <message>
-      <source>mainpage</source>
-      <translation>主页</translation>
-    </message>
-    <message>
-      <source>page2</source>
-      <translation>页面2</translation>
-    </message>
-    <message>
-      <source>页面1</source>
-      <translation>页面1</translation>
-    </message>
   </context>
 </language>
