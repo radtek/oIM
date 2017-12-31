@@ -1,7 +1,7 @@
 // ScintillaWnd.cpp : 实现文件
 //
 
-#include "stdafx.h"
+#include "souistd.h"
 #include "ScintillaWnd.h"
 #include <shlwapi.h>
 

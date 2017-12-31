@@ -20,6 +20,8 @@
     <ClInclude Include="..\components\render-gdi\GradientFillHelper.h" />
     <ClInclude Include="..\components\render-gdi\render-gdi.h" />
     <ClInclude Include="..\components\render-skia\drawtext-skia.h" />
+    <ClInclude Include="..\components\render-skia\PathEffect-Skia.h" />
+    <ClInclude Include="..\components\render-skia\PathMeasure-Skia.h" />
     <ClInclude Include="..\components\render-skia\render-skia.h" />
     <ClInclude Include="..\components\render-skia\Render-Skia2-i.h" />
     <ClInclude Include="..\components\render-skia\Render-Skia2.h" />
@@ -47,6 +49,7 @@
     <ClInclude Include="..\components\ScriptModule-LUA\src\exports\exp_Window.h" />
     <ClInclude Include="..\components\ScriptModule-LUA\src\ScriptModule-Lua.h" />
     <ClInclude Include="..\components\translator\translator.h" />
+    <ClInclude Include="..\controls.extend\dlghelp\souidlgs.h" />
     <ClInclude Include="..\controls.extend\ExtendCtrls.h" />
     <ClInclude Include="..\controls.extend\ExtendSkins.h" />
     <ClInclude Include="..\controls.extend\FileHelper.h" />
@@ -74,6 +77,7 @@
     <ClInclude Include="..\controls.extend\SCalendar2.h" />
     <ClInclude Include="..\controls.extend\SChatEdit.h" />
     <ClInclude Include="..\controls.extend\SChromeTabCtrl.h" />
+    <ClInclude Include="..\controls.extend\ScintillaWnd.h" />
     <ClInclude Include="..\controls.extend\SDateTimeEdit.h" />
     <ClInclude Include="..\controls.extend\SDocHostUIHandler.h" />
     <ClInclude Include="..\controls.extend\SFadeFrame.h" />
@@ -92,8 +96,9 @@
     <ClInclude Include="..\controls.extend\smiley\SSmileyCtrl.h" />
     <ClInclude Include="..\controls.extend\SRadioBox2.h" />
     <ClInclude Include="..\controls.extend\SRatingBar.h" />
+    <ClInclude Include="..\controls.extend\SRealWndHandler_Scintilla.h" />
     <ClInclude Include="..\controls.extend\SScrollText.h" />
-    <ClInclude Include="..\controls.extend\SSkinImgFrame2.h" />
+    <ClInclude Include="..\controls.extend\SSkinImgFrame3.h" />
     <ClInclude Include="..\controls.extend\SSkinMutiFrameImg.h" />
     <ClInclude Include="..\controls.extend\SSkinNewScrollBar.h" />
     <ClInclude Include="..\controls.extend\STabCtrl2.h" />
@@ -125,6 +130,7 @@
     <ClInclude Include="..\utilities\include\wtl.mini\msgcrack.h" />
     <ClInclude Include="..\utilities\include\wtl.mini\souimisc.h" />
     <ClInclude Include="include\activex\SBStr.h" />
+    <ClInclude Include="include\animator\SInterpolatorImpl.h" />
     <ClInclude Include="include\control\RealWndHandler-i.h" />
     <ClInclude Include="include\control\SActiveX.h" />
     <ClInclude Include="include\control\SCalendar.h" />
@@ -133,6 +139,7 @@
     <ClInclude Include="include\control\SComboBase.h" />
     <ClInclude Include="include\control\SComboBox.h" />
     <ClInclude Include="include\control\SComboView.h" />
+    <ClInclude Include="include\control\SDateTimePicker.h" />
     <ClInclude Include="include\control\SDropDown.h" />
     <ClInclude Include="include\control\SHeaderCtrl.h" />
     <ClInclude Include="include\control\SHotKeyCtrl.h" />
@@ -140,12 +147,14 @@
     <ClInclude Include="include\control\SListCtrl.h" />
     <ClInclude Include="include\control\SListView.h" />
     <ClInclude Include="include\control\SMCListView.h" />
+    <ClInclude Include="include\control\SMenuBar.h" />
     <ClInclude Include="include\control\SMessageBox.h" />
     <ClInclude Include="include\control\SouiCtrls.h" />
     <ClInclude Include="include\control\SRealWnd.h" />
     <ClInclude Include="include\control\SRichEdit.h" />
     <ClInclude Include="include\control\SScrollbar.h" />
     <ClInclude Include="include\control\SSliderBar.h" />
+    <ClInclude Include="include\control\SSpinButton.h" />
     <ClInclude Include="include\control\SSpinButtonCtrl.h" />
     <ClInclude Include="include\control\SSplitWnd.h" />
     <ClInclude Include="include\control\STabCtrl.h" />
@@ -194,6 +203,7 @@
     <ClInclude Include="include\helper\SCriticalSection.h" />
     <ClInclude Include="include\helper\SDIBHelper.h" />
     <ClInclude Include="include\helper\SListViewItemLocator.h" />
+    <ClInclude Include="include\helper\slog-def.h" />
     <ClInclude Include="include\helper\slog-private.h" />
     <ClInclude Include="include\helper\slog.h" />
     <ClInclude Include="include\helper\SMatrix.h" />
@@ -213,14 +223,20 @@
     <ClInclude Include="include\interface\imgdecoder-i.h" />
     <ClInclude Include="include\interface\LvItemLocator-i.h" />
     <ClInclude Include="include\interface\render-i.h" />
+    <ClInclude Include="include\interface\SAttrStorage-i.h" />
+    <ClInclude Include="include\interface\sinterpolator-i.h" />
     <ClInclude Include="include\interface\slayout-i.h" />
     <ClInclude Include="include\interface\slog-i.h" />
+    <ClInclude Include="include\interface\SPathEffect-i.h" />
     <ClInclude Include="include\interface\SResProvider-i.h" />
     <ClInclude Include="include\interface\SScriptModule-i.h" />
     <ClInclude Include="include\interface\SSkinobj-i.h" />
     <ClInclude Include="include\interface\stooltip-i.h" />
     <ClInclude Include="include\interface\STranslator-i.h" />
+    <ClInclude Include="include\interface\szip-i.h" />
     <ClInclude Include="include\interface\TvItemLocator-i.h" />
+    <ClInclude Include="include\layout\SGridLayout.h" />
+    <ClInclude Include="include\layout\SGridLayoutParamStruct.h" />
     <ClInclude Include="include\layout\SLayoutSize.h" />
     <ClInclude Include="include\layout\SLinearLayout.h" />
     <ClInclude Include="include\layout\SLinearLayoutParamStruct.h" />
@@ -253,6 +269,8 @@
     <ClCompile Include="..\components\render-gdi\GradientFillHelper.cpp" />
     <ClCompile Include="..\components\render-gdi\render-gdi.cpp" />
     <ClCompile Include="..\components\render-skia\drawtext-skia.cpp" />
+    <ClCompile Include="..\components\render-skia\PathEffect-Skia.cpp" />
+    <ClCompile Include="..\components\render-skia\PathMeasure-Skia.cpp" />
     <ClCompile Include="..\components\render-skia\render-skia.cpp" />
     <ClCompile Include="..\components\render-skia\Render-Skia2.cpp" />
     <ClCompile Include="..\components\render-skia\skia2rop2.cpp" />
@@ -287,6 +305,7 @@
     <ClCompile Include="..\controls.extend\SCalendar2.cpp" />
     <ClCompile Include="..\controls.extend\SChatEdit.cpp" />
     <ClCompile Include="..\controls.extend\SChromeTabCtrl.cpp" />
+    <ClCompile Include="..\controls.extend\ScintillaWnd.cpp" />
     <ClCompile Include="..\controls.extend\SDateTimeEdit.cpp" />
     <ClCompile Include="..\controls.extend\SDocHostUIHandler.cpp" />
     <ClCompile Include="..\controls.extend\SFadeFrame.cpp" />
@@ -303,8 +322,9 @@
     <ClCompile Include="..\controls.extend\SMcListViewEx\STabCtrlHeaderBinder.cpp" />
     <ClCompile Include="..\controls.extend\SRadioBox2.cpp" />
     <ClCompile Include="..\controls.extend\SRatingBar.cpp" />
+    <ClCompile Include="..\controls.extend\SRealWndHandler_Scintilla.cpp" />
     <ClCompile Include="..\controls.extend\SScrollText.cpp" />
-    <ClCompile Include="..\controls.extend\SSkinImgFrame2.cpp" />
+    <ClCompile Include="..\controls.extend\SSkinImgFrame3.cpp" />
     <ClCompile Include="..\controls.extend\SSkinMutiFrameImg.cpp" />
     <ClCompile Include="..\controls.extend\STabCtrl2.cpp" />
     <ClCompile Include="..\controls.extend\SText.cpp" />
@@ -323,6 +343,7 @@
     <ClCompile Include="include\souistd.h.cpp" />
     <ClCompile Include="src\activex\SAxContainer.cpp" />
     <ClCompile Include="src\activex\SBStr.cpp" />
+    <ClCompile Include="src\animator\SInterpolatorImpl.cpp" />
     <ClCompile Include="src\control\SActiveX.cpp" />
     <ClCompile Include="src\control\SCalendar.cpp" />
     <ClCompile Include="src\control\SCaption.cpp" />
@@ -330,6 +351,7 @@
     <ClCompile Include="src\control\SComboBase.cpp" />
     <ClCompile Include="src\control\SComboBox.cpp" />
     <ClCompile Include="src\control\SComboView.cpp" />
+    <ClCompile Include="src\control\SDateTimePicker.cpp" />
     <ClCompile Include="src\control\SDropDown.cpp" />
     <ClCompile Include="src\control\SHeaderCtrl.cpp" />
     <ClCompile Include="src\control\SHotKeyCtrl.cpp" />
@@ -337,11 +359,13 @@
     <ClCompile Include="src\control\SListCtrl.cpp" />
     <ClCompile Include="src\control\SListView.cpp" />
     <ClCompile Include="src\control\SMCListView.cpp" />
+    <ClCompile Include="src\control\SMenuBar.cpp" />
     <ClCompile Include="src\control\SMessageBox.cpp" />
     <ClCompile Include="src\control\SRealWnd.cpp" />
     <ClCompile Include="src\control\SRichEdit.cpp" />
     <ClCompile Include="src\control\SScrollbar.cpp" />
     <ClCompile Include="src\control\SSliderBar.cpp" />
+    <ClCompile Include="src\control\SSpinButton.cpp" />
     <ClCompile Include="src\control\SSpinButtonCtrl.cpp" />
     <ClCompile Include="src\control\SSplitWnd.cpp" />
     <ClCompile Include="src\control\STabCtrl.cpp" />
@@ -381,6 +405,7 @@
     <ClCompile Include="src\helper\STimerEx.cpp" />
     <ClCompile Include="src\helper\SToolTip.cpp" />
     <ClCompile Include="src\helper\SwndFinder.cpp" />
+    <ClCompile Include="src\layout\SGridLayout.cpp" />
     <ClCompile Include="src\layout\SLayoutSize.cpp" />
     <ClCompile Include="src\layout\SLinearLayout.cpp" />
     <ClCompile Include="src\layout\SouiLayout.cpp" />
@@ -492,7 +517,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>.\;..\..\..\inc;$(SOUIPATH)\soui;$(SOUIPATH)\config;$(SOUIPATH)\soui\include;$(SOUIPATH)\utilities\include;$(SOUIPATH)\tools\mkspecs\win32-msvc2010;$(SOUIPATH)\components;$(SOUIPATH)\third-part\7z;$(SOUIPATH)\third-part\png;$(SOUIPATH)\third-part\zlib;$(SOUIPATH)\third-part\skia;$(SOUIPATH)\third-part\skia\include;$(SOUIPATH)\third-part\skia\include\config;$(SOUIPATH)\third-part\skia\include\core;$(SOUIPATH)\third-part\lua-52\src;$(SOUIPATH)\third-part\wke\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\;..\..\..\inc;$(SOUIPATH)\soui;$(SOUIPATH)\config;$(SOUIPATH)\soui\include;$(SOUIPATH)\utilities\include;$(SOUIPATH)\tools\mkspecs\win32-msvc2010;$(SOUIPATH)\components;$(SOUIPATH)\third-part\7z;$(SOUIPATH)\third-part\png;$(SOUIPATH)\third-part\zlib;$(SOUIPATH)\third-part\skia;$(SOUIPATH)\third-part\skia\include;$(SOUIPATH)\third-part\skia\include\config;$(SOUIPATH)\third-part\skia\include\core;$(SOUIPATH)\third-part\lua-52\src;$(SOUIPATH)\third-part\wke\include;$(SOUIPATH)\third-part\Scintilla\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>-w34100 -w34189 -w44996 %(AdditionalOptions)</AdditionalOptions>
       <BrowseInformation>false</BrowseInformation>
       <DisableSpecificWarnings>4100;4101;4102;4189;4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>

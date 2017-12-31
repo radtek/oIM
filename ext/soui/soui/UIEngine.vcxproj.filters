@@ -199,6 +199,18 @@
     <Filter Include="soui\UIEngine">
       <UniqueIdentifier>{e8530349-d4e5-40a3-a8e5-41e06f8591ee}</UniqueIdentifier>
     </Filter>
+    <Filter Include="controls.extend\dbghelp">
+      <UniqueIdentifier>{1b049d8a-2abc-46c4-a3c1-6d4e0bfa1a81}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="soui\include\animator">
+      <UniqueIdentifier>{f3d88cbf-fa78-4ebf-b48d-df019f7f1e39}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="soui\include\NewFilter1">
+      <UniqueIdentifier>{40f6ceee-a22b-4930-b38f-d420fa53b699}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="soui\src\animator">
+      <UniqueIdentifier>{04470d1f-0eeb-43d6-a71b-71dd2ccf375e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\utilities\include\atl.mini\atldef.h">
@@ -789,9 +801,6 @@
     <ClInclude Include="..\controls.extend\SScrollText.h">
       <Filter>controls.extend</Filter>
     </ClInclude>
-    <ClInclude Include="..\controls.extend\SSkinImgFrame2.h">
-      <Filter>controls.extend</Filter>
-    </ClInclude>
     <ClInclude Include="..\controls.extend\SSkinMutiFrameImg.h">
       <Filter>controls.extend</Filter>
     </ClInclude>
@@ -893,6 +902,57 @@
     </ClInclude>
     <ClInclude Include="UIEngine\UIEngine.h">
       <Filter>soui\UIEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\controls.extend\SSkinImgFrame3.h">
+      <Filter>controls.extend</Filter>
+    </ClInclude>
+    <ClInclude Include="..\components\render-skia\PathEffect-Skia.h">
+      <Filter>components\render-skia</Filter>
+    </ClInclude>
+    <ClInclude Include="..\components\render-skia\PathMeasure-Skia.h">
+      <Filter>components\render-skia</Filter>
+    </ClInclude>
+    <ClInclude Include="..\controls.extend\dlghelp\souidlgs.h">
+      <Filter>controls.extend\dbghelp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\controls.extend\ScintillaWnd.h">
+      <Filter>controls.extend</Filter>
+    </ClInclude>
+    <ClInclude Include="..\controls.extend\SRealWndHandler_Scintilla.h">
+      <Filter>controls.extend</Filter>
+    </ClInclude>
+    <ClInclude Include="include\animator\SInterpolatorImpl.h">
+      <Filter>soui\include\animator</Filter>
+    </ClInclude>
+    <ClInclude Include="include\control\SDateTimePicker.h">
+      <Filter>soui\include\control</Filter>
+    </ClInclude>
+    <ClInclude Include="include\control\SMenuBar.h">
+      <Filter>soui\include\control</Filter>
+    </ClInclude>
+    <ClInclude Include="include\control\SSpinButton.h">
+      <Filter>soui\include\control</Filter>
+    </ClInclude>
+    <ClInclude Include="include\helper\slog-def.h">
+      <Filter>soui\include\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="include\interface\SAttrStorage-i.h">
+      <Filter>soui\include\interface</Filter>
+    </ClInclude>
+    <ClInclude Include="include\interface\sinterpolator-i.h">
+      <Filter>soui\include\interface</Filter>
+    </ClInclude>
+    <ClInclude Include="include\interface\SPathEffect-i.h">
+      <Filter>soui\include\interface</Filter>
+    </ClInclude>
+    <ClInclude Include="include\interface\szip-i.h">
+      <Filter>soui\include\interface</Filter>
+    </ClInclude>
+    <ClInclude Include="include\layout\SGridLayout.h">
+      <Filter>soui\include\layout</Filter>
+    </ClInclude>
+    <ClInclude Include="include\layout\SGridLayoutParamStruct.h">
+      <Filter>soui\include\layout</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1259,9 +1319,6 @@
     <ClCompile Include="..\controls.extend\trayicon\SShellNotifyIcon.cpp">
       <Filter>controls.extend\trayicon</Filter>
     </ClCompile>
-    <ClCompile Include="..\controls.extend\SSkinImgFrame2.cpp">
-      <Filter>controls.extend</Filter>
-    </ClCompile>
     <ClCompile Include="..\controls.extend\SSkinMutiFrameImg.cpp">
       <Filter>controls.extend</Filter>
     </ClCompile>
@@ -1351,6 +1408,36 @@
     </ClCompile>
     <ClCompile Include="UIEngine\UIEngine.cpp">
       <Filter>soui\UIEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\controls.extend\SSkinImgFrame3.cpp">
+      <Filter>controls.extend</Filter>
+    </ClCompile>
+    <ClCompile Include="..\components\render-skia\PathEffect-Skia.cpp">
+      <Filter>components\render-skia</Filter>
+    </ClCompile>
+    <ClCompile Include="..\components\render-skia\PathMeasure-Skia.cpp">
+      <Filter>components\render-skia</Filter>
+    </ClCompile>
+    <ClCompile Include="..\controls.extend\ScintillaWnd.cpp">
+      <Filter>controls.extend</Filter>
+    </ClCompile>
+    <ClCompile Include="..\controls.extend\SRealWndHandler_Scintilla.cpp">
+      <Filter>controls.extend</Filter>
+    </ClCompile>
+    <ClCompile Include="src\animator\SInterpolatorImpl.cpp">
+      <Filter>soui\src\animator</Filter>
+    </ClCompile>
+    <ClCompile Include="src\control\SDateTimePicker.cpp">
+      <Filter>soui\src\control</Filter>
+    </ClCompile>
+    <ClCompile Include="src\control\SMenuBar.cpp">
+      <Filter>soui\src\control</Filter>
+    </ClCompile>
+    <ClCompile Include="src\control\SSpinButton.cpp">
+      <Filter>soui\src\control</Filter>
+    </ClCompile>
+    <ClCompile Include="src\layout\SGridLayout.cpp">
+      <Filter>soui\src\layout</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
