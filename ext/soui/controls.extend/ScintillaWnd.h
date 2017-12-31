@@ -3,9 +3,10 @@
 #include <core/simplewnd.h>
 #include <Scintilla.h>
 
-
+namespace SOUI
+{
 // CScintillaWnd
-class CScintillaWnd : public CSimpleWnd
+class SOUI_EXP CScintillaWnd : public CSimpleWnd
 {
 public:
 	static int InitScintilla(HINSTANCE hInst);
@@ -44,4 +45,5 @@ protected:
 	END_MSG_MAP()
 
 	SStringT m_strFileName;
+};
 };

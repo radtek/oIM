@@ -6,7 +6,8 @@
 #include <shlwapi.h>
 
 #include "SciLexer.h"
-
+namespace SOUI
+{
 static LPCTSTR KScintillaClass = _T("Scintilla");
 
 
@@ -308,3 +309,4 @@ LRESULT CScintillaWnd::OnNotify( int idCtrl, LPNMHDR pnmh )
 	return lRet;
 }
 
+};
