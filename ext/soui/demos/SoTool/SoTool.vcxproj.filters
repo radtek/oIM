@@ -89,6 +89,9 @@
     <ClInclude Include="CodeLineCounterHandler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="DragDrop.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="FileMap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -123,6 +126,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="droptarget.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="export_table_adapter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="import_table_adapter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="resource.h">

@@ -1,4 +1,4 @@
-#include "stdafx.h"
+Ôªø#include "stdafx.h"
 #include "UiAnimationWnd.h"
 #include <math.h>
 #include <helper/splitstring.h>
@@ -24,7 +24,7 @@ namespace SOUI{
 
     //////////////////////////////////////////////////////////////////////////
     //  CUiAnimation
-    template<> CUiAnimation* SSingleton<CUiAnimation>::ms_Singleton = NULL;
+//    template<> CUiAnimation* SSingleton<CUiAnimation>::ms_Singleton = NULL;
     
 
     CUiAnimation::CUiAnimation(IUIAnimationTimer *pUiAniTimer)
@@ -70,7 +70,7 @@ namespace SOUI{
             );
         if (SUCCEEDED(hr))
         {
-            //¥¥Ω®“ª∏ˆUIAnimationµƒµ•¿˝
+            //ÂàõÂª∫‰∏Ä‰∏™UIAnimationÁöÑÂçï‰æã
             new CUiAnimation(pAnimationTimer);
         }
 
@@ -206,7 +206,7 @@ namespace SOUI{
         int iX1=0;
         for(int i=0;i<=sz.cx;i++)
         {
-            if(i==sz.cx || pPixels[i] == 0xFFFF00FF) //∑÷∏Óœﬂ
+            if(i==sz.cx || pPixels[i] == 0xFFFF00FF) //ÂàÜÂâ≤Á∫ø
             {
                 int iX2=i;
                 SIZE szWord={iX2-iX1,sz.cy};

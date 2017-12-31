@@ -1,11 +1,11 @@
-#include "souistd.h"
+Ôªø#include "souistd.h"
 #include "control/SComboBase.h"
 
 namespace SOUI
 {
 
-	const wchar_t * KStyle_Dropdown = L"dropdownStyle";//œ¬¿≠¡–±Ì∑Á∏Ò£¨÷ª∞¸∫¨rootΩ⁄µ„
-	const wchar_t * KStyle_Edit		= L"editStyle";		//±‡º≠øÚ∑Á∏Ò
+	const wchar_t * KStyle_Dropdown = L"dropdownStyle";//‰∏ãÊãâÂàóË°®È£éÊ†ºÔºåÂè™ÂåÖÂê´rootËäÇÁÇπ
+	const wchar_t * KStyle_Edit		= L"editStyle";		//ÁºñËæëÊ°ÜÈ£éÊ†º
 
     //////////////////////////////////////////////////////////////////////////
     // CComboEdit
@@ -41,7 +41,7 @@ namespace SOUI
     BOOL SComboEdit::FireEvent(EventArgs & evt)
     {
         if(evt.GetID()==EVT_RE_NOTIFY)
-        {//◊™∑¢richeditµƒtxNotifyœ˚œ¢
+        {//ËΩ¨ÂèëricheditÁöÑtxNotifyÊ∂àÊÅØ
             evt.idFrom=GetOwner()->GetID();
             evt.nameFrom=GetOwner()->GetName();
         }
@@ -56,7 +56,7 @@ namespace SOUI
             return TRUE;
         if(pMsg->message==WM_MOUSEWHEEL 
             || ((pMsg->message == WM_KEYDOWN || pMsg->message==WM_KEYUP) && (pMsg->wParam == VK_UP || pMsg->wParam==VK_DOWN || pMsg->wParam==VK_RETURN || pMsg->wParam==VK_ESCAPE)))
-        {//ΩÿªÒπˆ¬÷º∞…œœ¬º¸œ˚œ¢
+        {//Êà™Ëé∑ÊªöËΩÆÂèä‰∏ä‰∏ãÈîÆÊ∂àÊÅØ
             CSimpleWnd::SendMessage(pMsg->message,pMsg->wParam,pMsg->lParam);
             return TRUE;    
         }
@@ -70,18 +70,20 @@ namespace SOUI
         :m_pSkinBtn(GETBUILTINSKIN(SKIN_SYS_DROPBTN))
         ,m_pEdit(NULL)
         ,m_bDropdown(TRUE)
+        ,m_nDropHeight(200)
         ,m_dwBtnState(WndState_Normal)
         ,m_nAnimTime(200)
         ,m_pDropDownWnd(NULL)
         ,m_iInitSel(-1)
+		,m_bAutoFitDropBtn(TRUE)
     {
-		m_nDropHeight.setSize(200, SLayoutSize::px);
         m_bFocusable=TRUE;
         m_style.SetAttribute(L"align",L"left",TRUE);
         m_style.SetAttribute(L"valign",L"middle",TRUE);
 
         m_evtSet.addEvent(EVENTID(EventCBSelChange));
         m_evtSet.addEvent(EVENTID(EventRENotify));
+		m_evtSet.addEvent(EVENTID(EventCBDropdown));
     }
 
     SComboBase::~SComboBase(void)
@@ -93,7 +95,7 @@ namespace SOUI
     {
         SASSERT(m_pSkinBtn);
 		m_xmlDropdownStyle.append_copy(xmlNode.child(KStyle_Dropdown));
-        //¥¥Ω®edit∂‘œÛ
+        //ÂàõÂª∫editÂØπË±°
         if(!m_bDropdown)
         {            
             m_pEdit=new SComboEdit(this);
@@ -122,6 +124,12 @@ namespace SOUI
         GetClientRect(prc);
 		int nHei = prc->bottom - prc->top;
         prc->left= prc->right-nHei*szBtn.cx/szBtn.cy;
+		if (!m_bAutoFitDropBtn) {
+			prc->top += (prc->bottom - prc->top - szBtn.cy) / 2;
+			prc->left += (prc->right - prc->left - szBtn.cx) / 2;
+			prc->right = prc->left + szBtn.cx;
+			prc->bottom = prc->top + szBtn.cy;
+		}
     }
 
     void SComboBase::GetTextRect( LPRECT pRect )
@@ -199,8 +207,51 @@ namespace SOUI
 
     void SComboBase::OnKeyDown( TCHAR nChar, UINT nRepCnt, UINT nFlags )
     {    
-        if ( nChar == VK_DOWN)
-            DropDown();
+        //if ( nChar == VK_DOWN)
+        //    DropDown();
+		
+		//ÊñπÂêëÈîÆÊîπÂèòÂΩìÂâçÈÄâÈ°π
+        switch (nChar) 
+        {
+        case VK_DOWN:
+        case VK_RIGHT:
+            {
+                int iSel = GetCurSel();
+                iSel += 1;
+                if ( iSel < GetCount() )
+                    SetCurSel(iSel);
+            }
+            break;
+        case VK_UP:
+        case VK_LEFT:
+            {
+                int iSel = GetCurSel();
+                iSel -= 1;
+                if ( iSel < GetCount() && iSel >= 0 )
+                    SetCurSel(iSel);
+            }
+            break;
+        }
+    }
+
+    BOOL SComboBase::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
+    {
+		//Èº†Ê†áÊªöËΩÆÊîπÂèòÂΩìÂâçÈÄâÈ°π
+        if (zDelta > 0)			// ‰∏äÊªö 
+        {
+            int iSel = GetCurSel();
+            iSel -= 1;
+            if ( iSel < GetCount() && iSel >= 0 )
+                SetCurSel(iSel);
+        }
+        else					// ‰∏ãÊªö 
+        {
+            int iSel = GetCurSel();
+            iSel += 1;
+            if ( iSel < GetCount() )
+                SetCurSel(iSel);
+        }
+        return TRUE;
     }
 
     void SComboBase::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -233,14 +284,22 @@ namespace SOUI
     }
 
 
+	static const wchar_t * KAttrTrCtx = L"trCtx";
     void SComboBase::OnCreateDropDown( SDropDownWnd *pDropDown )
     {
 		pugi::xml_node xmlDropdownStyleNode = m_xmlDropdownStyle.child(KStyle_Dropdown);
 		if(xmlDropdownStyleNode)
 		{
+			if(!xmlDropdownStyleNode.attribute(KAttrTrCtx))
+			{
+				xmlDropdownStyleNode.append_attribute(KAttrTrCtx).set_value(GetTrCtx());
+			}
 			pDropDown->InitFromXml(xmlDropdownStyleNode);
 		}
-
+		else
+		{
+			pDropDown->GetHostAttr().SetTrCtx(GetTrCtx());
+		}
 		m_dwBtnState=WndState_PushDown;
         CRect rcBtn;
         GetDropBtnRect(&rcBtn);
@@ -252,7 +311,6 @@ namespace SOUI
         if (!m_bDropdown && m_pEdit)
         {
             m_pEdit->SetFocus();
-            m_pEdit->SetSel((DWORD)MAKELONG(0,-1));
         }
 
         m_dwBtnState = WndState_Normal;
@@ -310,21 +368,27 @@ namespace SOUI
     {
         if(m_dwBtnState==WndState_PushDown) return;
 
+
         if(!m_pDropDownWnd)
         {
-            m_pDropDownWnd = new SDropDownWnd_ComboBox(this, GetScale());
-            CRect rcPopup;
-            BOOL bDown=CalcPopupRect(GetListBoxHeight(),rcPopup);
-            m_pDropDownWnd->Create(rcPopup,0);
-            
-            if(m_nAnimTime>0)
-                m_pDropDownWnd->AnimateHostWindow(m_nAnimTime,AW_SLIDE|(bDown?AW_VER_POSITIVE:AW_VER_NEGATIVE));
-            else
-                m_pDropDownWnd->SetWindowPos(HWND_TOP,0,0,0,0,SWP_SHOWWINDOW|SWP_NOMOVE|SWP_NOZORDER|SWP_NOSIZE|SWP_NOACTIVATE);
-                
-            m_pDropDownWnd->CSimpleWnd::SetCapture();
-        }
-    }
+            m_pDropDownWnd = new SDropDownWnd_ComboBox(this);
+		}
+
+		EventCBDropdown evt(this);
+		evt.pDropDown = m_pDropDownWnd;
+		FireEvent(evt);
+
+		CRect rcPopup;
+		BOOL bDown=CalcPopupRect(GetListBoxHeight(),rcPopup);
+		m_pDropDownWnd->Create(rcPopup,0);
+
+		if(m_nAnimTime>0)
+			m_pDropDownWnd->AnimateHostWindow(m_nAnimTime,AW_SLIDE|(bDown?AW_VER_POSITIVE:AW_VER_NEGATIVE));
+		else
+			m_pDropDownWnd->SetWindowPos(HWND_TOP,0,0,0,0,SWP_SHOWWINDOW|SWP_NOMOVE|SWP_NOZORDER|SWP_NOSIZE|SWP_NOACTIVATE);
+
+		m_pDropDownWnd->CSimpleWnd::SetCapture();
+	}
 
     void SComboBase::CloseUp()
     {
@@ -388,7 +452,8 @@ namespace SOUI
             return GetEditText();
         }
         if(GetCurSel()==-1) return _T("");
-        return GetLBText(GetCurSel());
+        SStringT text = GetLBText(GetCurSel());
+		return S_CW2T(tr(S_CT2W(text)));
     }
 
     void SComboBase::SetWindowText(LPCTSTR pszText)
@@ -427,6 +492,29 @@ namespace SOUI
     {
         __super::OnColorize(cr);
         if(m_pSkinBtn) m_pSkinBtn->OnColorize(cr);
+		if (m_pDropDownWnd)
+		{
+			m_pDropDownWnd->SDispatchMessage(UM_SETCOLORIZE, cr, 0);
+		}
     }
+
+	HRESULT SComboBase::OnLanguageChanged()
+	{
+		HRESULT hr =__super::OnLanguageChanged();
+		if (m_pDropDownWnd)
+		{
+			m_pDropDownWnd->SDispatchMessage(UM_SETLANGUAGE, 0, 0);
+		}
+		return hr;
+	}
+
+	void SComboBase::OnScaleChanged(int nScale)
+	{
+		__super::OnScaleChanged(nScale);
+		if (m_pDropDownWnd)
+		{
+			m_pDropDownWnd->SDispatchMessage(UM_SETSCALE, nScale, 0);
+		}
+	}
 
 }

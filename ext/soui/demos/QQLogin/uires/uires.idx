@@ -1,5 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<resource>
+﻿<resource>
   <UIDEF>
     <file name="XML_INIT" path="xml\init.xml"  />
   </UIDEF>

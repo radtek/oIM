@@ -42,7 +42,13 @@
     <ClCompile Include="SAnimImg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SRocketAnimator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="TXMgr.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TrayDlg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -60,6 +66,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SAnimImg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SRocketAnimator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TrayDlg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="res\resource.h">

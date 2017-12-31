@@ -81,6 +81,9 @@
     <ClCompile Include="src\control\SComboView.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\control\SDateTimePicker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="src\res.mgr\SDpiAwareFont.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -93,6 +96,9 @@
     <ClCompile Include="src\res.mgr\SFontPool.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\layout\SGridLayout.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="src\control\SHeaderCtrl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -100,6 +106,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\control\SHotKeyCtrl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\animator\SInterpolatorImpl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\core\SItemPanel.cpp">
@@ -127,6 +136,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\helper\SMenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\control\SMenuBar.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\control\SMessageBox.cpp">
@@ -172,6 +184,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\control\SSliderBar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\control\SSpinButton.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\control\SSpinButtonCtrl.cpp">
@@ -299,6 +314,9 @@
     <ClInclude Include="include\helper\SAttrCracker.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\interface\SAttrStorage-i.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="src\activex\SAxContainer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -329,6 +347,9 @@
     <ClInclude Include="include\helper\SCriticalSection.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\control\SDateTimePicker.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="include\core\SDefine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -344,6 +365,12 @@
     <ClInclude Include="include\res.mgr\SFontPool.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\layout\SGridLayout.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\layout\SGridLayoutParamStruct.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="include\control\SHeaderCtrl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -354,6 +381,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\control\SHotKeyCtrl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\interface\SInterpolator-i.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\animator\SInterpolatorImpl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\core\SItemPanel.h">
@@ -384,6 +417,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\helper\SMenu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\control\SMenuBar.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\control\SMessageBox.h">
@@ -450,6 +486,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\control\SSliderBar.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\control\SSpinButton.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\control\SSpinButtonCtrl.h">
@@ -575,6 +614,9 @@
     <ClInclude Include="include\interface\slayout-i.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\helper\slog-def.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="include\interface\slog-i.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -600,9 +642,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\helper\swndspy.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\activex\wmp.tlh">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

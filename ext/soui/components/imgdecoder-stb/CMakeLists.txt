@@ -1,4 +1,4 @@
-#add_definitions(-D_CRT_SECURE_NO_WARNINGS) // stb_image.h:4577 don't define _CRT_SECURE_NO_WARNINGS (affects user code)
+﻿#add_definitions(-D_CRT_SECURE_NO_WARNINGS) // stb_image.h:4577 don't define _CRT_SECURE_NO_WARNINGS (affects user code)
 
 include_directories(${PROJECT_SOURCE_DIR}/config)
 include_directories(${PROJECT_SOURCE_DIR}/utilities/include)
@@ -27,3 +27,4 @@ set(COM_LIBS ${COM_LIBS} imgdecoder-stb CACHE INTERNAL "com_lib")
 set_target_properties (imgdecoder-stb PROPERTIES
     FOLDER components/imgdecoder
 )
+cotire(imgdecoder-stb)

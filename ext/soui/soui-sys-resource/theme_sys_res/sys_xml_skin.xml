@@ -1,114 +1,43 @@
 <skin>
-  <imglist name="_skin.sys.checkbox" scale="100" src="PNG:SYS_CHECKBOX_100" states="8" />
-  <imglist name="_skin.sys.checkbox" scale="125" src="PNG:SYS_CHECKBOX_125" states="8" />
-  <imglist name="_skin.sys.checkbox" scale="150" src="PNG:SYS_CHECKBOX_150" states="8" />
-  <imglist name="_skin.sys.checkbox" scale="200" src="PNG:SYS_CHECKBOX_200" states="8" />
-
-  <imglist name="_skin.sys.radio" scale="100" src="PNG:SYS_RADIO_100" states="8" />
-  <imglist name="_skin.sys.radio" scale="125" src="PNG:SYS_RADIO_125" states="8" />
-  <imglist name="_skin.sys.radio" scale="150" src="PNG:SYS_RADIO_150" states="8" />
-  <imglist name="_skin.sys.radio" scale="200" src="PNG:SYS_RADIO_200" states="8" />
-
-  <imglist name="_skin.sys.focuscheckbox" scale="100" src="PNG:SYS_FOCUS_CHECKBOX_100"/>
-  <imglist name="_skin.sys.focuscheckbox" scale="125" src="PNG:SYS_FOCUS_CHECKBOX_125"/>
-  <imglist name="_skin.sys.focuscheckbox" scale="150" src="PNG:SYS_FOCUS_CHECKBOX_150"/>
-  <imglist name="_skin.sys.focuscheckbox" scale="200" src="PNG:SYS_FOCUS_CHECKBOX_200"/>
-
-  <imglist name="_skin.sys.focusradio" scale="100" src="PNG:SYS_FOCUS_RADIO_100"/>
-  <imglist name="_skin.sys.focusradio" scale="125" src="PNG:SYS_FOCUS_RADIO_125"/>
-  <imglist name="_skin.sys.focusradio" scale="150" src="PNG:SYS_FOCUS_RADIO_150"/>
-  <imglist name="_skin.sys.focusradio" scale="200" src="PNG:SYS_FOCUS_RADIO_200"/>
-
+  <imglist name="_skin.sys.checkbox" src="PNG:SYS_CHECKBOX" states="8"  />
+  <imglist name="_skin.sys.radio" src="PNG:SYS_RADIO" states="8" />
+  <imglist name="_skin.sys.focuscheckbox" src="PNG:SYS_FOCUS_CHECKBOX"/>
+  <imglist name="_skin.sys.focusradio" src="PNG:SYS_FOCUS_RADIO"/>
+  <button name="_skin.sys.btn.normal" colorBorder="#7D9EBC" colorUp="#FEFEFE" colorDown="#C6E2FD" colorUpHover="#FEFEFE" colorDownHover="#DBEDFE" colorUpPush="#C6E2FD" colorDownPush="#FEFEFE"/>
   <scrollbar name="_skin.sys.scrollbar" scale="100" src="PNG:SYS_SCROLLBAR_100" margin="3" hasgripper="0"/>
   <scrollbar name="_skin.sys.scrollbar" scale="125" src="PNG:SYS_SCROLLBAR_125" margin="3" hasgripper="0"/>
   <scrollbar name="_skin.sys.scrollbar" scale="150" src="PNG:SYS_SCROLLBAR_150" margin="3" hasgripper="0"/>
   <scrollbar name="_skin.sys.scrollbar" scale="200" src="PNG:SYS_SCROLLBAR_200" margin="3" hasgripper="0"/>
   <scrollbar name="_skin.sys.scrollbar" scale="250" src="PNG:SYS_SCROLLBAR_250" margin="3" hasgripper="0"/>
   <scrollbar name="_skin.sys.scrollbar" scale="300" src="PNG:SYS_SCROLLBAR_300" margin="3" hasgripper="0"/>
+  <imgframe name="_skin.sys.border" src="PNG:SYS_BORDER" states="2" margin-x="2" margin-y="2"/>
 
-  <imglist name="_skin.sys.dropbtn" scale="100" src="PNG:SYS_DROPBTN_100" states="3"/>
-  <imglist name="_skin.sys.dropbtn" scale="125" src="PNG:SYS_DROPBTN_125" states="3"/>
-  <imglist name="_skin.sys.dropbtn" scale="150" src="PNG:SYS_DROPBTN_150" states="3"/>
-  <imglist name="_skin.sys.dropbtn" scale="200" src="PNG:SYS_DROPBTN_200" states="3"/>
-  <imglist name="_skin.sys.dropbtn" scale="250" src="PNG:SYS_DROPBTN_250" states="3"/>
-  <imglist name="_skin.sys.dropbtn" scale="300" src="PNG:SYS_DROPBTN_300" states="3"/>
+  <imglist name="_skin.sys.dropbtn" src="PNG:SYS_DROPBTN" states="3"/>
+  <imglist name="_skin.sys.tree.toggle" src="PNG:SYS_TREE_TOGGLE" states="6"/>
+  <imglist name="_skin.sys.tree.checkbox" src="PNG:SYS_TREE_CHECKBOX" states="9"/>
+  <imglist name="_skin.sys.tab.page" src="PNG:SYS_TAB_PAGE" states="3"/>
+  <imgframe name="_skin.sys.header" src="PNG:SYS_HEADER" margin-x="3" margin-y="3" states="4"/>
+  <imgframe name="_skin.sys.split.vert" src="PNG:SYS_SPLIT_VERT" top="20" bottom="10"/>
+  <imgframe name="_skin.sys.split.horz" src="PNG:SYS_SPLIT_HORZ" left="20" right="10"/>
+  <imgframe name="_skin.sys.prog.bkgnd" src="PNG:SYS_PROG_BKGND" margin-x="5"/>
+  <imgframe name="_skin.sys.prog.bar" src="PNG:SYS_PROG_BAR" margin-x="3"/>
+  <imgframe name="_skin.sys.vert.prog.bkgnd" src="PNG:SYS_VERT_PROG_BKGND" margin-y="5"/>
+  <imgframe name="_skin.sys.vert.prog.bar" src="PNG:SYS_VERT_PROG_BAR" margin-y="3"/>
+  <imglist name="_skin.sys.slider.thumb" src="PNG:SYS_SLIDER_THUMB" states="4"/>
 
-  <imglist name="_skin.sys.tree.toggle" scale="100" src="PNG:SYS_TREE_TOGGLE_100" states="6"/>
-  <imglist name="_skin.sys.tree.toggle" scale="125" src="PNG:SYS_TREE_TOGGLE_125" states="6"/>
-  <imglist name="_skin.sys.tree.toggle" scale="150" src="PNG:SYS_TREE_TOGGLE_150" states="6"/>
-  <imglist name="_skin.sys.tree.toggle" scale="200" src="PNG:SYS_TREE_TOGGLE_200" states="6"/>
+  <imglist name="_skin.sys.btn.close" src="PNG:SYS_BTN_CLOSE" states="3" />
+  <imglist name="_skin.sys.btn.minimize" src="PNG:SYS_BTN_MINIMIZE" states="3" />
+  <imglist name="_skin.sys.btn.maximize" src="PNG:SYS_BTN_MAXIMIZE" states="3" />
+  <imglist name="_skin.sys.btn.restore" src="PNG:SYS_BTN_RESTORE" states="3" />
 
-  <imglist name="_skin.sys.tree.checkbox" scale="100" src="PNG:SYS_TREE_CHECKBOX_100" states="9"/>
-  <imglist name="_skin.sys.tree.checkbox" scale="125" src="PNG:SYS_TREE_CHECKBOX_125" states="9"/>
-  <imglist name="_skin.sys.tree.checkbox" scale="150" src="PNG:SYS_TREE_CHECKBOX_150" states="9"/>
-  <imglist name="_skin.sys.tree.checkbox" scale="200" src="PNG:SYS_TREE_CHECKBOX_200" states="9"/>
-
-  <imgframe name="_skin.sys.header" scale="100" src="PNG:SYS_HEADER_100" margin-x="3" margin-y="3" states="4"/>
-  <imgframe name="_skin.sys.header" scale="125" src="PNG:SYS_HEADER_125" margin-x="3" margin-y="3" states="4"/>
-  <imgframe name="_skin.sys.header" scale="150" src="PNG:SYS_HEADER_150" margin-x="3" margin-y="3" states="4"/>
-  <imgframe name="_skin.sys.header" scale="200" src="PNG:SYS_HEADER_200" margin-x="3" margin-y="3" states="4"/>
-  <!-- 滚动条 -->
-  <imgframe name="_skin.sys.prog.bkgnd" scale="100" src="PNG:SYS_PROG_BKGND_100" margin-x="5"/>
-  <imgframe name="_skin.sys.prog.bkgnd" scale="125" src="PNG:SYS_PROG_BKGND_125" margin-x="5"/>
-  <imgframe name="_skin.sys.prog.bkgnd" scale="150" src="PNG:SYS_PROG_BKGND_150" margin-x="5"/>
-  <imgframe name="_skin.sys.prog.bkgnd" scale="200" src="PNG:SYS_PROG_BKGND_200" margin-x="5"/>
-
-  <imgframe name="_skin.sys.prog.bar" scale="100" src="PNG:SYS_PROG_BAR_100" margin-x="3"/>
-  <imgframe name="_skin.sys.prog.bar" scale="125" src="PNG:SYS_PROG_BAR_125" margin-x="3"/>
-  <imgframe name="_skin.sys.prog.bar" scale="150" src="PNG:SYS_PROG_BAR_150" margin-x="3"/>
-  <imgframe name="_skin.sys.prog.bar" scale="200" src="PNG:SYS_PROG_BAR_200" margin-x="3"/>
-
-  <imgframe name="_skin.sys.vert.prog.bkgnd" scale="100" src="PNG:SYS_VERT_PROG_BKGND_100" margin-y="5"/>
-  <imgframe name="_skin.sys.vert.prog.bkgnd" scale="125" src="PNG:SYS_VERT_PROG_BKGND_125" margin-y="5"/>
-  <imgframe name="_skin.sys.vert.prog.bkgnd" scale="150" src="PNG:SYS_VERT_PROG_BKGND_150" margin-y="5"/>
-  <imgframe name="_skin.sys.vert.prog.bkgnd" scale="200" src="PNG:SYS_VERT_PROG_BKGND_200" margin-y="5"/>
-
-  <imgframe name="_skin.sys.vert.prog.bar" scale="100" src="PNG:SYS_VERT_PROG_BAR_100" margin-y="3"/>
-  <imgframe name="_skin.sys.vert.prog.bar" scale="125" src="PNG:SYS_VERT_PROG_BAR_125" margin-y="3"/>
-  <imgframe name="_skin.sys.vert.prog.bar" scale="150" src="PNG:SYS_VERT_PROG_BAR_150" margin-y="3"/>
-  <imgframe name="_skin.sys.vert.prog.bar" scale="200" src="PNG:SYS_VERT_PROG_BAR_200" margin-y="3"/>
-
-  <imglist name="_skin.sys.slider.thumb" scale="100" src="PNG:SYS_SLIDER_THUMB_100" states="4"/>
-  <imglist name="_skin.sys.slider.thumb" scale="125" src="PNG:SYS_SLIDER_THUMB_125" states="4"/>
-  <imglist name="_skin.sys.slider.thumb" scale="150" src="PNG:SYS_SLIDER_THUMB_150" states="4"/>
-  <imglist name="_skin.sys.slider.thumb" scale="200" src="PNG:SYS_SLIDER_THUMB_200" states="4"/>
-  <!-- 系统按钮 -->
-  <imglist name="_skin.sys.btn.close" scale="100" src="PNG:SYS_BTN_CLOSE_100" states="3" />
-  <imglist name="_skin.sys.btn.close" scale="125" src="PNG:SYS_BTN_CLOSE_125" states="3" />
-  <imglist name="_skin.sys.btn.close" scale="150" src="PNG:SYS_BTN_CLOSE_150" states="3" />
-  <imglist name="_skin.sys.btn.close" scale="200" src="PNG:SYS_BTN_CLOSE_200" states="3" />
-
-  <imglist name="_skin.sys.btn.minimize" scale="100" src="PNG:SYS_BTN_MINIMIZE_100" states="3" />
-  <imglist name="_skin.sys.btn.minimize" scale="125" src="PNG:SYS_BTN_MINIMIZE_125" states="3" />
-  <imglist name="_skin.sys.btn.minimize" scale="150" src="PNG:SYS_BTN_MINIMIZE_150" states="3" />
-  <imglist name="_skin.sys.btn.minimize" scale="200" src="PNG:SYS_BTN_MINIMIZE_200" states="3" />
-
-  <imglist name="_skin.sys.btn.maximize" scale="100" src="PNG:SYS_BTN_MAXIMIZE_100" states="3" />
-  <imglist name="_skin.sys.btn.maximize" scale="125" src="PNG:SYS_BTN_MAXIMIZE_125" states="3" />
-  <imglist name="_skin.sys.btn.maximize" scale="150" src="PNG:SYS_BTN_MAXIMIZE_150" states="3" />
-  <imglist name="_skin.sys.btn.maximize" scale="200" src="PNG:SYS_BTN_MAXIMIZE_200" states="3" />
-
-  <imglist name="_skin.sys.btn.restore" scale="100" src="PNG:SYS_BTN_RESTORE_100" states="3" />
-  <imglist name="_skin.sys.btn.restore" scale="125" src="PNG:SYS_BTN_RESTORE_125" states="3" />
-  <imglist name="_skin.sys.btn.restore" scale="150" src="PNG:SYS_BTN_RESTORE_150" states="3" />
-  <imglist name="_skin.sys.btn.restore" scale="200" src="PNG:SYS_BTN_RESTORE_200" states="3" />
-  <!-- 菜单 -->
-  <imglist name="_skin.sys.menu.check" scale="100" src="PNG:SYS_MENU_CHECK_100" states="3" />
-  <imglist name="_skin.sys.menu.check" scale="125" src="PNG:SYS_MENU_CHECK_125" states="3" />
-  <imglist name="_skin.sys.menu.check" scale="150" src="PNG:SYS_MENU_CHECK_150" states="3" />
-  <imglist name="_skin.sys.menu.check" scale="200" src="PNG:SYS_MENU_CHECK_200" states="3" />
-
+  <imglist name="_skin.sys.menu.check" src="PNG:SYS_MENU_CHECK" states="3" />
   <imglist name="_skin.sys.menu.arrow" src="PNG:SYS_MENU_ARROW" states="2" />
   <imgframe name="_skin.sys.menu.sep" src="PNG:SYS_MENU_SEP" left="25"/>
   <imgframe name="_skin.sys.menu.border" src="PNG:SYS_MENU_BORDER" margin-x="2" margin-y="2"/>
   <imgframe name="_skin.sys.menu.skin" src="PNG:SYS_MENU_SKIN" states="2" left="25" top="2" bottom="2"/>
-  <!-- 分割条 -->
-  <imgframe name="_skin.sys.split.vert" src="PNG:SYS_SPLIT_VERT" top="20" bottom="10"/>
-  <imgframe name="_skin.sys.split.horz" src="PNG:SYS_SPLIT_HORZ" left="20" right="10"/>
-
-  <imglist name="_skin.sys.tab.page" src="PNG:SYS_TAB_PAGE" states="3"/>
-  <button name="_skin.sys.btn.normal" colorBorder="#7D9EBC" colorUp="#FEFEFE" colorDown="#C6E2FD" colorUpHover="#FEFEFE" colorDownHover="#DBEDFE" colorUpPush="#C6E2FD" colorDownPush="#FEFEFE"/>
-  <imgframe name="_skin.sys.border" src="PNG:SYS_BORDER" states="2" margin-x="2" margin-y="2"/>
   <imglist name="_skin.sys.icons" src="PNG:SYS_ICONS" states="12"/>
-  <imgframe name="_skin.sys.wnd.bkgnd" src="PNG:SYS_WND_BKGND" margin="5,40,5,40" />
+  <imgframe name="_skin.sys.wnd.bkgnd"  src="PNG:SYS_WND_BKGND" left="5" right="5" top="40" bottom="40"/>
+  <imglist name="_skin.sys.btn.prev" src="PNG:SYS_BTN_PREV" states="3" />
+  <imglist name="_skin.sys.btn.next" src="PNG:SYS_BTN_NEXT" states="3" />
+  <imglist name="_skin.sys.btn.spin" src="PNG:SYS_BTN_SPIN" states="6" vertical="1" />
 </skin>

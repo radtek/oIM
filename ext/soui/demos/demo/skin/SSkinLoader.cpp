@@ -1,9 +1,9 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "SSkinLoader.h"
 #include "res.mgr\SResProvider.h"
 
-template<>
-SSkinLoader * SSingleton<SSkinLoader>::ms_Singleton = NULL;
+//template<>
+//SSkinLoader * SSingleton<SSkinLoader>::ms_Singleton = NULL;
 
 SSkinLoader::SSkinLoader(SApplication* theApp):m_pResProvider(NULL),m_theApp(theApp)
 {

@@ -1,37 +1,32 @@
 ﻿<SOUI name="mainWindow"
-  trCtx="dlg_main"
-  title="@string/title"
-  bigIcon="ICON_LOGO:32"
-  smallIcon="ICON_LOGO:16"
-  width="600"
-  height="400"
-  margin="5,5,5,5"
-  resizable="1"
-  wndType="appMain"
-  appWnd="1"
-  translucent="1"
-  inset="5,15,5,5"
-  >
+      trCtx="dlg_main"
+      title="@string/title" 
+      bigIcon="ICON_LOGO:32" 
+      smallIcon="ICON_LOGO:16" 
+      width="600" 
+      height="400"  
+      margin="5,5,5,5" 
+      resizable="1" 
+      wndType="appMain"
+    appWnd="1"
+    translucent="1"
+>
   <root skin="_skin.sys.wnd.bkgnd" cache="1">
-  	<class name="cls_combobox" height="24" dropDown="1" dropHeight="150" dotted="0" animateTime="200" drawFocusRect="0" colorText="#000000ff" colorBkgnd="#FFFFFFFF" margin-x="0"/>
-    <class name="cls_liststyle" iconSkin="" itemHeight="22" colorBkgnd="#ffffffff" colorText="#000000" colorSelText="#FFFFFF" colorItemBkgnd="#FFFFFFFF" colorItemSelBkgnd="rgb(51,153,255)" inset="6,0,0,0" />
-    <class name="cls_editstyle" inset="5,3,5,0" colorText="#000000" align="left" colorBkgnd="#FFFFFF" />
-
-    <caption pos="0,0,-0,@-1" font="adding:2" layout="hbox" gravity="center" padding="5,0,5,0">
+    <caption pos="0,0,-0,@-1" font="adding:0" layout="hbox" gravity="center" padding="5,0,5,0">
       <icon size="-1,-1" src="ICON_LOGO:16"/>
       <text size="-1,-1" extend_left="5">@string/title</text>
       <window size="0,0" weight="1" visible="0"/>
       <button size="100,-1" padding="0,2,0,2" name="btn_menu">menu</button>
-      <imgbtn size="33dp,24dp" name="btn_min" skin="_skin.sys.btn.minimize" animate="1" />
-      <window size="33dp,24dp">
-        <imgbtn pos="]-33dp,0dp,33dp,24dp" name="btn_max" skin="_skin.sys.btn.maximize" animate="1" />
-        <imgbtn pos="]-33dp,0dp,33dp,24dp" name="btn_restore" skin="_skin.sys.btn.restore" show="0" display="0" animate="1" />
+      <imgbtn size="-1,-1" name="btn_min" skin="_skin.sys.btn.minimize"  animate="1" />
+      <window size="-1,-1">
+        <imgbtn pos="0,0" name="btn_max" skin="_skin.sys.btn.maximize"  animate="1" />
+        <imgbtn pos="0,0" name="btn_restore" skin="_skin.sys.btn.restore"  show="0" animate="1" />
       </window>
-      <imgbtn size="33dp,24dp" name="btn_close" skin="_skin.sys.btn.close" tip="close" animate="1"/>
+      <imgbtn size="-1,-1" name="btn_close" skin="_skin.sys.btn.close"  tip="close" animate="1"/>
     </caption>
     <window pos="5,[2,-5,-5" layout="vbox">
       <group size="-1,-1" layout="hbox" layout_gravity="center" text="language" padding="5,5,5,10">
-        <radio size="-1,-1" text="chinese" name="lang_cn" id="100" checked="1" enable="1"/>
+        <radio size="-1,-1" text="chinese" name="lang_cn" id="100" checked="1"/>
         <radio size="-1,-1" text="english" extend_left="20" name="lang_en" id="101"/>
       </group>
       <window size="-1,-1" layout="hbox">
@@ -48,7 +43,7 @@
         </page>
         <page title="page2">
           <mclistview name="mclv_test" colorBkgnd="@color/white" pos="10,10,-10,-10" headerHeight="30dp">
-            <header align="center" itemSwapEnable="1" fixWidth="0" font="underline:0,adding:-3" sortHeader="1" colorBkgnd="#ffffff">
+            <header align="center" itemSwapEnable="1" fixWidth="0" font="underline:0,adding:-3" sortHeader="1" colorBkgnd="#ffffff" >
               <items>
                 <item width="150">name</item>
                 <item width="150">gender</item>
@@ -66,7 +61,7 @@
               <window name="col3" clipClient="1">
                 <text name="txt_age" pos="|0,|0" offset="-0.5,-0.5"/>
               </window>
-              <window name="col4" clipClient="1">
+              <window  name="col4" clipClient="1">
                 <text name="txt_score" pos="|0,|0" offset="-0.5,-0.5" colorText="#ff0000"/>
               </window>
             </template>
@@ -74,44 +69,14 @@
           </mclistview>
         </page>
         <page title="page3">
-          <img pos="5,5" skin="shape_test" id="2000"/>
+          <window pos="0,0,-0,-0" skin="chat_bg"/>
+          <img pos="5,5" skin="shape_test" id="2000"/>          
           <edit pos="|0,|0,@200dp,@30dp" offset="-0.5,-0.5" font="size:18dp">编辑窗口</edit>
-          <combobox name="cmb_sql" class="cls_combobox" dropDown="0" pos="0,-24,-34,-0">
-						<liststyle class="cls_liststyle" />
-						<editstyle class="cls_editstyle" wantReturn="0" />
-						<items>
-							<item text="PRAGMA integrity_check"/>
-							<item text="PRAGMA user_version" />
-							<item text="SELECT * FROM sqlite_master" />
-							<item text="SELECT name,sql FROM sqlite_master WHERE type='table'" />
-														<item text="PRAGMA user_version" />
-
-							<item text="PRAGMA user_version" />
-							<item text="PRAGMA user_version" />
-							<item text="PRAGMA user_version" />
-							<item text="PRAGMA user_version" />
-							<item text="PRAGMA user_version" />
-							<item text="PRAGMA user_version" />
-							<item text="PRAGMA user_version" />
-							<item text="PRAGMA user_version" />
-
-							<item text="SELECT count(*) AS depts FROM t_dept" />
-							<item text="SELECT count(*) AS emps FROM t_emp" />
-							<item text="SELECT sid_, type, title, remark, flag, cid, ctime, utime, off_msg, new_msg, sutime, virgroupid, (SELECT toptime FROM t_session_top WHERE t_session_top.sid_=t_session.sid_) AS toptime FROM t_session WHERE (flag&89) ORDER BY toptime DESC,utime DESC" />
-						</items>
-					</combobox>
         </page>
-        <page title="page4"  >
-			<window size="-1,-1" colorBkgnd="#07479f">
-          <img skin="_gear1" pos="0dp,10dp,@100dp,@100dp" />
-          <img skin="_gear2" pos="0dp,200dp,@95dp,@95dp" />
-
-          <img skin="_gear3" pos="200dp,10dp,@100dp,@100dp" />
-          <img skin="_gear4" pos="200dp,200dp,@115dp,@80dp" />
-
-          <img skin="_gear5" pos="400dp,10dp,@114dp,@81dp" />
-          <img skin="_gear6" pos="400dp,200dp,@100dp,@100dp" />
-</window>
+        <page title="page4" layout="gridLayout" columnCount="2" rowCount="2" xInterval="5dp" yInterval="5dp">
+          <window size="30,30" colorBkgnd="#ff0000"/>
+          <window size="-2,-2" colorBkgnd="#ffff00" rowSpan="2" columnWeight="1"/>
+          <window size="-2,30" colorBkgnd="#ff00ff"/>
         </page>
       </tabctrl>
     </window>

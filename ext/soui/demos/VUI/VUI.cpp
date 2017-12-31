@@ -1,4 +1,4 @@
-// VUI.cpp : Defines the entry point for the application.
+ï»¿// VUI.cpp : Defines the entry point for the application.
 //
 
 #include "stdafx.h"
@@ -17,7 +17,7 @@ int WINAPI _tWinMain(HINSTANCE hInstance, HINSTANCE /*hPrevInstance*/, LPTSTR /*
 
 	int nRet = 0; 
 
-	//½«³ÌĞòµÄÔËĞĞÂ·¾¶ĞŞ¸Äµ½ÏîÄ¿ËùÔÚÄ¿Â¼ËùÔÚµÄÄ¿Â¼
+	//å°†ç¨‹åºçš„è¿è¡Œè·¯å¾„ä¿®æ”¹åˆ°é¡¹ç›®æ‰€åœ¨ç›®å½•æ‰€åœ¨çš„ç›®å½•
 	TCHAR szCurrentDir[MAX_PATH]={0};
 	GetModuleFileName( NULL, szCurrentDir, sizeof(szCurrentDir) );
 	LPTSTR lpInsertPos = _tcsrchr( szCurrentDir, _T('\\') );
@@ -37,20 +37,15 @@ int WINAPI _tWinMain(HINSTANCE hInstance, HINSTANCE /*hPrevInstance*/, LPTSTR /*
 
 		SApplication *theApp=new SApplication(pRenderFactory,hInstance);
 
-		//HMODULE hSysResource=LoadLibrary(SYS_NAMED_RESOURCE);
-		//if(hSysResource)
-		//{
-		//	CAutoRefPtr<IResProvider> sysSesProvider;
-		//	CreateResProvider(RES_PE,(IObjRef**)&sysSesProvider);
-		//	sysSesProvider->Init((WPARAM)hSysResource,0);
-		//	theApp->LoadSystemNamedResource(sysSesProvider);
-		//}
-        {
-            CAutoRefPtr<IResProvider> sysResProvider;
-            CreateResProvider(RES_PE, (IObjRef**)&sysResProvider);
-            sysResProvider->Init((WPARAM)hInstance, 0);
-            theApp->LoadSystemNamedResource(sysResProvider);
-        }
+		HMODULE hSysResource=LoadLibrary(SYS_NAMED_RESOURCE);
+		if(hSysResource)
+		{
+			CAutoRefPtr<IResProvider> sysSesProvider;
+			CreateResProvider(RES_PE,(IObjRef**)&sysSesProvider);
+			sysSesProvider->Init((WPARAM)hSysResource,0);
+			theApp->LoadSystemNamedResource(sysSesProvider);
+		}
+
 
 		CAutoRefPtr<IResProvider>   pResProvider;
 		CreateResProvider(RES_FILE,(IObjRef**)&pResProvider);
@@ -62,14 +57,14 @@ int WINAPI _tWinMain(HINSTANCE hInstance, HINSTANCE /*hPrevInstance*/, LPTSTR /*
 		theApp->AddResProvider(pResProvider);
 
 
-		{//ÔÚÕâÀï¼ÓÈëÖ÷´°¿ÚÔËĞĞ´úÂë
+		{//åœ¨è¿™é‡ŒåŠ å…¥ä¸»çª—å£è¿è¡Œä»£ç 
 			CMainWnd wndMain;  
 			wndMain.Create(GetActiveWindow(),0,0,0,0);
 			wndMain.SendMessage(WM_INITDIALOG);
 			wndMain.CenterWindow(wndMain.m_hWnd);
 			wndMain.ShowWindow(SW_SHOWNORMAL);
 			nRet=theApp->Run(wndMain.m_hWnd);
-			//³ÌĞò½áÊø
+			//ç¨‹åºç»“æŸ
 
 		}
 

@@ -1,4 +1,4 @@
-#include <stdio.h>
+ï»¿#include <stdio.h>
 #include <stdlib.h>
 #include <windows.h>
 
@@ -108,10 +108,10 @@ APNGDATA * loadPng(IPngReader *pSrc)
     apng->nWid  = png_ptr_read->width;
     apng->nHei = png_ptr_read->height;
     
-    //Í¼ÏñÖ¡Êý¾Ý
+    //Í¼ï¿½ï¿½Ö¡ï¿½ï¿½ï¿½ï¿½
     dataFrame = (png_bytep)malloc(bytesPerRow * apng->nHei);
     memset(dataFrame,0,bytesPerFrame);
-    //»ñµÃÉ¨ÃèÐÐÖ¸Õë
+    //ï¿½ï¿½ï¿½É¨ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½
     rowPointers = (png_bytepp)malloc(sizeof(png_bytep)* apng->nHei);
     for(int i=0;i<apng->nHei;i++)
         rowPointers[i] = dataFrame + bytesPerRow * i;
@@ -125,9 +125,9 @@ APNGDATA * loadPng(IPngReader *pSrc)
         apng->nFrames =1;
 	}else
 	{//load apng
-        apng->nFrames  = png_get_num_frames(png_ptr_read, info_ptr_read);//»ñÈ¡×ÜÖ¡Êý
+        apng->nFrames  = png_get_num_frames(png_ptr_read, info_ptr_read);//ï¿½ï¿½È¡ï¿½ï¿½Ö¡ï¿½ï¿½
 
-        png_bytep data = (png_bytep)malloc( bytesPerFrame * apng->nFrames);//ÎªÃ¿Ò»Ö¡·ÖÅäÄÚ´æ
+        png_bytep data = (png_bytep)malloc( bytesPerFrame * apng->nFrames);//ÎªÃ¿Ò»Ö¡ï¿½ï¿½ï¿½ï¿½ï¿½Ú´ï¿½
         png_bytep curFrame = (png_bytep)malloc(bytesPerFrame);
         memset(curFrame,0,bytesPerFrame);
                
@@ -136,10 +136,10 @@ APNGDATA * loadPng(IPngReader *pSrc)
         
         for(int iFrame = 0;iFrame<apng->nFrames;iFrame++)
         {
-            //¶ÁÖ¡ÐÅÏ¢Í·
+            //ï¿½ï¿½Ö¡ï¿½ï¿½Ï¢Í·
             png_read_frame_head(png_ptr_read, info_ptr_read);
             
-            //¼ÆËã³öÖ¡ÑÓÊ±ÐÅÏ¢
+            //ï¿½ï¿½ï¿½ï¿½ï¿½Ö¡ï¿½ï¿½Ê±ï¿½ï¿½Ï¢
             if (png_get_valid(png_ptr_read, info_ptr_read, PNG_INFO_fcTL))
             {
                 png_uint_16 delay_num = info_ptr_read->next_frame_delay_num,
@@ -159,15 +159,15 @@ APNGDATA * loadPng(IPngReader *pSrc)
             {
                 apng->pDelay[iFrame] = 0;
             }
-            //¶ÁÈ¡PNGÖ¡µ½dataFrameÖÐ£¬²»º¬Æ«ÒÆÊý¾Ý
+            //ï¿½ï¿½È¡PNGÖ¡ï¿½ï¿½dataFrameï¿½Ð£ï¿½ï¿½ï¿½ï¿½ï¿½Æ«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             png_read_image(png_ptr_read, rowPointers);
-            {//½«µ±Ç°Ö¡Êý¾Ý»æÖÆµ½µ±Ç°ÏÔÊ¾Ö¡ÖÐ:1)»ñµÃ»æÖÆµÄ±³¾°£»2)¼ÆËã³ö»æÖÆÎ»ÖÃ; 3)Ê¹ÓÃÖ¸¶¨µÄ»æÖÆ·½Ê½Óë±³¾°»ìºÏ
+            {//ï¿½ï¿½ï¿½ï¿½Ç°Ö¡ï¿½ï¿½ï¿½Ý»ï¿½ï¿½Æµï¿½ï¿½ï¿½Ç°ï¿½ï¿½Ê¾Ö¡ï¿½ï¿½:1)ï¿½ï¿½Ã»ï¿½ï¿½ÆµÄ±ï¿½ï¿½ï¿½ï¿½ï¿½2)ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½; 3)Ê¹ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½Ä»ï¿½ï¿½Æ·ï¿½Ê½ï¿½ë±³ï¿½ï¿½ï¿½ï¿½ï¿½
 
 
-                //1)¼ÆËã³ö»æÖÆÎ»ÖÃ
+                //1)ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½
                 png_bytep lineDst=curFrame+info_ptr_read->next_frame_y_offset*bytesPerRow + 4 * info_ptr_read->next_frame_x_offset;
                 png_bytep lineSour=dataFrame;
-                //2)Ê¹ÓÃÖ¸¶¨µÄ»æÖÆ·½Ê½Óë±³¾°»ìºÏ
+                //2)Ê¹ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½Ä»ï¿½ï¿½Æ·ï¿½Ê½ï¿½ë±³ï¿½ï¿½ï¿½ï¿½ï¿½
                 switch(info_ptr_read->next_frame_blend_op)
                 {
                 case PNG_BLEND_OP_OVER:
@@ -209,7 +209,7 @@ APNGDATA * loadPng(IPngReader *pSrc)
 
                 lineDst=curFrame+info_ptr_read->next_frame_y_offset*bytesPerRow + 4 * info_ptr_read->next_frame_x_offset;
 
-                //3)´¦Àíµ±Ç°Ö¡»æÖÆÇøÓò
+                //3)ï¿½ï¿½ï¿½ï¿½Ç°Ö¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                 switch(info_ptr_read->next_frame_dispose_op)
                 {
                 case PNG_DISPOSE_OP_BACKGROUND://clear background

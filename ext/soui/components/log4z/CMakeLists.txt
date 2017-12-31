@@ -1,4 +1,4 @@
-
+﻿
 include_directories(${PROJECT_SOURCE_DIR}/config)
 include_directories(${PROJECT_SOURCE_DIR}/utilities/include)
 include_directories(${PROJECT_SOURCE_DIR}/SOUI/include)
@@ -26,3 +26,4 @@ set(COM_LIBS ${COM_LIBS} log4z CACHE INTERNAL "com_lib")
 set_target_properties (log4z PROPERTIES
     FOLDER components
 )
+cotire(log4z)

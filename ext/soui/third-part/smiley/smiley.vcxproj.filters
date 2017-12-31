@@ -24,7 +24,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\controls.extend\smiley\SSmileyCtrl.h">
+    <ClInclude Include="..\..\controls.extend\smiley\SSmileyCtrl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
