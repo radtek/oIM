@@ -2,7 +2,7 @@
 *.user
 *.ilk
 *.sdf
-*.sou
+*.suo
 *.pdb
 *.lib
 *.exp

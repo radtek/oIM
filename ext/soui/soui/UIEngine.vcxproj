@@ -490,7 +490,7 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies>Usp10.lib;Opengl32.lib;lua-52.lib;png.lib;smiley.lib;skia.lib;soui.lib;utilities.lib;zlib.lib;7z.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\..\..\lib\$(Platform);$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\..\..\lib\$(Platform);$(OutDir);$(SOUIPATH)\bin;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <DataExecutionPrevention>true</DataExecutionPrevention>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -533,8 +533,8 @@
       <PrecompiledHeaderFile>include\souistd.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>Usp10.lib;Opengl32.lib;lua-52d.lib;pngd.lib;skiad.lib;smileyd.lib;souid.lib;utilitiesd.lib;zlibd.lib;7zd.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\..\..\lib\$(Platform);$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Opengl32.lib;lua-52d.lib;pngd.lib;skiad.lib;smileyd.lib;souid.lib;scintillad.lib;Usp10.lib;utilitiesd.lib;zlibd.lib;7zd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\..\..\lib\$(Platform);$(OutDir);$(SOUIPATH)\bin;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <DataExecutionPrevention>true</DataExecutionPrevention>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <IgnoreImportLibrary>true</IgnoreImportLibrary>
