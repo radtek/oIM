@@ -1,4 +1,4 @@
-#include "souistd.h"
+#include "stdafx.h"
 #include "SSkinImgFrame3.h"
 #include <souicoll.h>
 

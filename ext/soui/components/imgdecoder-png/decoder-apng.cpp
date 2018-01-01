@@ -108,10 +108,10 @@ APNGDATA * loadPng(IPngReader *pSrc)
     apng->nWid  = png_ptr_read->width;
     apng->nHei = png_ptr_read->height;
     
-    //ͼ��֡����
+    //图像帧数据
     dataFrame = (png_bytep)malloc(bytesPerRow * apng->nHei);
     memset(dataFrame,0,bytesPerFrame);
-    //���ɨ����ָ��
+    //获得扫描行指针
     rowPointers = (png_bytepp)malloc(sizeof(png_bytep)* apng->nHei);
     for(int i=0;i<apng->nHei;i++)
         rowPointers[i] = dataFrame + bytesPerRow * i;
@@ -125,9 +125,9 @@ APNGDATA * loadPng(IPngReader *pSrc)
         apng->nFrames =1;
 	}else
 	{//load apng
-        apng->nFrames  = png_get_num_frames(png_ptr_read, info_ptr_read);//��ȡ��֡��
+        apng->nFrames  = png_get_num_frames(png_ptr_read, info_ptr_read);//获取总帧数
 
-        png_bytep data = (png_bytep)malloc( bytesPerFrame * apng->nFrames);//Ϊÿһ֡�����ڴ�
+        png_bytep data = (png_bytep)malloc( bytesPerFrame * apng->nFrames);//为每一帧分配内存
         png_bytep curFrame = (png_bytep)malloc(bytesPerFrame);
         memset(curFrame,0,bytesPerFrame);
                
@@ -136,10 +136,10 @@ APNGDATA * loadPng(IPngReader *pSrc)
         
         for(int iFrame = 0;iFrame<apng->nFrames;iFrame++)
         {
-            //��֡��Ϣͷ
+            //读帧信息头
             png_read_frame_head(png_ptr_read, info_ptr_read);
             
-            //�����֡��ʱ��Ϣ
+            //计算出帧延时信息
             if (png_get_valid(png_ptr_read, info_ptr_read, PNG_INFO_fcTL))
             {
                 png_uint_16 delay_num = info_ptr_read->next_frame_delay_num,
@@ -159,15 +159,15 @@ APNGDATA * loadPng(IPngReader *pSrc)
             {
                 apng->pDelay[iFrame] = 0;
             }
-            //��ȡPNG֡��dataFrame�У�����ƫ������
+            //读取PNG帧到dataFrame中，不含偏移数据
             png_read_image(png_ptr_read, rowPointers);
-            {//����ǰ֡���ݻ��Ƶ���ǰ��ʾ֡��:1)��û��Ƶı�����2)���������λ��; 3)ʹ��ָ���Ļ��Ʒ�ʽ�뱳�����
+            {//将当前帧数据绘制到当前显示帧中:1)获得绘制的背景；2)计算出绘制位置; 3)使用指定的绘制方式与背景混合
 
 
-                //1)���������λ��
+                //1)计算出绘制位置
                 png_bytep lineDst=curFrame+info_ptr_read->next_frame_y_offset*bytesPerRow + 4 * info_ptr_read->next_frame_x_offset;
                 png_bytep lineSour=dataFrame;
-                //2)ʹ��ָ���Ļ��Ʒ�ʽ�뱳�����
+                //2)使用指定的绘制方式与背景混合
                 switch(info_ptr_read->next_frame_blend_op)
                 {
                 case PNG_BLEND_OP_OVER:
@@ -209,7 +209,7 @@ APNGDATA * loadPng(IPngReader *pSrc)
 
                 lineDst=curFrame+info_ptr_read->next_frame_y_offset*bytesPerRow + 4 * info_ptr_read->next_frame_x_offset;
 
-                //3)����ǰ֡��������
+                //3)处理当前帧绘制区域
                 switch(info_ptr_read->next_frame_dispose_op)
                 {
                 case PNG_DISPOSE_OP_BACKGROUND://clear background

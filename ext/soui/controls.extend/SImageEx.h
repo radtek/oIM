@@ -3,7 +3,7 @@
 
 namespace SOUI
 {
-class SOUI_EXP SImageEx : public SImageWnd
+class SImageEx : public SImageWnd
 {
     SOUI_CLASS_NAME(SImageWnd, L"imgex")
 public:

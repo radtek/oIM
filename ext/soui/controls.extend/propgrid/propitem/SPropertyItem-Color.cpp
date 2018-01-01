@@ -1,4 +1,4 @@
-#include "souistd.h"
+#include "StdAfx.h"
 #include "SPropertyItem-Color.h"
 #include "../SPropertyEmbedWndHelper.hpp"
 #include "../SPropertyGrid.h"

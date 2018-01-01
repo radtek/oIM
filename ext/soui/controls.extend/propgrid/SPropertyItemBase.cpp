@@ -1,4 +1,4 @@
-#include "souistd.h"
+#include "StdAfx.h"
 #include "SPropertyItemBase.h"
 #include "SPropertyGrid.h"
 

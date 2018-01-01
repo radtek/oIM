@@ -1,4 +1,4 @@
-#include "souistd.h"
+#include "stdafx.h"
 #include "SRatingBar.h"
 
 namespace SOUI

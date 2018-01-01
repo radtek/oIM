@@ -1,4 +1,4 @@
-ï»¿// Microsoft Visual C++ generated resource script.
+// Microsoft Visual C++ generated resource script.
 //
 #define APSTUDIO_READONLY_SYMBOLS
 /////////////////////////////////////////////////////////////////////////////
@@ -66,7 +66,7 @@ BEGIN
     BEGIN
         BLOCK "080404b0"
         BEGIN
-            VALUE "CompanyName", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"
+            VALUE "CompanyName", "Æô³ÌÈí¼þ"
             VALUE "FileDescription", "imgdecoder-png"
             VALUE "FileVersion", "1, 0, 0, 1"
             VALUE "InternalName", "imgdecoder-png"

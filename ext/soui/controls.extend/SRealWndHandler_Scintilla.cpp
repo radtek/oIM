@@ -1,4 +1,4 @@
-#include "souistd.h"
+#include "StdAfx.h"
 #include "SRealWndHandler_Scintilla.h"
 #include "ScintillaWnd.h"
 

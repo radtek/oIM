@@ -5,7 +5,7 @@
 namespace SOUI
 {
 
-class SOUI_EXP SText : public SStatic
+class SText : public SStatic
 {
     SOUI_CLASS_NAME(SStatic, L"textex")
 public:

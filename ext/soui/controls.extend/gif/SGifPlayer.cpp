@@ -1,4 +1,4 @@
-#include "souistd.h"
+#include "stdafx.h"
 #include "SGifPlayer.h"
 #include "sskingif.h"
 #include "SSkinAPNG.h"

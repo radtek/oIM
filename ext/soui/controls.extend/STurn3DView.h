@@ -11,7 +11,7 @@
 #include <event/Events.h>
 namespace SOUI
 {
-    class SOUI_EXP EventTurn3d : public TplEventArgs<EventTurn3d>
+    class EventTurn3d : public TplEventArgs<EventTurn3d>
     {
         SOUI_CLASS_NAME(EventTurn3d,L"on_turn3d")
     public:
@@ -20,7 +20,7 @@ namespace SOUI
         BOOL bTurn2Front_;
     };
     
-    class SOUI_EXP STurn3dView : public SWindow
+    class STurn3dView : public SWindow
     {
         SOUI_CLASS_NAME(STurn3dView, L"Turn3dView")
     public:

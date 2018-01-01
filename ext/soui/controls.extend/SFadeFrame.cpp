@@ -1,4 +1,4 @@
-#include "souistd.h"
+#include "stdafx.h"
 #include "SFadeFrame.h"
 
 #define TIMER_SHOW  1

@@ -1,7 +1,6 @@
-#include "souistd.h"
+#include "stdafx.h"
 #include "SLoopButton.h"
-namespace SOUI
-{
+
 SLoopButton::SLoopButton():m_iSkinStates(1),m_iCurState(0),m_iState(4)
 {
 	m_evtSet.addEvent(EVENTID(EventBtnSelChanging));
@@ -77,4 +76,3 @@ void SLoopButton::OnLButtonUp(UINT nFlags, CPoint pt)
 		Invalidate();
 	__super::OnLButtonUp(nFlags, pt);
 }
-};

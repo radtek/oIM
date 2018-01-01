@@ -3,7 +3,7 @@
 
 namespace SOUI
 {
-class SOUI_EXP SWindowEx : public SWindow
+class SWindowEx : public SWindow
 {
 public:
     SOUI_CLASS_NAME(SWindowEx, L"windowex")

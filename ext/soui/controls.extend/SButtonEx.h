@@ -2,7 +2,7 @@
 
 namespace SOUI
 {
-    class SOUI_EXP SButtonEx : public SButton
+    class SButtonEx : public SButton
     {
     SOUI_CLASS_NAME(SButtonEx,L"buttonex")
     

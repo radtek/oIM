@@ -8,6 +8,14 @@
 		<IntDir>..\..\obj\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
 		<LinkIncremental Condition="'$(Configuration)'=='Debug'">true</LinkIncremental>
 		<LinkIncremental Condition="'$(Configuration)'=='Release'">false</LinkIncremental>
+		<IncDir>.\;..\..\inc;$(SOUIPATH)\soui;$(SOUIPATH)\soui\include;;$(SOUIPATH)\config;$(SOUIPATH)\components;$(SOUIPATH)\SOUI\include;$(SOUIPATH)\utilities\include</IncDir>
+		<IncDir>$(IncDir);$(SOUIPATH)\third-part\7z;$(SOUIPATH)\third-part\zlib</IncDir>
+		<IncDir>$(IncDir);$(SOUIPATH)\third-part\png;$(SOUIPATH)\third-part\SciLexer\include</IncDir>
+		<IncDir>$(IncDir);$(SOUIPATH)\third-part\Scintilla\include;$(SOUIPATH)\skia\include</IncDir>
+		<IncDir>$(IncDir);$(SOUIPATH)\third-part\sqlite3;$(SOUIPATH)\third-part\stdint</IncDir>
+		<IncDir>$(IncDir);$(SOUIPATH)\third-part\vlc;$(SOUIPATH)\third-part\wke\include</IncDir>
+		<LibDir>$(SOUIPATH)\bin\;..\..\lib\$(Platform)\;$(OutDir)</LibDir>
+		<Pdb>..\..\build\Symbols\$(Platform)\$(Configuration)\$(TargetName).pdb</Pdb>
 	</PropertyGroup>
 	<ItemGroup>
 		<BuildMacro Include="Company">
@@ -17,7 +25,7 @@
 	</ItemGroup>
 	<ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
 		<ClCompile>
-			<AdditionalIncludeDirectories>..\..\inc;$(SOUIPATH)\soui;$(SOUIPATH)\config;$(SOUIPATH)\components;$(SOUIPATH)\SOUI\include;$(SOUIPATH)\utilities\include;$(SOUIPATH)\third-part\7z;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+			<AdditionalIncludeDirectories>$(IncDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
 			<BrowseInformation>false</BrowseInformation>
 			<DebugInformationFormat>EditAndContinue</DebugInformationFormat>
 			<Optimization>Disabled</Optimization>
@@ -28,18 +36,18 @@
 			<WarningLevel>Level3</WarningLevel>
 		</ClCompile>
 		<Link>
-			<AdditionalLibraryDirectories>..\..\lib\$(Platform)\;$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+			<AdditionalLibraryDirectories>$(LibDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
 			<AdditionalDependencies>UIEngine.lib;%(AdditionalDependencies)</AdditionalDependencies>
 			<GenerateDebugInformation>true</GenerateDebugInformation>
 			<GenerateMapFile>false</GenerateMapFile>
-			<ProgramDatabaseFile>..\..\build\Symbols\$(Platform)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
+			<ProgramDatabaseFile>$(Pdb)</ProgramDatabaseFile>
 			<SubSystem>Windows</SubSystem>
 			<SuppressStartupBanner>true</SuppressStartupBanner>
 		</Link>
 	</ItemDefinitionGroup>
 	<ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
 		<ClCompile>
-			<AdditionalIncludeDirectories>..\..\inc;$(SOUIPATH)\config;$(SOUIPATH)\components;$(SOUIPATH)\SOUI\include;$(SOUIPATH)\utilities\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+			<AdditionalIncludeDirectories>$(IncDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
 			<BrowseInformation>false</BrowseInformation>
 			<DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
 			<Optimization>MaxSpeed</Optimization>
@@ -51,10 +59,10 @@
 			<WholeProgramOptimization>true</WholeProgramOptimization>
 		</ClCompile>
 		<Link>
-			<AdditionalLibraryDirectories>..\..\lib\$(Platform)\;$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+			<AdditionalLibraryDirectories>$(LibDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
 			<AdditionalDependencies>UIEngine.lib;%(AdditionalDependencies)</AdditionalDependencies>
 			<GenerateDebugInformation>true</GenerateDebugInformation>
-			<ProgramDatabaseFile>..\..\build\Symbols\$(Platform)\$(Configuration)\$(TargetName).pdb</ProgramDatabaseFile>
+			<ProgramDatabaseFile>$(Pdb)</ProgramDatabaseFile>
 			<GenerateMapFile>false</GenerateMapFile>
 			<SubSystem>Windows</SubSystem>
 			<SuppressStartupBanner>true</SuppressStartupBanner>

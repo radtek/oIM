@@ -1,4 +1,4 @@
-//#include "stdafx.h"
+#include "stdafx.h"
 #include "souistd.h"
 #include "core/Sskin.h"
 #include "ExtendSkins.h"

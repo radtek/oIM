@@ -1,4 +1,4 @@
-#include "souistd.h"
+#include "stdafx.h"
 #include "SChatEdit.h"
 #include "reole/RichEditOle.h"
 

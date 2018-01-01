@@ -1,4 +1,4 @@
-#include "souistd.h"
+#include "StdAfx.h"
 #include "SWkeWebkit.h"
 #include <Imm.h>
 #pragma comment(lib,"imm32.lib")
@@ -59,7 +59,7 @@ namespace SOUI
     SWkeWebkit::~SWkeWebkit(void)
     {
     }
-	
+
     void SWkeWebkit::OnPaint(IRenderTarget *pRT)
     {
         CRect rcClip;

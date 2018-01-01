@@ -2,7 +2,7 @@
 
 namespace SOUI
 {
-    class SOUI_EXP SImageMaskWnd : public SImageWnd
+    class SImageMaskWnd : public SImageWnd
     {
     SOUI_CLASS_NAME(SImageMaskWnd,L"imageMask")
     public:
