@@ -389,7 +389,7 @@ public:
 
 		if ( SQLITE_OK != (i32Ret = ::sqlite3_prepare_v2(m_pDb, pszSql, -1, &pVM, &pszTail)) )
 		{
-			STRACE(_T("Prepare SQL[%s] failed, result:%d"), pszSql, i32Ret);
+			STRACE(_T("Prepare SQL[%S] failed, result:%d"), pszSql, i32Ret);
 			if (bFree)	Free((void*)pszSql);
 			pTable->Release();
 			if (pi32Ret) *pi32Ret = i32Ret;

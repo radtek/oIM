@@ -12,7 +12,7 @@ public:
 	C_CommandLineBase(void)
 		: m_nScale(100)
 		, m_bShowInTaskbar(TRUE)
-		, m_szDbKey(_T("SXIT@0518$YFGZ#"))
+		, m_szDbKey()	//_T("SXIT@0518$YFGZ#") // This is eIM's
 	{
 		// 获取用户当前语言
 		LANGID lang = GetUserDefaultLangID(); 

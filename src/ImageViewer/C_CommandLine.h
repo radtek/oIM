@@ -1,5 +1,5 @@
 #pragma once
-#include "sqllite\I_SQLite.h"
+#include "sqlite3\I_SQLite.h"
 #include "public\C_CommandLineBase.h"
 
 typedef UINT64 QFID;

@@ -13,8 +13,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Logger", "..\src\Logger\Log
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "oIM", "..\src\oIM\oIM.vcxproj", "{BBEB3CB5-0B3C-4483-BC08-E4974A1313D2}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SQLite3", "..\ext\sqlite3\SQLite3.vcxproj", "{DF4A9501-2110-49DB-B008-AE94333CAAB8}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -61,12 +59,6 @@ Global
 		{BBEB3CB5-0B3C-4483-BC08-E4974A1313D2}.Release|Win32.ActiveCfg = Release|Win32
 		{BBEB3CB5-0B3C-4483-BC08-E4974A1313D2}.Release|Win32.Build.0 = Release|Win32
 		{BBEB3CB5-0B3C-4483-BC08-E4974A1313D2}.Release|x64.ActiveCfg = Release|Win32
-		{DF4A9501-2110-49DB-B008-AE94333CAAB8}.Debug|Win32.ActiveCfg = Debug|Win32
-		{DF4A9501-2110-49DB-B008-AE94333CAAB8}.Debug|Win32.Build.0 = Debug|Win32
-		{DF4A9501-2110-49DB-B008-AE94333CAAB8}.Debug|x64.ActiveCfg = Debug|Win32
-		{DF4A9501-2110-49DB-B008-AE94333CAAB8}.Release|Win32.ActiveCfg = Release|Win32
-		{DF4A9501-2110-49DB-B008-AE94333CAAB8}.Release|Win32.Build.0 = Release|Win32
-		{DF4A9501-2110-49DB-B008-AE94333CAAB8}.Release|x64.ActiveCfg = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
