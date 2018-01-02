@@ -35,6 +35,12 @@
     <ClCompile Include="C_UICore.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="STabCtrlEx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SSkinImgListEx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="oIM.rc">
@@ -57,9 +63,15 @@
     <ClInclude Include="C_UICore.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="STabCtrlEx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SSkinImgListEx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="..\..\Resource\$(Company)\uires\uires.idx">
+    <CustomBuild Include="..\Resource\$(Company)\uires\uires.idx">
       <Filter>SoUI Resouece</Filter>
     </CustomBuild>
   </ItemGroup>

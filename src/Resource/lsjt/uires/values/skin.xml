@@ -3,12 +3,11 @@
 	<imgframe name="skin.sys.bkgnd" src="IMG:SYS_BKGND" margin="5,3,5,7" />
 	<imglist name="skin.traymenu.icons" src="img:traymenu_icons" states="9"/>
 	<imglist name="skin.headimg" src="img:HEAD_IMG"/>
-
 	<imglist name="skin.mainbar.session" src="img:MAINBAR_SESSION_IMG" states="3"/>
 	<imglist name="skin.mainbar.setting" src="img:MAINBAR_SETTING_IMG" states="3"/>
 	<imglist name="skin.mainbar.webapp" src="img:MAINBAR_WEBAPP_IMG" states="3"/>
 	<imglist name="skin.mainbar.collect" src="img:MAINBAR_COLLECT_IMG" states="3"/>
 	<imglist name="skin.mainbar.contact" src="img:MAINBAR_CONTACT_IMG" states="3"/>
 	<imglist name="skin.mainbar.msgmgr" src="img:MAINBAR_MSGMGR_IMG" states="3"/>
-	
+	<imglistex name="skin.maintab" imglist="img:MAINTAB_SESSION_NORMAL;img:MAINTAB_CONTACT_NORMAL;img:MAINTAB_WEBAPP_NORMAL;img:MAINTAB_COLLECT_NORMAL;img:MAINTAB_SESSION_HOVER;img:MAINTAB_CONTACT_HOVER;img:MAINTAB_WEBAPP_HOVER;img:MAINTAB_COLLECT_HOVE;img:MAINTAB_SESSION_PRESS;img:MAINTAB_CONTACT_PRESS;img:MAINTAB_WEBAPP_PRES;img:MAINTAB_COLLECT_PRESS" states="12"/>
 </skin>
