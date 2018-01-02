@@ -14,11 +14,7 @@ C_CommandLine::C_CommandLine(void)
 {
 	TCHAR szEnv[128] = { 0 };
 
-	if ( GetEnvironmentVariable(PATH_TOKEN_LOGINNAME, szEnv, _countof(szEnv)) > 0 )
-		m_AccountInfo.szAccount = szEnv;
-
-	if ( GetEnvironmentVariable(PATH_TOKEN_LOGINID, szEnv, _countof(szEnv)) > 0 )
-		m_AccountInfo.dwQeid = _tcstoul(szEnv, NULL, 0);;
+	m_AccountInfo.szAccount = oIMGetPath(PATH_TOKEN_LOGIN);
 }
 
 C_CommandLine::~C_CommandLine(void)

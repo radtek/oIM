@@ -12,7 +12,7 @@ public:
 	C_CommandLineBase(void)
 		: m_nScale(100)
 		, m_bShowInTaskbar(TRUE)
-		, m_szDbKey()	//_T("SXIT@0518$YFGZ#") // This is eIM's
+		, m_szDbKey()	
 	{
 		// 获取用户当前语言
 		LANGID lang = GetUserDefaultLangID(); 
@@ -156,6 +156,6 @@ protected:
 	BOOL		m_bShowInTaskbar;	// 是否显示在任务栏
 	int			m_nScale;			// 放大率：【100，125，150，200】
 	SStringT	m_szLang;			// 语言：【R.string.lang_cn, R.string.lang_en】
-	SStringT	m_szDbKey;			// 数据库密钥
+	SStringT	m_szDbKey;			// 数据库密钥 _T("SXIT@0518$YFGZ#") 
 };
 
