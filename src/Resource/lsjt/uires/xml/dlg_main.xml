@@ -1,4 +1,4 @@
-﻿<SOUI name="mainWindow" trCtx="dlg_main" title="@string/title" bigIcon="ICON_LOGO:32" smallIcon="ICON_LOGO:16" width="600" height="400" sendWheel2Hover="1" maxInset="5,3,10,10" margin="5,3,5,7" resizable="1" wndType="appMain" appWnd="0" minsize="600,400" translucent="1">
+﻿<SOUI name="mainWindow" trCtx="dlg_main" title="@string/title" bigIcon="ICON_LOGO:32" smallIcon="ICON_LOGO:16" width="712" height="502" sendWheel2Hover="1" maxInset="5,3,10,10" margin="5,3,5,7" resizable="1" wndType="appMain" appWnd="0" minsize="600,400" translucent="1">
   <root skin="skin.sys.bkgnd" cache="1">
     <window name="skin.theme" skin="_skin.sys.wnd.bkgnd" pos="5,3,-6,-7">
       <window pos="0,[0,-0,-0">
@@ -9,6 +9,9 @@
           <tabbtn name="btn_mainbar_contact" skin="skin.mainbar.contact" pos="0dp,[0dp,@60dp,@50dp" />
           <tabbtn name="btn_mainbar_webapp" skin="skin.mainbar.webapp" pos="0dp,[0dp,@60dp,@50dp"  />
           <tabbtn name="btn_mainbar_collect" skin="skin.mainbar.collect" pos="0dp,[0dp,@60dp,@50dp"  />
+
+          <button name="btn_mainbar_msgmgr" skin="skin.mainbar.msgmgr" pos="0dp,]-50dp,@60dp,@50dp"  />
+          <button name="btn_mainbar_setting" skin="skin.mainbar.setting" pos="0dp,-50dp,@60dp,@50dp" />
         </caption>
         <!-- 右边客户区 -->
         <window pos="[0,0,-0,-0">
@@ -20,9 +23,9 @@
             <imgbtn name="btn_min" class="cls_sys_min" />
           </caption>
           <window pos="0,[0,-0,-0" _colorBkgnd="rgba(11,22,33,128)">
-            <text pos="|0,|0" offset="-0.5,-0.5">这是一个由SOUI向导生成的APP框架</text>
+            <!-- <text pos="|0,|0" offset="-0.5,-0.5">这是一个由SOUI向导生成的APP框架</text>
             <button pos="|0,[" inset="4,4,4,4" name="cn" offset="-1.1,0" text="lang_cn"/>
-            <button pos="|0,[" inset="4,4,4,4" name="en" offset="-1.1,0" text="lang_en"/>
+            <button pos="|0,[" inset="4,4,4,4" name="en" offset="-1.1,0" text="lang_en"/> -->
           </window>
         </window>
       </window>
