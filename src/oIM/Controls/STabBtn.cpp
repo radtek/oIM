@@ -1,10 +1,9 @@
 ﻿#include "stdafx.h"
 #include "STabBtn.h"
-#include <algorithm>
-#include "souistd.h"
 
 STabBtn::STabBtn()
 {
+	m_nBindTabIndex = 0;
 	m_pBgSkin   = NULL;
     m_bFocusable= FALSE;
 }
@@ -17,7 +16,6 @@ void STabBtn::OnPaint(IRenderTarget *pRT)
    GetClientRect(&rcClient);
 
    m_pBgSkin->Draw(pRT, rcClient, _GetDrawState());
-
     __super::OnPaint(pRT);
 }
 
@@ -32,7 +30,7 @@ UINT STabBtn::_GetDrawState()
 	if ( !m_pBgSkin ) return 0;
 	DWORD dwState = GetState();
 
-	if ((dwState & WndState_Check) || (dwState & WndState_PushDown))
+	if ( dwState & WndState_Check )
 		return 2;
 
 	if ( dwState & WndState_Normal )

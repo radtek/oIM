@@ -19,8 +19,44 @@
   </context>
   <context name="dlg_main">
     <message>
-      <source>close</source>
-      <translation>关闭窗口</translation>
+      <source>sysClose</source>
+      <translation>关闭</translation>
+    </message>
+    <message>
+      <source>sysMax</source>
+      <translation>最大化</translation>
+    </message>
+    <message>
+      <source>sysRestore</source>
+      <translation>还原</translation>
+    </message>
+    <message>
+      <source>sysMin</source>
+      <translation>最小化</translation>
+    </message>
+    <message>
+      <source>mainbar_session</source>
+      <translation>聊天</translation>
+    </message>
+    <message>
+      <source>mainbar_contact</source>
+      <translation>通讯录</translation>
+    </message>
+    <message>
+      <source>mainbar_webapps</source>
+      <translation>轻应用</translation>
+    </message>
+    <message>
+      <source>mainbar_collect</source>
+      <translation>收藏</translation>
+    </message>
+    <message>
+      <source>mainbar_msgmgr</source>
+      <translation>历史记录</translation>
+    </message>
+    <message>
+      <source>mainbar_setting</source>
+      <translation>设置</translation>
     </message>
   </context>
 </language>

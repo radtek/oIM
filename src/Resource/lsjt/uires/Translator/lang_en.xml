@@ -35,9 +35,44 @@
   </context>
   <context name="dlg_main">
     <message>
-      <source>close</source>
+      <source>sysClose</source>
       <translation>Close</translation>
     </message>
-
+    <message>
+      <source>sysMax</source>
+      <translation>Maximize</translation>
+    </message>
+    <message>
+      <source>sysRestore</source>
+      <translation>Restore</translation>
+    </message>
+    <message>
+      <source>sysMin</source>
+      <translation>Minimize</translation>
+    </message>
+    <message>
+      <source>mainbar_session</source>
+      <translation>Chat</translation>
+    </message>
+    <message>
+      <source>mainbar_contact</source>
+      <translation>Contact</translation>
+    </message>
+    <message>
+      <source>mainbar_webapps</source>
+      <translation>Webapp</translation>
+    </message>
+    <message>
+      <source>mainbar_collect</source>
+      <translation>Collect</translation>
+    </message>
+    <message>
+      <source>mainbar_msgmgr</source>
+      <translation>Records</translation>
+    </message>
+    <message>
+      <source>mainbar_setting</source>
+      <translation>Setting</translation>
+    </message>
   </context>
 </language>
