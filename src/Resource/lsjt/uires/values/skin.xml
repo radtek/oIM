@@ -9,5 +9,4 @@
 	<imglist name="skin.mainbar.collect" src="img:MAINBAR_COLLECT_IMG" states="3"/>
 	<imglist name="skin.mainbar.contact" src="img:MAINBAR_CONTACT_IMG" states="3"/>
 	<imglist name="skin.mainbar.msgmgr" src="img:MAINBAR_MSGMGR_IMG" states="3"/>
-	<imglistex name="skin.maintab" imglist="img:MAINTAB_SESSION_NORMAL;img:MAINTAB_CONTACT_NORMAL;img:MAINTAB_WEBAPP_NORMAL;img:MAINTAB_COLLECT_NORMAL;img:MAINTAB_SESSION_HOVER;img:MAINTAB_CONTACT_HOVER;img:MAINTAB_WEBAPP_HOVER;img:MAINTAB_COLLECT_HOVE;img:MAINTAB_SESSION_PRESS;img:MAINTAB_CONTACT_PRESS;img:MAINTAB_WEBAPP_PRES;img:MAINTAB_COLLECT_PRESS" states="12"/>
 </skin>

@@ -3,8 +3,8 @@
 #include "UICore\AppConfig.h"
 #include <resprovider-zip\zipresprovider-param.h>
 
-#include "SSkinImgListEx.h"
-#include "STabCtrlEx.h"
+//#include "SSkinImgListEx.h"
+//#include "STabCtrlEx.h"
 
 //从PE文件加载，注意从文件加载路径位置
 #define RES_TYPE 0
@@ -113,8 +113,8 @@ int C_UICore::Run(DWORD dwFlag)
 		}
 
 		// 注册所使用到的扩展控件
-		theApp->RegisterSkinClass<SSkinImgListEx>();
-		theApp->RegisterWindowClass<STabCtrlEx>();//注册GSTabCtrl
+	//	theApp->RegisterSkinClass<SSkinImgListEx>();
+	//	theApp->RegisterWindowClass<STabCtrlEx>();//注册GSTabCtrl
 
 		theApp->InitXmlNamedID(namedXmlID,ARRAYSIZE(namedXmlID),TRUE);
         theApp->AddResProvider(pResProvider);

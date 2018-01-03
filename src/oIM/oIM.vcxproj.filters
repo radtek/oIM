@@ -35,10 +35,7 @@
     <ClCompile Include="C_UICore.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="STabCtrlEx.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SSkinImgListEx.cpp">
+    <ClCompile Include="STabBtn.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -63,10 +60,7 @@
     <ClInclude Include="C_UICore.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="STabCtrlEx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SSkinImgListEx.h">
+    <ClInclude Include="STabBtn.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

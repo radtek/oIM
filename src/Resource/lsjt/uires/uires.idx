@@ -18,21 +18,12 @@
     <file name="traymenu_icons" path="image\traymenu_icons.png"/>
     <!-- 默认头像-->
     <file name="HEAD_IMG" path="image\head.png"/>
-    <!-- 主工具栏 -->
-    <file name="MAINTAB_COLLECT_NORMAL" path="image\mainbar\maintab_collect_normal.png"/>
-    <file name="MAINTAB_COLLECT_HOVE" path="image\mainbar\maintab_collect_hover.png"/>
-    <file name="MAINTAB_COLLECT_PRESS" path="image\mainbar\maintab_collect_press.png"/>
-    <file name="MAINTAB_WEBAPP_NORMAL" path="image\mainbar\maintab_webapp_normal.png"/>
-    <file name="MAINTAB_WEBAPP_HOVER" path="image\mainbar\maintab_webapp_hover.png"/>
-    <file name="MAINTAB_WEBAPP_PRES" path="image\mainbar\maintab_webapp_press.png"/>
-    <file name="MAINTAB_SESSION_NORMAL" path="image\mainbar\maintab_session_normal.png"/>
-    <file name="MAINTAB_SESSION_HOVER" path="image\mainbar\maintab_session_hover.png"/>
-    <file name="MAINTAB_SESSION_PRESS" path="image\mainbar\maintab_session_press.png"/>
-    <file name="MAINTAB_CONTACT_NORMAL" path="image\mainbar\maintab_contact_normal.png" />
-    <file name="MAINTAB_CONTACT_HOVER" path="image\mainbar\maintab_contact_hover.png"/>
-    <file name="MAINTAB_CONTACT_PRESS" path="image\mainbar\maintab_contact_press.png"/>
-    <file name="MAINBAR_SETTING" path="image\mainbar\mainbar_setting.png"/>
-    <file name="MAINBAR_MSGMGR" path="image\mainbar\mainbar_msgmgr.png"/>
+    <file name="MAINBAR_SESSION_IMG" path="image\mainbar_session.png"/>
+    <file name="MAINBAR_SETTING_IMG" path="image\mainbar_setting.png"/>
+    <file name="MAINBAR_WEBAPP_IMG" path="image\mainbar_webapp.png"/>
+    <file name="MAINBAR_COLLECT_IMG" path="image\mainbar_collect.png"/>
+    <file name="MAINBAR_CONTACT_IMG" path="image\mainbar_contact.png"/>
+    <file name="MAINBAR_MSGMGR_IMG" path="image\mainbar_msgmgr.png"/>
   </IMG>
   <ICON>
     <file name="ICON_LOGO" path="image\soui.ico"/>
