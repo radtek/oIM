@@ -5,9 +5,10 @@
         <!-- 左边主工具栏 -->
         <caption name="mainbar_caption" pos="0,0,@60,-0" colorBkgnd="@color/theme">
           <img name="btn_head" skin="skin.headimg" pos="10dp,10dp,@40dp,@40dp" margin-x="0" />
-          <img name="btn_mainbar_session" skin="skin.mainbar.session" pos="0dp,[0dp,@60dp,@50dp" margin-x="0" />
-          <img name="btn_mainbar_contact" skin="skin.mainbar.contact" pos="0dp,[0dp,@60dp,@50dp" margin-x="0" />
-          <img name="btn_mainbar_webapp" skin="skin.mainbar.webapp" pos="0dp,[0dp,@60dp,@50dp" margin-x="0" />
+          <tabbtn name="btn_mainbar_session" skin="skin.mainbar.session" pos="0dp,[10dp,@60dp,@50dp"  />
+          <tabbtn name="btn_mainbar_contact" skin="skin.mainbar.contact" pos="0dp,[0dp,@60dp,@50dp" />
+          <tabbtn name="btn_mainbar_webapp" skin="skin.mainbar.webapp" pos="0dp,[0dp,@60dp,@50dp"  />
+          <tabbtn name="btn_mainbar_collect" skin="skin.mainbar.collect" pos="0dp,[0dp,@60dp,@50dp"  />
         </caption>
         <!-- 右边客户区 -->
         <window pos="[0,0,-0,-0">

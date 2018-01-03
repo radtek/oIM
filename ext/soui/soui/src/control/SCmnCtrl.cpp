@@ -880,7 +880,7 @@ void SCheckBox::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
     }
 }
 
-HRESULT SCheckBox::OnAttrCheck( const SStringW& strValue, BOOL bLoading )
+HRESULT SCheckBox::OnAttrCheck( const SStringT& strValue, BOOL bLoading )
 {
     SetCheck(strValue != L"0");
     return S_FALSE;

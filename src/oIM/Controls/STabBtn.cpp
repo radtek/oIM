@@ -1,269 +1,60 @@
 ﻿#include "stdafx.h"
-#include "STabCtrlEx.h"
+#include "STabBtn.h"
 #include <algorithm>
 #include "souistd.h"
 
-STabCtrlEx::STabCtrlEx()
+STabBtn::STabBtn()
 {
-	m_pSkinAniHover = NULL;
-	m_pSkinAniDown = NULL;
-	m_nElapseTime = 0;
-	m_nTabShowName = 0;
+	m_pBgSkin   = NULL;
+    m_bFocusable= FALSE;
 }
 
-
-STabCtrlEx::~STabCtrlEx()
+void STabBtn::OnPaint(IRenderTarget *pRT)
 {
+   if ( !m_pBgSkin ) return;
+ 
+   CRect rcClient;
+   GetClientRect(&rcClient);
+
+   m_pBgSkin->Draw(pRT, rcClient, _GetDrawState());
+
+    __super::OnPaint(pRT);
 }
 
-
-/**
-* STabCtrl::OnPaint
-* @brief    绘画消息
-* @param    IRenderTarget *pRT -- 绘制设备句柄
-*
-* Describe  此函数是消息响应函数
-*/
-void STabCtrlEx::OnPaint(IRenderTarget *pRT)
+CSize STabBtn::GetDesiredSize(LPCRECT pRcContainer)
 {
-	SPainter painter;
-	BeforePaint(pRT, painter);
-
-	CRect rcItem, rcItemPrev;
-	CRect rcSplit;
-	DWORD dwState;
-	CRect rcTitle = GetTitleRect();
-
-
-	pRT->PushClipRect(&rcTitle, RGN_AND);
-
-	for (size_t i = 0; i < (size_t)GetItemCount(); i++)
-	{
-		dwState = WndState_Normal;
-		if (i == (size_t)m_nCurrentPage) dwState = WndState_PushDown;
-		else if (i == (size_t)m_nHoverTabItem) dwState = WndState_Hover;
-
-		GetItemRect(i, rcItem);
-		if (rcItem.IsRectEmpty()) continue;
-
-		//画分隔线
-		if (i>0 && m_pSkinTabInter)
-		{
-			rcSplit = rcItem;
-			if (m_nTabAlign == AlignLeft)
-			{
-				rcSplit.top = rcItemPrev.bottom;
-				rcSplit.bottom = rcSplit.top + m_nTabInterSize.toPixelSize(GetScale());
-			}
-			else
-			{
-				rcSplit.left = rcItemPrev.right;
-				rcSplit.right = rcSplit.left + m_nTabInterSize.toPixelSize(GetScale());
-			}
-			m_pSkinTabInter->Draw(pRT, rcSplit, 0);
-		}
-
-		DrawItem(pRT, rcItem, i, dwState);
-		rcItemPrev = rcItem;
-
-		if (m_pSkinAniHover && m_arrHoverNumber.GetCount())
-		{
-			m_pSkinAniHover->Draw(pRT, rcItem, m_arrHoverNumber.GetAt(i));
-		}
-	}
-	pRT->PopClip();
-
-	if (m_pSkinFrame)
-	{
-		CRect rcPage = GetChildrenLayoutRect();
-		m_pSkinFrame->Draw(pRT, rcPage, WndState_Normal);
-	}
-
-	if (IsFocused() && IsFocusable() && m_bDrawFocusRect)
-	{
-		CRect rc;
-		GetItemRect(m_nCurrentPage, rc);
-		rc.DeflateRect(2, 2);
-		DrawDefFocusRect(pRT, &rc);
-	}
-	AfterPaint(pRT, painter);
+    SASSERT(m_pBgSkin);
+    return __super::GetDesiredSize(pRcContainer);
 }
 
-
-
-void STabCtrlEx::DrawItem(IRenderTarget *pRT, const CRect &rcItem, int iItem, DWORD dwState)
+UINT STabBtn::_GetDrawState()
 {
-	if (rcItem.IsRectEmpty()) return;
-	int iState = IIF_STATE3(dwState, WndState_Normal, WndState_Hover, WndState_PushDown);
-	if (m_pSkinTab)
-	{
-		m_pSkinTab->Draw(pRT, rcItem, iState);
-	}
-	else
-	{
-// 		else if (m_pSkinAniDown && dwState == WndState_PushDown)
-// 		{
-// 			GetContainer()->RegisterTimelineHandler(this);
-// 		}
-	}
-		
+	if ( !m_pBgSkin ) return 0;
+	DWORD dwState = GetState();
 
-	//根据状态从style中获得字体，颜色
-	SOUI::IFontPtr font = m_style.GetTextFont(iState);
-	COLORREF crTxt = m_style.GetTextColor(iState);
-	CAutoRefPtr<SOUI::IFont> oldFont;
-	if (font) pRT->SelectObject(font, (IRenderObj**)&oldFont);
-	COLORREF crOld = 0;
-	if (crTxt != CR_INVALID) crOld = pRT->SetTextColor(crTxt);
+	if ((dwState & WndState_Check) || (dwState & WndState_PushDown))
+		return 2;
 
-	CRect rcIcon(rcItem.left+m_ptIcon[0].toPixelSize(GetScale()),
-		rcItem.top+m_ptIcon[1].toPixelSize(GetScale()),0,0);
-	if (m_pSkinIcon)
-	{
-		rcIcon.right = rcIcon.left + m_pSkinIcon->GetSkinSize().cx;
-		rcIcon.bottom = rcIcon.top + m_pSkinIcon->GetSkinSize().cy;
-		int iIcon = GetItem(iItem)->GetIconIndex();
-		if (iIcon == -1) iIcon = iItem;
-		iIcon = GetItemCount() * iState + iIcon;
-		m_pSkinIcon->Draw(pRT, rcIcon, iIcon);
-	}
+	if ( dwState & WndState_Normal )
+		return 0;
 
-	if (m_nTabShowName)
-	{
-		if (!m_ptText[0].valueEqual(-1.f) && !m_ptText[1].valueEqual(-1.f))
-		{//从指定位置开始绘制文字
-			if (m_txtDir == Text_Horz)
-				pRT->TextOut(rcItem.left + m_ptText[0].toPixelSize(GetScale()), rcItem.top + m_ptText[1].toPixelSize(GetScale()), GetItem(iItem)->GetTitle(), -1);
-			else
-				TextOutV(pRT, rcItem.left + m_ptText[0].toPixelSize(GetScale()), rcItem.top + m_ptText[1].toPixelSize(GetScale()), GetItem(iItem)->GetTitle());
-		}
-		else
-		{
-			CRect rcText = rcItem;
-			UINT alignStyle = m_style.GetTextAlign();
-			UINT align = alignStyle;
-			if (m_ptText[0].valueEqual(-1.f) && !m_ptText[1].valueEqual(-1.f))
-			{//指定了Y偏移，X居中
-				rcText.top += m_ptText[1].toPixelSize(GetScale());
-				align = alignStyle&(DT_CENTER | DT_RIGHT | DT_SINGLELINE | DT_END_ELLIPSIS);
-			}
-			else if (!m_ptText[0].valueEqual(-1.f) && m_ptText[1].valueEqual(-1.f))
-			{//指定了X偏移，Y居中
-				rcText.left += m_ptText[0].toPixelSize(GetScale());
-				align = alignStyle&(DT_VCENTER | DT_BOTTOM | DT_SINGLELINE | DT_END_ELLIPSIS);
-			}
+	if ( dwState & WndState_Hover )
+		return 1;
 
-			if (m_txtDir == Text_Horz)
-				pRT->DrawText(GetItem(iItem)->GetTitle(), -1, &rcText, align);
-			else
-				DrawTextV(pRT, rcText, GetItem(iItem)->GetTitle());
-		}
-	}
-
-
-
-	//恢复字体，颜色
-	if (font) pRT->SelectObject(oldFont);
-	if (crTxt != CR_INVALID) pRT->SetTextColor(crOld);
+	return 3;	// WndState_Disable
 }
 
-
-void STabCtrlEx::OnNextFrame()
+void STabBtn::OnLButtonUp(UINT nFlags, CPoint point)
 {
-	if (m_arrHoverNumber.GetCount() == 0)
-	{
-		for (int i = 0; i < GetItemCount(); i++)
-			m_arrHoverNumber.Add(0);
-	}
+    if((GetState()&WndState_PushDown) && GetWindowRect().PtInRect(point))
+		SetCheck(!IsChecked());
 
-	m_nElapseTime++;
-	if (m_nElapseTime < 5)
-	{
-		return;
-	}
-
-	m_nElapseTime = 0;
-
-
-	bool bNeedInvalidate = false;
-	for (size_t i = 0; i < m_arrHoverNumber.GetCount(); i++)
-	{
-		DWORD dwState = WndState_Normal;
-		if (i == (size_t)m_nCurrentPage) dwState = WndState_PushDown;
-		else if (i == (size_t)m_nHoverTabItem) dwState = WndState_Hover;
-
-		if (i == (size_t)m_nHoverTabItem)
-		{
-			if (m_arrHoverNumber.GetAt(i) < m_pSkinAniHover->GetStates() - 1)
-			{
-				m_arrHoverNumber.GetAt(i)++;
-				bNeedInvalidate = true;
-			}
-		}
-		else
-		{
-			if (m_arrHoverNumber.GetAt(i) > 0)
-			{
-				m_arrHoverNumber.GetAt(i)--;
-				bNeedInvalidate = true;
-			}
-		}
-	}
-
-	if (bNeedInvalidate == true)
-		Invalidate();
-	else
-		GetContainer()->UnregisterTimelineHandler(this);
+    SWindow::OnLButtonUp(nFlags,point);
 }
 
-void STabCtrlEx::OnMouseMove(UINT nFlags, CPoint point)
+HRESULT STabBtn::OnAttrCheck( const SStringW& strValue, BOOL bLoading )
 {
-	CRect rcItem;
-	int nOldHover = m_nHoverTabItem;
-	m_nHoverTabItem = -1;
-	int nTabCount = GetItemCount();
-	for (int i = 0; i < nTabCount; i++)
-	{
-		GetItemRect(i, rcItem);
-
-		if (rcItem.PtInRect(point))
-		{
-			m_nHoverTabItem = i;
-			break;
-		}
-	}
-	if (m_nHoverTabItem != nOldHover)
-	{
- 		if (nOldHover != -1)
- 		{
-			if (nOldHover != m_nCurrentPage)
-			{
-				GetItemRect(nOldHover, rcItem);
-				InvalidateRect(rcItem);
-			}
-			EventTabItemLeave evt(this);
-			evt.iLeave = nOldHover;
-			FireEvent(evt);
-		}
-		if (m_nHoverTabItem != -1)
-		{
-			if (m_nHoverTabItem != m_nCurrentPage)
-			{
-				GetItemRect(m_nHoverTabItem, rcItem);
-				InvalidateRect(rcItem);
-			}
-
-			EventTabItemHover evt2(this);
-			evt2.iHover = m_nHoverTabItem;
-			FireEvent(evt2);
-		}
-
-		if (m_pSkinAniHover)
-		{
-			GetContainer()->RegisterTimelineHandler(this);
-		}
-	}
+    SetCheck(strValue != L"0");
+    return S_FALSE;
 }
-
-
 

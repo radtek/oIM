@@ -3,10 +3,10 @@
 	<imgframe name="skin.sys.bkgnd" src="IMG:SYS_BKGND" margin="5,3,5,7" />
 	<imglist name="skin.traymenu.icons" src="img:traymenu_icons" states="9"/>
 	<imglist name="skin.headimg" src="img:HEAD_IMG"/>
-	<imglist name="skin.mainbar.session" src="img:MAINBAR_SESSION_IMG" states="3"/>
-	<imglist name="skin.mainbar.setting" src="img:MAINBAR_SETTING_IMG" states="3"/>
-	<imglist name="skin.mainbar.webapp" src="img:MAINBAR_WEBAPP_IMG" states="3"/>
-	<imglist name="skin.mainbar.collect" src="img:MAINBAR_COLLECT_IMG" states="3"/>
-	<imglist name="skin.mainbar.contact" src="img:MAINBAR_CONTACT_IMG" states="3"/>
-	<imglist name="skin.mainbar.msgmgr" src="img:MAINBAR_MSGMGR_IMG" states="3"/>
+	<imglist name="skin.mainbar.session" src="img:MAINBAR_SESSION_IMG" states="3" filterLevel="high"/>
+	<imglist name="skin.mainbar.setting" src="img:MAINBAR_SETTING_IMG" states="3" filterLevel="high"/>
+	<imglist name="skin.mainbar.webapp" src="img:MAINBAR_WEBAPP_IMG" states="3" filterLevel="high"/>
+	<imglist name="skin.mainbar.collect" src="img:MAINBAR_COLLECT_IMG" states="3" filterLevel="high"/>
+	<imglist name="skin.mainbar.contact" src="img:MAINBAR_CONTACT_IMG" states="3" filterLevel="high"/>
+	<imglist name="skin.mainbar.msgmgr" src="img:MAINBAR_MSGMGR_IMG" states="3" filterLevel="high"/>
 </skin>

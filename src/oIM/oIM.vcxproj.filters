@@ -35,7 +35,7 @@
     <ClCompile Include="C_UICore.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="STabBtn.cpp">
+    <ClCompile Include="Controls\STabBtn.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -60,7 +60,7 @@
     <ClInclude Include="C_UICore.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="STabBtn.h">
+    <ClInclude Include="Controls\STabBtn.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
