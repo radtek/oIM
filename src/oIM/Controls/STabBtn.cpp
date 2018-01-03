@@ -46,7 +46,10 @@ void STabBtn::OnLButtonUp(UINT nFlags, CPoint pt)
 {
     __super::OnLButtonUp(nFlags, pt);
     if(!IsChecked())
+	{
 		SetCheck(TRUE);
+		ShowTabPage(TRUE);
+	}
 }
 
 SWindow* STabBtn::GetSelectedSiblingInGroup()
@@ -58,8 +61,9 @@ SWindow* STabBtn::GetSelectedSiblingInGroup()
     {
         if(pSibling->IsClass(GetClassName()))
         {
-            SRadioBox * pRadio=(SRadioBox*)pSibling;
-            if(pRadio->IsChecked()) return pRadio;
+            STabBtn* pTabBtn=(STabBtn*)pSibling;
+            if(pTabBtn->IsChecked())
+				return pTabBtn;
         }
         pSibling=pSibling->GetWindow(GSW_NEXTSIBLING);
     }
@@ -68,15 +72,20 @@ SWindow* STabBtn::GetSelectedSiblingInGroup()
 
 HRESULT STabBtn::OnAttrCheck( const SStringT& strValue, BOOL bLoading )
 {
+	BOOL bCheck = (strValue != _T("0"));
     if(bLoading)
     {
         GetEventSet()->setMutedState(true);
-        SetCheck(strValue != L"0");
+        SetCheck(bCheck);
         GetEventSet()->setMutedState(false);
-    }else
-    {
-        SetCheck(strValue != L"0");
     }
+	else
+    {
+        SetCheck(bCheck);
+    }
+
+	ShowTabPage(bCheck);
+
     return S_FALSE;
 }
 
@@ -101,4 +110,18 @@ void STabBtn::OnStateChanging( DWORD dwOldState,DWORD dwNewState )
             pCurChecked->GetEventSet()->setMutedState(false);
         }
     }
+}
+
+BOOL STabBtn::ShowTabPage(BOOL bCheck)
+{
+	if ( !bCheck )
+		return FALSE;
+
+	if ( STabCtrl* pTabCtrl = GetRoot()->FindChildByName2<STabCtrl>(m_szBindTabName) )
+	{
+		pTabCtrl->SetCurSel(m_nBindTabIndex);
+		return TRUE;
+	}
+
+	return FALSE;
 }

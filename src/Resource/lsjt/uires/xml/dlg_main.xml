@@ -3,7 +3,7 @@
     <style>
       <class name="cls_maintab_client" width="-2" height="50dp" bindtabname="maintab_client" />
     </style>>
-    <window name="skin.theme" skin="_skin.sys.wnd.bkgnd" pos="5,3,-6,-7">
+    <window name="skin.theme" colorBkgnd="@color/window" pos="5,3,-6,-7">
       <window pos="0,[0,-0,-0">
         <!-- 左边主工具栏 -->
         <caption name="mainbar_caption" pos="0,0,@60,-0" colorBkgnd="@color/theme">
@@ -32,7 +32,7 @@
               <include src="LAYOUT:MAIN_SESSION_PAGE"/>
             </page>
             <page title="Contact">
-              <include src="LAYOUT:MAIN_CONNACT_PAGE"/>
+              <include src="LAYOUT:MAIN_CONTACT_PAGE"/>
             </page>
             <page title="Webapp">
               <include src="LAYOUT:MAIN_WEBAPPS_PAGE"/>

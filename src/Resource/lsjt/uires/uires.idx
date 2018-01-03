@@ -5,10 +5,10 @@
   </UIDEF>
   <LAYOUT>
     <file name="XML_MAINWND" path="xml\dlg_main.xml"/>
-    <file name="MAIN_SESSION_PAGE" path="xml\dlg_main.xml"/>
-    <file name="MAIN_CONNACT_PAGE" path="xml\dlg_main.xml"/>
-    <file name="MAIN_WEBAPPS_PAGE" path="xml\dlg_main.xml"/>
-    <file name="MAIN_COLLECT_PAGE" path="xml\dlg_main.xml"/>
+    <file name="MAIN_SESSION_PAGE" path="xml\main_session_page.xml"/>
+    <file name="MAIN_CONTACT_PAGE" path="xml\main_contact_page.xml"/>
+    <file name="MAIN_WEBAPPS_PAGE" path="xml\main_webapps_page.xml"/>
+    <file name="MAIN_COLLECT_PAGE" path="xml\main_collect_page.xml"/>
   </LAYOUT>
   <values>
     <file name="string" path="values\string.xml"/>
