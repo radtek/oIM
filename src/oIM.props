@@ -9,12 +9,24 @@
 		<IntDir>..\..\obj\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
 		<LinkIncremental Condition="'$(Configuration)'=='Debug'">true</LinkIncremental>
 		<LinkIncremental Condition="'$(Configuration)'=='Release'">false</LinkIncremental>
-		<IncDir>.\;..\..\inc;$(SOUIPATH)\soui;$(SOUIPATH)\soui\include;;$(SOUIPATH)\config;$(SOUIPATH)\components;$(SOUIPATH)\SOUI\include;$(SOUIPATH)\utilities\include</IncDir>
-		<IncDir>$(IncDir);$(SOUIPATH)\third-part\7z;$(SOUIPATH)\third-part\zlib</IncDir>
-		<IncDir>$(IncDir);$(SOUIPATH)\third-part\png;$(SOUIPATH)\third-part\SciLexer\include</IncDir>
-		<IncDir>$(IncDir);$(SOUIPATH)\third-part\Scintilla\include;$(SOUIPATH)\skia\include</IncDir>
-		<IncDir>$(IncDir);$(SOUIPATH)\third-part\sqlite3;$(SOUIPATH)\third-part\stdint</IncDir>
-		<IncDir>$(IncDir);$(SOUIPATH)\third-part\vlc;$(SOUIPATH)\third-part\wke\include</IncDir>
+		<IncDir>.\;..\..\inc</IncDir>
+		<IncDir>$(IncDir);$(SOUIPATH)</IncDir>
+		<IncDir>$(IncDir);$(SOUIPATH)\soui</IncDir>
+		<IncDir>$(IncDir);$(SOUIPATH)\soui\include</IncDir>
+		<IncDir>$(IncDir);$(SOUIPATH)\config</IncDir>
+		<IncDir>$(IncDir);$(SOUIPATH)\components</IncDir>
+		<IncDir>$(IncDir);$(SOUIPATH)\SOUI\include</IncDir>
+		<IncDir>$(IncDir);$(SOUIPATH)\utilities\include</IncDir>
+		<IncDir>$(IncDir);$(SOUIPATH)\third-part\7z</IncDir>
+		<IncDir>$(IncDir);$(SOUIPATH)\third-part\zlib</IncDir>
+		<IncDir>$(IncDir);$(SOUIPATH)\third-part\png</IncDir>
+		<IncDir>$(IncDir);$(SOUIPATH)\third-part\SciLexer\include</IncDir>
+		<IncDir>$(IncDir);$(SOUIPATH)\third-part\Scintilla\include</IncDir>
+		<IncDir>$(IncDir);$(SOUIPATH)\skia\include</IncDir>
+		<IncDir>$(IncDir);$(SOUIPATH)\third-part</IncDir>
+		<IncDir>$(IncDir);$(SOUIPATH)\third-part\stdint</IncDir>
+		<IncDir>$(IncDir);$(SOUIPATH)\third-part\vlc</IncDir>
+		<IncDir>$(IncDir);$(SOUIPATH)\third-part\wke\include</IncDir>
 		<LibDir>$(SOUIPATH)\bin\;..\..\lib\$(Platform)\;$(OutDir)</LibDir>
 		<Pdb>..\..\build\Symbols\$(Platform)\$(Configuration)\$(TargetName).pdb</Pdb>
 	</PropertyGroup>
@@ -34,7 +46,7 @@
 			<BrowseInformation>false</BrowseInformation>
 			<DebugInformationFormat>EditAndContinue</DebugInformationFormat>
 			<Optimization>Disabled</Optimization>
-			<PreprocessorDefinitions>WIN32;_WINDOWS;STRICT;_DEBUG;__UIENGINE__;$(CompanyFlag);%(PreprocessorDefinitions)</PreprocessorDefinitions>
+			<PreprocessorDefinitions>WIN32;_WINDOWS;STRICT;_DEBUG;__UIENGINE__;_CRT_SECURE_NO_WARNINGS;$(CompanyFlag);%(PreprocessorDefinitions)</PreprocessorDefinitions>
 			<RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
 			<SuppressStartupBanner>true</SuppressStartupBanner>
 			<TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
@@ -56,7 +68,7 @@
 			<BrowseInformation>false</BrowseInformation>
 			<DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
 			<Optimization>MaxSpeed</Optimization>
-			<PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;__UIENGINE__;$(CompanyFlag);%(PreprocessorDefinitions)</PreprocessorDefinitions>
+			<PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;__UIENGINE__;_CRT_SECURE_NO_WARNINGS;$(CompanyFlag);%(PreprocessorDefinitions)</PreprocessorDefinitions>
 			<RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
 			<SuppressStartupBanner>true</SuppressStartupBanner>
 			<TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>

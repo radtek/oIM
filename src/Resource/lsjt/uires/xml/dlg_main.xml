@@ -5,12 +5,13 @@
         <!-- 左边主工具栏 -->
         <caption name="mainbar_caption" pos="0,0,@60,-0" colorBkgnd="@color/theme">
           <img name="btn_head" skin="skin.headimg" pos="10dp,10dp,@40dp,@40dp" margin-x="0" />
-          <tabbtn name="btn_mainbar_session" skin="skin.mainbar.session" pos="0dp,[10dp,@60dp,@50dp"  />
-          <tabbtn name="btn_mainbar_contact" skin="skin.mainbar.contact" pos="0dp,[0dp,@60dp,@50dp" />
-          <tabbtn name="btn_mainbar_webapp" skin="skin.mainbar.webapp" pos="0dp,[0dp,@60dp,@50dp"  />
-          <tabbtn name="btn_mainbar_collect" skin="skin.mainbar.collect" pos="0dp,[0dp,@60dp,@50dp"  />
-
-          <button name="btn_mainbar_msgmgr" skin="skin.mainbar.msgmgr" pos="0dp,]-50dp,@60dp,@50dp"  />
+          <window pos="0dp,[10dp,-2,-0" layout="vbox">
+            <tabbtn name="btn_mainbar_session" skin="skin.mainbar.session" width="-2" height="50dp" checked="1"/>
+            <tabbtn name="btn_mainbar_contact" skin="skin.mainbar.contact" width="-2" height="50dp" />
+            <tabbtn name="btn_mainbar_webapp" skin="skin.mainbar.webapp" width="-2" height="50dp" />
+            <tabbtn name="btn_mainbar_collect" skin="skin.mainbar.collect" width="-2" height="50dp" />
+          </window>
+          <button name="btn_mainbar_msgmgr" skin="skin.mainbar.msgmgr" pos="0dp,]-50dp,@60dp,@50dp" />
           <button name="btn_mainbar_setting" skin="skin.mainbar.setting" pos="0dp,-50dp,@60dp,@50dp" />
         </caption>
         <!-- 右边客户区 -->
@@ -23,9 +24,7 @@
             <imgbtn name="btn_min" class="cls_sys_min" />
           </caption>
           <window pos="0,[0,-0,-0" _colorBkgnd="rgba(11,22,33,128)">
-            <!-- <text pos="|0,|0" offset="-0.5,-0.5">这是一个由SOUI向导生成的APP框架</text>
-            <button pos="|0,[" inset="4,4,4,4" name="cn" offset="-1.1,0" text="lang_cn"/>
-            <button pos="|0,[" inset="4,4,4,4" name="en" offset="-1.1,0" text="lang_en"/> -->
+            <!-- <text pos="|0,|0" offset="-0.5,-0.5">这是一个由SOUI向导生成的APP框架</text><button pos="|0,[" inset="4,4,4,4" name="cn" offset="-1.1,0" text="lang_cn"/><button pos="|0,[" inset="4,4,4,4" name="en" offset="-1.1,0" text="lang_en"/> -->
           </window>
         </window>
       </window>

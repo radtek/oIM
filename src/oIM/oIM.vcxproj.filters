@@ -18,6 +18,12 @@
       <Extensions>idx;xml;png;gif;jpg;ico;lua;bmp</Extensions>
       <ParseFiles>false</ParseFiles>
     </Filter>
+    <Filter Include="Header Files\Controls">
+      <UniqueIdentifier>{776e7c6d-d329-48d0-b88d-02f570b3a5f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Controls">
+      <UniqueIdentifier>{3ec4f762-e8ad-48b8-8959-fc864480d825}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="oIM.cpp">
@@ -36,7 +42,7 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Controls\STabBtn.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Controls</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -61,7 +67,7 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Controls\STabBtn.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Controls</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

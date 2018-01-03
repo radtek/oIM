@@ -44,17 +44,63 @@ UINT STabBtn::_GetDrawState()
 	return 3;	// WndState_Disable
 }
 
-void STabBtn::OnLButtonUp(UINT nFlags, CPoint point)
+void STabBtn::OnLButtonUp(UINT nFlags, CPoint pt)
 {
-    if((GetState()&WndState_PushDown) && GetWindowRect().PtInRect(point))
-		SetCheck(!IsChecked());
+    __super::OnLButtonUp(nFlags, pt);
+    if(!IsChecked())
+		SetCheck(TRUE);
+}
 
-    SWindow::OnLButtonUp(nFlags,point);
+SWindow* STabBtn::GetSelectedSiblingInGroup()
+{
+    SWindow *pParent=GetParent();
+    SASSERT(pParent);
+    SWindow *pSibling=pParent->GetWindow(GSW_FIRSTCHILD);
+    while(pSibling)
+    {
+        if(pSibling->IsClass(GetClassName()))
+        {
+            SRadioBox * pRadio=(SRadioBox*)pSibling;
+            if(pRadio->IsChecked()) return pRadio;
+        }
+        pSibling=pSibling->GetWindow(GSW_NEXTSIBLING);
+    }
+    return NULL;
 }
 
 HRESULT STabBtn::OnAttrCheck( const SStringT& strValue, BOOL bLoading )
 {
-    SetCheck(strValue != _T("0"));
+    if(bLoading)
+    {
+        GetEventSet()->setMutedState(true);
+        SetCheck(strValue != L"0");
+        GetEventSet()->setMutedState(false);
+    }else
+    {
+        SetCheck(strValue != L"0");
+    }
     return S_FALSE;
 }
 
+void STabBtn::OnSetFocus(SWND wndOld, CFocusManager::FocusChangeReason reason)
+{
+	if(reason != CFocusManager::kReasonFocusRestore)
+	{
+		if(!IsChecked()) SetCheck(TRUE);
+	}
+    Invalidate();
+}
+
+void STabBtn::OnStateChanging( DWORD dwOldState,DWORD dwNewState )
+{
+    if((dwNewState & WndState_Check) && !(dwOldState & WndState_Check))
+    {
+        SRadioBox *pCurChecked=(SRadioBox*)GetSelectedSiblingInGroup();
+        if(pCurChecked)
+        {
+            pCurChecked->GetEventSet()->setMutedState(true);
+            pCurChecked->SetCheck(FALSE);
+            pCurChecked->GetEventSet()->setMutedState(false);
+        }
+    }
+}
