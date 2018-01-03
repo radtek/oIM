@@ -52,9 +52,9 @@ void STabBtn::OnLButtonUp(UINT nFlags, CPoint point)
     SWindow::OnLButtonUp(nFlags,point);
 }
 
-HRESULT STabBtn::OnAttrCheck( const SStringW& strValue, BOOL bLoading )
+HRESULT STabBtn::OnAttrCheck( const SStringT& strValue, BOOL bLoading )
 {
-    SetCheck(strValue != L"0");
+    SetCheck(strValue != _T("0"));
     return S_FALSE;
 }
 
