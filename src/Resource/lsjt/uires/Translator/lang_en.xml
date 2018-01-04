@@ -2,6 +2,22 @@
 <language name="日本语" guid="{23D209C4-2268-49A2-B7F4-8CB57D908D47}">
   <context>
     <!--没有上下文的翻译-->
+    <message>
+      <source>usage_help</source>
+      <translation>Help</translation>
+    </message>
+    <message>
+      <source>usages</source>
+      <translation>
+      <![CDATA[Usage: ImageViewer.exe [options]
+  options: 
+    -lang=[cn,en]     The language, default as system;
+    -scale=n          The scale, default by system DPI, option as: 100,125,150,200; 
+    -taskbar=[0,1]    Whether to display in the taskbar，default is display(1);
+    -help             Show this help
+      ]]>
+      </translation>
+    </message>
   </context>
   <context name="messagebox">
     <message>

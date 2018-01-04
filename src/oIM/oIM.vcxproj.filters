@@ -44,6 +44,9 @@
     <ClCompile Include="Controls\STabBtn.cpp">
       <Filter>Source Files\Controls</Filter>
     </ClCompile>
+    <ClCompile Include="C_CommandLine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="oIM.rc">
@@ -68,6 +71,9 @@
     </ClInclude>
     <ClInclude Include="Controls\STabBtn.h">
       <Filter>Header Files\Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="C_CommandLine.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
