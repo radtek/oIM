@@ -126,7 +126,8 @@ int C_UICore::Run(DWORD dwFlag)
         CAutoRefPtr<ITranslatorMgr> trans;
         bLoaded=pComMgr->CreateTranslator((IObjRef**)&trans);
         SASSERT_FMT(bLoaded,_T("load interface [%s] failed!"),_T("translator"));
-        if(trans)
+        BOOL bParsed = args.ParseCommandLine();
+		if(trans)
         {//¼ÓÔØÓïÑÔ·­Òë°ü
             theApp->SetTranslator(trans);
 			SStringT szLang = UIGetAttributeStr(PATH_APP, APP_ATTR_LANGUAGE);

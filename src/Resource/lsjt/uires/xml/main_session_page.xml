@@ -1,6 +1,6 @@
 <include>
-  <window pos="0,[0,-0,-0" colorBkgnd="#FFFFFF">
-    <text pos="|0,|0,-0,-0" offset="-0.5,-0.5">会话功能开发中，敬请期待...</text>
+  <window pos="0,[0,-0,-0" >
+    
   </window>
 </include>
 
