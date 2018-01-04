@@ -2,7 +2,7 @@
 <language name="简体中文" guid="{0DAEDE3C-6B94-4a81-9A55-C304FDD69D98}">
   <context>
     <!--没有上下文的翻译-->
-        <message>
+    <message>
       <source>usage_help</source>
       <translation>帮助</translation>
     </message>
@@ -10,15 +10,11 @@
       <source>usages</source>
       <translation>
         <![CDATA[用法：oIM.exe [选项]
-选项:
-  -lang=[cn,en]     指定要使用的语言，默认跟随系统；
-  -scale=n          指定放大倍数，默认根据系统DPI来设定,可选配置有：100,125,150,200，250，300；
-  -taskbar=[0,1]    指定是否在任务栏显示，默认显示（1）；
+选项: -lang=[cn,en]     指定要使用的语言，默认跟随系统； -scale=n          指定放大倍数，默认根据系统DPI来设定,可选配置有：100,125,150,200，250，300； -taskbar=[0,1]    指定是否在任务栏显示，默认显示（1）；
   -help             显示本帮助信息；
       ]]>
       </translation>
     </message>
-
   </context>
   <context name="messagebox">
     <message>
@@ -74,6 +70,15 @@
     <message>
       <source>mainbar_setting</source>
       <translation>设置</translation>
+    </message>
+    <!-- 会话客户区-->
+    <message>
+      <source>search</source>
+      <translation>搜索</translation>
+    </message>
+    <message>
+      <source>quick_create_session</source>
+      <translation>发起群聊</translation>
     </message>
   </context>
 </language>

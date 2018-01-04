@@ -1,12 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <skin>
+	<!-- 系统资源 -->
 	<imgframe name="skin.sys.bkgnd" src="IMG:SYS_BKGND" margin="5,3,5,7" />
 	<imglist name="skin.traymenu.icons" src="img:traymenu_icons" states="9"/>
+  	<imgframe name="skin.edit.border" src="PNG:EDIT_BORDER" states="2" margin="3,3,3,3" />
+
+	<!-- 默认头像-->
 	<imglist name="skin.headimg" src="img:HEAD_IMG"/>
+	<!-- 主窗口工具栏 -->
 	<imglist name="skin.mainbar.session" src="img:MAINBAR_SESSION" states="3" filterLevel="high"/>
 	<imglist name="skin.mainbar.setting" src="img:MAINBAR_SETTING" states="3" filterLevel="high"/>
 	<imglist name="skin.mainbar.webapps" src="img:MAINBAR_WEBAPPS" states="3" filterLevel="high"/>
 	<imglist name="skin.mainbar.collect" src="img:MAINBAR_COLLECT" states="3" filterLevel="high"/>
 	<imglist name="skin.mainbar.contact" src="img:MAINBAR_CONTACT" states="3" filterLevel="high"/>
 	<imglist name="skin.mainbar.msgmgr" src="img:MAINBAR_MSGMGR" states="3" filterLevel="high"/>
+	<!-- 会话窗口 -->
+	<imglist name="skin.addmember" src="img:ADD_MEMBER" states="4" filterLevel="high"/>
+	<imglist name="skin.search.bkgnd" src="img:SEARCH_BKGND" margin="4,4,28,4" />
+	<imglist name="skin.search.clear" src="img:SEARCH_CLEAR" states="3" filterLevel="high"/>
+
 </skin>

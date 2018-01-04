@@ -19,15 +19,22 @@
     <!-- 系统资源 -->
     <file name="SYS_CLOSE" path="image\sys_close.png"/>
     <file name="SYS_BKGND" path="image\sys_bkgnd.png" />
+    <file name="EDIT_BORDER" path="image\edit_border.png"/>
     <file name="traymenu_icons" path="image\traymenu_icons.png"/>
     <!-- 默认头像-->
     <file name="HEAD_IMG" path="image\head.png"/>
+    <!-- 主窗口工具栏 -->
     <file name="MAINBAR_SESSION" path="image\mainbar_session.png"/>
     <file name="MAINBAR_SETTING" path="image\mainbar_setting.png"/>
     <file name="MAINBAR_WEBAPPS" path="image\mainbar_webapp.png"/>
     <file name="MAINBAR_COLLECT" path="image\mainbar_collect.png"/>
     <file name="MAINBAR_CONTACT" path="image\mainbar_contact.png"/>
     <file name="MAINBAR_MSGMGR" path="image\mainbar_msgmgr.png"/>
+    <!-- 会话窗口 -->
+    <file name="ADD_MEMBER" path="image\add_member.png"/>
+    <file name="SEARCH_BKGND" path="image\search_bkgnd.png"/>
+    <file name="SEARCH_CLEAR" path="image\search_clear.png"/>
+
   </IMG>
   <ICON>
     <file name="ICON_LOGO" path="image\soui.ico"/>

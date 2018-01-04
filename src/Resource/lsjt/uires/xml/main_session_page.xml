@@ -1,6 +1,39 @@
-<include>
-  <window pos="0,[0,-0,-0" >
-    
+﻿<include>
+  <window pos="0,[0,@-0,@-0" layout="hbox">
+    <!-- 左边的会话管理列表 -->
+    <window layout="vbox">
+      <!-- 会话搜索区域 -->
+      <caption width="250dp" height="35dp" >
+        <window skin="skin.search.bkgnd" pos="10dp,0dp,@194dp,@25dp">
+          <edit name="edt_session_search" pos="4dp,0dp,-28dp,-0" cueColor="@color/search" cueText="@string/search" font="adding:-2" />
+          <imgbtn name="btn_search_clear" pos="-26dp,0dp,@25dp,@25dp" skin="skin.search.clear" />
+        </window>
+        <imgbtn name="btn_quick_create" pos="[10dp,0dp,@25dp,@25dp" skin="skin.addmember" tip="@string/quick_create_session" margin-x="0dp"/>
+      </caption>
+      <!-- 会话管理列表 -->
+      <mclistview pos="0,[0,-10,]0" name="hot_channel_list" headerHeight="0" height="300">
+        <header align="center" itemSwapEnable="0" fixWidth="0" sortHeader="1">
+          <items>
+            <item width="252"></item>
+          </items>
+        </header>
+        <template itemHeight="0" defHeight="30" friendItemHeight="60">
+          <item_group colorHover="#e4f0fc" colorSelected="#e4e0ec">
+            <!--分组的模板-->
+          </item_group>
+          <item_data colorHover="#e4f0fc" colorSelected="#e4e0ec">
+            <!--列表项模板-->
+            <window name="col_nick" clipClient="1">
+              <img name="img_icon" pos="10,8,@50,@50"/>
+              <text name="txt_name" pos="[5,16" font="bold:1,adding:-1">火狐浏览器</text>
+              <text name="txt_desc" pos="{0,36,-10,-10" font="bold:1,adding:-4" dotted="1">速度最快的浏览器</text>
+            </window>
+          </item_data>
+        </template>
+      </mclistview>
+    </window>
+    <!-- 右边的会话客户区 -->
+    <window></window>
   </window>
 </include>
 

@@ -9,11 +9,8 @@
     <message>
       <source>usages</source>
       <translation>
-      <![CDATA[Usage: ImageViewer.exe [options]
-  options: 
-    -lang=[cn,en]     The language, default as system;
-    -scale=n          The scale, default by system DPI, option as: 100,125,150,200; 
-    -taskbar=[0,1]    Whether to display in the taskbar，default is display(1);
+        <![CDATA[Usage: ImageViewer.exe [options]
+  options: -lang=[cn,en]     The language, default as system; -scale=n          The scale, default by system DPI, option as: 100,125,150,200; -taskbar=[0,1]    Whether to display in the taskbar，default is display(1);
     -help             Show this help
       ]]>
       </translation>
@@ -89,6 +86,15 @@
     <message>
       <source>mainbar_setting</source>
       <translation>Setting</translation>
+    </message>
+    <!-- 会话客户区-->
+    <message>
+      <source>search</source>
+      <translation>Search</translation>
+    </message>
+    <message>
+      <source>quick_create_session</source>
+      <translation>Create chat</translation>
     </message>
   </context>
 </language>

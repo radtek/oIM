@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <UIDEF>
-  <font face="宋体" size="15"/>
+  <font face="新宋体" size="14"/>
   <string src="values:string" />
   <skin src="values:skin"/>
   <color src="values:color"/>
@@ -14,8 +14,9 @@
     <class name="cls_sys_restore" id="15" pos="sib.left@2:-32dp,0" skin="_skin.sys.btn.restore" tip="@string/sysRestore" show="0" animate="1" />
     <class name="cls_sys_min" id="16" pos="sib.left@2:-64dp,0" skin="_skin.sys.btn.minimize" tip="@string/sysMin" animate="1"/>
     <!-- width=-1: 控件的宽度使用文字自动计算，所以，配置文字时，用前后加空格来加宽 -->
-    <class name="cls_button" width="-1" height="24dp" colorText="#385e8b" colorTextDisable="#91a7c0" textMode="0x25" cursor="hand" margin-x="2dp" drawFocusRect="0" />
+    <class name="cls_button" width="-1" height="24dp" colorText="#385e8b" colorTextDisable="#91a7c0" textMode="0x25" cursor="hand" margin-x="0dp" drawFocusRect="0" />
     <class name="cls_richedit" multilines="1" vscrollBar="1" autoVscroll="1" wordWrap="1" margin-x="2dp" margin-y="2dp" />
+    <class name="cls_border" skin="skin.edit.border" margin="1,1,1,1" />
     <class name="cls_combobox" height="24dp" dropDown="1" dropHeight="150dp" dotted="0" animateTime="200" drawFocusRect="0" colorText="#000000ff" colorBkgnd="#FFFFFF" margin-x="0"/>
     <class name="cls_liststyle" iconSkin="" itemSkin="" itemHeight="22dp" colorBkgnd="#ffffff" colorText="#000000" colorSelText="#FFFFFF" colorItemBkgnd="#FFFFFF" colorItemSelBkgnd="rgb(51,153,255)" inset="6dp,0,0,0" />
     <class name="cls_editstyle" inset="5dp,3dp,5dp,0" colorText="#000000" align="left" colorBkgnd="#FFFFFF" />
