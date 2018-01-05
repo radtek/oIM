@@ -108,6 +108,8 @@ typedef enum tagMoveType
 		SOUI_MSG_MAP_END()
 
 	private:
+		ULONG_PTR m_gdiplusToken;
+
 		VectImage m_vectImage;		// 图片列表（所有图片的全路径，不能全部加载，可能会造成内存不足）
 		IBitmap*  m_pImgSel;		// 当前显示的图片
 		IBitmap*  m_pImgNext;		// 上/下一张图片，显示过滤动画时使用

@@ -3,6 +3,10 @@
 #include <helper/SplitString.h>
 #include "../../ext/soui/controls.extend/FileHelper.h"
 
+#include <gdiplus.h>  
+using namespace Gdiplus;  
+#pragma comment(lib, "GdiPlus.lib") 
+
 #define TIMER_MOIVE			121
 #define TIMER_GIF			123
 #define TIMER_GIF_ELAPSE	(100)	// 0.1s
@@ -27,11 +31,13 @@ namespace SOUI
 		, m_bError(FALSE)
 		, m_eMove(eMOVE_NONE)
 	{
-
+		Gdiplus::GdiplusStartupInput StartupInput;    
+		GdiplusStartup(&m_gdiplusToken,&StartupInput,NULL); 
 	}
 
 	SImageViewer::~SImageViewer()
 	{
+		Gdiplus::GdiplusShutdown(m_gdiplusToken); 
 		RemoveAll();
 	}
 
