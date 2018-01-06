@@ -5,7 +5,7 @@ STabBtn::STabBtn()
 {
 	m_nBindTabIndex = 0;
 	m_pBgSkin   = NULL;
-    m_bFocusable= FALSE;
+    m_bFocusable= TRUE;
 }
 
 void STabBtn::OnPaint(IRenderTarget *pRT)

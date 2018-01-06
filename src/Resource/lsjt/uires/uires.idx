@@ -4,6 +4,7 @@
     <file name="XML_INIT" path="uidef\init.xml"/>
   </UIDEF>
   <LAYOUT>
+    <file name="MAIN_SYS_BTNS" path="xml\main_sys_btns.xml"/>
     <file name="XML_MAINWND" path="xml\dlg_main.xml"/>
     <file name="MAIN_SESSION_PAGE" path="xml\main_session_page.xml"/>
     <file name="MAIN_CONTACT_PAGE" path="xml\main_contact_page.xml"/>
@@ -24,6 +25,7 @@
     <!-- 默认头像-->
     <file name="HEAD_IMG" path="image\head.png"/>
     <!-- 主窗口工具栏 -->
+    <file name="MAIN_SYS_BTNS" path="image\main_sys_btns.xml"/>
     <file name="MAINBAR_SESSION" path="image\mainbar_session.png"/>
     <file name="MAINBAR_SETTING" path="image\mainbar_setting.png"/>
     <file name="MAINBAR_WEBAPPS" path="image\mainbar_webapp.png"/>
@@ -34,7 +36,6 @@
     <file name="ADD_MEMBER" path="image\add_member.png"/>
     <file name="SEARCH_BKGND" path="image\search_bkgnd.png"/>
     <file name="SEARCH_CLEAR" path="image\search_clear.png"/>
-
   </IMG>
   <ICON>
     <file name="ICON_LOGO" path="image\soui.ico"/>

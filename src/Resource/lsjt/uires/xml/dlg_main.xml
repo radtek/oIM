@@ -1,4 +1,4 @@
-﻿<SOUI name="mainWindow" trCtx="dlg_main" title="@string/title" bigIcon="ICON_LOGO:32" smallIcon="ICON_LOGO:16" width="712" height="502" sendWheel2Hover="1" maxInset="5,3,10,10" margin="5,3,5,7" resizable="1" wndType="appMain" appWnd="0" minsize="600,400" translucent="1">
+﻿<SOUI name="mainWindow" trCtx="dlg_main" title="@string/title" bigIcon="ICON_LOGO:32" smallIcon="ICON_LOGO:16" width="712" height="502" minsize="712,502" sendWheel2Hover="1" maxInset="5,3,10,10" margin="5,3,5,7" resizable="1" wndType="appMain" appWnd="0" translucent="1">
   <style>
     <class name="cls_maintab_client" width="-2" height="50dp" bindtabname="maintab_client" />
   </style>>
@@ -14,20 +14,15 @@
             <tabbtn name="btn_mainbar_webapps" skin="skin.mainbar.webapps" tip="@string/mainbar_webapps" class="cls_maintab_client" bindtabindex="2" />
             <tabbtn name="btn_mainbar_collect" skin="skin.mainbar.collect" tip="@string/mainbar_collect" class="cls_maintab_client" bindtabindex="3" />
           </window>
-          <imgbtn name="btn_mainbar_msgmgr" skin="skin.mainbar.msgmgr" tip="@string/mainbar_msgmgr" pos="0dp,]-50dp,@60dp,@50dp" />
-          <imgbtn name="btn_mainbar_setting" skin="skin.mainbar.setting" tip="@string/mainbar_setting" pos="0dp,-50dp,@60dp,@50dp" />
+          <button name="btn_mainbar_msgmgr" skin="skin.mainbar.msgmgr" tip="@string/mainbar_msgmgr" pos="0dp,]-50dp,@60dp,@50dp" />
+          <button name="btn_mainbar_setting" skin="skin.mainbar.setting" tip="@string/mainbar_setting" pos="0dp,-50dp,@60dp,@50dp" />
         </caption>
         <!-- 右边客户区 -->
         <window pos="[0,0,-0,-0">
           <!-- 客户区管理列表的背景颜色 -->
           <window pos="0,0,@250dp,-0" colorBkgnd="@color/window2" />
           <!-- 标题栏 -->
-          <caption class="cls_sys_caption" height="25dp">
-            <imgbtn name="btn_close" class="cls_sys_close"/>
-            <imgbtn name="btn_max" class="cls_sys_max" />
-            <imgbtn name="btn_restore" class="cls_sys_restore" />
-            <imgbtn name="btn_min" class="cls_sys_min" />
-          </caption>
+          <include src="LAYOUT:MAIN_SYS_BTNS" />
           <!-- 客户区 -->
           <tabctrl name="maintab_client" pos="0,[0,-0,-0" animateSteps="0" tabHeight="0" cursel="0">
             <page title="Session">

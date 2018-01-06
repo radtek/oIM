@@ -1,0 +1,16 @@
+<!-- 主窗口中的标题栏系统控件，在这儿统一定义：因为会有不同的子窗口，也会使用它，以避免样式不一致 -->
+<include>
+  <caption class="cls_sys_caption" height="25dp">
+    <imgbtn name="btn_close" class="cls_sys_close"/>
+    <imgbtn name="btn_max" class="cls_sys_max" />
+    <imgbtn name="btn_restore" class="cls_sys_restore" />
+    <imgbtn name="btn_min" class="cls_sys_min" />
+  </caption>
+</include>
+
+
+
+
+
+
+

@@ -560,7 +560,7 @@ soui工具：
             <attrib name="skin" default="" type="skin" comment="皮肤"/>
             <attrib name="iconIndex" default="0" type="int" comment="绘制skin对象的子图索引"/>
         </img>
-        <imgbtn class="SImageButton" base="SButton" comment="图片按钮" />
+        <imgbtn class="SImageButton" base="SButton" comment="图片按钮【它不会改变焦点控件】" />
         <!--  Usage: <icon src="icon:16" /> -->
         <icon class="SIconWnd" base="SWindow">
             <attrib name="src" default="" type="icon" comment="图标资源句柄"/>
