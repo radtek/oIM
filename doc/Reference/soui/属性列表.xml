@@ -250,8 +250,8 @@ soui工具：
             <attrib name="text" default="" type="TrText" comment="窗口文字"/>
             <!-- 可见性，visible 和 show是同一个属性 -->
             <attrib name="display" default="1" type="bool" comment="窗口隐藏时是否占位，不占位时启动重新布局"/>
-            <attrib name="visible" default="1" type="bool" comment="控件是否可见"/>
-            <attrib name="show" default="1" type="bool" comment="窗口可见状态"/>
+            <attrib name="visible" default="1" type="bool" comment="控件是否可见，同show"/>
+            <attrib name="show" default="1" type="bool" comment="控件是否可见，同visible"/>
             <!-- 皮肤：layout属性最先被处理，之后再是class, 最后才是其它属性 -->
             <attrib name="class" default="" type="string" comment="窗口的属性集合(WndStyle)的名称"/>
             <attrib name="layout" default="Both" type="[vbox、hbox、linearLayout]" comment="Layout 名称"/>
