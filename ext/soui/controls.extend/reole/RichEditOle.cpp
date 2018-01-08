@@ -1,6 +1,6 @@
 // RichEditOle.cpp : implementation file
 //
-#include "souistd.h"
+#include "stdafx.h"
 #include "RichEditOle.h"
 #include <atl.mini/SComHelper.h>
 #include <gdialpha.h>

@@ -1,4 +1,4 @@
-add_definitions(-D_CRT_SECURE_NO_WARNINGS)
+﻿add_definitions(-D_CRT_SECURE_NO_WARNINGS)
 
 include_directories(${PROJECT_SOURCE_DIR}/third-part/zlib)
 include_directories(${PROJECT_SOURCE_DIR}/config)
@@ -32,3 +32,4 @@ set(COM_LIBS ${COM_LIBS} resprovider-zip CACHE INTERNAL "com_lib")
 set_target_properties (resprovider-zip PROPERTIES
     FOLDER components
 )
+cotire(resprovider-zip)

@@ -3,7 +3,7 @@
 
 namespace SOUI
 {   
-    class SOUI_EXP SWkeLoader
+    class SWkeLoader
     {
     public:
         typedef void (*FunWkeInit)();
@@ -30,16 +30,14 @@ namespace SOUI
     };
 
     const char TM_TICKER = 1;
-    class SOUI_EXP SWkeWebkit : public SWindow, protected wkeBufHandler , protected IIdleHandler
+    class SWkeWebkit : public SWindow, protected wkeBufHandler , protected IIdleHandler
     {
         SOUI_CLASS_NAME(SWkeWebkit, L"wkeWebkit")
     public:
         SWkeWebkit(void);
         ~SWkeWebkit(void);
 
-		// 获得 wke 对象
         wkeWebView	GetWebView(){return m_pWebView;}
-
     protected:
         virtual void onBufUpdated (const HDC hdc,int x, int y, int cx, int cy);
         virtual BOOL OnIdle();

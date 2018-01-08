@@ -1,4 +1,4 @@
-add_definitions(-D_CRT_SECURE_NO_WARNINGS -D_CRT_NON_CONFORMING_SWPRINTFS)
+﻿add_definitions(-D_CRT_SECURE_NO_WARNINGS -D_CRT_NON_CONFORMING_SWPRINTFS)
 
 include_directories(${PROJECT_SOURCE_DIR}/config)
 include_directories(${PROJECT_SOURCE_DIR}/utilities/include)
@@ -56,3 +56,4 @@ endif()
 set_target_properties (ScriptModule-Lua PROPERTIES
     FOLDER components
 )
+cotire(ScriptModule-Lua)

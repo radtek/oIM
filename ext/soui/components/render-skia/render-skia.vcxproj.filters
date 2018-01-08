@@ -30,6 +30,12 @@
     <ClCompile Include="drawtext-skia.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="patheffect-skia.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pathmeasure-skia.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="render-skia.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -42,6 +48,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="drawtext-skia.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="patheffect-skia.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pathmeasure-skia.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="render-skia.h">

@@ -1,4 +1,4 @@
-add_definitions(-D_CRT_SECURE_NO_WARNINGS)
+﻿add_definitions(-D_CRT_SECURE_NO_WARNINGS)
 
 include_directories(${PROJECT_SOURCE_DIR}/third-part/7z)
 include_directories(${PROJECT_SOURCE_DIR}/config)
@@ -36,3 +36,4 @@ set(COM_LIBS ${COM_LIBS} resprovider-7zip CACHE INTERNAL "com_lib")
 set_target_properties (resprovider-7zip PROPERTIES
     FOLDER components
 )
+cotire(resprovider-7zip)

@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<string>
+  <title value="oIM"/>
+  <ver value="1.0"/>
+  <!-- 主窗口工具栏 -->
+  <mainbar_session value="mainbar_session"/>
+  <mainbar_contact value="mainbar_contact"/>
+  <mainbar_webapps value="mainbar_webapps"/>
+  <mainbar_collect value="mainbar_collect"/>
+  <mainbar_msgmgr value="mainbar_msgmgr"/>
+  <mainbar_setting value="mainbar_setting"/>
+</string>

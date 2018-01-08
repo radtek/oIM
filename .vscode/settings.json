@@ -1,0 +1,7 @@
+{
+    "git.ignoreLimitWarning": true,
+    "C_Cpp.intelliSenseEngineFallback": "Disabled",
+    "files.associations": {
+        "*.tli": "cpp"
+    }
+}

@@ -1,4 +1,4 @@
-#include "souistd.h"
+#include "stdafx.h"
 #include "SImageEx.h"
 #include "SSkinMutiFrameImg.h"
 namespace SOUI

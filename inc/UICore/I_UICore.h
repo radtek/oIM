@@ -23,15 +23,15 @@
 class __declspec(novtable) I_UICore: public IObjRef
 {
 public:
-	virtual BOOL Run(DWORD dwFlag = 0) = 0;
+	virtual int Run(DWORD dwFlag = 0) = 0;
 
 	// *** HelpApi ///////////////////////////////////////////////////////////////////////////
 	virtual LPCTSTR GetFontFamily(int i32Index) = 0;
 	virtual LPCTSTR	GetErrorLangInfo(DWORD dwErrId, LPCTSTR lpszDefault) = 0;
 	virtual LPCTSTR	SetErrorLangInfo(DWORD dwErrId, LPCTSTR lpszDesc) = 0;
-	virtual int   	SendMsg(/*PS_UISessionInfo*/void* psUISInfo, LPCTSTR pszXml, DWORD dwFlag);
-
-
+	virtual int   	SendMsg(/*PS_UISessionInfo*/void* psUISInfo, LPCTSTR pszXml, DWORD dwFlag) = 0;
+	virtual LPCTSTR GetPath(LPCTSTR pszToken) = 0;
+	virtual BOOL	MakeDir(LPCTSTR lpszPath) = 0;
 	// *** ´°¿Ú
 	virtual HWND	UIGetMainWnd() = 0;
 	virtual HWND	UIGetPopupWnd() = 0;
@@ -45,14 +45,13 @@ public:
 	virtual BOOL	UISetAttributeStr( LPCTSTR lpszPath, LPCTSTR lpszAttrName, LPCTSTR lpszValue ) = 0;
 	virtual int		UIGetAttributeInt( LPCTSTR lpszPath, LPCTSTR lpszAttrName, int i32Default=0, BOOL bEnableRedirect=TRUE ) = 0;
 	virtual BOOL	UISetAttributeInt( LPCTSTR lpszPath, LPCTSTR lpszAttrName, int i32Value ) = 0;
-	virtual int		UIGetText( LPCTSTR lpszPath, LPTSTR pszValue, int i32Size, BOOL bEnableRedirect=TRUE ) = 0;
+	virtual LPCTSTR UIGetText( LPCTSTR lpszPath, LPTSTR pszDefault, BOOL bEnableRedirect=TRUE ) = 0;
 	virtual BOOL	UISetText( LPCTSTR lpszPath, LPCTSTR lpszValue ) = 0;
 	virtual BOOL	UISaveConfig() = 0;
-	virtual LPCTSTR	UIGetAppVersion(BOOL bTrimBuildVer = TRUE);
-	virtual LPCTSTR UIGetSkinPath(int* pi32DpiRatio = NULL);
+	virtual LPCTSTR	UIGetAppVersion(BOOL bTrimBuildVer = TRUE) = 0;
 
 	virtual BOOL	UIUpdateHotkey(DWORD dwType, UINT u32Key, UINT u32Modifier) = 0;
-	virtual LPCTSTR UIGetLanguage(int i32Lang, BOOL bErrorInfo = FALSE) = 0;
+//	virtual LPCTSTR UIGetLanguage(int i32Lang, BOOL bErrorInfo = FALSE) = 0;
 	virtual BOOL	UIGetMsgSummary(LPCTSTR pszXmlMsg, LPTSTR pszMsgSummary, int i32Size, BOOL bPrefixName=FALSE) = 0;
 
 	// *** ÒýÇæ
@@ -66,7 +65,6 @@ public:
 	virtual int		GetAttributeInt(LPCTSTR pszName, int i32Default = 0) = 0;
 //	virtual BOOL	IsTypeOfId(QEID qeid, E_TypeId eTypeId);
 	virtual BOOL	IsFace(LPCTSTR pszFace) = 0;
-	virtual BOOL	VerifyFile(LPCTSTR pszFile, LPCTSTR pszFileKey) = NULL;
 
 };
 

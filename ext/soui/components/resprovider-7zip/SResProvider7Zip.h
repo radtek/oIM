@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include <interface/SResProvider-i.h>
 #include <unknown/obj-ref-impl.hpp>
@@ -6,6 +6,7 @@
 #include <string/strcpcvt.h>
 #include <souicoll.h>
 #define _COLL_NS SOUI
+//#define SOUI_EXP
 #include <helper/SResID.h>
 #include <interface/render-i.h>
 
@@ -40,6 +41,7 @@ protected:
 	SMap<SResID,SStringT> m_mapFiles;
     CAutoRefPtr<IRenderFactory> m_renderFactory;
 	CZip7Archive m_zipFile;
+	SStringT m_childDir;
 };
 
 namespace RESPROVIDER_7ZIP

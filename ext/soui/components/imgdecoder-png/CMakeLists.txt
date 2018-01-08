@@ -1,4 +1,4 @@
-# 
+﻿# 
 # SOUI cmake配置文件
 #
 add_definitions(-D_CRT_SECURE_NO_WARNINGS)
@@ -38,3 +38,4 @@ set(COM_LIBS ${COM_LIBS} imgdecoder-png CACHE INTERNAL "com_lib")
 set_target_properties (imgdecoder-png PROPERTIES
     FOLDER components/imgdecoder
 )
+cotire(imgdecoder-png)

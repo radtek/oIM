@@ -6,7 +6,7 @@
 
 namespace SOUI
 {
-    struct SOUI_EXP IWebEvent
+    struct IWebEvent
     {
         virtual void BeforeNavigate2( IDispatch *pDisp,VARIANT *&url,VARIANT *&Flags,VARIANT *&TargetFrameName,VARIANT *&PostData,VARIANT *&Headers,VARIANT_BOOL *&Cancel ){}
         virtual void NavigateError(IDispatch *pDisp,VARIANT * &url,VARIANT *&TargetFrameName,VARIANT *&StatusCode,VARIANT_BOOL *&Cancel){}
@@ -17,7 +17,7 @@ namespace SOUI
 		virtual void StatusTextChange(IDispatch *pDisp, VARIANT* &url){}
     };
 
-    class SOUI_EXP SIECtrlEvtDispatch : public IDispatch
+    class SIECtrlEvtDispatch : public IDispatch
     {
     public:
         SIECtrlEvtDispatch(IWebEvent *pEventHandler):m_pEventHandler(pEventHandler),m_cRef(1)
@@ -87,7 +87,7 @@ namespace SOUI
     };
 
         
-    class SOUI_EXP SIECtrl :public SActiveX, public IMessageFilter
+    class SIECtrl :	public SActiveX, public IMessageFilter
     {
         SOUI_CLASS_NAME(SIECtrl, L"iectrl")
     public:

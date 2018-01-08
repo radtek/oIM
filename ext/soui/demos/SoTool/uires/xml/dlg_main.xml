@@ -1,4 +1,4 @@
-﻿<SOUI name="mainWindow" title="@string/title" bigIcon="ICON_LOGO:32" smallIcon="ICON_LOGO:16" width="600" height="400"  margin="5,5,5,5"  resizable="1"
+﻿<SOUI name="mainWindow" title="@string/title" bigIcon="ICON_LOGO:32" smallIcon="ICON_LOGO:16" width="680" height="420" minsize="680,420"  margin="5,5,5,5"  resizable="1"
 appWnd="1"
 translucent="1"
 >
@@ -27,6 +27,9 @@ translucent="1"
       </page>
       <page title="MD5" name="page_md5" tip="计算文件的MD5值">
         <include src="layout:page_md5"/>
+      </page>
+      <page title="PE Tool" iconIndex="8" tip="PE小助手">
+        <include src="layout:page_pe_tool"/>
       </page>
       <page title="关于" iconIndex="8" tip="关于本工具">
         <include src="layout:page_about"/>

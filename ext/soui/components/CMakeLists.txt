@@ -1,4 +1,4 @@
-# 
+﻿# 
 # SOUI cmake配置文件
 #
 add_subdirectory(imgdecoder-gdip)

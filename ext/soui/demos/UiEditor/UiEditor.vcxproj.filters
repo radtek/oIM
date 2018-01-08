@@ -123,6 +123,9 @@
     <ClCompile Include="propgrid\SPropertyItemBase.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\controls.extend\SRealWndHandler_Scintilla.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\controls.extend\SScrollText.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -153,10 +156,7 @@
     <ClCompile Include="..\..\controls.extend\STurn3DView.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ScintillaWnd.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SouiRealWndHandler.cpp">
+    <ClCompile Include="..\..\controls.extend\ScintillaWnd.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="UIEditor.cpp">
@@ -287,6 +287,9 @@
     <ClInclude Include="propgrid\SPropertyItemBase.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\controls.extend\SRealWndHandler_Scintilla.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\controls.extend\SScrollText.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -317,10 +320,7 @@
     <ClInclude Include="..\..\controls.extend\STurn3DView.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ScintillaWnd.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SouiRealWndHandler.h">
+    <ClInclude Include="..\..\controls.extend\ScintillaWnd.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="colorpicker\Tooltipctrl.h">

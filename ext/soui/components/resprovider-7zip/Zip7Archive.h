@@ -1,4 +1,4 @@
-#ifndef __ZIP7ARCHIVE_H__
+﻿#ifndef __ZIP7ARCHIVE_H__
 #define __ZIP7ARCHIVE_H__
 
 #pragma once

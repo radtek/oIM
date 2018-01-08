@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<language name="简体中文" guid="{0DAEDE3C-6B94-4a81-9A55-C304FDD69D98}">
+  <context>
+    <!--没有上下文的翻译-->
+  </context>
+  <context name="messagebox">
+    <message>
+      <source>ok</source>
+      <translation>确定</translation>
+    </message>
+    <message>
+      <source>cancel</source>
+      <translation>取消</translation>
+    </message>
+    <message>
+      <source>retry</source>
+      <translation>重试</translation>
+    </message>
+  </context>
+  <context name="dlg_main">
+    <message>
+      <source>sysClose</source>
+      <translation>关闭</translation>
+    </message>
+    <message>
+      <source>sysMax</source>
+      <translation>最大化</translation>
+    </message>
+    <message>
+      <source>sysRestore</source>
+      <translation>还原</translation>
+    </message>
+    <message>
+      <source>sysMin</source>
+      <translation>最小化</translation>
+    </message>
+    <message>
+      <source>mainbar_session</source>
+      <translation>聊天</translation>
+    </message>
+    <message>
+      <source>mainbar_contact</source>
+      <translation>通讯录</translation>
+    </message>
+    <message>
+      <source>mainbar_webapps</source>
+      <translation>轻应用</translation>
+    </message>
+    <message>
+      <source>mainbar_collect</source>
+      <translation>收藏</translation>
+    </message>
+    <message>
+      <source>mainbar_msgmgr</source>
+      <translation>历史记录</translation>
+    </message>
+    <message>
+      <source>mainbar_setting</source>
+      <translation>设置</translation>
+    </message>
+  </context>
+</language>

@@ -1,4 +1,4 @@
-add_definitions(-D_CRT_SECURE_NO_WARNINGS)
+﻿add_definitions(-D_CRT_SECURE_NO_WARNINGS)
 
 include_directories(${PROJECT_SOURCE_DIR}/config)
 include_directories(${PROJECT_SOURCE_DIR}/utilities/include)
@@ -30,3 +30,4 @@ set(COM_LIBS ${COM_LIBS} render-gdi CACHE INTERNAL "com_lib")
 set_target_properties (render-gdi PROPERTIES
     FOLDER components/render
 )
+cotire(render-gdi)

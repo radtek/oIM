@@ -1,4 +1,4 @@
-/**
+ï»¿/**
 * Copyright (C) 2014-2050 
 * All rights reserved.
 * 
@@ -8,7 +8,7 @@
 * @author     SOUI group   
 * @date       2014/08/03
 * 
-* Describe    ÊµÏÖÁ½¸öÎÄ¼şÏà¹ØµÄhelper
+* Describe    å®ç°ä¸¤ä¸ªæ–‡ä»¶ç›¸å…³çš„helper
 */
 
 #pragma once
@@ -18,12 +18,12 @@
 using namespace SOUI;
 /**
 * BuildFilePath
-* @brief    µİ¹é´´½¨×ÓÄ¿Â¼
-* @param    LPCTSTR pszCurPath --  ´´½¨Â·¾¶µÄÆğÊ¼Î»ÖÃ
-* @param    LPCTSTR pszNewPath --  ĞÂÂ·¾¶
-* @param    BOOL bPath --  pszNewPathÊÇÒ»¸öÂ·¾¶±êÊ¶
-* @return   BOOL -- true´´½¨³É¹¦
-* Describe  pszNewPathÖ¸ÏòÒ»¸öÎÄ¼şÃûÊ±£¬Ö»´´½¨ÎÄ¼şÂ·¾¶²¿·Ö
+* @brief    é€’å½’åˆ›å»ºå­ç›®å½•
+* @param    LPCTSTR pszCurPath --  åˆ›å»ºè·¯å¾„çš„èµ·å§‹ä½ç½®
+* @param    LPCTSTR pszNewPath --  æ–°è·¯å¾„
+* @param    BOOL bPath --  pszNewPathæ˜¯ä¸€ä¸ªè·¯å¾„æ ‡è¯†
+* @return   BOOL -- trueåˆ›å»ºæˆåŠŸ
+* Describe  pszNewPathæŒ‡å‘ä¸€ä¸ªæ–‡ä»¶åæ—¶ï¼Œåªåˆ›å»ºæ–‡ä»¶è·¯å¾„éƒ¨åˆ†
 */    
 inline BOOL BuildFilePath(LPCTSTR pszCurPath,LPCTSTR pszNewPath,BOOL bPath=TRUE)
 {
@@ -107,25 +107,25 @@ public:
             return ::GetSaveFileName(&m_ofn);
     }
 
-	// »ñÈ¡ OFN
+	// è·å– OFN
 	const OPENFILENAME& GetOFN() const
 	{
 		return m_ofn;
 	} 
 
-	// »ñÈ¡ OFN
+	// è·å– OFN
 	OPENFILENAME& GetOFN()	
 	{
 		return m_ofn;
 	} 
 
-	// µ¥Ñ¡·½Ê½Ê±£¬»ñÈ¡ÎÄ¼şÃû
+	// å•é€‰æ–¹å¼æ—¶ï¼Œè·å–æ–‡ä»¶å
 	SStringT GetFileName() const
 	{
 		return PathFindFileName(m_ofn.lpstrFile);
 	}
 	
-	// µ¥Ñ¡·½Ê½Ê±£¬»ñÈ¡ÎÄ¼şÈ«Â·¾¶£»¶àÑ¡Ê±£¬»ñÈ¡Â·¾¶
+	// å•é€‰æ–¹å¼æ—¶ï¼Œè·å–æ–‡ä»¶å…¨è·¯å¾„ï¼›å¤šé€‰æ—¶ï¼Œè·å–è·¯å¾„
 	SStringT GetPathName() const
 	{
 		return m_ofn.lpstrFile;
@@ -146,7 +146,7 @@ public:
 				return m_ofn.lpstrFile;
 			}
 
-			pos += _tcslen(pos) + 1;	// Ìø¹ıPath
+			pos += _tcslen(pos) + 1;	// è·³è¿‡Path
 
 			if (*pos == 0)
 			{

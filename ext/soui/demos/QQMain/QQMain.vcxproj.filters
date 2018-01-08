@@ -27,6 +27,9 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ui\ChooseAvatar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="ui\drag\DragWnd.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -48,6 +51,9 @@
     <ClCompile Include="ui\SHeaderCtrlEx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ui\SProfilePicture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="ui\SToggleEx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -59,7 +65,13 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ui\ChooseAvatar.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="ui\drag\DragWnd.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ui\FileHelper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ui\adapter\FirendListItemAdapter.h">
@@ -80,16 +92,19 @@
     <ClInclude Include="ui\adapter\NodeMgr.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="res\R.h">
+    <ClInclude Include="ui\SHeaderCtrlEx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ui\SHeaderCtrlEx.h">
+    <ClInclude Include="ui\SProfilePicture.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ui\SToggleEx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ui\adapter\SimpleListDef.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="res\resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="resource.h">

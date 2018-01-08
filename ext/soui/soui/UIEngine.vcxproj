@@ -20,6 +20,8 @@
     <ClInclude Include="..\components\render-gdi\GradientFillHelper.h" />
     <ClInclude Include="..\components\render-gdi\render-gdi.h" />
     <ClInclude Include="..\components\render-skia\drawtext-skia.h" />
+    <ClInclude Include="..\components\render-skia\PathEffect-Skia.h" />
+    <ClInclude Include="..\components\render-skia\PathMeasure-Skia.h" />
     <ClInclude Include="..\components\render-skia\render-skia.h" />
     <ClInclude Include="..\components\render-skia\Render-Skia2-i.h" />
     <ClInclude Include="..\components\render-skia\Render-Skia2.h" />
@@ -47,62 +49,6 @@
     <ClInclude Include="..\components\ScriptModule-LUA\src\exports\exp_Window.h" />
     <ClInclude Include="..\components\ScriptModule-LUA\src\ScriptModule-Lua.h" />
     <ClInclude Include="..\components\translator\translator.h" />
-    <ClInclude Include="..\controls.extend\ExtendCtrls.h" />
-    <ClInclude Include="..\controls.extend\ExtendSkins.h" />
-    <ClInclude Include="..\controls.extend\FileHelper.h" />
-    <ClInclude Include="..\controls.extend\gif\SAniImgFrame.h" />
-    <ClInclude Include="..\controls.extend\gif\SGifPlayer.h" />
-    <ClInclude Include="..\controls.extend\gif\SSkinAPNG.h" />
-    <ClInclude Include="..\controls.extend\gif\SSkinGif.h" />
-    <ClInclude Include="..\controls.extend\image3d\3dlib.h" />
-    <ClInclude Include="..\controls.extend\image3d\3dmatrix.h" />
-    <ClInclude Include="..\controls.extend\image3d\3dTransform.h" />
-    <ClInclude Include="..\controls.extend\image3d\PerspectiveTransform.h" />
-    <ClInclude Include="..\controls.extend\propgrid\propitem\SPropertyItem-Color.h" />
-    <ClInclude Include="..\controls.extend\propgrid\propitem\SPropertyItem-Option.h" />
-    <ClInclude Include="..\controls.extend\propgrid\propitem\SPropertyItem-Size.h" />
-    <ClInclude Include="..\controls.extend\propgrid\propitem\SPropertyItem-Text.h" />
-    <ClInclude Include="..\controls.extend\propgrid\SPropertyEmbedWndHelper.hpp" />
-    <ClInclude Include="..\controls.extend\propgrid\SPropertyGrid.h" />
-    <ClInclude Include="..\controls.extend\propgrid\SPropertyItem-i.h" />
-    <ClInclude Include="..\controls.extend\propgrid\SPropertyItemBase.h" />
-    <ClInclude Include="..\controls.extend\reg.h" />
-    <ClInclude Include="..\controls.extend\reole\dataobject.h" />
-    <ClInclude Include="..\controls.extend\reole\RichEditOle.h" />
-    <ClInclude Include="..\controls.extend\SAnimator.h" />
-    <ClInclude Include="..\controls.extend\SButtonEx.h" />
-    <ClInclude Include="..\controls.extend\SCalendar2.h" />
-    <ClInclude Include="..\controls.extend\SChatEdit.h" />
-    <ClInclude Include="..\controls.extend\SChromeTabCtrl.h" />
-    <ClInclude Include="..\controls.extend\SDateTimeEdit.h" />
-    <ClInclude Include="..\controls.extend\SDocHostUIHandler.h" />
-    <ClInclude Include="..\controls.extend\SFadeFrame.h" />
-    <ClInclude Include="..\controls.extend\SFreeMoveWindow.h" />
-    <ClInclude Include="..\controls.extend\SIECtrl.h" />
-    <ClInclude Include="..\controls.extend\SImageEx.h" />
-    <ClInclude Include="..\controls.extend\SImageMaskWnd.h" />
-    <ClInclude Include="..\controls.extend\SIPAddressCtrl.h" />
-    <ClInclude Include="..\controls.extend\SListboxex.h" />
-    <ClInclude Include="..\controls.extend\SListCtrlEx.h" />
-    <ClInclude Include="..\controls.extend\SMcListViewEx\Adapter参考.h" />
-    <ClInclude Include="..\controls.extend\SMcListViewEx\SHeaderCtrlEx.h" />
-    <ClInclude Include="..\controls.extend\SMcListViewEx\SLoopButton.h" />
-    <ClInclude Include="..\controls.extend\SMcListViewEx\SMCListViewEx.h" />
-    <ClInclude Include="..\controls.extend\SMcListViewEx\STabCtrlHeaderBinder.h" />
-    <ClInclude Include="..\controls.extend\smiley\SSmileyCtrl.h" />
-    <ClInclude Include="..\controls.extend\SRadioBox2.h" />
-    <ClInclude Include="..\controls.extend\SRatingBar.h" />
-    <ClInclude Include="..\controls.extend\SScrollText.h" />
-    <ClInclude Include="..\controls.extend\SSkinImgFrame2.h" />
-    <ClInclude Include="..\controls.extend\SSkinMutiFrameImg.h" />
-    <ClInclude Include="..\controls.extend\SSkinNewScrollBar.h" />
-    <ClInclude Include="..\controls.extend\STabCtrl2.h" />
-    <ClInclude Include="..\controls.extend\SText.h" />
-    <ClInclude Include="..\controls.extend\STurn3DView.h" />
-    <ClInclude Include="..\controls.extend\SVscrollbar.h" />
-    <ClInclude Include="..\controls.extend\SWkeWebkit.h" />
-    <ClInclude Include="..\controls.extend\TipWnd.h" />
-    <ClInclude Include="..\controls.extend\trayicon\SShellNotifyIcon.h" />
     <ClInclude Include="..\utilities\include\atl.mini\atldef.h" />
     <ClInclude Include="..\utilities\include\atl.mini\SComCli.h" />
     <ClInclude Include="..\utilities\include\atl.mini\SComHelper.h" />
@@ -125,6 +71,7 @@
     <ClInclude Include="..\utilities\include\wtl.mini\msgcrack.h" />
     <ClInclude Include="..\utilities\include\wtl.mini\souimisc.h" />
     <ClInclude Include="include\activex\SBStr.h" />
+    <ClInclude Include="include\animator\SInterpolatorImpl.h" />
     <ClInclude Include="include\control\RealWndHandler-i.h" />
     <ClInclude Include="include\control\SActiveX.h" />
     <ClInclude Include="include\control\SCalendar.h" />
@@ -133,6 +80,7 @@
     <ClInclude Include="include\control\SComboBase.h" />
     <ClInclude Include="include\control\SComboBox.h" />
     <ClInclude Include="include\control\SComboView.h" />
+    <ClInclude Include="include\control\SDateTimePicker.h" />
     <ClInclude Include="include\control\SDropDown.h" />
     <ClInclude Include="include\control\SHeaderCtrl.h" />
     <ClInclude Include="include\control\SHotKeyCtrl.h" />
@@ -140,12 +88,14 @@
     <ClInclude Include="include\control\SListCtrl.h" />
     <ClInclude Include="include\control\SListView.h" />
     <ClInclude Include="include\control\SMCListView.h" />
+    <ClInclude Include="include\control\SMenuBar.h" />
     <ClInclude Include="include\control\SMessageBox.h" />
     <ClInclude Include="include\control\SouiCtrls.h" />
     <ClInclude Include="include\control\SRealWnd.h" />
     <ClInclude Include="include\control\SRichEdit.h" />
     <ClInclude Include="include\control\SScrollbar.h" />
     <ClInclude Include="include\control\SSliderBar.h" />
+    <ClInclude Include="include\control\SSpinButton.h" />
     <ClInclude Include="include\control\SSpinButtonCtrl.h" />
     <ClInclude Include="include\control\SSplitWnd.h" />
     <ClInclude Include="include\control\STabCtrl.h" />
@@ -194,6 +144,7 @@
     <ClInclude Include="include\helper\SCriticalSection.h" />
     <ClInclude Include="include\helper\SDIBHelper.h" />
     <ClInclude Include="include\helper\SListViewItemLocator.h" />
+    <ClInclude Include="include\helper\slog-def.h" />
     <ClInclude Include="include\helper\slog-private.h" />
     <ClInclude Include="include\helper\slog.h" />
     <ClInclude Include="include\helper\SMatrix.h" />
@@ -213,14 +164,20 @@
     <ClInclude Include="include\interface\imgdecoder-i.h" />
     <ClInclude Include="include\interface\LvItemLocator-i.h" />
     <ClInclude Include="include\interface\render-i.h" />
+    <ClInclude Include="include\interface\SAttrStorage-i.h" />
+    <ClInclude Include="include\interface\sinterpolator-i.h" />
     <ClInclude Include="include\interface\slayout-i.h" />
     <ClInclude Include="include\interface\slog-i.h" />
+    <ClInclude Include="include\interface\SPathEffect-i.h" />
     <ClInclude Include="include\interface\SResProvider-i.h" />
     <ClInclude Include="include\interface\SScriptModule-i.h" />
     <ClInclude Include="include\interface\SSkinobj-i.h" />
     <ClInclude Include="include\interface\stooltip-i.h" />
     <ClInclude Include="include\interface\STranslator-i.h" />
+    <ClInclude Include="include\interface\szip-i.h" />
     <ClInclude Include="include\interface\TvItemLocator-i.h" />
+    <ClInclude Include="include\layout\SGridLayout.h" />
+    <ClInclude Include="include\layout\SGridLayoutParamStruct.h" />
     <ClInclude Include="include\layout\SLayoutSize.h" />
     <ClInclude Include="include\layout\SLinearLayout.h" />
     <ClInclude Include="include\layout\SLinearLayoutParamStruct.h" />
@@ -253,6 +210,8 @@
     <ClCompile Include="..\components\render-gdi\GradientFillHelper.cpp" />
     <ClCompile Include="..\components\render-gdi\render-gdi.cpp" />
     <ClCompile Include="..\components\render-skia\drawtext-skia.cpp" />
+    <ClCompile Include="..\components\render-skia\PathEffect-Skia.cpp" />
+    <ClCompile Include="..\components\render-skia\PathMeasure-Skia.cpp" />
     <ClCompile Include="..\components\render-skia\render-skia.cpp" />
     <ClCompile Include="..\components\render-skia\Render-Skia2.cpp" />
     <ClCompile Include="..\components\render-skia\skia2rop2.cpp" />
@@ -267,51 +226,6 @@
     <ClCompile Include="..\components\ScriptModule-LUA\src\exports\exp_soui.cpp" />
     <ClCompile Include="..\components\ScriptModule-LUA\src\ScriptModule-Lua.cpp" />
     <ClCompile Include="..\components\translator\translator.cpp" />
-    <ClCompile Include="..\controls.extend\ExtendCtrls.cpp" />
-    <ClCompile Include="..\controls.extend\ExtendSkins.cpp" />
-    <ClCompile Include="..\controls.extend\gif\SGifPlayer.cpp" />
-    <ClCompile Include="..\controls.extend\gif\SSkinAPNG.cpp" />
-    <ClCompile Include="..\controls.extend\gif\SSkinGif.cpp" />
-    <ClCompile Include="..\controls.extend\image3d\3dlib.cpp" />
-    <ClCompile Include="..\controls.extend\image3d\3dmatrix.cpp" />
-    <ClCompile Include="..\controls.extend\image3d\3dtransform.cpp" />
-    <ClCompile Include="..\controls.extend\propgrid\propitem\SPropertyItem-Color.cpp" />
-    <ClCompile Include="..\controls.extend\propgrid\propitem\SPropertyItem-Option.cpp" />
-    <ClCompile Include="..\controls.extend\propgrid\propitem\SPropertyItem-Size.cpp" />
-    <ClCompile Include="..\controls.extend\propgrid\propitem\SPropertyItem-Text.cpp" />
-    <ClCompile Include="..\controls.extend\propgrid\SPropertyGrid.cpp" />
-    <ClCompile Include="..\controls.extend\propgrid\SPropertyItemBase.cpp" />
-    <ClCompile Include="..\controls.extend\reole\dataobject.cpp" />
-    <ClCompile Include="..\controls.extend\reole\RichEditOle.cpp" />
-    <ClCompile Include="..\controls.extend\SButtonEx.cpp" />
-    <ClCompile Include="..\controls.extend\SCalendar2.cpp" />
-    <ClCompile Include="..\controls.extend\SChatEdit.cpp" />
-    <ClCompile Include="..\controls.extend\SChromeTabCtrl.cpp" />
-    <ClCompile Include="..\controls.extend\SDateTimeEdit.cpp" />
-    <ClCompile Include="..\controls.extend\SDocHostUIHandler.cpp" />
-    <ClCompile Include="..\controls.extend\SFadeFrame.cpp" />
-    <ClCompile Include="..\controls.extend\SFreeMoveWindow.cpp" />
-    <ClCompile Include="..\controls.extend\SIECtrl.cpp" />
-    <ClCompile Include="..\controls.extend\SImageEx.cpp" />
-    <ClCompile Include="..\controls.extend\SImageMaskWnd.cpp" />
-    <ClCompile Include="..\controls.extend\SIPAddressCtrl.cpp" />
-    <ClCompile Include="..\controls.extend\SListboxex.cpp" />
-    <ClCompile Include="..\controls.extend\SListCtrlEx.cpp" />
-    <ClCompile Include="..\controls.extend\SMcListViewEx\SHeaderCtrlEx.cpp" />
-    <ClCompile Include="..\controls.extend\SMcListViewEx\SLoopButton.cpp" />
-    <ClCompile Include="..\controls.extend\SMcListViewEx\SMCListViewEx.cpp" />
-    <ClCompile Include="..\controls.extend\SMcListViewEx\STabCtrlHeaderBinder.cpp" />
-    <ClCompile Include="..\controls.extend\SRadioBox2.cpp" />
-    <ClCompile Include="..\controls.extend\SRatingBar.cpp" />
-    <ClCompile Include="..\controls.extend\SScrollText.cpp" />
-    <ClCompile Include="..\controls.extend\SSkinImgFrame2.cpp" />
-    <ClCompile Include="..\controls.extend\SSkinMutiFrameImg.cpp" />
-    <ClCompile Include="..\controls.extend\STabCtrl2.cpp" />
-    <ClCompile Include="..\controls.extend\SText.cpp" />
-    <ClCompile Include="..\controls.extend\STurn3DView.cpp" />
-    <ClCompile Include="..\controls.extend\SWkeWebkit.cpp" />
-    <ClCompile Include="..\controls.extend\TipWnd.cpp" />
-    <ClCompile Include="..\controls.extend\trayicon\SShellNotifyIcon.cpp" />
     <ClCompile Include="..\utilities\src\gdialpha.cpp" />
     <ClCompile Include="..\utilities\src\pugixml\pugixml.cpp" />
     <ClCompile Include="..\utilities\src\sobject\SObject.cpp" />
@@ -323,6 +237,7 @@
     <ClCompile Include="include\souistd.h.cpp" />
     <ClCompile Include="src\activex\SAxContainer.cpp" />
     <ClCompile Include="src\activex\SBStr.cpp" />
+    <ClCompile Include="src\animator\SInterpolatorImpl.cpp" />
     <ClCompile Include="src\control\SActiveX.cpp" />
     <ClCompile Include="src\control\SCalendar.cpp" />
     <ClCompile Include="src\control\SCaption.cpp" />
@@ -330,6 +245,7 @@
     <ClCompile Include="src\control\SComboBase.cpp" />
     <ClCompile Include="src\control\SComboBox.cpp" />
     <ClCompile Include="src\control\SComboView.cpp" />
+    <ClCompile Include="src\control\SDateTimePicker.cpp" />
     <ClCompile Include="src\control\SDropDown.cpp" />
     <ClCompile Include="src\control\SHeaderCtrl.cpp" />
     <ClCompile Include="src\control\SHotKeyCtrl.cpp" />
@@ -337,11 +253,13 @@
     <ClCompile Include="src\control\SListCtrl.cpp" />
     <ClCompile Include="src\control\SListView.cpp" />
     <ClCompile Include="src\control\SMCListView.cpp" />
+    <ClCompile Include="src\control\SMenuBar.cpp" />
     <ClCompile Include="src\control\SMessageBox.cpp" />
     <ClCompile Include="src\control\SRealWnd.cpp" />
     <ClCompile Include="src\control\SRichEdit.cpp" />
     <ClCompile Include="src\control\SScrollbar.cpp" />
     <ClCompile Include="src\control\SSliderBar.cpp" />
+    <ClCompile Include="src\control\SSpinButton.cpp" />
     <ClCompile Include="src\control\SSpinButtonCtrl.cpp" />
     <ClCompile Include="src\control\SSplitWnd.cpp" />
     <ClCompile Include="src\control\STabCtrl.cpp" />
@@ -381,6 +299,7 @@
     <ClCompile Include="src\helper\STimerEx.cpp" />
     <ClCompile Include="src\helper\SToolTip.cpp" />
     <ClCompile Include="src\helper\SwndFinder.cpp" />
+    <ClCompile Include="src\layout\SGridLayout.cpp" />
     <ClCompile Include="src\layout\SLayoutSize.cpp" />
     <ClCompile Include="src\layout\SLinearLayout.cpp" />
     <ClCompile Include="src\layout\SouiLayout.cpp" />
@@ -399,9 +318,6 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="UIEngine.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\controls.extend\readme.txt" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{856B81EC-F19F-4A88-B41B-2343FB519324}</ProjectGuid>
@@ -445,7 +361,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>.;..\config;include;..\utilities\include;..\tools\mkspecs\win32-msvc2010;..\components;..\third-part\png;..\third-part\7z;..\third-part\zlib;..\third-part\skia;..\third-part\skia\include;..\third-part\skia\include\config;..\third-part\skia\include\core;..\third-part\lua-52\src;..\third-part\wke\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\;..\..\..\inc;$(SOUIPATH)\soui;$(SOUIPATH)\config;$(SOUIPATH)\soui\include;$(SOUIPATH)\utilities\include;$(SOUIPATH)\tools\mkspecs\win32-msvc2010;$(SOUIPATH)\components;$(SOUIPATH)\third-part\7z;$(SOUIPATH)\third-part\png;$(SOUIPATH)\third-part\zlib;$(SOUIPATH)\third-part\skia;$(SOUIPATH)\third-part\skia\include;$(SOUIPATH)\third-part\skia\include\config;$(SOUIPATH)\third-part\skia\include\core;$(SOUIPATH)\third-part\lua-52\src;$(SOUIPATH)\third-part\wke\include;$(SOUIPATH)\third-part\Scintilla\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>-w34100 -w34189 -w44996 %(AdditionalOptions)</AdditionalOptions>
       <BrowseInformation>false</BrowseInformation>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -464,8 +380,8 @@
       <PrecompiledHeaderFile>include\souistd.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>Usp10.lib;Opengl32.lib;lua-52.lib;png.lib;smiley.lib;skia.lib;soui.lib;utilities.lib;zlib.lib;7z.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\..\..\lib\$(Platform);$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Opengl32.lib;lua-52.lib;png.lib;skia.lib;smiley.lib;soui.lib;scintilla.lib;Usp10.lib;utilities.lib;zlib.lib;7z.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\..\..\lib\$(Platform);$(OutDir);$(SOUIPATH)\bin;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <DataExecutionPrevention>true</DataExecutionPrevention>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -492,7 +408,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>.\;..\..\..\inc;$(SOUIPATH)\soui;$(SOUIPATH)\config;$(SOUIPATH)\soui\include;$(SOUIPATH)\utilities\include;$(SOUIPATH)\tools\mkspecs\win32-msvc2010;$(SOUIPATH)\components;$(SOUIPATH)\third-part\7z;$(SOUIPATH)\third-part\png;$(SOUIPATH)\third-part\zlib;$(SOUIPATH)\third-part\skia;$(SOUIPATH)\third-part\skia\include;$(SOUIPATH)\third-part\skia\include\config;$(SOUIPATH)\third-part\skia\include\core;$(SOUIPATH)\third-part\lua-52\src;$(SOUIPATH)\third-part\wke\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\;..\..\..\inc;$(SOUIPATH)\soui;$(SOUIPATH)\config;$(SOUIPATH)\soui\include;$(SOUIPATH)\utilities\include;$(SOUIPATH)\tools\mkspecs\win32-msvc2010;$(SOUIPATH)\components;$(SOUIPATH)\third-part\7z;$(SOUIPATH)\third-part\png;$(SOUIPATH)\third-part\zlib;$(SOUIPATH)\third-part\skia;$(SOUIPATH)\third-part\skia\include;$(SOUIPATH)\third-part\skia\include\config;$(SOUIPATH)\third-part\skia\include\core;$(SOUIPATH)\third-part\lua-52\src;$(SOUIPATH)\third-part\wke\include;$(SOUIPATH)\third-part\Scintilla\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>-w34100 -w34189 -w44996 %(AdditionalOptions)</AdditionalOptions>
       <BrowseInformation>false</BrowseInformation>
       <DisableSpecificWarnings>4100;4101;4102;4189;4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
@@ -508,8 +424,8 @@
       <PrecompiledHeaderFile>include\souistd.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>Usp10.lib;Opengl32.lib;lua-52d.lib;pngd.lib;skiad.lib;smileyd.lib;souid.lib;utilitiesd.lib;zlibd.lib;7zd.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\..\..\lib\$(Platform);$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Opengl32.lib;lua-52d.lib;pngd.lib;skiad.lib;smileyd.lib;souid.lib;scintillad.lib;Usp10.lib;utilitiesd.lib;zlibd.lib;7zd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\..\..\lib\$(Platform);$(OutDir);$(SOUIPATH)\bin;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <DataExecutionPrevention>true</DataExecutionPrevention>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <IgnoreImportLibrary>true</IgnoreImportLibrary>

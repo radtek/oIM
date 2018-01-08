@@ -5,7 +5,7 @@
 //     Version: 2015.2.5 - 1.0 - Create
 //////////////////////////////////////////////////////////////////////////
 
-#include "souistd.h"
+#include "stdafx.h"
 #include "SlistCtrlex.h"
 #include "helper/mybuffer.h"
 #include "SListboxex.h"
@@ -359,7 +359,7 @@ namespace SOUI
 			hdi.mask=SHDI_WIDTH|SHDI_ORDER;
 			m_pHeader->GetItem(nCol,&hdi);
 			rcCol.left=rcCol.right;
-			rcCol.right = rcCol.left + hdi.cx;
+			rcCol.right = rcCol.left + hdi.cx.toPixelSize(GetScale());
 
 			CRect rcVisiblePart(rcCol);
 

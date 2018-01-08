@@ -3,7 +3,7 @@
 #pragma  once
 
 #include <com-def.h>
-#include <com-loader.hpp>
+#include <com-loaderex.hpp>
 #include <interface\szip-i.h>
 
 # define UIENGINE_DLL	_T("UIEngine.dll")
@@ -26,6 +26,6 @@ public:
 	}
 
 protected:
-    SComLoader UIEngine;
+    SComLoaderEx UIEngine;
 
 };

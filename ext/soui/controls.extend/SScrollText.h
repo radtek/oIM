@@ -2,7 +2,7 @@
 
 namespace SOUI
 {
-    class SOUI_EXP SScrollText : public SStatic , public ITimelineHandler
+    class SScrollText : public SStatic , public ITimelineHandler
     {
         SOUI_CLASS_NAME(SScrollText,L"scrolltext")
     public:

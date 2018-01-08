@@ -25,7 +25,7 @@ namespace SOUI
  * Describe   À©Õ¹ÁÐ±í¿ò
  */
 #define IDC_LSTCEX_SELECT -300
-class SOUI_EXP SListCtrlEx :public SScrollView
+class SListCtrlEx :public SScrollView
     ,public IItemContainer
 {
 public:

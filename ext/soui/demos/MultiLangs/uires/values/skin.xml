@@ -1,10 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
 <skin>
-  <imglist name="scale_pic" scale="100" src="img:pic_100"/>
-  <imglist name="scale_pic" scale="125" src="img:pic_125"/>
-  <imglist name="scale_pic" scale="150" src="img:pic_150"/>
-  <imglist name="scale_pic" scale="200" src="img:pic_200"/>
+  <imglist name="scale_pic" scale="100"	src="img:pic_100"/>
+  <imglist name="scale_pic" scale="125"	src="img:pic_125"/>
+  <imglist name="scale_pic" scale="150"	src="img:pic_150"/>
+  <imglist name="scale_pic" scale="200"	src="img:pic_200"/>
+  <imgframe2 name="chat_bg" src="img:chat.9"/>
   <shape name="shape_test" shape="oval">
     <corners radius="5dp"/>
     <size width="100dp" height="100dp"/>
@@ -12,15 +13,4 @@
     <stroke style="solid" width="2dp" color="#00ff00"/>
     <gradient type="sweep" startColor="#ff0000" centerColor="#00ff00" endColor="#0000ff" angle="45" radius="20dp"/>
   </shape>
-
-  <imgframe name="_group" src="img:IMG_GROUP" margin="3"/>
-  <imglist name="_level" src="img:IMG_LEVEL" />
-
-  <imglist name="_gear1" src="img:IMG_GEAR1" />
-  <imglist name="_gear2" src="img:IMG_GEAR2" />
-  <imglist name="_gear3" src="img:IMG_GEAR3" />
-  <imglist name="_gear4" src="img:IMG_GEAR4" />
-  <imglist name="_gear5" src="img:IMG_GEAR5" />
-  <imglist name="_gear6" src="img:IMG_GEAR6" />
-
 </skin>

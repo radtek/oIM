@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<language name="lang_cn" guid="{0DAEDE3C-6B94-4a81-9A55-C304FDD69D98}">
+  <context>
+    <message>
+      <source>usage_help</source>
+      <translation>帮助</translation>
+    </message>
+    <message>
+      <source>usages</source>
+      <translation>
+          <![CDATA[用法：ImageViewer.exe [选项]
+选项:
+  -ipath="path"     将替换images值中的"${ipath}" 和 ".\"，必须在参数"-images"之前
+  -fid=<fid|index>  指定要显示的当前图片，没有指定或者指定无效时，默认显示第一张图片
+                    当与参数"-db"结合使用时，表示当前的图片fid，必须在参数"-db"之前
+                    当与参数"-images" 或者自动搜索时，表示当前图片从0开始的索引
+  -images="image"   指定图片文件的路径列表，以"|"分隔
+                    当只有文件名时，会自动添加路径"${ipath}"
+                    当前路径".\"也会被替换成"${ipath}"
+  -days=[1,n]         图片消息前、后的天数, 默认上限30，必须在参数"-db"之前
+  -dbkey="key"      数据库密钥，默认为eIM的密钥，必须在参数"-db"之前
+  -db="dbfile"      指定消息数据库（msg.db）的路径
+  -ifilter="filter" 图片过滤器，必须在"-ipath"之后，自动搜索"-ipath"位置中的图片，如："*.png|*.jpg"
+  -lang=[cn,en]     指定要使用的语言，默认跟随系统
+  -scale=n          指定放大倍数，默认根据系统DPI来设定,可选配置有：100,125,150,200
+  -taskbar=[0,1]    指定是否在任务栏显示，默认显示（1）
+  -speed=[0,n]      翻页动画的速度，默认值20。0：禁用翻页动画，值越小越快
+  -help             显示本帮助信息
+
+示例:
+  ImageViewer.exe -ipath="d:\a\b" -images="${ipath}a.png|b.png"
+  ImageViewer.exe -ipath="d:\a\b" -ifilter="*.jpg|*.png"
+  ImageViewer.exe -db="d:\msg.db"
+  ImageViewer.exe -db="d:\msg.db" -fid=234235235232423432432
+          ]]>
+      </translation>
+    </message>
+    <!--没有上下文的翻译-->
+  </context>
+  <context name="messagebox">
+    <message>
+      <source>Ok</source>
+      <translation>确定</translation>
+    </message>
+    <message>
+      <source>Cancel</source>
+      <translation>取消</translation>
+    </message>
+    <message>
+      <source>Retry</source>
+      <translation>重试</translation>
+    </message>
+    <message>
+      <source>Abort</source>
+      <translation>终止</translation>
+    </message>
+    <message>
+      <source>Yes</source>
+      <translation>是</translation>
+    </message>
+    <message>
+      <source>No</source>
+      <translation>否</translation>
+    </message>
+    <message>
+      <source>Ignore</source>
+      <translation>忽略</translation>
+    </message>
+  </context>
+  <context name="dlg_main">
+    <message>
+      <source>sysClose</source>
+      <translation>关闭窗口</translation>
+    </message>
+    <message>
+      <source>tipInRecord</source>
+      <translation>请在消息记录中查看</translation>
+    </message>
+    <message>
+      <source>tipLast</source>
+      <translation>已经是最后一张</translation>
+    </message>
+
+    <message>
+      <source>btnThumbShow</source>
+      <translation>显示缩略图</translation>
+    </message>
+    <message>
+      <source>btnThumbHide</source>
+      <translation>隐藏缩略图</translation>
+    </message>
+    <message>
+      <source>btnToolbar1to1</source>
+      <translation>实际大小(F5)</translation>
+    </message>
+    <message>
+      <source>btnToolbarIs1to1</source>
+      <translation>当前已显示实际大小(F5)</translation>
+    </message>
+    <message>
+      <source>btnToolbarFullscreen</source>
+      <translation>全屏查看(F11)</translation>
+    </message>
+    <message>
+      <source>btnToolbarExitFullscreen</source>
+      <translation>退出全屏(F11)</translation>
+    </message>
+    <message>
+      <source>btnToolbarZoomout</source>
+      <translation>缩小图片(-)</translation>
+    </message>
+    <message>
+      <source>btnToolbarZoomin</source>
+      <translation>放大图片(+)</translation>
+    </message>
+    <message>
+      <source>btnToolbarRotate</source>
+      <translation>向右(F9)</translation>
+    </message>
+    <message>
+      <source>btnToolbarFolder</source>
+      <translation>打开文件夹(F3)</translation>
+    </message>
+    <message>
+      <source>btnToolbarSaveas</source>
+      <translation>保存图片(F2)</translation>
+    </message>
+    <message>
+      <source>btnToolbarHide</source>
+      <translation>隐藏工具栏</translation>
+    </message>
+    <message>
+      <source>btnToolbarShow</source>
+      <translation>显示工具栏</translation>
+    </message>
+
+  </context>
+</language>

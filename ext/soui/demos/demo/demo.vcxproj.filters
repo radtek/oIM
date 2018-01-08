@@ -33,6 +33,9 @@
     <ClCompile Include="MainDlg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="qrcode\QR_Encode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\controls.extend\SChromeTabCtrl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -51,10 +54,25 @@
     <ClCompile Include="..\..\controls.extend\SMcListViewEx\SHeaderCtrlEx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SInterpolatorView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\controls.extend\SMcListViewEx\SMCListViewEx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SPathView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="qrcode\SQrCtrl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\controls.extend\SRatingBar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="trayicon\SShellNofityHwnd2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="trayicon\SShellNotifyIcon.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\controls.extend\gif\SSkinAPNG.cpp">
@@ -63,7 +81,7 @@
     <ClCompile Include="..\..\controls.extend\gif\SSkinGif.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\controls.extend\SSkinImgFrame2.cpp">
+    <ClCompile Include="..\..\controls.extend\SSkinImgFrame3.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="skin\SSkinLoader.cpp">
@@ -176,6 +194,9 @@
     <ClInclude Include="MainDlg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="qrcode\QR_Encode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\controls.extend\gif\SAniImgFrame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -197,13 +218,28 @@
     <ClInclude Include="..\..\controls.extend\SMcListViewEx\SHeaderCtrlEx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="SInterpolatorView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\controls.extend\SMcListViewEx\SMcListViewEx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SPathView.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\controls.extend\propgrid\SPropertyGrid.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="qrcode\SQrCtrl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\controls.extend\SRatingBar.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="trayicon\SShellNofityHwnd2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="trayicon\SShellNotifyIcon.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\controls.extend\gif\SSkinAPNG.h">
@@ -212,7 +248,7 @@
     <ClInclude Include="..\..\controls.extend\gif\SSkinGif.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\controls.extend\SSkinImgFrame2.h">
+    <ClInclude Include="..\..\controls.extend\SSkinImgFrame3.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="skin\SSkinLoader.h">

@@ -1,4 +1,4 @@
-// Microsoft Visual C++ generated resource script.
+Ôªø// Microsoft Visual C++ generated resource script.
 //
 
 #define APSTUDIO_READONLY_SYMBOLS
@@ -67,7 +67,7 @@ BEGIN
     BEGIN
         BLOCK "080404b0"
         BEGIN
-            VALUE "CompanyName", "∆Ù≥Ã»Ìº˛"
+            VALUE "CompanyName", "ÂêØÁ®ãËΩØ‰ª∂"
             VALUE "FileDescription", "scriptmodule-lua"
             VALUE "FileVersion", "1, 0, 0, 1"
             VALUE "InternalName", "scriptmodule-lua"

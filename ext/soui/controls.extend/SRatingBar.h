@@ -2,7 +2,7 @@
 
 namespace SOUI
 {
-    class SOUI_EXP SRatingBar : public SWindow
+    class SRatingBar : public SWindow
     {
     SOUI_CLASS_NAME(SRatingBar,L"ratingbar")
     public:
