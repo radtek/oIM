@@ -3,6 +3,7 @@
 #include "UICore\AppConfig.h"
 #include <resprovider-zip\zipresprovider-param.h>
 #include "controls\STabBtn.h"
+#include "C_CommandLine.h"
 
 //从PE文件加载，注意从文件加载路径位置
 #define RES_TYPE 0
@@ -125,11 +126,16 @@ int C_UICore::Run(DWORD dwFlag)
         CAutoRefPtr<ITranslatorMgr> trans;
         bLoaded=pComMgr->CreateTranslator((IObjRef**)&trans);
         SASSERT_FMT(bLoaded,_T("load interface [%s] failed!"),_T("translator"));
-        if(trans)
+        BOOL bParsed = args.ParseCommandLine();
+		if(trans)
         {//加载语言翻译包
             theApp->SetTranslator(trans);
-			SStringT szLang = UIGetAttributeStr(PATH_APP, APP_ATTR_LANGUAGE, _T("en"));
-			szLang = _T("lang_") + szLang;	// To: lang_en, lang_cn
+			SStringT szLang = UIGetAttributeStr(PATH_APP, APP_ATTR_LANGUAGE);
+			if ( szLang.IsEmpty() )
+				szLang = args.GetLang();
+			else
+				szLang = kLang + szLang;	// To: lang_en, lang_cn
+
             pugi::xml_document xmlLang;
             if(theApp->LoadXmlDocment(xmlLang, szLang,_T("translator")))
             {

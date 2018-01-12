@@ -2,6 +2,10 @@
 <string>
   <title value="oIM"/>
   <ver value="1.0"/>
+  <lang_cn value="lang_cn" />
+  <lang_en value="lang_en" />
+  <usage_help value="usage_help" />
+  <usages value="usages" />
   <!-- 主窗口工具栏 -->
   <mainbar_session value="mainbar_session"/>
   <mainbar_contact value="mainbar_contact"/>
@@ -9,4 +13,7 @@
   <mainbar_collect value="mainbar_collect"/>
   <mainbar_msgmgr value="mainbar_msgmgr"/>
   <mainbar_setting value="mainbar_setting"/>
+  <!-- 会话客户区 -->
+  <search value="search"/>
+  <quick_create_session value="quick_create_session"/>
 </string>

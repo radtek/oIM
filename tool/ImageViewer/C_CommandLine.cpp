@@ -133,8 +133,8 @@ inline DWORD C_CommandLine::LoadImages()
 	DWORD		dwTime = 0;
 	SComLoader	dllSqlite3;			// 需要注意作用域，它需要定义在接口的前面，不然会先释放造成接口无效。
 	CAutoRefPtr<I_SQLite3> pIDb;
-	SStringA	szDbFileA = S_CT2A(m_szDbFile);
-	SStringA	szDbKeyA  = S_CT2A(m_szDbKey);
+	SStringA	szDbFileA = S_CT2A(m_szDbFile, CP_UTF8);
+	SStringA	szDbKeyA  = S_CT2A(m_szDbKey, CP_UTF8);
 
 	if ( SUCCEEDED(CreateInterface(INAME_SQLITE_DB, (void**)&pIDb)) )
 	{

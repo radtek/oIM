@@ -69,6 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Controls\STabBtn.cpp" />
+    <ClCompile Include="C_CommandLine.cpp" />
     <ClCompile Include="C_UICore.cpp" />
     <ClCompile Include="MainDlg.cpp" />
     <ClCompile Include="oIM.cpp" />
@@ -83,6 +84,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Controls\STabBtn.h" />
+    <ClInclude Include="C_CommandLine.h" />
     <ClInclude Include="C_UICore.h" />
     <ClInclude Include="MainDlg.h" />
     <ClInclude Include="resource.h" />

@@ -1,5 +1,5 @@
 <include>
-  <window pos="0,[0,-0,-0" colorBkgnd="#FFFFFF">
+  <window pos="0,[0,-0,-0" >
     <text pos="|0,|0,-0,-0" offset="-0.5,-0.5">收藏功能开发中，敬请期待...</text>
   </window>
 </include>
