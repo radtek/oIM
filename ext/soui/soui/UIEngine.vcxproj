@@ -320,6 +320,7 @@
     <ResourceCompile Include="UIEngine.rc" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
+    <SOUIPATH>..\</SOUIPATH>
     <ProjectGuid>{856B81EC-F19F-4A88-B41B-2343FB519324}</ProjectGuid>
     <RootNamespace>UIEngine</RootNamespace>
     <Keyword>Qt4VSv1.0</Keyword>
