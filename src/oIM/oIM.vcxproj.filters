@@ -24,6 +24,12 @@
     <Filter Include="Source Files\Controls">
       <UniqueIdentifier>{3ec4f762-e8ad-48b8-8959-fc864480d825}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Adapter">
+      <UniqueIdentifier>{8b4faf67-f43d-489d-8ec0-3c5dd6e4a823}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Adapter">
+      <UniqueIdentifier>{6d90eb9d-ada5-44f4-aebc-3a0f1eab584f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="oIM.cpp">
@@ -46,6 +52,9 @@
     </ClCompile>
     <ClCompile Include="C_CommandLine.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Adapter\C_SessionListAdapter.cpp">
+      <Filter>Source Files\Adapter</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -74,6 +83,9 @@
     </ClInclude>
     <ClInclude Include="C_CommandLine.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Adapter\C_SessionListAdapter.h">
+      <Filter>Header Files\Adapter</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -18,13 +18,11 @@
           <button name="btn_mainbar_setting" skin="skin.mainbar.setting" tip="@string/mainbar_setting" pos="0dp,-50dp,@60dp,@50dp" />
         </caption>
         <!-- 右边客户区 -->
-        <window pos="[0,0,-0,-0">
+        <window pos="[0,0,-0,-0" id="100">
           <!-- 客户区管理列表的背景颜色 -->
           <window pos="0,0,@250dp,-0" colorBkgnd="@color/window2" />
-          <!-- 标题栏 -->
-          <include src="LAYOUT:MAIN_SYS_BTNS" />
           <!-- 客户区 -->
-          <tabctrl name="maintab_client" pos="0,[0,-0,-0" animateSteps="0" tabHeight="0" cursel="0">
+          <tabctrl name="maintab_client" pos="0,sib.top@100:0,-0,-0" animateSteps="0" tabHeight="0" cursel="0">
             <page title="Session">
               <include src="LAYOUT:MAIN_SESSION_PAGE"/>
             </page>
@@ -38,6 +36,8 @@
               <include src="LAYOUT:MAIN_COLLECT_PAGE"/>
             </page>
           </tabctrl>
+          <!-- 标题栏: 因为每个子窗口是贴的窗口，所以，默认主窗口的系统按钮要在tabctrl后面，才能显示在最它的上面 -->
+          <include src="LAYOUT:MAIN_SYS_BTNS" />
         </window>
       </window>
     </window>
