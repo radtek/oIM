@@ -68,6 +68,7 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Adapter\C_SessionListAdapter.cpp" />
     <ClCompile Include="Controls\STabBtn.cpp" />
     <ClCompile Include="C_CommandLine.cpp" />
     <ClCompile Include="C_UICore.cpp" />
@@ -83,6 +84,7 @@
     <ResourceCompile Include="oIM.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Adapter\C_SessionListAdapter.h" />
     <ClInclude Include="Controls\STabBtn.h" />
     <ClInclude Include="C_CommandLine.h" />
     <ClInclude Include="C_UICore.h" />
